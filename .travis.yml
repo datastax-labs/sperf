@@ -25,7 +25,7 @@ matrix:
     env: PATH=/c/Python37:/c/Python37/Scripts:$PATH 
 install:
 - pip3 install coverage
-- pip3 install -r pysper/requirements.txt
+- pip3 install -r requirements.txt
 script:
 - scripts/cov
 - scripts/lint
