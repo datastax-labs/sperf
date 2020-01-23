@@ -1,0 +1,113 @@
+{
+    "10.101.33.205": {
+        "agent_install_type": "package", 
+        "agent_status": {
+            "condition": "STOMP_ERROR_GOOD_CONF", 
+            "http": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "install_status": {
+                "error-message": null, 
+                "state": null
+            }, 
+            "jmx": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "last_seen": 1578676855, 
+            "limitations": [], 
+            "monitored_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "stomp": {
+                "last_up": 0, 
+                "status": "unknown", 
+                "updated_at": 1578676855
+            }, 
+            "storage_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "version": "6.7.7"
+        }, 
+        "dc": "Solr", 
+        "name": "10.101.33.205", 
+        "rack": "rack1"
+    }, 
+    "10.101.35.102": {
+        "agent_install_type": "package", 
+        "agent_status": {
+            "condition": "STOMP_ERROR_GOOD_CONF", 
+            "http": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "install_status": {
+                "error-message": null, 
+                "state": null
+            }, 
+            "jmx": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "last_seen": 1578676855, 
+            "limitations": [], 
+            "monitored_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "stomp": {
+                "last_up": 0, 
+                "status": "unknown", 
+                "updated_at": 1578676855
+            }, 
+            "storage_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "version": "6.7.7"
+        }, 
+        "dc": "Solr", 
+        "name": "10.101.35.102", 
+        "rack": "rack1"
+    }, 
+    "10.101.35.71": {
+        "agent_install_type": "package", 
+        "agent_status": {
+            "condition": "STOMP_ERROR_GOOD_CONF", 
+            "http": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "install_status": {
+                "error-message": null, 
+                "state": null
+            }, 
+            "jmx": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "last_seen": 1578676855, 
+            "limitations": [], 
+            "monitored_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "stomp": {
+                "last_up": 0, 
+                "status": "unknown", 
+                "updated_at": 1578676855
+            }, 
+            "storage_cassandra": {
+                "status": "up", 
+                "updated_at": 1578676855
+            }, 
+            "version": "6.7.7"
+        }, 
+        "dc": "Solr", 
+        "name": "10.101.35.71", 
+        "rack": "rack1"
+    }
+}

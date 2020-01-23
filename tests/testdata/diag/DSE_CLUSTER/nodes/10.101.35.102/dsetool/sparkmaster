@@ -1,0 +1,10 @@
+/usr/bin/dsetool --host=127.0.0.1 --jmxport=7199 sparkmaster
+exit status: 2
+
+stderr:
+java.lang.UnsupportedOperationException: This functionality is removed. Please use 'dse client-tool' instead.
+	at com.datastax.bdp.tools.SparkDseToolCommands$DseToolSparkMaster.executeJMX(SparkDseToolCommands.java:54)
+	at com.datastax.bdp.tools.DseTool$Plugin.executeJMX(DseTool.java:386)
+	at com.datastax.bdp.tools.DseTool.run(DseTool.java:275)
+	at com.datastax.bdp.tools.DseTool.run(DseTool.java:201)
+	at com.datastax.bdp.tools.DseTool.main(DseTool.java:320)

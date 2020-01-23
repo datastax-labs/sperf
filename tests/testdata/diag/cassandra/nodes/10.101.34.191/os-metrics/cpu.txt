@@ -1,0 +1,6 @@
+user: 0.1
+nice: 0.0
+system: 0.0
+iowait: 0.0
+steal: 0.0
+idle: 99.9

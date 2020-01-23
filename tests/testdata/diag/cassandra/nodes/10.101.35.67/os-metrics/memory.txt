@@ -1,0 +1,9 @@
+mem total: 7983
+mem used: 2345
+mem free: 5075
+mem shared: 35
+mem buff/cache: 561
+mem available: 5296
+swap total: 0
+swap used: 0
+swap free: 0

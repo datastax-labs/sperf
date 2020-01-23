@@ -1,0 +1,765 @@
+INFO  [ScheduledTasks:1] 2020-01-09 16:40:00,861  DroppedMessages.java:156 - RANGE_SLICE messages were dropped in the last 5 s: 1 internal and 0 cross node. Mean internal dropped latency: 9126 ms and Mean cross-node dropped latency: 0 ms
+Dropped message sizes:
+Message group                         50%        75%        95%        98%        99%        Min        Max
+RANGE_SLICE (internal)                 89         89         89         89         89         89         89
+
+Top 1 destination tables for dropped reads/writes:
+keyspace1.standard1 - 1 messages
+INFO  [ScheduledTasks:1] 2020-01-09 16:40:01,048  StatusLogger.java:173 - 
+Pool Name                                     Active      Pending (w/Backpressure)   Delayed      Completed   Blocked  All Time Blocked
+AuthzStage                                         0                       0 (N/A)       N/A              0         0                 0
+LwtStage                                           0                       0 (N/A)       N/A              0         0                 0
+ReadRepairStage                                    0                       0 (N/A)       N/A              0         0                 0
+RequestResponseStage                               0                       0 (N/A)       N/A              0         0                 0
+AntiCompactionExecutor                             0                       0 (N/A)       N/A              0         0                 0
+AntiEntropyStage                                   0                       0 (N/A)       N/A              0         0                 0
+BackgroundIoStage                                  0                       0 (N/A)       N/A             80         0                 0
+CacheCleanupExecutor                               0                       0 (N/A)       N/A              0         0                 0
+CompactionExecutor                                 2                      52 (N/A)       N/A           1386         0                 0
+GossipStage                                        0                       0 (N/A)       N/A              0         0                 0
+HintsDispatcher                                    0                       0 (N/A)       N/A              0         0                 0
+InternalResponseStage                              0                       0 (N/A)       N/A              0         0                 0
+MemtableFlushWriter                                0                       0 (N/A)       N/A            113         0                 0
+MemtablePostFlush                                  0                       0 (N/A)       N/A            402         0                 0
+MemtableReclaimMemory                              0                       0 (N/A)       N/A            113         0                 0
+MigrationStage                                     0                       0 (N/A)       N/A              0         0                 0
+MiscStage                                          0                       0 (N/A)       N/A              0         0                 0
+PendingRangeCalculator                             0                       0 (N/A)       N/A              1         0                 0
+PerDiskMemtableFlushWriter_0                       0                       0 (N/A)       N/A             99         0                 0
+Repair-Task                                        0                       0 (N/A)       N/A              0         0                 0
+Sampler                                            0                       0 (N/A)       N/A              0         0                 0
+SecondaryIndexManagement                           0                       0 (N/A)       N/A              0         0                 0
+TPC/all/AUTHENTICATION                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/AUTHORIZATION                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/BATCH_REMOVE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/BATCH_REPLAY                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/BATCH_STORE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/BATCH_STORE_RESPONSE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/CONTINUOUS_PAGING                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/COUNTER_ACQUIRE_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_PARK                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_PROCESSED_TASKS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SCHEDULED_TASKS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECTOR_EVENTS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_CALLS                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_NOW_CALLS                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SPIN                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_YIELD                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EXECUTE_STATEMENT                          0                     N/A (N/A)       N/A             82       N/A               N/A
+TPC/all/FRAME_DECODE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/HINT_DISPATCH                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/HINT_RESPONSE                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/LWT_COMMIT                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PREPARE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PREPARE_AWAIT_LOCK                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/LWT_PROPOSE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PROPOSE_AWAIT_LOCK                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/NETWORK_BACKPRESSURE                       0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/NODESYNC_VALIDATION                        0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/POPULATE_VIRTUAL_TABLE                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_DEFERRED                              0                       0 (N/A)       N/A              9       N/A                 0
+TPC/all/READ_DISK_ASYNC                            0                     N/A (N/A)       N/A           3741       N/A               N/A
+TPC/all/READ_INTERNAL                              0                     N/A (N/A)       N/A            107       N/A               N/A
+TPC/all/READ_LOCAL                                 0                       0 (N/A)       N/A             10       N/A                 0
+TPC/all/READ_RANGE_INTERNAL                        0                     N/A (N/A)       N/A            236       N/A               N/A
+TPC/all/READ_RANGE_LOCAL                           0                       0 (N/A)       N/A              1       N/A                 0
+TPC/all/READ_RANGE_NODESYNC                        0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_RANGE_REMOTE                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_RANGE_SWITCH_FOR_RESPONSE             0                     N/A (N/A)       N/A            237       N/A               N/A
+TPC/all/READ_REMOTE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_SECONDARY_INDEX                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SPECULATE                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_ITERATOR                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_RESPONSE                   0                     N/A (N/A)       N/A            117       N/A               N/A
+TPC/all/READ_TIMEOUT                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/TIMED_TIMEOUT                              0                     N/A (N/A)       N/A          19928       N/A               N/A
+TPC/all/TIMED_UNKNOWN                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/TRUNCATE                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/UNKNOWN                                    0                     N/A (N/A)       N/A             81       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SEGMENT              0                     N/A (N/A)       N/A           1001       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SYNC                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/WRITE_DEFRAGMENT                           0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/WRITE_INTERNAL                             0                     N/A (N/A)       N/A              2       N/A               N/A
+TPC/all/WRITE_LOCAL                                0                       0 (N/A)       N/A           3547       N/A                 0
+TPC/all/WRITE_MEMTABLE_FULL                        0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/WRITE_REMOTE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/WRITE_SWITCH_FOR_MEMTABLE                  0                     N/A (N/A)       N/A            423       N/A               N/A
+TPC/all/WRITE_SWITCH_FOR_RESPONSE                  0                     N/A (N/A)       N/A           3549       N/A               N/A
+ValidationExecutor                                 0                       0 (N/A)       N/A              0         0                 0
+ViewBuildExecutor                                  0                       0 (N/A)       N/A              0         0                 0
+CompactionManager                 2         3
+MessagingService                n/a       0/0
+Buffer pool size for cached reads: 2.621GiB, for direct reads: 7.000MiB
+Cached reads buffer pool BufferPool for long lived buffers: Size-tiered from 4.000KiB to 4.000KiB buffers, using 1024 buffers per slab.
+Sub pools:
+Buffer size 4.000KiB: 2.615GiB used, 2.621GiB allocated, 671 slabs.
+Overflow: 0.000KiB
+Direct reads buffer pool BufferPool for temporary buffers: allocated 7.000MiB, used 0.000KiB, overflow 0.000KiB, overflow allocations mean rate 0.000000
+Global memtable buffer pool size: onHeap = 50.895KiB, offHeap = 93.040MiB
+Cache Type                     Size                 Capacity               KeysToSave
+KeyCache                          0                104857600                      all
+RowCache                          0                        0                      all
+Table                       Memtable ops,data
+system_schema.columns                     0,0
+system_schema.types                       0,0
+system_schema.indexes                     0,0
+system_schema.keyspaces                   0,0
+system_schema.dropped_columns                 0,0
+system_schema.hidden_columns                 0,0
+system_schema.aggregates                  0,0
+system_schema.triggers                    0,0
+system_schema.tables                      0,0
+system_schema.views                       0,0
+system_schema.functions                   0,0
+system.compaction_history             19,4086
+system.IndexInfo                          0,0
+system.repairs                            0,0
+system.size_estimates                432,5410
+system.paxos                              0,0
+system.built_views                        0,0
+system.peer_events                        0,0
+system.range_xfers                        0,0
+system.peers                              0,0
+system.batches                            0,0
+system.transferred_ranges                 0,0
+system.view_builds_in_progress                 0,0
+system.local                           58,197
+system.sstable_activity              116,3479
+system.available_ranges                   0,0
+system.prepared_statements             13,1942
+system_traces.sessions                    0,0
+system_traces.events                      0,0
+system_distributed.nodesync_status                 0,0
+system_distributed.nodesync_user_validations                 0,0
+system_distributed.parent_repair_history                 0,0
+system_distributed.repair_history                 0,0
+system_distributed.view_build_status                 0,0
+system_auth.roles                       1,139
+system_auth.role_members                  0,0
+system_auth.role_permissions                 0,0
+dse_security.digest_tokens                 0,0
+dse_security.role_options                 0,0
+dse_security.spark_security                 0,0
+dse_insights_local.insights_config               1,568
+dse_insights.insights_config                 0,0
+dse_insights.tokens                       0,0
+dse_perf.node_slow_log                    0,0
+dse_leases.logs                           0,0
+dse_leases.leases                         0,0
+dse_system.encrypted_keys                 0,0
+dse_system_local.solr_resources                 0,0
+solr_admin.solr_resources                 0,0
+keyspace1.counter1                        0,0
+keyspace1.standard1               13,97501417
+
+DEBUG [ScheduledTasks:1] 2020-01-09 16:40:01,049  StatusLogger.java:174 - 
+Pool Name                                     Active      Pending (w/Backpressure)   Delayed      Completed   Blocked  All Time Blocked
+AuthzStage                                         0                       0 (N/A)       N/A              0         0                 0
+LwtStage                                           0                       0 (N/A)       N/A              0         0                 0
+ReadRepairStage                                    0                       0 (N/A)       N/A              0         0                 0
+RequestResponseStage                               0                       0 (N/A)       N/A              0         0                 0
+AntiCompactionExecutor                             0                       0 (N/A)       N/A              0         0                 0
+AntiEntropyStage                                   0                       0 (N/A)       N/A              0         0                 0
+BackgroundIoStage                                  0                       0 (N/A)       N/A             80         0                 0
+CacheCleanupExecutor                               0                       0 (N/A)       N/A              0         0                 0
+CompactionExecutor                                 2                      52 (N/A)       N/A           1386         0                 0
+GossipStage                                        0                       0 (N/A)       N/A              0         0                 0
+HintsDispatcher                                    0                       0 (N/A)       N/A              0         0                 0
+InternalResponseStage                              0                       0 (N/A)       N/A              0         0                 0
+MemtableFlushWriter                                0                       0 (N/A)       N/A            113         0                 0
+MemtablePostFlush                                  0                       0 (N/A)       N/A            402         0                 0
+MemtableReclaimMemory                              0                       0 (N/A)       N/A            113         0                 0
+MigrationStage                                     0                       0 (N/A)       N/A              0         0                 0
+MiscStage                                          0                       0 (N/A)       N/A              0         0                 0
+PendingRangeCalculator                             0                       0 (N/A)       N/A              1         0                 0
+PerDiskMemtableFlushWriter_0                       0                       0 (N/A)       N/A             99         0                 0
+Repair-Task                                        0                       0 (N/A)       N/A              0         0                 0
+Sampler                                            0                       0 (N/A)       N/A              0         0                 0
+SecondaryIndexManagement                           0                       0 (N/A)       N/A              0         0                 0
+TPC/0                                              0                         0 (0)         0           1425       N/A                 0
+TPC/0/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/READ_DEFERRED                                0                       0 (N/A)       N/A              2       N/A                 0
+TPC/0/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A             10       N/A               N/A
+TPC/0/READ_INTERNAL                                0                     N/A (N/A)       N/A             10       N/A               N/A
+TPC/0/READ_LOCAL                                   0                       0 (N/A)       N/A              1       N/A                 0
+TPC/0/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             37       N/A               N/A
+TPC/0/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             37       N/A               N/A
+TPC/0/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             11       N/A               N/A
+TPC/0/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A          19927       N/A               N/A
+TPC/0/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            169       N/A               N/A
+TPC/0/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/WRITE_LOCAL                                  0                       0 (N/A)       N/A            526       N/A                 0
+TPC/0/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/0/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/0/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             96       N/A               N/A
+TPC/0/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            526       N/A               N/A
+TPC/1                                              0                         0 (0)         0           1269       N/A                 0
+TPC/1/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/READ_DEFERRED                                0                       0 (N/A)       N/A              2       N/A                 0
+TPC/1/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A              4       N/A               N/A
+TPC/1/READ_INTERNAL                                0                     N/A (N/A)       N/A             32       N/A               N/A
+TPC/1/READ_LOCAL                                   0                       0 (N/A)       N/A              4       N/A                 0
+TPC/1/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/1/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/1/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             36       N/A               N/A
+TPC/1/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            116       N/A               N/A
+TPC/1/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              1       N/A               N/A
+TPC/1/WRITE_LOCAL                                  0                       0 (N/A)       N/A            472       N/A                 0
+TPC/1/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/1/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/1/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             61       N/A               N/A
+TPC/1/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            473       N/A               N/A
+TPC/2                                              0                         0 (0)         0           1301       N/A                 0
+TPC/2/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/READ_DEFERRED                                0                       0 (N/A)       N/A              1       N/A                 0
+TPC/2/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A             13       N/A               N/A
+TPC/2/READ_INTERNAL                                0                     N/A (N/A)       N/A             10       N/A               N/A
+TPC/2/READ_LOCAL                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             33       N/A               N/A
+TPC/2/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             33       N/A               N/A
+TPC/2/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             10       N/A               N/A
+TPC/2/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            157       N/A               N/A
+TPC/2/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/WRITE_LOCAL                                  0                       0 (N/A)       N/A            501       N/A                 0
+TPC/2/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/2/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/2/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             42       N/A               N/A
+TPC/2/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            501       N/A               N/A
+TPC/3                                              0                         0 (0)         0           1391       N/A                 0
+TPC/3/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/READ_DEFERRED                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A              7       N/A               N/A
+TPC/3/READ_INTERNAL                                0                     N/A (N/A)       N/A             16       N/A               N/A
+TPC/3/READ_LOCAL                                   0                       0 (N/A)       N/A              2       N/A                 0
+TPC/3/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/3/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/3/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             18       N/A               N/A
+TPC/3/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            160       N/A               N/A
+TPC/3/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              1       N/A               N/A
+TPC/3/WRITE_LOCAL                                  0                       0 (N/A)       N/A            530       N/A                 0
+TPC/3/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/3/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/3/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             58       N/A               N/A
+TPC/3/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            531       N/A               N/A
+TPC/4                                              0                         0 (0)         0           5001       N/A                 0
+TPC/4/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/READ_DEFERRED                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A           3688       N/A               N/A
+TPC/4/READ_INTERNAL                                0                     N/A (N/A)       N/A              9       N/A               N/A
+TPC/4/READ_LOCAL                                   0                       0 (N/A)       N/A              2       N/A                 0
+TPC/4/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/4/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              1       N/A                 0
+TPC/4/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             35       N/A               N/A
+TPC/4/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             11       N/A               N/A
+TPC/4/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            130       N/A               N/A
+TPC/4/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/WRITE_LOCAL                                  0                       0 (N/A)       N/A            509       N/A                 0
+TPC/4/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/4/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/4/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             73       N/A               N/A
+TPC/4/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            509       N/A               N/A
+TPC/5                                              0                         0 (0)         0           1224       N/A                 0
+TPC/5/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/READ_DEFERRED                                0                       0 (N/A)       N/A              2       N/A                 0
+TPC/5/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A             10       N/A               N/A
+TPC/5/READ_INTERNAL                                0                     N/A (N/A)       N/A             11       N/A               N/A
+TPC/5/READ_LOCAL                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/5/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             34       N/A               N/A
+TPC/5/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             11       N/A               N/A
+TPC/5/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/UNKNOWN                                      0                     N/A (N/A)       N/A              1       N/A               N/A
+TPC/5/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            114       N/A               N/A
+TPC/5/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/WRITE_LOCAL                                  0                       0 (N/A)       N/A            484       N/A                 0
+TPC/5/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/5/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/5/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             39       N/A               N/A
+TPC/5/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            484       N/A               N/A
+TPC/6                                              0                         0 (0)         0           1370       N/A                 0
+TPC/6/AUTHENTICATION                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/AUTHORIZATION                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/BATCH_REMOVE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/BATCH_REPLAY                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/BATCH_STORE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/BATCH_STORE_RESPONSE                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/CONTINUOUS_PAGING                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/COUNTER_ACQUIRE_LOCK                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_PARK                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_PROCESSED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_SCHEDULED_TASKS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_SELECTOR_EVENTS                    0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_SELECT_CALLS                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_SELECT_NOW_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_SPIN                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EVENTLOOP_YIELD                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/EXECUTE_STATEMENT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/FRAME_DECODE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/HINT_DISPATCH                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/HINT_RESPONSE                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/LWT_COMMIT                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/LWT_PREPARE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/LWT_PREPARE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/LWT_PROPOSE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/LWT_PROPOSE_AWAIT_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/NETWORK_BACKPRESSURE                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/NODESYNC_VALIDATION                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/POPULATE_VIRTUAL_TABLE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/READ_DEFERRED                                0                       0 (N/A)       N/A              2       N/A                 0
+TPC/6/READ_DISK_ASYNC                              0                     N/A (N/A)       N/A              9       N/A               N/A
+TPC/6/READ_INTERNAL                                0                     N/A (N/A)       N/A             19       N/A               N/A
+TPC/6/READ_LOCAL                                   0                       0 (N/A)       N/A              1       N/A                 0
+TPC/6/READ_RANGE_INTERNAL                          0                     N/A (N/A)       N/A             30       N/A               N/A
+TPC/6/READ_RANGE_LOCAL                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/READ_RANGE_NODESYNC                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/READ_RANGE_REMOTE                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/READ_RANGE_SWITCH_FOR_RESPONSE               0                     N/A (N/A)       N/A             30       N/A               N/A
+TPC/6/READ_REMOTE                                  0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/READ_SECONDARY_INDEX                         0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/READ_SPECULATE                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/READ_SWITCH_FOR_ITERATOR                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/READ_SWITCH_FOR_RESPONSE                     0                     N/A (N/A)       N/A             20       N/A               N/A
+TPC/6/READ_TIMEOUT                                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/TIMED_TIMEOUT                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/TIMED_UNKNOWN                                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/TRUNCATE                                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/UNKNOWN                                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/WRITE_AWAIT_COMMITLOG_SEGMENT                0                     N/A (N/A)       N/A            155       N/A               N/A
+TPC/6/WRITE_AWAIT_COMMITLOG_SYNC                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/WRITE_DEFRAGMENT                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/WRITE_INTERNAL                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/WRITE_LOCAL                                  0                       0 (N/A)       N/A            525       N/A                 0
+TPC/6/WRITE_MEMTABLE_FULL                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/6/WRITE_REMOTE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/6/WRITE_SWITCH_FOR_MEMTABLE                    0                     N/A (N/A)       N/A             54       N/A               N/A
+TPC/6/WRITE_SWITCH_FOR_RESPONSE                    0                     N/A (N/A)       N/A            525       N/A               N/A
+TPC/all/AUTHENTICATION                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/AUTHORIZATION                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/BATCH_REMOVE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/BATCH_REPLAY                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/BATCH_STORE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/BATCH_STORE_RESPONSE                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/CONTINUOUS_PAGING                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/COUNTER_ACQUIRE_LOCK                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_PARK                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_PROCESSED_TASKS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SCHEDULED_TASKS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECTOR_EVENTS                  0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_CALLS                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_NOW_CALLS                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_SPIN                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EVENTLOOP_YIELD                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/EXECUTE_STATEMENT                          0                     N/A (N/A)       N/A             82       N/A               N/A
+TPC/all/FRAME_DECODE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/HINT_DISPATCH                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/HINT_RESPONSE                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/LWT_COMMIT                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PREPARE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PREPARE_AWAIT_LOCK                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/LWT_PROPOSE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/LWT_PROPOSE_AWAIT_LOCK                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/NETWORK_BACKPRESSURE                       0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/NODESYNC_VALIDATION                        0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/POPULATE_VIRTUAL_TABLE                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_DEFERRED                              0                       0 (N/A)       N/A              9       N/A                 0
+TPC/all/READ_DISK_ASYNC                            0                     N/A (N/A)       N/A           3741       N/A               N/A
+TPC/all/READ_INTERNAL                              0                     N/A (N/A)       N/A            107       N/A               N/A
+TPC/all/READ_LOCAL                                 0                       0 (N/A)       N/A             10       N/A                 0
+TPC/all/READ_RANGE_INTERNAL                        0                     N/A (N/A)       N/A            236       N/A               N/A
+TPC/all/READ_RANGE_LOCAL                           0                       0 (N/A)       N/A              1       N/A                 0
+TPC/all/READ_RANGE_NODESYNC                        0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_RANGE_REMOTE                          0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_RANGE_SWITCH_FOR_RESPONSE             0                     N/A (N/A)       N/A            237       N/A               N/A
+TPC/all/READ_REMOTE                                0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/READ_SECONDARY_INDEX                       0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SPECULATE                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_ITERATOR                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_RESPONSE                   0                     N/A (N/A)       N/A            117       N/A               N/A
+TPC/all/READ_TIMEOUT                               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/TIMED_TIMEOUT                              0                     N/A (N/A)       N/A          19928       N/A               N/A
+TPC/all/TIMED_UNKNOWN                              0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/TRUNCATE                                   0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/UNKNOWN                                    0                     N/A (N/A)       N/A             81       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SEGMENT              0                     N/A (N/A)       N/A           1001       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SYNC                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/WRITE_DEFRAGMENT                           0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/WRITE_INTERNAL                             0                     N/A (N/A)       N/A              2       N/A               N/A
+TPC/all/WRITE_LOCAL                                0                       0 (N/A)       N/A           3547       N/A                 0
+TPC/all/WRITE_MEMTABLE_FULL                        0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/all/WRITE_REMOTE                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/all/WRITE_SWITCH_FOR_MEMTABLE                  0                     N/A (N/A)       N/A            423       N/A               N/A
+TPC/all/WRITE_SWITCH_FOR_RESPONSE                  0                     N/A (N/A)       N/A           3549       N/A               N/A
+TPC/other                                          0                         0 (0)         0            162       N/A                 0
+TPC/other/AUTHENTICATION                           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/AUTHORIZATION                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/BATCH_REMOVE                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/BATCH_REPLAY                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/BATCH_STORE                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/BATCH_STORE_RESPONSE                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/CONTINUOUS_PAGING                        0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/COUNTER_ACQUIRE_LOCK                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_PARK                           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_PROCESSED_TASKS                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_SCHEDULED_TASKS                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_SELECTOR_EVENTS                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_SELECT_CALLS                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_SELECT_NOW_CALLS               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_SPIN                           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EVENTLOOP_YIELD                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/EXECUTE_STATEMENT                        0                     N/A (N/A)       N/A             82       N/A               N/A
+TPC/other/FRAME_DECODE                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/HINT_DISPATCH                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/HINT_RESPONSE                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/LWT_COMMIT                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/LWT_PREPARE                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/LWT_PREPARE_AWAIT_LOCK                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/LWT_PROPOSE                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/LWT_PROPOSE_AWAIT_LOCK                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/NETWORK_BACKPRESSURE                     0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/NODESYNC_VALIDATION                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/POPULATE_VIRTUAL_TABLE                   0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_DEFERRED                            0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_DISK_ASYNC                          0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_INTERNAL                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_LOCAL                               0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_RANGE_INTERNAL                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_RANGE_LOCAL                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_RANGE_NODESYNC                      0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_RANGE_REMOTE                        0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_RANGE_SWITCH_FOR_RESPONSE           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_REMOTE                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/READ_SECONDARY_INDEX                     0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_SPECULATE                           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_SWITCH_FOR_ITERATOR                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_SWITCH_FOR_RESPONSE                 0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/READ_TIMEOUT                             0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/TIMED_TIMEOUT                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/TIMED_UNKNOWN                            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/TRUNCATE                                 0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/UNKNOWN                                  0                     N/A (N/A)       N/A             80       N/A               N/A
+TPC/other/WRITE_AWAIT_COMMITLOG_SEGMENT            0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/WRITE_AWAIT_COMMITLOG_SYNC               0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/WRITE_DEFRAGMENT                         0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/WRITE_INTERNAL                           0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/WRITE_LOCAL                              0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/WRITE_MEMTABLE_FULL                      0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/WRITE_REMOTE                             0                       0 (N/A)       N/A              0       N/A                 0
+TPC/other/WRITE_SWITCH_FOR_MEMTABLE                0                     N/A (N/A)       N/A              0       N/A               N/A
+TPC/other/WRITE_SWITCH_FOR_RESPONSE                0                     N/A (N/A)       N/A              0       N/A               N/A
+ValidationExecutor                                 0                       0 (N/A)       N/A              0         0                 0
+ViewBuildExecutor                                  0                       0 (N/A)       N/A              0         0                 0
+CompactionManager                 2         3
+MessagingService                n/a       0/0
+Buffer pool size for cached reads: 2.621GiB, for direct reads: 7.000MiB
+Cached reads buffer pool BufferPool for long lived buffers: Size-tiered from 4.000KiB to 4.000KiB buffers, using 1024 buffers per slab.
+Sub pools:
+Buffer size 4.000KiB: 2.615GiB used, 2.621GiB allocated, 671 slabs.
+Overflow: 0.000KiB
+Direct reads buffer pool BufferPool for temporary buffers: allocated 7.000MiB, used 0.000KiB, overflow 0.000KiB, overflow allocations mean rate 0.000000
+Global memtable buffer pool size: onHeap = 50.895KiB, offHeap = 93.040MiB
+Cache Type                     Size                 Capacity               KeysToSave
+KeyCache                          0                104857600                      all
+RowCache                          0                        0                      all
+Table                       Memtable ops,data
+system_schema.columns                     0,0
+system_schema.types                       0,0
+system_schema.indexes                     0,0
+system_schema.keyspaces                   0,0
+system_schema.dropped_columns                 0,0
+system_schema.hidden_columns                 0,0
+system_schema.aggregates                  0,0
+system_schema.triggers                    0,0
+system_schema.tables                      0,0
+system_schema.views                       0,0
+system_schema.functions                   0,0
+system.compaction_history             19,4086
+system.IndexInfo                          0,0
+system.repairs                            0,0
+system.size_estimates                432,5410
+system.paxos                              0,0
+system.built_views                        0,0
+system.peer_events                        0,0
+system.range_xfers                        0,0
+system.peers                              0,0
+system.batches                            0,0
+system.transferred_ranges                 0,0
+system.view_builds_in_progress                 0,0
+system.local                           58,197
+system.sstable_activity              116,3479
+system.available_ranges                   0,0
+system.prepared_statements             13,1942
+system_traces.sessions                    0,0
+system_traces.events                      0,0
+system_distributed.nodesync_status                 0,0
+system_distributed.nodesync_user_validations                 0,0
+system_distributed.parent_repair_history                 0,0
+system_distributed.repair_history                 0,0
+system_distributed.view_build_status                 0,0
+system_auth.roles                       1,139
+system_auth.role_members                  0,0
+system_auth.role_permissions                 0,0
+dse_security.digest_tokens                 0,0
+dse_security.role_options                 0,0
+dse_security.spark_security                 0,0
+dse_insights_local.insights_config               1,568
+dse_insights.insights_config                 0,0
+dse_insights.tokens                       0,0
+dse_perf.node_slow_log                    0,0
+dse_leases.logs                           0,0
+dse_leases.leases                         0,0
+dse_system.encrypted_keys                 0,0
+dse_system_local.solr_resources                 0,0
+solr_admin.solr_resources                 0,0
+keyspace1.counter1                        0,0
+keyspace1.standard1               13,97501417
+
+WARN  [ScheduledTasks:1] 2020-01-09 16:40:03,653  NoSpamLogger.java:98 - Some operations timed out, details available at debug level (debug.log)
+DEBUG [ScheduledTasks:1] 2020-01-09 16:40:03,654  MonitoringTask.java:151 - 1 operations timed out in the last 5007 msecs:
+<SELECT * FROM keyspace1.standard1 WHERE >, total time 10562 msec, timeout 10000 msec
+DEBUG [CompactionExecutor:3] 2020-01-09 16:40:04,064  CompactionTask.java:289 - Compacted (5c1651b0-32fe-11ea-bad5-9d49ae5beedc) 5 sstables to [/var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-30-bti,] to level=0.  936.994MiB to 936.994MiB (~100% of original) in 140,432ms.  Read Throughput = 6.672MiB/s, Write Throughput = 6.672MiB/s, Row Throughput = ~1/s.  131 total partitions merged to 131.  Partition merge counts were {1:131, }
+DEBUG [NonPeriodicTasks:1] 2020-01-09 16:40:04,067  SSTable.java:104 - Deleting sstable: /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-26-bti
+DEBUG [CompactionExecutor:4] 2020-01-09 16:40:31,240  CompactionTask.java:289 - Compacted (15235320-32fe-11ea-bad5-9d49ae5beedc) 4 sstables to [/var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-25-bti,] to level=0.  2.581GiB to 1.900GiB (~73% of original) in 286,643ms.  Read Throughput = 9.222MiB/s, Write Throughput = 6.786MiB/s, Row Throughput = ~18/s.  2,895 total partitions merged to 2,683.  Partition merge counts were {1:2589, 2:27, 3:16, 4:51, }
+DEBUG [CompactionExecutor:4] 2020-01-09 16:40:31,241  CompactionTask.java:160 - Compacting (bffe0880-32fe-11ea-bad5-9d49ae5beedc) [/var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-27-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-28-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-29-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-31-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-32-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-33-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-34-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-35-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-36-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-37-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-38-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-39-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-40-bti-Data.db:level=0, /var/lib/cassandra/data/keyspace1/standard1-4b2ee2a132fd11eabad59d49ae5beedc/ac-41-bti-Data.db:level=0, ]
+D

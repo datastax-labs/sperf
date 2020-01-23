@@ -1,0 +1,27 @@
+Compaction History: 
+id                                   keyspace_name columnfamily_name compacted_at            bytes_in  bytes_out rows_merged                             
+db596261-33ca-11ea-a1f5-c78af1245aea my_solr       my_table          2020-01-10T17:02:09.769 264190035 104852672 {1:175119, 2:161773, 3:209095, 4:210247}
+cf5424f2-33ca-11ea-a1f5-c78af1245aea my_solr       my_table          2020-01-10T17:01:34.467 103385704 66174047  {1:275823, 2:150058, 3:50336, 4:7180}   
+72edaa14-33ca-11ea-a1f5-c78af1245aea my_solr       my_table          2020-01-10T16:58:57.684 104598928 66564764  {1:275320, 2:151464, 3:51626, 4:7788}   
+12b28080-33ca-11ea-a1f5-c78af1245aea my_solr       my_table          2020-01-10T16:56:20.981 106583553 67342400  {1:275512, 2:153946, 3:54258, 4:8172}   
+9a461a33-33c9-11ea-a1f5-c78af1245aea my_solr       my_table          2020-01-10T16:52:56.899 98520307  64108824  {1:274134, 2:161319, 3:60076, 4:9926}   
+7f9919f0-33c7-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:37:32.103 922       550       {1:13, 2:1, 3:1}                        
+216e59d0-33c7-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:34:54.123 5436      4281      {1:14, 4:1}                             
+20b7db10-33c7-11ea-a1f5-c78af1245aea system_schema columns           2020-01-10T16:34:52.903 10215     9839      {1:14, 4:1}                             
+201a6290-33c7-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:34:51.870 929       548       {1:14, 4:1}                             
+1ef802a0-33c7-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:34:49.963 5245      4153      {1:14, 4:1}                             
+1e627960-33c7-11ea-a1f5-c78af1245aea system_schema columns           2020-01-10T16:34:49.013 9948      9681      {1:14, 4:1}                             
+1dc241c0-33c7-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:34:47.937 929       548       {1:14, 4:1}                             
+1d3a9b30-33c7-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:34:47.050 5148      3998      {1:14, 4:1}                             
+1c868d70-33c7-11ea-a1f5-c78af1245aea system_schema columns           2020-01-10T16:34:45.867 9530      9267      {1:14, 4:1}                             
+1c079970-33c7-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:34:45.081 929       548       {1:14, 4:1}                             
+1b616e60-33c7-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:34:43.950 4956      3857      {1:14, 3:1}                             
+1a26cb80-33c7-11ea-a1f5-c78af1245aea system_schema columns           2020-01-10T16:34:41.906 8805      8642      {1:14, 2:1}                             
+1a2740b0-33c7-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:34:41.894 894       548       {1:13, 2:2}                             
+cfcbb830-33c5-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:25:27.669 4660      3643      {1:13, 3:1}                             
+cf962940-33c5-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:25:27.320 812       520       {1:13, 3:1}                             
+aa0e01c0-33c5-11ea-a1f5-c78af1245aea system        local             2020-01-10T16:24:24.322 1289      1052      {5:1}                                   
+aa06aec0-33c5-11ea-a1f5-c78af1245aea system_schema tables            2020-01-10T16:24:24.279 9133      3547      {1:2, 4:11}                             
+aa043dc0-33c5-11ea-a1f5-c78af1245aea system_schema keyspaces         2020-01-10T16:24:24.265 1679      452       {1:2, 4:11}                             
+a9ec7000-33c5-11ea-a1f5-c78af1245aea system_schema columns           2020-01-10T16:24:24.231 17950     8242      {1:2, 4:11}                             
+a9ec9710-33c5-11ea-a1f5-c78af1245aea system_schema types             2020-01-10T16:24:24.214 2673      696       {1:2, 4:3}                              

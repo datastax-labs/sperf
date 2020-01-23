@@ -1,0 +1,1142 @@
+{
+  "cassandra" : {
+    "histogram-size" : {
+      "count" : 30844,
+      "description" : "Compressed size of histograms after serialization",
+      "max" : 77,
+      "mean" : 3.1214096761692884,
+      "min" : 1,
+      "p50" : 1.0,
+      "p75" : 1.0,
+      "p95" : 15.0,
+      "p98" : 23.0,
+      "p99" : 53.0,
+      "p999" : 77.0,
+      "stddev" : 8.169673127637497
+    },
+    "rollup-insert-time" : {
+      "count" : 65913,
+      "description" : "How long inserts to the rollups table takes",
+      "duration_units" : "milliseconds",
+      "m15_rate" : 26.05517241138298,
+      "m1_rate" : 29.858618900909107,
+      "m5_rate" : 26.320554950139627,
+      "max" : 176.0,
+      "mean" : 2.751672778236853,
+      "mean_rate" : 25.756529509532673,
+      "min" : 0.0,
+      "p50" : 1.0,
+      "p75" : 3.0,
+      "p95" : 9.0,
+      "p98" : 19.0,
+      "p99" : 24.0,
+      "p999" : 27.0,
+      "rate_units" : "calls/second",
+      "stddev" : 4.834504910516363
+    },
+    "rollup-states-read" : {
+      "count" : 0
+    },
+    "rollup7200-states-saved" : {
+      "count" : 10417,
+      "description" : "Number of rollup states that have been saved in the rollup_state table"
+    },
+    "rollup86400-states-saved" : {
+      "count" : 10417,
+      "description" : "Number of rollup states that have been saved in the rollup_state table"
+    }
+  },
+  "rollups" : {
+    "done-queue-length" : {
+      "description" : "Approximate count of rollups that have completed but have not yet been processed (alerts, storing in rollups table, graphite)",
+      "value" : 0
+    }
+  },
+  "jmx" : {
+    "invoke-time" : {
+      "count" : 7152,
+      "description" : "Time spent invoking JMX operations",
+      "duration_units" : "milliseconds",
+      "m15_rate" : 2.5956119537197675,
+      "m1_rate" : 2.7776697953645244,
+      "m5_rate" : 2.7283896304864474,
+      "max" : 20.0,
+      "mean" : 0.9341179344097932,
+      "mean_rate" : 2.714130864553389,
+      "min" : 0.0,
+      "p50" : 1.0,
+      "p75" : 1.0,
+      "p95" : 2.0,
+      "p98" : 2.0,
+      "p99" : 2.0,
+      "p999" : 6.0,
+      "rate_units" : "calls/second",
+      "stddev" : 0.6225561594184083
+    },
+    "read-time" : {
+      "count" : 129343,
+      "description" : "Time spent reading JMX attributes",
+      "duration_units" : "milliseconds",
+      "m15_rate" : 53.09485441321506,
+      "m1_rate" : 47.30293277254127,
+      "m5_rate" : 48.64831920203781,
+      "max" : 33.0,
+      "mean" : 0.4466237501271053,
+      "mean_rate" : 49.060644234179264,
+      "min" : 0.0,
+      "p50" : 0.0,
+      "p75" : 1.0,
+      "p95" : 1.0,
+      "p98" : 1.0,
+      "p99" : 2.0,
+      "p999" : 17.0,
+      "rate_units" : "calls/second",
+      "stddev" : 1.1303669954251032
+    }
+  },
+  "messaging" : {
+    "send-message-time" : {
+      "count" : 969,
+      "description" : "Time spent blocked sending Stomp messages to OpsCenterd",
+      "duration_units" : "milliseconds",
+      "m15_rate" : 0.4515908244085397,
+      "m1_rate" : 0.34954802219610037,
+      "m5_rate" : 0.36110542546013036,
+      "max" : 23.0,
+      "mean" : 0.40206909774354926,
+      "mean_rate" : 0.3679222374246405,
+      "min" : 0.0,
+      "p50" : 0.0,
+      "p75" : 1.0,
+      "p95" : 1.0,
+      "p98" : 3.0,
+      "p99" : 3.0,
+      "p999" : 3.0,
+      "rate_units" : "calls/second",
+      "stddev" : 0.6204538301273849
+    }
+  },
+  "support" : {
+    "agent-metrics.json" : {
+      "count" : 1,
+      "max" : 243.0,
+      "mean" : 243.0,
+      "min" : 243.0,
+      "p50" : 243.0,
+      "p75" : 243.0,
+      "p95" : 243.0,
+      "p98" : 243.0,
+      "p99" : 243.0,
+      "p999" : 243.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.014723303476383153,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "agent_version.json" : {
+      "count" : 1,
+      "max" : 0.0,
+      "mean" : 0.0,
+      "min" : 0.0,
+      "p50" : 0.0,
+      "p75" : 0.0,
+      "p95" : 0.0,
+      "p98" : 0.0,
+      "p99" : 0.0,
+      "p999" : 0.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "mean_rate" : 0.10447211709520135,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "blockdev_report" : {
+      "count" : 1,
+      "max" : 16.0,
+      "mean" : 16.0,
+      "min" : 16.0,
+      "p50" : 16.0,
+      "p75" : 16.0,
+      "p95" : 16.0,
+      "p98" : 16.0,
+      "p99" : 16.0,
+      "p999" : 16.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "mean_rate" : 0.10467289951432619,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "conf-location.json" : {
+      "count" : 1,
+      "max" : 2.0,
+      "mean" : 2.0,
+      "min" : 2.0,
+      "p50" : 2.0,
+      "p75" : 2.0,
+      "p95" : 2.0,
+      "p98" : 2.0,
+      "p99" : 2.0,
+      "p999" : 2.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "mean_rate" : 0.10449522795325769,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "diagnostic-size" : {
+      "count" : 1,
+      "description" : "Size of compressed diagnostic tar",
+      "max" : 338867,
+      "mean" : 338867.0,
+      "min" : 338867,
+      "p50" : 338867.0,
+      "p75" : 338867.0,
+      "p95" : 338867.0,
+      "p98" : 338867.0,
+      "p99" : 338867.0,
+      "p999" : 338867.0,
+      "stddev" : 0.0
+    },
+    "diagnostic-time" : {
+      "count" : 1,
+      "description" : "How long generating the compressed diagnostic tar took",
+      "duration_units" : "milliseconds",
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "max" : 61072.0,
+      "mean" : 61072.0,
+      "mean_rate" : 0.10742344395191969,
+      "min" : 61072.0,
+      "p50" : 61072.0,
+      "p75" : 61072.0,
+      "p95" : 61072.0,
+      "p98" : 61072.0,
+      "p99" : 61072.0,
+      "p999" : 61072.0,
+      "rate_units" : "calls/second",
+      "stddev" : 0.0
+    },
+    "driver-metadata" : {
+      "count" : 2,
+      "max" : 0.0,
+      "mean" : 0.0,
+      "min" : 0.0,
+      "p50" : 0.0,
+      "p75" : 0.0,
+      "p95" : 0.0,
+      "p98" : 0.0,
+      "p99" : 0.0,
+      "p999" : 0.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029304877120101606,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "driver-schema" : {
+      "count" : 2,
+      "max" : 76.0,
+      "mean" : 28.961753634142795,
+      "min" : 12.0,
+      "p50" : 12.0,
+      "p75" : 76.0,
+      "p95" : 76.0,
+      "p98" : 76.0,
+      "p99" : 76.0,
+      "p999" : 76.0,
+      "stddev" : 28.246258977779387,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029337556584795577,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "dsetool-listjt" : {
+      "count" : 1,
+      "max" : 4503.0,
+      "mean" : 4503.0,
+      "min" : 4503.0,
+      "p50" : 4503.0,
+      "p75" : 4503.0,
+      "p95" : 4503.0,
+      "p98" : 4503.0,
+      "p99" : 4503.0,
+      "p999" : 4503.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19779007785878447,
+      "m1_rate" : 0.16929634497812282,
+      "m5_rate" : 0.1934432200964012,
+      "mean_rate" : 0.054333900819033394,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "dsetool-ring" : {
+      "count" : 1,
+      "max" : 4521.0,
+      "mean" : 4521.0,
+      "min" : 4521.0,
+      "p50" : 4521.0,
+      "p75" : 4521.0,
+      "p95" : 4521.0,
+      "p98" : 4521.0,
+      "p99" : 4521.0,
+      "p999" : 4521.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19889196960097935,
+      "m1_rate" : 0.18400888292586468,
+      "m5_rate" : 0.1966942907643235,
+      "mean_rate" : 0.07203267885623381,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "dsetool-sparkmaster" : {
+      "count" : 1,
+      "max" : 4308.0,
+      "mean" : 4308.0,
+      "min" : 4308.0,
+      "p50" : 4308.0,
+      "p75" : 4308.0,
+      "p95" : 4308.0,
+      "p98" : 4308.0,
+      "p99" : 4308.0,
+      "p999" : 4308.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "mean_rate" : 0.10444797485237695,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "java_heap.json" : {
+      "count" : 1,
+      "max" : 2.0,
+      "mean" : 2.0,
+      "min" : 2.0,
+      "p50" : 2.0,
+      "p75" : 2.0,
+      "p95" : 2.0,
+      "p98" : 2.0,
+      "p99" : 2.0,
+      "p999" : 2.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.2,
+      "m1_rate" : 0.2,
+      "m5_rate" : 0.2,
+      "mean_rate" : 0.10473247282144599,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "java_system_properties.json" : {
+      "count" : 2,
+      "max" : 4.0,
+      "mean" : 3.7349725994665186,
+      "min" : 3.0,
+      "p50" : 4.0,
+      "p75" : 4.0,
+      "p95" : 4.0,
+      "p98" : 4.0,
+      "p99" : 4.0,
+      "p999" : 4.0,
+      "stddev" : 0.4413477965278029,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029339580464442593,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "machine-info.json" : {
+      "count" : 2,
+      "max" : 1.0,
+      "mean" : 1.0,
+      "min" : 1.0,
+      "p50" : 1.0,
+      "p75" : 1.0,
+      "p95" : 1.0,
+      "p98" : 1.0,
+      "p99" : 1.0,
+      "p999" : 1.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029341261446122386,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-cfstats" : {
+      "count" : 1,
+      "max" : 3931.0,
+      "mean" : 3931.0,
+      "min" : 3931.0,
+      "p50" : 3931.0,
+      "p75" : 3931.0,
+      "p95" : 3931.0,
+      "p98" : 3931.0,
+      "p99" : 3931.0,
+      "p999" : 3931.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1902458849001428,
+      "m1_rate" : 0.09447331054820299,
+      "m5_rate" : 0.17214159528501158,
+      "mean_rate" : 0.019271152614828924,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-compactionhistory" : {
+      "count" : 1,
+      "max" : 2904.0,
+      "mean" : 2904.0,
+      "min" : 2904.0,
+      "p50" : 2904.0,
+      "p75" : 2904.0,
+      "p95" : 2904.0,
+      "p98" : 2904.0,
+      "p99" : 2904.0,
+      "p999" : 2904.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19237151525464488,
+      "m1_rate" : 0.11160702915400945,
+      "m5_rate" : 0.17797635419760474,
+      "mean_rate" : 0.02309467434783674,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-compactionstats" : {
+      "count" : 1,
+      "max" : 2758.0,
+      "mean" : 2758.0,
+      "min" : 2758.0,
+      "p50" : 2758.0,
+      "p75" : 2758.0,
+      "p95" : 2758.0,
+      "p98" : 2758.0,
+      "p99" : 2758.0,
+      "p999" : 2758.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18814374193356292,
+      "m1_rate" : 0.07996993086896952,
+      "m5_rate" : 0.16649812252232055,
+      "mean_rate" : 0.016145618535320736,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-describecluster" : {
+      "count" : 1,
+      "max" : 2888.0,
+      "mean" : 2888.0,
+      "min" : 2888.0,
+      "p50" : 2888.0,
+      "p75" : 2888.0,
+      "p95" : 2888.0,
+      "p98" : 2888.0,
+      "p99" : 2888.0,
+      "p999" : 2888.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1945208954232697,
+      "m1_rate" : 0.1318481260400888,
+      "m5_rate" : 0.18400888292586465,
+      "mean_rate" : 0.028685474646455895,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-getcompactionthroughput" : {
+      "count" : 1,
+      "max" : 2888.0,
+      "mean" : 2888.0,
+      "min" : 2888.0,
+      "p50" : 2888.0,
+      "p75" : 2888.0,
+      "p95" : 2888.0,
+      "p98" : 2888.0,
+      "p99" : 2888.0,
+      "p999" : 2888.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18919189378135307,
+      "m1_rate" : 0.08691964170141568,
+      "m5_rate" : 0.16929634497812282,
+      "mean_rate" : 0.016935523109796298,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-getstreamthroughput" : {
+      "count" : 1,
+      "max" : 2802.0,
+      "mean" : 2802.0,
+      "min" : 2802.0,
+      "p50" : 2802.0,
+      "p75" : 2802.0,
+      "p95" : 2802.0,
+      "p98" : 2802.0,
+      "p99" : 2802.0,
+      "p999" : 2802.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1945208954232697,
+      "m1_rate" : 0.1318481260400888,
+      "m5_rate" : 0.18400888292586465,
+      "mean_rate" : 0.03119287414426538,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-gossipinfo" : {
+      "count" : 1,
+      "max" : 2798.0,
+      "mean" : 2798.0,
+      "min" : 2798.0,
+      "p50" : 2798.0,
+      "p75" : 2798.0,
+      "p95" : 2798.0,
+      "p98" : 2798.0,
+      "p99" : 2798.0,
+      "p999" : 2798.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19237151525464488,
+      "m1_rate" : 0.11160702915400945,
+      "m5_rate" : 0.17797635419760474,
+      "mean_rate" : 0.024690358783924386,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-info" : {
+      "count" : 1,
+      "max" : 3222.0,
+      "mean" : 3222.0,
+      "min" : 3222.0,
+      "p50" : 3222.0,
+      "p75" : 3222.0,
+      "p95" : 3222.0,
+      "p98" : 3222.0,
+      "p99" : 3222.0,
+      "p999" : 3222.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18919189378135307,
+      "m1_rate" : 0.08691964170141568,
+      "m5_rate" : 0.16929634497812282,
+      "mean_rate" : 0.017913113505939424,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-netstats" : {
+      "count" : 1,
+      "max" : 2953.0,
+      "mean" : 2953.0,
+      "min" : 2953.0,
+      "p50" : 2953.0,
+      "p75" : 2953.0,
+      "p95" : 2953.0,
+      "p98" : 2953.0,
+      "p99" : 2953.0,
+      "p999" : 2953.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19560457449692012,
+      "m1_rate" : 0.1433062621147579,
+      "m5_rate" : 0.18710139700632353,
+      "mean_rate" : 0.034358742121276514,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-proxyhistograms" : {
+      "count" : 1,
+      "max" : 2850.0,
+      "mean" : 2850.0,
+      "min" : 2850.0,
+      "p50" : 2850.0,
+      "p75" : 2850.0,
+      "p95" : 2850.0,
+      "p98" : 2850.0,
+      "p99" : 2850.0,
+      "p999" : 2850.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19560457449692012,
+      "m1_rate" : 0.1433062621147579,
+      "m5_rate" : 0.18710139700632353,
+      "mean_rate" : 0.038089513739026096,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-ring" : {
+      "count" : 1,
+      "max" : 3222.0,
+      "mean" : 3222.0,
+      "min" : 3222.0,
+      "p50" : 3222.0,
+      "p75" : 3222.0,
+      "p95" : 3222.0,
+      "p98" : 3222.0,
+      "p99" : 3222.0,
+      "p999" : 3222.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18814374193356292,
+      "m1_rate" : 0.07996993086896952,
+      "m5_rate" : 0.16649812252232055,
+      "mean_rate" : 0.015456406941660297,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-status" : {
+      "count" : 1,
+      "max" : 2851.0,
+      "mean" : 2851.0,
+      "min" : 2851.0,
+      "p50" : 2851.0,
+      "p75" : 2851.0,
+      "p95" : 2851.0,
+      "p98" : 2851.0,
+      "p99" : 2851.0,
+      "p999" : 2851.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19130574782060583,
+      "m1_rate" : 0.10268342380651845,
+      "m5_rate" : 0.1750346638085895,
+      "mean_rate" : 0.02164195141801566,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-statusbinary" : {
+      "count" : 1,
+      "max" : 2831.0,
+      "mean" : 2831.0,
+      "min" : 2831.0,
+      "p50" : 2831.0,
+      "p75" : 2831.0,
+      "p95" : 2831.0,
+      "p98" : 2831.0,
+      "p99" : 2831.0,
+      "p999" : 2831.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.19130574782060583,
+      "m1_rate" : 0.10268342380651845,
+      "m5_rate" : 0.1750346638085895,
+      "mean_rate" : 0.02038382505182561,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-tpstats" : {
+      "count" : 1,
+      "max" : 3333.0,
+      "mean" : 3333.0,
+      "min" : 3333.0,
+      "p50" : 3333.0,
+      "p75" : 3333.0,
+      "p95" : 3333.0,
+      "p98" : 3333.0,
+      "p99" : 3333.0,
+      "p999" : 3333.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1966942907643235,
+      "m1_rate" : 0.155760156614281,
+      "m5_rate" : 0.1902458849001428,
+      "mean_rate" : 0.04363068745717895,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "nodetool-version" : {
+      "count" : 1,
+      "max" : 2750.0,
+      "mean" : 2750.0,
+      "min" : 2750.0,
+      "p50" : 2750.0,
+      "p75" : 2750.0,
+      "p95" : 2750.0,
+      "p98" : 2750.0,
+      "p99" : 2750.0,
+      "p999" : 2750.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1934432200964012,
+      "m1_rate" : 0.12130613194252672,
+      "m5_rate" : 0.1809674836071919,
+      "mean_rate" : 0.026490043404431746,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "ntp-ntpstat" : {
+      "count" : 1,
+      "max" : 3.0,
+      "mean" : 3.0,
+      "min" : 3.0,
+      "p50" : 3.0,
+      "p75" : 3.0,
+      "p95" : 3.0,
+      "p98" : 3.0,
+      "p99" : 3.0,
+      "p999" : 3.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1966942907643235,
+      "m1_rate" : 0.155760156614281,
+      "m5_rate" : 0.1902458849001428,
+      "mean_rate" : 0.043641262285850954,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "ntp-ntptime" : {
+      "count" : 1,
+      "max" : 3.0,
+      "mean" : 3.0,
+      "min" : 3.0,
+      "p50" : 3.0,
+      "p75" : 3.0,
+      "p95" : 3.0,
+      "p98" : 3.0,
+      "p99" : 3.0,
+      "p999" : 3.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1966942907643235,
+      "m1_rate" : 0.155760156614281,
+      "m5_rate" : 0.1902458849001428,
+      "mean_rate" : 0.04364884805448849,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-info.json" : {
+      "count" : 1,
+      "max" : 1.0,
+      "mean" : 1.0,
+      "min" : 1.0,
+      "p50" : 1.0,
+      "p75" : 1.0,
+      "p95" : 1.0,
+      "p98" : 1.0,
+      "p99" : 1.0,
+      "p999" : 1.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.1966942907643235,
+      "m1_rate" : 0.155760156614281,
+      "m5_rate" : 0.1902458849001428,
+      "mean_rate" : 0.04363342720635553,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-metrics-cpu.json" : {
+      "count" : 2,
+      "max" : 1003.0,
+      "mean" : 1003.0,
+      "min" : 1003.0,
+      "p50" : 1003.0,
+      "p75" : 1003.0,
+      "p95" : 1003.0,
+      "p98" : 1003.0,
+      "p99" : 1003.0,
+      "p999" : 1003.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.028837857650506418,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-metrics-disk.json" : {
+      "count" : 2,
+      "max" : 1014.0,
+      "mean" : 1010.3251370026674,
+      "min" : 1009.0,
+      "p50" : 1009.0,
+      "p75" : 1014.0,
+      "p95" : 1014.0,
+      "p98" : 1014.0,
+      "p99" : 1014.0,
+      "p999" : 1014.0,
+      "stddev" : 2.2067389826390147,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029268816021064816,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-metrics-disk_space.json" : {
+      "count" : 2,
+      "max" : 5.0,
+      "mean" : 4.265027400533481,
+      "min" : 4.0,
+      "p50" : 4.0,
+      "p75" : 5.0,
+      "p95" : 5.0,
+      "p98" : 5.0,
+      "p99" : 5.0,
+      "p999" : 5.0,
+      "stddev" : 0.4413477965278029,
+      "m15_rate" : 0.18717285722743296,
+      "m1_rate" : 0.08368420209548381,
+      "m5_rate" : 0.16434537403929061,
+      "mean_rate" : 0.02842550837477939,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-metrics-load_avg.json" : {
+      "count" : 2,
+      "max" : 0.0,
+      "mean" : 0.0,
+      "min" : 0.0,
+      "p50" : 0.0,
+      "p75" : 0.0,
+      "p95" : 0.0,
+      "p98" : 0.0,
+      "p99" : 0.0,
+      "p999" : 0.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.02883854879487785,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "os-metrics-memory.json" : {
+      "count" : 2,
+      "max" : 4.0,
+      "mean" : 4.0,
+      "min" : 4.0,
+      "p50" : 4.0,
+      "p75" : 4.0,
+      "p95" : 4.0,
+      "p98" : 4.0,
+      "p99" : 4.0,
+      "p999" : 4.0,
+      "stddev" : 0.0,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.028840334110070753,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "solr-index_size.json" : {
+      "count" : 2,
+      "max" : 79.0,
+      "mean" : 77.53005480106697,
+      "min" : 77.0,
+      "p50" : 77.0,
+      "p75" : 79.0,
+      "p95" : 79.0,
+      "p98" : 79.0,
+      "p99" : 79.0,
+      "p999" : 79.0,
+      "stddev" : 0.8826955930556059,
+      "m15_rate" : 0.18710139700632353,
+      "m1_rate" : 0.0735758882342885,
+      "m5_rate" : 0.1637461506155964,
+      "mean_rate" : 0.029303690606606293,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    }
+  },
+  "components" : {
+    "component-state" : {
+      "value" : {
+        "backup-service-reporter-component" : "BackupServiceReporterComponent #{:stomp-component class opsagent.messaging.StompComponent, :sync-component class opsagent.backups.sync.BackupSyncComponent, :control-chan clojure.core.async.impl.channels.ManyToManyChannel@73e53bb6, :error }",
+        "environment-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@34df10d3, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@7255fd86, :error }",
+        "notification-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@204ef8f2, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@158fefb6, :error }",
+        "jmx-metric-component" : "JMXMetricComponent #{:metrics-enabled? true, :poll-period 60, :jmx-metrics-threadpool-size 7, :ignored-keyspaces (\"system_virtual_schema\" \"system_views\" \"OpsCenter\" \"dse_auth\" \"system_distributed\" \"system_auth\" \"system_traces\" \"system\"), :ignored-cfs [], :ignored-cores [], :graphite-reporter class opsagent.metrics.graphite_reporter.GraphiteReporterComponent, :metrics-jmx-pool class opsagent.jmx.JMXComponent, :rollup-component class opsagent.rollup.RollupComponent, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :metrics-config class opsagent.metrics.config.MetricDefinitionComponent, :metric-thread java.util.concurrent.ScheduledThreadPoolExecutor@4cb7af4a[Running, pool size = 7, active threads = 7, queued tasks = 0, completed tasks = 0], :kill-signal clojure.lang.Atom@b5cf63, :error }",
+        "storage-database" : "StorageDatabase #{:storage-hosts [\"10.101.35.102\"], :storage-port 9042, :storage-keyspace OpsCenter, :storage-cassandra-user , :storage-cassandra-password *REDACTED*, :storage-keystore-path , :storage-keystore-password *REDACTED*, :storage-truststore-path , :storage-truststore-password *REDACTED*, :kerberos-service , :rollup-state-ttl 259200, :rollups60-ttl 604800, :rollups300-ttl 2419200, :rollups7200-ttl 31536000, :rollups86400-ttl 0, :max-reconnect-time 15000, :connection-timeout 30, :host-read-timeout-ms , :storage-down-callback opsagent.util$debounce_last$fn__1127@44c6c6a2, :separate-storage-cluster? *REDACTED*, :protocol-version DSE_V2, :store-rollup-fn clojure.core$partial$fn__4765@6da74d49, :store-pdp-fn clojure.core$partial$fn__4763@520dcb56, :storage-connection com.datastax.driver.dse.DefaultDseSession@1f2c954a, :error }",
+        "os-stat-component" : "OSStatCollection #{:local-interface 10.101.35.102, :metrics-enabled? true, :poll-period 60, :rollup-component class opsagent.rollup.RollupComponent, :metrics-config class opsagent.metrics.config.MetricDefinitionComponent, :graphite-reporter class opsagent.metrics.graphite_reporter.GraphiteReporterComponent, :os-stat-thread java.util.concurrent.ScheduledThreadPoolExecutor@1a6838a[Running, pool size = 9, active threads = 5, queued tasks = 3, completed tasks = 369], :error }",
+        "graphite-reporter" : "GraphiteReporterComponent #{:graphite_host , :graphite_port 2003, :graphite_prefix opscenter, :send-chan , :connection , :process-rollup-fn :not-enabled, :error }",
+        "status-component" : "opsagent.status.StatusComponent@df3ba258",
+        "sync-component" : "BackupSyncComponent #{:executor-pool java.util.concurrent.ThreadPoolExecutor@2b4b3f47[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], :commitlog-executor-pool java.util.concurrent.ThreadPoolExecutor@66432c01[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], :report-chan clojure.core.async.impl.channels.ManyToManyChannel@12db998c, :error }",
+        "dynamic-environment-component" : "DynamicEnvironmentComponent #{:location-conf {:agent_address_yaml_location nil, :cassandra_binary_location nil, :cassandra_log_location \"/var/log/cassandra\", :dse_env_location nil, :dse_binary_location nil, :agent_binary_location nil, :spark_log_location nil, :agent_log_location nil, :solr_log_location nil, :cassandra_conf_location nil, :dse_defaults_location nil, :spark_conf_location nil, :agent_config_location nil, :dse_conf_location nil}, :address-conf {:local_interface \"10.101.35.102\", :cassandra_rpc_interface \"0.0.0.0\", :agent_rpc_interface \"0.0.0.0\", :agent_rpc_broadcast_address \"10.101.35.102\"}, :kerb-conf {:kerberos_service nil, :kerberos_keytab_location nil, :kerberos_client_principal nil}, :environment-jmx-pool class opsagent.jmx.JMXComponent, :dynamic-env {:addresses {:cassandra-broadcast-address \"10.101.35.102\", :cassandra-listen-address \"10.101.35.102\", :cassandra-rpc-address \"0.0.0.0\", :cassandra-broadcast-rpc-address \"10.101.35.102\", :agent-rpc-address \"0.0.0.0\", :agent-rpc-broadcast-address \"10.101.35.102\", :solr-http-address \"0.0.0.0\", :solr-http-port 8983}, :dse {:graph-enabled false}, :paths {:install-location #object[java.io.File 0x2b37c5bb \"/etc/dse\"], :config-paths {:agent-log #object[java.io.File 0x6d481979 \"/var/log/datastax-agent\"], :spark-conf #object[java.io.File 0x725298d \"/etc/dse/spark\"], :agent-config #object[java.io.File 0x45856638 \"/etc/datastax-agent\"], :install-type :package, :cassandra-binary \"/usr/bin\", :cassandra-conf #object[java.io.File 0x508a692e \"/etc/dse/cassandra\"], :agent-opscenter-ssl #object[java.io.File 0x7d243197 \"/var/lib/datastax-agent/ssl\"], :dse-env #object[java.io.File 0x536316ff \"/etc/dse\"], :agent-binary #object[java.io.File 0x3db90e0d \"/usr/share/datastax-agent/bin\"], :spark-log #object[java.io.File 0x3e79d38d \"/var/log/spark\"], :dse-binary \"/usr/bin\", :dse-conf #object[java.io.File 0x628df55c \"/etc/dse\"], :cassandra-log #object[java.io.File 0x2912c31c \"/var/log/cassandra\"], :install-location #object[java.io.File 0x5c2e6955 \"/usr/share/datastax-agent\"], :agent-address-yaml #object[java.io.File 0x2c3b2ce6 \"/var/lib/datastax-agent/conf/address.yaml\"], :dse-defaults \"/etc/default\"}}, :dse? true, :dense-node-name \"dse\", :host-id \"e6f09523-3513-42ab-b395-8f264eaceb34\", :versions {:cassandra \"4.0.0.677\", :dse \"6.7.7\", :spark nil, :solr \"6.0.1\"}, :package? true, :collected true}, :run-from-fresh-jmx false, :error }",
+        "nodedetails-component" : "NodeDetailsComponent #{:nodedetails-threadpool-size 3, :realtime-interval 5, :shorttime-interval 10, :longtime-interval 300, :alias , :nodedetails-jmx-pool class opsagent.jmx.JMXComponent, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :stomp-component class opsagent.messaging.StompComponent, :monitored-database class opsagent.cassandra.MonitoredDatabase, :nodedetails-pool java.util.concurrent.ScheduledThreadPoolExecutor@21111b28[Running, pool size = 3, active threads = 3, queued tasks = 0, completed tasks = 0], :send-nodedetails-fn clojure.core$partial$fn__4759@1ea43635, :kill-signal clojure.lang.Atom@316f8075, :error }",
+        "performance-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@42380f5d, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@6f581a6c, :error }",
+        "metrics-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 2, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@7ec4b31f, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@7937ef69, :error }",
+        "rollup-reporter" : "RollupReporter #{:stomp-component class opsagent.messaging.StompComponent, :rollup-component class opsagent.rollup.RollupComponent, :control-queue clojure.core.async.impl.channels.ManyToManyChannel@1397db2c, :error }",
+        "config-request" : "ConfigRequestComponent #{:conf-channel /1503254307/conf, :conf-request-channel /conf-request, :version 6.7.7, :storage-database class opsagent.cassandra.StorageDatabase, :stomp-component class opsagent.messaging.StompComponent, :conf-request-thread , :error }",
+        "stomp-component" : "StompComponent #{:stomp-interface 10.101.34.47, :stomp-port 61620, :use-ssl? false, :local-interface 10.101.35.102, :conf-request-channel /conf-request, :conf-channel /1503254307/conf, :pong-channel /1503254307/pong, :ping-channel /ping, :version 6.7.7, :send-without-validation false, :handle-new-conf-fn opsagent.conf$handle_new_conf@156d7556, :stomp-down-fn opsagent.util$debounce_last$fn__1127@14bcccb8, :stomp-id 450a79a7-6768-481b-94f8-9ca93983a758, :ips , :cassandra-host-id e6f09523-3513-42ab-b395-8f264eaceb34, :stomp-connection org.jgroups.client.StompConnection@46148df4, :send-message-fn opsagent.messaging.StompComponent$fn__18663@761ea4e2, :request-conf-fn opsagent.messaging.StompComponent$request_conf_fn__18661@383fd0d4, :subscription-map clojure.lang.Atom@4a140267, :pong-async-channel clojure.core.async.impl.channels.ManyToManyChannel@288d4dfc, :pong-timeout-ms 5000, :opscenter_ssl_keystore /var/lib/datastax-agent/ssl/agentKeyStore, :opscenter_ssl_keystore_password *REDACTED*, :opscenter-ssl-strict-subject-validation false, :agent_rpc_broadcast_address 10.101.35.102, :node-stomp-id [\"e6f09523-3513-42ab-b395-8f264eaceb34\" \"10.101.35.102\"], :error }",
+        "repair-component" : "RepairComponent #{:max-pending-repairs 5, :send-repair-fn opsagent.nodedetails.repair$send_repair@a037b07, :parse-notification-fn opsagent.nodedetails.repair$parse_notification@24e363f3, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :notification-jmx-pool class opsagent.jmx.JMXComponent, :operations-jmx-pool class opsagent.jmx.JMXComponent, :repair clojure.core$partial$fn__4763@387e5cb7, :stopped clojure.lang.Atom@3976ac13, :error }",
+        "request-component" : "RequestComponent #{:stomp-component class opsagent.messaging.StompComponent, :send-message-func opsagent.messaging.StompComponent$fn__18663@761ea4e2, :error }",
+        "performance-service" : "PerformanceService #{:refresh-interval 5, :history 3600000, :limit 500, :ignore [\"OpsCenter\" \"dse_perf\"], :thread-pool java.util.concurrent.ScheduledThreadPoolExecutor@2d562ae2[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 523], :monitored-database class opsagent.cassandra.MonitoredDatabase, :performance-jmx-pool class opsagent.jmx.JMXComponent, :error }",
+        "rollup-component" : "RollupComponent #{:rollup-id 10.101.35.102, :rollup-snapshot-period 300, :rollup-snapshot-threshold 300, :rollup-rate 200, :rollup-rate-unit :second, :rollup-rate-burst 16, :max-rollup-writes 127, :rollup-chan-size 2048, :bypass-dse-metrics-storage false, :storage-database class opsagent.cassandra.StorageDatabase, :metrics-config class opsagent.metrics.config.MetricDefinitionComponent, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :graphite-reporter class opsagent.metrics.graphite_reporter.GraphiteReporterComponent, :rollup-thread clojure.core.async.impl.channels.ManyToManyChannel@686af1a, :pdp-thread Thread[rollup-snapshot,5,main], :done-rollups clojure.core.async.impl.channels.ManyToManyChannel@1098b811, :rollup-cache opsagent.cache.GuavaCache@155b3e44, :maybe-pause-fn clojure.core$partial$fn__4761@393288a5, :process-fn clojure.core$partial$fn__4761@a7f1ee6, :rollup-queue clojure.core.async.impl.channels.ManyToManyChannel@5ff27788, :error }",
+        "distributed-repair-component" : "DistributedRepairComponent #{:tmp-dir /var/lib/datastax-agent/tmp/persistent/dsr, :dsr-page-size 1000, :db-pool clojure.lang.Delay@28bc3379, :current-task-status clojure.lang.Atom@177f3166, :task-queue clojure.core.async.impl.channels.ManyToManyChannel@5dae4cda, :current-repair clojure.lang.Atom@51346548, :repair-monitor java.lang.Object@18daa3ec, :started? clojure.lang.Atom@76c05590, :monitored-database class opsagent.cassandra.MonitoredDatabase, :repair-component class opsagent.nodedetails.repair.RepairComponent, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :operations-jmx-pool class opsagent.jmx.JMXComponent, :notification-jmx-pool class opsagent.jmx.JMXComponent, :error }",
+        "operations-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 4, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@132463cf, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@4ec015e0, :error }",
+        "jmx-notifications" : "JMXNotificationComponent #{:notification-jmx-pool class opsagent.jmx.JMXComponent, :listener-registered? true, :error }",
+        "rollup-subscription-service" : "SubscriptionService #{:rollup-subscriptions [], :added-once true, :error }",
+        "disk-usage-collection" : "DiskUsageCollection #{:disk-usage-update-period 60, :stomp-component class opsagent.messaging.StompComponent, :disk-usage-thread Thread[disk-usage-collection,5,main], :error }",
+        "monitored-database" : "MonitoredDatabase #{:monitored-hosts [\"10.101.35.102\"], :monitored-port 9042, :monitored-keyspace system, :monitored-cassandra-user , :monitored-cassandra-password *REDACTED*, :monitored-keystore-path , :monitored-keystore-password *REDACTED*, :monitored-truststore-path , :monitored-truststore-password *REDACTED*, :kerberos-service , :max-reconnect-time 15000, :connection-timeout 30, :host-read-timeout-ms , :node-down-listener opsagent.cassandra.proxy$java.lang.Object$Host$StateListener$abce334e@6d2da3db, :monitored-down-callback opsagent.util$debounce_last$fn__1127@3ab76632, :separate-storage-cluster? *REDACTED*, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :monitored-connection com.datastax.driver.dse.DefaultDseSession@65c4d49, :actual-host [\"10.101.35.102\"], :error }",
+        "nodedetails-jmx-pool" : "JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 2, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@42bc126b, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@70154676, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@5fb1a962, :error }",
+        "destination-service" : "DestinationService #{:destinations , :dest-map {}, :added-once true, :pool-size 10, :pool-keepalive-time 2, :work-executor-pool java.util.concurrent.ThreadPoolExecutor@7efa949b[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], :error }",
+        "commitlog-archiving-component" : "CommitLogArchivingComponent #{:pit-enabled? false, :staging-dir , :storage-dir , :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :storage-database class opsagent.cassandra.StorageDatabase, :sync-component class opsagent.backups.sync.BackupSyncComponent, :destination-service class opsagent.backups.destinations.DestinationService, :watcher :opsagent.backups.pit/cla-disabled, :error }",
+        "http-server" : "HTTPServer #{:agent-rpc-interface 0.0.0.0, :use-ssl false, :api-port 61621, :opscenter_ssl_keystore /var/lib/datastax-agent/ssl/agentKeyStore, :opscenter_ssl_keystore_password *REDACTED*, :opscenter_ssl_truststore /var/lib/datastax-agent/ssl/agentKeyStore, :opscenter_ssl_truststore_password *REDACTED*, :version 6.7.7, :opscenter-id , :swagger-enabled false, :monitored-database class opsagent.cassandra.MonitoredDatabase, :storage-database class opsagent.cassandra.StorageDatabase, :operations-jmx-pool class opsagent.jmx.JMXComponent, :metrics-jmx-pool class opsagent.jmx.JMXComponent, :nodedetails-component class opsagent.nodedetails.NodeDetailsComponent, :stomp-component class opsagent.messaging.StompComponent, :sync-component class opsagent.backups.sync.BackupSyncComponent, :repair-component class opsagent.nodedetails.repair.RepairComponent, :distributed-repair-component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent, :dynamic-environment-component class opsagent.environment.dynamic.DynamicEnvironmentComponent, :status-component class opsagent.status.StatusComponent, :destination-service class opsagent.backups.destinations.DestinationService, :http-server org.eclipse.jetty.server.Server@59271f0e, :error }",
+        "metrics-config" : "opsagent.metrics.config.MetricDefinitionComponent@c82f67e7"
+      }
+    }
+  },
+  "storage-cluster" : {
+    "authentication-errors" : {
+      "count" : 0
+    },
+    "blocking-executor-queue-depth" : {
+      "value" : 0
+    },
+    "bytes-received" : {
+      "count" : 1223681,
+      "m15_rate" : 1337.5796395898633,
+      "m1_rate" : 418.9047819905793,
+      "m5_rate" : 440.227391059578,
+      "mean_rate" : 465.7244466374211,
+      "units" : "events/second"
+    },
+    "bytes-sent" : {
+      "count" : 15507184,
+      "m15_rate" : 5742.904243927377,
+      "m1_rate" : 5329.643047768035,
+      "m5_rate" : 5887.292032567457,
+      "mean_rate" : 5901.925890194093,
+      "units" : "events/second"
+    },
+    "client-timeouts" : {
+      "count" : 0
+    },
+    "connected-to" : {
+      "value" : 1
+    },
+    "connection-errors" : {
+      "count" : 0
+    },
+    "executor-queue-depth" : {
+      "value" : 0
+    },
+    "ignores" : {
+      "count" : 0
+    },
+    "ignores-on-client-timeout" : {
+      "count" : 0
+    },
+    "ignores-on-connection-error" : {
+      "count" : 0
+    },
+    "ignores-on-other-errors" : {
+      "count" : 0
+    },
+    "ignores-on-read-timeout" : {
+      "count" : 0
+    },
+    "ignores-on-unavailable" : {
+      "count" : 0
+    },
+    "ignores-on-write-timeout" : {
+      "count" : 0
+    },
+    "inflight-requests" : {
+      "value" : 0
+    },
+    "known-hosts" : {
+      "value" : 3
+    },
+    "open-connections" : {
+      "value" : 2
+    },
+    "other-errors" : {
+      "count" : 0
+    },
+    "read-timeouts" : {
+      "count" : 0
+    },
+    "reconnection-scheduler-task-count" : {
+      "value" : 0
+    },
+    "request-queue-depth" : {
+      "value" : 0
+    },
+    "requests" : {
+      "count" : 86754,
+      "max" : 88.433301,
+      "mean" : 2.4529581393956508,
+      "min" : 0.2657,
+      "p50" : 1.119532,
+      "p75" : 2.36137,
+      "p95" : 8.599995,
+      "p98" : 16.873599,
+      "p99" : 23.971128,
+      "p999" : 25.287632,
+      "stddev" : 4.286656211924123,
+      "m15_rate" : 32.1258330445995,
+      "m1_rate" : 31.88736229822883,
+      "m5_rate" : 33.32680809214074,
+      "mean_rate" : 33.01794451630399,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "retries" : {
+      "count" : 0
+    },
+    "retries-on-client-timeout" : {
+      "count" : 0
+    },
+    "retries-on-connection-error" : {
+      "count" : 0
+    },
+    "retries-on-other-errors" : {
+      "count" : 0
+    },
+    "retries-on-read-timeout" : {
+      "count" : 0
+    },
+    "retries-on-unavailable" : {
+      "count" : 0
+    },
+    "retries-on-write-timeout" : {
+      "count" : 0
+    },
+    "speculative-executions" : {
+      "count" : 0
+    },
+    "task-scheduler-task-count" : {
+      "value" : 1
+    },
+    "trashed-connections" : {
+      "value" : 0
+    },
+    "unavailables" : {
+      "count" : 0
+    },
+    "write-timeouts" : {
+      "count" : 0
+    }
+  },
+  "monitored-cluster" : {
+    "authentication-errors" : {
+      "count" : 0
+    },
+    "blocking-executor-queue-depth" : {
+      "value" : 0
+    },
+    "bytes-received" : {
+      "count" : 115702,
+      "m15_rate" : 924.7316130734511,
+      "m1_rate" : 134.08962106061605,
+      "m5_rate" : 43.18798267998628,
+      "mean_rate" : 44.044919288425085,
+      "units" : "events/second"
+    },
+    "bytes-sent" : {
+      "count" : 3807,
+      "m15_rate" : 15.064999596478728,
+      "m1_rate" : 12.577879844591294,
+      "m5_rate" : 3.733052959932069,
+      "mean_rate" : 1.4492316925355022,
+      "units" : "events/second"
+    },
+    "client-timeouts" : {
+      "count" : 0
+    },
+    "connected-to" : {
+      "value" : 1
+    },
+    "connection-errors" : {
+      "count" : 0
+    },
+    "executor-queue-depth" : {
+      "value" : 0
+    },
+    "ignores" : {
+      "count" : 0
+    },
+    "ignores-on-client-timeout" : {
+      "count" : 0
+    },
+    "ignores-on-connection-error" : {
+      "count" : 0
+    },
+    "ignores-on-other-errors" : {
+      "count" : 0
+    },
+    "ignores-on-read-timeout" : {
+      "count" : 0
+    },
+    "ignores-on-unavailable" : {
+      "count" : 0
+    },
+    "ignores-on-write-timeout" : {
+      "count" : 0
+    },
+    "inflight-requests" : {
+      "value" : 0
+    },
+    "known-hosts" : {
+      "value" : 3
+    },
+    "open-connections" : {
+      "value" : 2
+    },
+    "other-errors" : {
+      "count" : 0
+    },
+    "read-timeouts" : {
+      "count" : 0
+    },
+    "reconnection-scheduler-task-count" : {
+      "value" : 0
+    },
+    "request-queue-depth" : {
+      "value" : 0
+    },
+    "requests" : {
+      "count" : 7,
+      "max" : 5.786627999999999,
+      "mean" : 2.5990929329271584,
+      "min" : 1.2079689999999998,
+      "p50" : 1.866442,
+      "p75" : 5.2166179999999995,
+      "p95" : 5.786627999999999,
+      "p98" : 5.786627999999999,
+      "p99" : 5.786627999999999,
+      "p999" : 5.786627999999999,
+      "stddev" : 1.9021413748214242,
+      "m15_rate" : 0.01736454610457272,
+      "m1_rate" : 0.07223219052061215,
+      "m5_rate" : 0.01846928777541301,
+      "mean_rate" : 0.0026647282366536367,
+      "duration_units" : "milliseconds",
+      "rate_units" : "calls/second"
+    },
+    "retries" : {
+      "count" : 0
+    },
+    "retries-on-client-timeout" : {
+      "count" : 0
+    },
+    "retries-on-connection-error" : {
+      "count" : 0
+    },
+    "retries-on-other-errors" : {
+      "count" : 0
+    },
+    "retries-on-read-timeout" : {
+      "count" : 0
+    },
+    "retries-on-unavailable" : {
+      "count" : 0
+    },
+    "retries-on-write-timeout" : {
+      "count" : 0
+    },
+    "speculative-executions" : {
+      "count" : 0
+    },
+    "task-scheduler-task-count" : {
+      "value" : 1
+    },
+    "trashed-connections" : {
+      "value" : 0
+    },
+    "unavailables" : {
+      "count" : 0
+    },
+    "write-timeouts" : {
+      "count" : 0
+    }
+  }
+}

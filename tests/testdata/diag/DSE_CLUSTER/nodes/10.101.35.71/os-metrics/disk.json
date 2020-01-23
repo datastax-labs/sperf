@@ -1,0 +1,67 @@
+{
+  "w/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "await" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "w_await" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "wMB/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "wrqm/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "rMB/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "r_await" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "%util" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "rrqm/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "r/s" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "svctm" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "avgrq-sz" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  },
+  "avgqu-sz" : {
+    "loop0" : 0.0,
+    "vda" : 0.0,
+    "vdb" : 0.0
+  }
+}

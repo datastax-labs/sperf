@@ -1,0 +1,10 @@
+Datacenter: Solr
+================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address        Load       Tokens       Owns    Host ID                               Rack
+UN  10.101.35.71   133.53 MiB  32           ?       96f2331c-48ee-4e4d-9a60-7673579b559c  rack1
+UN  10.101.35.102  133.63 MiB  32           ?       e6f09523-3513-42ab-b395-8f264eaceb34  rack1
+UN  10.101.33.205  108.51 MiB  32           ?       a2ff4fa1-a35f-472b-85d0-1c89e42343ae  rack1
+
+Note: Non-system keyspaces don't have the same replication settings, effective ownership information is meaningless

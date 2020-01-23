@@ -1,0 +1,10 @@
+.DS_Store
+venv/
+.tox
+.eggs
+*.egg-info
+build/
+__pycache__
+dist
+*.pyc
+sperf.spec

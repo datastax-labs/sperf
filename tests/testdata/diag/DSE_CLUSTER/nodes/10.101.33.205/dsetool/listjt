@@ -1,0 +1,290 @@
+/usr/bin/dsetool --host=127.0.0.1 --jmxport=7199 listjt
+exit status: 1
+
+stdout:
+usage: dsetool [-short <arg>] [--long=<arg>] <command> [command-args]
+ -a,--jmxusername <arg>           JMX user name
+ -b,--jmxpassword <arg>           JMX password
+ -c,--cassandra_port <arg>        Cassandra port to use
+    --cipher-suites <arg>         Comma separated list of SSL cipher
+                                  suites for connection to Cassandra when
+                                  SSL is enabled
+ -f,--config-file <arg>           DSE configuration file
+ -h,--host <arg>                  node hostname or ip address
+ -j,--jmxport <arg>               remote jmx agent port number
+    --keystore-password <arg>     Keystore password for connection to
+                                  Cassandra when SSL client auth is
+                                  enabled
+    --keystore-path <arg>         Keystore for connection to Cassandra
+                                  when SSL client auth is enabled
+    --keystore-type <arg>         Keystore type for connection to
+                                  Cassandra when SSL client auth is
+                                  enabled
+ -l,--username <arg>              User name
+ -p,--password <arg>              Password
+ -s,--port <arg>                  Solr port to use
+    --ssl <arg>                   Use or not SSL for jmx and native
+                                  connections
+    --ssl-protocol <arg>          SSL protocol for connection to Cassandra
+                                  when SSL is enabled
+    --sslauth <arg>               Use or not SSL client authentication
+    --truststore-password <arg>   Truststore password for connection to
+                                  Cassandra when SSL is enabled
+    --truststore-path <arg>       Truststore for connection to Cassandra
+                                  when SSL is enabled
+    --truststore-type <arg>       Truststore type for connection to
+                                  Cassandra when SSL is enabled
+
+cleanup_leases                        - Cleans up unneeded leases.  Leases require active
+                                        maintenance, so this reduces CPU and memory usage.
+
+core_indexing_status                  - Returns the current indexing status (INDEXING,
+                                        FAILED, FINISHED) of a given core, the percent
+                                        complete and an estimated completion time.
+        <keyspace.table>   
+        [--all]            
+        [--progress]       
+
+create_core <keyspace.table>          - Creates a core within the node's DC. Uploaded
+                                        resources will be updated cluster wide.
+        schema=<path>                    path of the UTF-8 encoded schema file used for
+                                         creating the core, not necessary when
+                                         generateResources=true
+        solrconfig=<path>                path of the of the UTF-8 encoded solrconfig file
+                                         used for creating the core, not necessary when
+                                         generateResources=true
+        distributed=<true|false>         default: true
+        recovery=<true|false>            default: false
+        reindex=<true|false>             only observed on auto core creation
+                                         (generateResources=true) otherwise always
+                                         reindexes on core creation. Default: true
+        generateResources=<true|false>   default: false
+        coreOptions                      path to the options file when
+                                         generateResources=true
+        coreOptionsInline=<options>      Accepts simple key-value pair settings for the
+                                         same options that you can specify in the YAML file
+                                         that is called with coreOptions. Uses the
+                                         following syntax: key1:value1#key2:value2# as in:
+                                         coreOptionsInline=include_columns:id,name,body#rt:true
+
+createsystemkey                       - Creates a system key for sstable encryption
+        <algorithm[/mode/padding]>            
+        <key strength>                        
+        [<file>]                              
+        [-k|-kmip=<kmip_groupname>]           use the given kmip connection info to create
+                                              a remote system key
+        [-t|-kmip-template=<kmip template>]   Uses a kmip server side key template to
+                                              create key. Only applicable when -kmip is
+                                              set.
+        [-n|-kmip-namespace=<namespace>]      namespace to create key with. Only applicable
+                                              when -kmip is set. Key strength not required
+                                              for Hmac algorithms. <file> will be appended
+                                              to the directory defined in
+                                              system_key_directory for non-kmip keys.
+
+encryptconfigvalue                    - encrypts sensitive configuration information. This
+                                        command takes no arguments; you will be prompted
+                                        for the value to encrypt.
+
+get_core_config                       - Outputs the latest uploaded solrconfig.
+        <keyspace.table> <current=true|false>   If current is set to true returns the
+                                                current live one.
+
+get_core_schema                       - Outputs the latest uploaded schema.
+        <keyspace.table> <current=true|false>   If current is set to true returns the
+                                                current live one.
+
+index_checks                          - Returns LUKE information on the index for a core
+                                        and optionally performs some sanity checks.
+         <keyspace.table>                       
+        [<--index_checks>] [true|false>]        Optional & experimental. Run index checks.
+                                                Note: this is time consuming, implies a
+                                                hard-commit and has a performance impact as
+                                                the full index is read. Also the index
+                                                should be inactive: no writes allowed.
+                                                Default = false.
+        [<--index_checks_stop>] [true|false>]   Optional. Requests current index checks
+                                                task to stop.
+
+infer_solr_schema                     - Returns a proposal schema for the specified
+                                        Keyspace.Table. Does not modify schema or core,
+                                        just suggests one.
+         <keyspace.table>               
+        [<coreOptions>]                 optional path to the auto resource generation
+                                        options file
+        [<coreOptionsInline=options>]   optional. Accepts simple key-value pair settings
+                                        for the same options that you can specify in the
+                                        YAML file that is called with coreOptions. Uses the
+                                        following syntax: key1:value1#key2:value2# as in:
+                                        coreOptionsInline=include_columns:id,name,body#rt:true
+
+inmemorystatus                        - Returns a list of the in-memory tables for this
+                                        node and the amount of memory each table is using,
+                                        or information about a single table if the keyspace
+                                        and columnfamily are given.Warning: This command is deprecated. Please use
+                                        'nodetool inmemorystatus' instead.
+
+insights_config                       - Insights Configuration
+        --mode <DISABLED|ENABLED_NO_STORAGE|ENABLED_WITH_LOCAL_STORAGE>         Sets the Insights mode                                                                                   
+        --show_config                                                           Show current Insights configuration                                                                      
+        --metric_sampling_interval_in_seconds     <int>                         Change Insights metric sampling interval in seconds                                                      
+        --config_refresh_interval_in_seconds      <int>                         Change the frequency insights configuration changes are applied to nodes                                 
+        --data_dir_max_size_in_mb                 <int>                         Change the maximum size of the insights data directory where insights are stored if storage is enabled   
+        --node_system_info_report_period          <ISO_8601 duration string>    Change the node system info report period(ISO-8601 duration string)                                      
+
+insights_filters                      - Insights Filtering Configuration
+        [simple commands]:                                            
+          --show_filters                                              
+          --remove_all_filters                                        
+        [filtering actions]:                                          
+          --add                                                       
+          --remove                                                    
+          --allow                                                     
+          --deny                                                      
+          --global                                                    
+          --insights_only                                             
+         <regex>                                                      
+                                                                      
+        [examples]:                                                   
+         insights_filters --add --global --deny .*KeyspaceMetrics.*   
+         insights_filters --add --insights_only --deny .*gc.*         
+         insights_filters --remove_all_filters                        
+
+list_core_properties <keyspace.table> - List the properties and values currently set in the
+                                        dse-search.properties resource associated with the
+                                        core
+
+list_index_files <keyspace.table>     - Lists all DSE Search index files for a given Solr
+                                        core on the local node.
+        [-i,--index <dir>]   Solr data directory containing index files. If not provided,
+                             it will be inferred from the core name.
+
+list_subranges                        - Divide a token range for a given
+                                        Keyspace/ColumnFamily into a number of smaller
+                                        subranges of approx. keys_per_range. To be useful,
+                                        the specified range should be contained by the
+                                        target node's primary range.
+        <keyspace> <cf-name> <keys_per_range> <start_token>, <end_token>   
+
+managekmip                            - Tool for managing keys on a KMIP server.
+        <command> <kmip_groupname>   Run managekmip help for more info
+
+node_health [-all]                    - Returns a health score between 0 and 1 for the
+                                        node.
+
+partitioner                           - Returns the fully qualified classname of the
+                                        IPartitioner in use by the cluster.
+
+perf                                  - Modify performance objects settings.
+        clustersummary            enable|disable   Toggle cluster summary statistics
+        cqlslowlog                enable|disable   Toggle CQL slow log
+                                  threshold        Set the CQL slow log threshold
+                                  recent_slowest_queries  Shows the N most recent slowest
+                                  CQL queries
+                                  set_num_slowest_queries  Changes the number of slowest
+                                  queries saved to be N
+                                  skip_writing_to_db  Keeps slow CQL queries in-memory only
+                                  write_to_db  Keeps slow CQL queries in-memory and also
+                                  writes them to the DB
+                                  
+        cqlsysteminfo             enable|disable   Toggle CQL system information statistics
+        dbsummary                 enable|disable   Toggle database summary stats
+        histograms                enable|disable   Toggle column family histograms
+        resourcelatencytracking   enable|disable   Toggle resource latency tracking
+        solrcachestats            enable|disable   Toggle Solr cache stats
+        solrindexstats            enable|disable   Toggle Solr index stats
+        solrlatencysnapshots      enable|disable   Toggle Solr latency snapshots
+        solrrequesthandlerstats   enable|disable   Toggle Solr request handler stats
+        solrslowlog               enable|disable|threshold   Toggle Solr slow sub-query log
+                                  or set its threshold once enabled
+                                  
+        solrupdatehandlerstats    enable|disable   Toggle Solr update handler stats
+        userlatencytracking       enable|disable   Toggle user latency tracking
+
+read_resource <keyspace.table>        - Reads a DSE Search resource file.
+        name=<name>   Name of the resource we want to read
+
+rebuild_indexes                       - Rebuild specified secondary indexes for given
+                                        Keyspace/ColumnFamily.
+        <keyspace> <cf-name>   
+        [<idx1>,<idx2>,...]    Rebuild only specified indexes. Omit to re-build all
+                               indexes.
+
+reload_core <keyspace.table>          - Reloads a core within the node's DC. Uploaded
+                                        resources will be updated cluster wide.
+        schema=<path>              path of the schema file used for reloading the core
+        solrconfig=<path>          path of the solrconfig file used for reloading the core
+        distributed=<true|false>   default: true
+        deleteAll=<true|false>     default: false
+        reindex=<true|false>       default: false
+
+ring                                  - List the nodes in the ring (for more readable
+                                        output, use 'dsetool status').
+
+server_id                             - Returns the server ID for the node. Usage:
+                                        server_id [IP ADDRESS]
+
+set_core_property <keyspace.table>    - Set a property value in the dse-search.properties
+                                        resource associated with the core
+        <value>   Set the given property name with the given value
+
+sparkmaster <cmd>                     - Run command regarding Spark Master where command is
+                                        one of:
+        cleanup                      drops and recreates Spark Master recovery table
+        cleanup <data-center-name>   remove recovery data for the specified data center
+
+sparkworker <cmd>                     - Run command regarding Spark Worker
+        restart   restarts Spark Worker on the node
+
+status                                - List the nodes in the ring.
+
+stop_core_reindex                     - Stops any core reindexing for the specified
+                                        Keyspace.Table.
+         <keyspace.table>   
+        [timeout]           optional timeout to wait for the reindex to stop in minutes.
+                            Defaults to 1 minute.
+
+tieredtablestats                      - Prints detailed info about tiered storage tiers. -v
+                                        flag prints individual sstable info
+        [<keyspace.table> ...] [-v]   
+
+tsreload                              - Reloads, without needing to restart, the node's SSL
+                                        certificate truststores. Usage: tsreload
+                                        <client|server>
+        client: reloads the client truststore. This truststore is used for encrypted client-to-node SSL communications.   
+        server: reloads the server truststore. This truststore is used for encrypted node-to-node SSL communications.     
+
+unload_core <keyspace.table>          - Effectively destroys a core without modifying its
+                                        backing table.
+        deleteDataDir=<true|false>     default: false
+        deleteResources=<true|false>   default: false
+        distributed=<true|false>       default: true
+
+upgrade_index_files <keyspace.table>  - Upgrades all DSE Search index files for a given
+                                        Solr core on the local node.
+        -h,--host <arg>               Required. Node hostname or IP address of the remote
+                                      node that contains the encryption configuration used
+                                      for offline index encryption.
+        [-c,--cassandra_port <arg>]   Cassandra port on the remote node that contains the
+                                      encryption configuration used for offline index
+                                      encryption.
+        [-b,--backup]                 whether index files from current index should be
+                                      preserved as a backup after successful upgrade. They
+                                      will be deleted otherwise.
+        [-w,--workspace <dir>]        workspace directory for upgrade process. Upgraded
+                                      index will be created in this directory. If backup
+                                      option was requested, old index will be moved there
+                                      as a backup. By default the same directory is used
+                                      that contains Solr index.
+        [-i,--index <dir>]            Solr data directory containing index files. If not
+                                      provided, it will be inferred from the core name.
+
+write_resource <keyspace.table>       - Uploads a DSE Search resource file.
+        name=<name>   Name the uploaded resource will have
+        file=<file>   Path to the file to be uploaded
+
+
+
+
+stderr:
+Unknown command: listjt

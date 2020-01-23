@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<config>
+  <luceneMatchVersion>LUCENE_6_0_1</luceneMatchVersion>
+  <dseTypeMappingVersion>2</dseTypeMappingVersion>
+  <directoryFactory class="solr.StandardDirectoryFactory" name="DirectoryFactory"/>
+  <indexConfig>
+    <rt>false</rt>
+  </indexConfig>
+  <jmx/>
+  <updateHandler>
+    <autoSoftCommit>
+      <maxTime>10000</maxTime>
+    </autoSoftCommit>
+  </updateHandler>
+  <query>
+    <filterCache class="solr.SolrFilterCache" highWaterMarkMB="2048" lowWaterMarkMB="1024"/>
+    <enableLazyFieldLoading>true</enableLazyFieldLoading>
+    <useColdSearcher>true</useColdSearcher>
+    <maxWarmingSearchers>16</maxWarmingSearchers>
+  </query>
+  <requestDispatcher>
+    <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048000"/>
+    <httpCaching never304="true"/>
+  </requestDispatcher>
+  <requestHandler class="solr.SearchHandler" default="true" name="search"/>
+  <requestHandler class="com.datastax.bdp.search.solr.handler.component.CqlSearchHandler" name="solr_query"/>
+  <requestHandler class="solr.UpdateRequestHandler" name="/update"/>
+  <requestHandler class="solr.UpdateRequestHandler" name="/update/csv" startup="lazy"/>
+  <requestHandler class="solr.UpdateRequestHandler" name="/update/json" startup="lazy"/>
+  <requestHandler class="solr.FieldAnalysisRequestHandler" name="/analysis/field" startup="lazy"/>
+  <requestHandler class="solr.DocumentAnalysisRequestHandler" name="/analysis/document" startup="lazy"/>
+  <requestHandler class="solr.admin.AdminHandlers" name="/admin/"/>
+  <requestHandler class="solr.PingRequestHandler" name="/admin/ping">
+    <lst name="invariants">
+      <str name="qt">search</str>
+      <str name="q">solrpingquery</str>
+    </lst>
+    <lst name="defaults">
+      <str name="echoParams">all</str>
+    </lst>
+  </requestHandler>
+  <requestHandler class="solr.DumpRequestHandler" name="/debug/dump">
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <str name="echoHandler">true</str>
+    </lst>
+  </requestHandler>
+</config>

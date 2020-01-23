@@ -1,0 +1,102 @@
+WARN  [main] 2020-01-09 16:06:49,522  StartupChecks.java:665 - Epoll doesn't seem to be available: this may result in subpar performance.
+===> Is libaio installed? no - it should be installed
+===> Netty Workdir: /tmp/dse/dse.ab4syaVHt mounted on /  with flags [rw, relatime] - it should be on a writable and executable volume (noexec  and ro flags should not be set).
+===> Use the environment variable TMPDIR to move the temporary directory on a different volume, or -Dio.netty.native.workdir=[path] to only change the Netty workdir (not recommended) .
+===> The exception when loading the native library was:
+java.lang.UnsatisfiedLinkError: /tmp/dse/dse.ab4syaVHt/libnetty_transport_native_epoll_x86_642543926216645467362.so: libaio.so.1: cannot open shared object file: No such file or directory
+	at java.lang.ClassLoader$NativeLibrary.load(Native Method)
+	at java.lang.ClassLoader.loadLibrary0(ClassLoader.java:1934)
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1817)
+	at java.lang.Runtime.load0(Runtime.java:809)
+	at java.lang.System.load(System.java:1086)
+	at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:36)
+	at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:243)
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:187)
+	at io.netty.channel.epoll.Native.loadNativeLibrary(Native.java:279)
+	at io.netty.channel.epoll.Native.<clinit>(Native.java:64)
+	at io.netty.channel.epoll.Epoll.<clinit>(Epoll.java:39)
+	at org.apache.cassandra.concurrent.TPC.<clinit>(TPC.java:90)
+	at org.apache.cassandra.config.DatabaseDescriptor.daemonInitialization(DatabaseDescriptor.java:201)
+	at org.apache.cassandra.config.DatabaseDescriptor.daemonInitialization(DatabaseDescriptor.java:206)
+	at com.datastax.bdp.DseCoreModule.<init>(DseCoreModule.java:81)
+	at com.datastax.bdp.DseModule.getRequiredModules(DseModule.java:148)
+	at com.datastax.bdp.server.AbstractDseModule.configure(AbstractDseModule.java:27)
+	at com.datastax.bdp.DseModule.configure(DseModule.java:80)
+	at com.google.inject.AbstractModule.configure(AbstractModule.java:62)
+	at com.google.inject.spi.Elements$RecordingBinder.install(Elements.java:340)
+	at com.google.inject.spi.Elements.getElements(Elements.java:110)
+	at com.google.inject.internal.InjectorShell$Builder.build(InjectorShell.java:138)
+	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:104)
+	at com.google.inject.Guice.createInjector(Guice.java:96)
+	at com.google.inject.Guice.createInjector(Guice.java:73)
+	at com.google.inject.Guice.createInjector(Guice.java:62)
+	at com.datastax.bdp.ioc.DseInjector.get(DseInjector.java:36)
+	at com.datastax.bdp.DseModule.main(DseModule.java:94)
+	Suppressed: java.lang.UnsatisfiedLinkError: /tmp/dse/dse.ab4syaVHt/libnetty_transport_native_epoll_x86_642543926216645467362.so: libaio.so.1: cannot open shared object file: No such file or directory
+		at java.lang.ClassLoader$NativeLibrary.load(Native Method)
+		at java.lang.ClassLoader.loadLibrary0(ClassLoader.java:1934)
+		at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1817)
+		at java.lang.Runtime.load0(Runtime.java:809)
+		at java.lang.System.load(System.java:1086)
+		at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:36)
+		at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+		at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.lang.reflect.Method.invoke(Method.java:498)
+		at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:263)
+		at java.security.AccessController.doPrivileged(Native Method)
+		at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:255)
+		at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:233)
+		... 21 common frames omitted
+	Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.library.path
+		at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1860)
+		at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+		at java.lang.System.loadLibrary(System.java:1122)
+		at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+		at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:243)
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:124)
+		... 20 common frames omitted
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.library.path
+			at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1860)
+			at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+			at java.lang.System.loadLibrary(System.java:1122)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+			at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+			at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+			at java.lang.reflect.Method.invoke(Method.java:498)
+			at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:263)
+			at java.security.AccessController.doPrivileged(Native Method)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:255)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:233)
+			... 21 common frames omitted
+	Suppressed: java.lang.UnsatisfiedLinkError: could not load a native library: netty_transport_native_epoll
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:205)
+		at io.netty.channel.epoll.Native.loadNativeLibrary(Native.java:282)
+		... 19 common frames omitted
+	Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_transport_native_epoll.so
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:161)
+		... 20 common frames omitted
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll in java.library.path
+			at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1860)
+			at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+			at java.lang.System.loadLibrary(System.java:1122)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:243)
+			at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:124)
+			... 20 common frames omitted
+			Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll in java.library.path
+				at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1860)
+				at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+				at java.lang.System.loadLibrary(System.java:1122)
+				at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+				at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+				at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+				at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+				at java.lang.reflect.Method.invoke(Method.java:498)
+				at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:263)
+				at java.security.AccessController.doPrivileged(Native Method)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:255)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:233)
+				... 21 common frames omitted
+ERROR [main] 2020-01-09 16:07:05,694  InsightsRuntimeConfig.java:85 - Insights will be disabled because epoll is not available see: https://docs.datastax.com/en/dse-trblshoot/doc/troubleshooting/startupErrorLibaioNotInstalled.html

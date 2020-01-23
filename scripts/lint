@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+pylint $PARENT_PATH/../pysper $PARENT_PATH/../tests --rcfile=$PARENT_PATH/../.pylintrc

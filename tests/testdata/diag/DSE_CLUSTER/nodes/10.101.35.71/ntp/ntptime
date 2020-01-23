@@ -1,0 +1,9 @@
+ntp_gettime() returns code 0 (OK)
+  time e1c33112.2920c06c  Fri, Jan 10 2020 17:21:22.160, (.160656924),
+  maximum error 803089 us, estimated error 387 us, TAI offset 0
+ntp_adjtime() returns code 0 (OK)
+  modes 0x0 (),
+  offset 492.783 us, frequency 2.156 ppm, interval 1 s,
+  maximum error 803089 us, estimated error 387 us,
+  status 0x6001 (PLL,NANO,MODE),
+  time constant 9, precision 0.001 us, tolerance 500 ppm,

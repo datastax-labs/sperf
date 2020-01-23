@@ -1,0 +1,4 @@
+RO    RA   SSZ   BSZ   StartSec            Size   Device
+rw   256   512  4096          0     34359738368   /dev/vda
+rw   256   512  4096       2048         8388608   /dev/vda1
+rw   256   512  4096      18432     34350284288   /dev/vda2

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema name="autoSolrSchema" version="1.5">
+  <types>
+    <fieldType class="org.apache.solr.schema.StrField" name="StrField"/>
+    <fieldType class="org.apache.solr.schema.UUIDField" name="UUIDField"/>
+    <fieldType class="org.apache.solr.schema.TrieDoubleField" name="TrieDoubleField"/>
+  </types>
+  <fields>
+    <field indexed="true" multiValued="false" name="city" type="StrField"/>
+    <field indexed="true" multiValued="false" name="first_name" type="StrField"/>
+    <field indexed="true" multiValued="false" name="address_2" type="StrField"/>
+    <field indexed="true" multiValued="false" name="address_1" type="StrField"/>
+    <field docValues="true" indexed="true" multiValued="false" name="id" type="UUIDField"/>
+    <field indexed="true" multiValued="false" name="country" type="StrField"/>
+    <field indexed="true" multiValued="false" name="postal" type="StrField"/>
+    <field docValues="true" indexed="true" multiValued="false" name="balance" type="TrieDoubleField"/>
+    <field indexed="true" multiValued="false" name="state" type="StrField"/>
+    <field indexed="true" multiValued="false" name="last_name" type="StrField"/>
+  </fields>
+  <uniqueKey>id</uniqueKey>
+</schema>

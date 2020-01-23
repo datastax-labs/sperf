@@ -1,0 +1,3 @@
+stomp_interface: 10.101.34.47
+stomp_port: 61620
+use_ssl: 0

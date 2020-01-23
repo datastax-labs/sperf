@@ -1,0 +1,11 @@
+[FORMAT]
+max-line-length=120
+
+[MESSAGES CONTROL]
+disable=C0103,
+        R0201,
+        R0902,
+        R0903,
+
+[SIMILARITIES]
+ignore-docstrings=no

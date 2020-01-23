@@ -1,0 +1,103 @@
+10-Jan-2020 16:24:35.874 INFO [main] org.apache.catalina.startup.Catalina.addClusterRuleSet Cluster RuleSet not found due to [java.lang.ClassNotFoundException: org.apache.catalina.ha.ClusterRuleSet]. Cluster configuration disabled.
+10-Jan-2020 16:24:35.878 INFO [main] org.apache.catalina.startup.Catalina.addClusterRuleSet Cluster RuleSet not found due to [java.lang.ClassNotFoundException: org.apache.catalina.ha.ClusterRuleSet]. Cluster configuration disabled.
+10-Jan-2020 16:24:36.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.0.53
+10-Jan-2020 16:24:36.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Jun 29 2018 14:42:45 UTC
+10-Jan-2020 16:24:36.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.0.53.0
+10-Jan-2020 16:24:36.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            4.4.0-171-generic
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-8-openjdk-amd64/jre
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_232-8u232-b09-0ubuntu1~16.04.1-b09
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Private Build
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /etc/dse/tomcat
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/share/dse/tomcat
+10-Jan-2020 16:24:36.291 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.server_process
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xloggc:/var/log/cassandra/gc.log
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -ea
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseThreadPriorities
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:ThreadPriorityPolicy=42
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+HeapDumpOnOutOfMemoryError
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xss256k
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:StringTableSize=1000003
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+AlwaysPreTouch
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseTLAB
+10-Jan-2020 16:24:36.292 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+ResizeTLAB
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseNUMA
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PerfDisableSharedMem
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.net.preferIPv4Stack=true
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:-RestrictContended
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UnlockDiagnosticVMOptions
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:GuaranteedSafepointInterval=300000
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:-UseBiasedLocking
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UnlockDiagnosticVMOptions
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+DebugNonSafepoints
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.nio.maxCachedBufferSize=1048576
+10-Jan-2020 16:24:36.293 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseG1GC
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+ParallelRefProcEnabled
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:G1RSetUpdatingPauseTimePercent=5
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:MaxGCPauseMillis=500
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintGCDetails
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintGCDateStamps
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintHeapAtGC
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintTenuringDistribution
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintGCApplicationStoppedTime
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+PrintPromotionFailure
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseGCLogFileRotation
+10-Jan-2020 16:24:36.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:NumberOfGCLogFiles=10
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:GCLogFileSize=10M
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dio.netty.eventLoop.maxPendingTasks=65536
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:MaxDirectMemorySize=5639M
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xms3759M
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx3759M
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:CompileCommandFile=/etc/dse/cassandra/hotspot_compiler
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/usr/share/dse/cassandra/lib/jamm-0.3.2.jar
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.jmx.local.port=7199
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.authenticate=false
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.password.file=/etc/cassandra/jmxremote.password
+10-Jan-2020 16:24:36.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dmx4jaddress=127.0.0.1
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.library.path=/usr/share/dse/hadoop2-client/lib/native:/usr/share/dse/cassandra/lib/sigar-bin:/usr/share/dse/hadoop2-client/lib/native:/usr/share/dse/cassandra/lib/sigar-bin:
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.system_memory_in_mb=15038
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dagrona.disable.bounds.checks=TRUE
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dguice_include_stack_traces=OFF
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.system_memory_in_mb=15038
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dguice_include_stack_traces=OFF
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.system_memory_in_mb=15038
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:OnOutOfMemoryError=kill -9 %p
+10-Jan-2020 16:24:36.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dlogback.configurationFile=logback.xml
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.logdir=/var/log/cassandra
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.storagedir=/usr/share/dse/data
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra-pidfile=/var/run/dse/dse.pid
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:HeapDumpPath=/var/lib/cassandra/java_1578673389.hprof
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:ErrorFile=/var/lib/cassandra/hs_err_1578673389.log
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsearch-service=true
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/share/dse/tomcat
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/etc/dse//tomcat
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/etc/dse//tomcat/conf/logging.properties
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+10-Jan-2020 16:24:36.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dtomcat.logs=/var/log/tomcat
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsolr.solr.home=solr/
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddisable.configEdit=true
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/tmp/dse/dse.f6jSq4UCa
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.internal.lambda.dumpProxyClasses=/tmp/dse/dse.f6jSq4UCa/lni
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.server=true
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dguice_include_stack_traces=OFF
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.system_memory_in_mb=15038
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dguice_include_stack_traces=OFF
+10-Jan-2020 16:24:36.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddse.system_memory_in_mb=15038
+10-Jan-2020 16:24:36.299 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+10-Jan-2020 16:24:36.299 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsolr.web.home=/usr/share/dse/solr/web
+10-Jan-2020 16:24:36.302 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/share/dse/hadoop2-client/lib/native:/usr/share/dse/cassandra/lib/sigar-bin:/usr/share/dse/hadoop2-client/lib/native:/usr/share/dse/cassandra/lib/sigar-bin:
+10-Jan-2020 16:24:36.529 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 693 ms
+10-Jan-2020 16:24:36.688 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Solr
+10-Jan-2020 16:24:36.689 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.53
+10-Jan-2020 16:24:36.730 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/share/dse/solr/web/demos
+10-Jan-2020 16:24:36.866 WARNING [localhost-startStop-1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'processTlds' to 'false' did not find a matching property.
+10-Jan-2020 16:24:37.878 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/share/dse/solr/web/demos has finished in 1,146 ms
+10-Jan-2020 16:24:37.879 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/share/dse/solr/web/solr
+10-Jan-2020 16:24:37.883 WARNING [localhost-startStop-1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'processTlds' to 'false' did not find a matching property.
+10-Jan-2020 16:24:38.185 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/share/dse/solr/web/solr has finished in 307 ms
+10-Jan-2020 16:24:38.244 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-bio-0.0.0.0-8983"]
+10-Jan-2020 16:24:38.277 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-bio-0.0.0.0-8983"]

@@ -1,0 +1,1 @@
+clojure.lang.ExceptionInfo: throw+: {:type :opsagent.jmx/not-jmx-context, :message "[BUG] Tried to access JMX mbean outside of JMX context.", :details {:mbean "java.lang:type=Runtime", :attributes [:Name]}} {:type :opsagent.jmx/not-jmx-context, :message "[BUG] Tried to access JMX mbean outside of JMX context.", :details {:mbean "java.lang:type=Runtime", :attributes [:Name]}}

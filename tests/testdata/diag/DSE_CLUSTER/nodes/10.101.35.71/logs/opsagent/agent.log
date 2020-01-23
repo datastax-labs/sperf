@@ -1,0 +1,1128 @@
+ INFO [main] 2020-01-10 13:45:06,068 Loading conf files: /var/lib/datastax-agent/conf/address.yaml
+  INFO [main] 2020-01-10 13:45:06,160 Java vendor/version: OpenJDK 64-Bit Server VM/1.8.0_232
+  INFO [main] 2020-01-10 13:45:06,161 DataStax Agent version: 6.7.7
+  INFO [main] 2020-01-10 13:45:06,189 Default config values: {:rollup_subscriptions [], :support_shell_timeout 30, :destinations {}, :rollup_snapshot_threshold 300, :rollup_state_ttl 259200, :is_package true, :metrics_ignored_column_families [], :cassandra-host-id nil, :agent_address_yaml_location nil, :nodedetails_threadpool_size 3, :opscenter_ssl_truststore_password "*REDACTED*", :cassandra_binary_location nil, :metrics_enabled true, :status_reporting_interval 20, :s3-transfer-pool-size 10, :s3_proxy_host nil, :cassandra_log_location "/var/log/cassandra", :send_without_validation false, :private-conf-props {:cassandra.yaml #{"native_transport_address" "rpc_address" "initial_token" "broadcast_rpc_address" "listen_address" "native_transport_broadcast_address" "broadcast_address"}}, :dse_env_location nil, :hosts ["127.0.0.1"], :dse_binary_location nil, :max_file_transfer_attempts 3, :jmx_user nil, :longtime_interval 300, :kerberos_service nil, :remote_verify_initial_delay 1000, :config_md5 nil, :tmp_dir "/var/lib/datastax-agent/tmp/", :slow_query_past 3600000, :ssl_keystore nil, :remote_verify_max 300000, :realtime_interval 5, :max_rollup_writes 127, :monitored_cassandra_pass "*REDACTED*", :ping_channel "/ping", :agent_binary_location nil, :cassandra_rpc_interface nil, :pong_channel nil, :conf_request_channel "/conf-request", :metrics_ignored_solr_cores [], :spark_log_location nil, :agent-conf-group "global-cluster-agent-group", :use_s3_cli false, :rollup_rate_unit :second, :storage_dse_connection_timeout 30, :slow_query_fetch_size 500, :jmx_queue_poll_timeout 10, :rollups60_ttl 604800, :backup_storage_dir "/var/lib/datastax-agent/backups/", :max_pending_repairs 5, :api_port 61621, :ssl_truststore_password "*REDACTED*", :agent_rpc_broadcast_address nil, :poll_period 60, :jmx_host "127.0.0.1", :definition_override nil, :config_encryption_key_path nil, :destination-transfer-pool-keepalive 2, :cassandra_port 9042, :storage_dse_host_read_timeout nil, :jmx_pass "*REDACTED*", :rollup_rate_burst 16, :remote_backup_region "us-west-1", :graphite_port 2003, :finished-request-cache-size 100, :use_swift_cli false, :swift_cli_sync_status_delay_seconds 10, :kerberos_keytab_location nil, :s3_proxy_port nil, :dsr_page_size 1000, :rollup_chan_size 2048, :agent_log_location nil, :tcp_response_timeout 240000, :destination-transfer-pool-size 10, :config_encryption_active false, :ssl_keystore_password "*REDACTED*", :graphite_host "", :jmx_metrics_threadpool_size 7, :restore_on_transfer_failure false, :alias nil, :shorttime_interval 10, :solr_log_location nil, :rollups300_ttl 2419200, :cassandra_conf_location nil, :separate_storage_cluster false, :cassandra_pass "*REDACTED*", :remote_backup_timeout 1000, :pong_timeout_ms 5000, :metrics_ignored_keyspaces [], :use_ssl false, :cassandra_user nil, :disk_wait 5000, :monitored_ssl_truststore_password "*REDACTED*", :config_encryption_key_name nil, :monitored_cassandra_user nil, :dse_defaults_location nil, :disk_usage_update_period 60, :bypass_dse_metrics_storage false, :rollup_rate 200, :swagger_enabled false, :slow_query_refresh 5, :monitored_ssl_keystore nil, :stomp_interface "10.101.34.47", :storage_keyspace "OpsCenter", :s3-transfer-pool-keepalive 2, :spark_conf_location nil, :jmx_retry_timeout 30, :monitored_ssl_keystore_password "*REDACTED*", :stomp_port 61620, :pit-enabled? false, :ssl_truststore nil, :monitored_cassandra_port 9042, :agent_rpc_interface nil, :kerberos_client_principal nil, :sstableloader_max_heap_size nil, :rollup_snapshot_period 300, :trace_delay 300, :jmx_thread_pool_size 5, :version "6.7.7", :monitored_dse_connection_timeout 30, :cassandra_install_location nil, :restore_req_update_period 60, :opscenter_ssl_keystore_password "*REDACTED*", :monitored_ssl_truststore nil, :slow_query_ignore ["OpsCenter" "dse_perf"], :jmx_port 7199, :agent_config_location nil, :remote_backup_retries 3, :local_interface nil, :opscenter_ssl_strict_subject_validation false, :ec2_metadata_api_host "169.254.169.254", :opscenter_ssl_truststore nil, :monitored_dse_host_read_timeout nil, :conf_path "/var/lib/datastax-agent/conf", :conf_channel nil, :rollups86400_ttl 0, :jmx_operations_pool_size 4, :backup_staging_dir "/var/lib/datastax-agent/commitlogs/", :max_reconnect_time 15000, :opscenter_ssl_keystore nil, :dse_conf_location nil, :rollups7200_ttl 31536000, :graphite_prefix "opscenter", :destination_pretest_timeout 60, :use_azure_cli_only false, :running-request-cache-size 500, :runs_sudo true}
+  INFO [main] 2020-01-10 13:45:06,191 Waiting for the config from OpsCenter
+  INFO [main] 2020-01-10 13:45:07,344 Unknown cloud provider or running on real hardware, not collecting metadata
+  INFO [main] 2020-01-10 13:45:07,346 Static environment data: {:hardware {:cloud-provider :unknown, :metadata nil}, :os {:type "linux", :version "4.4.0-171-generic", :package-manager :apt-get}, :agent {:install-type :package, :install-location "/usr/share/datastax-agent", :agent-address-yaml "/var/lib/datastax-agent/conf/address.yaml", :agent-config "/etc/datastax-agent", :agent-binary "/usr/share/datastax-agent/bin", :agent-log "/var/log/datastax-agent", :agent-opscenter-ssl "/var/lib/datastax-agent/ssl"}}
+  INFO [main] 2020-01-10 13:45:07,350 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 13:45:07,352 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [main] 2020-01-10 13:45:07,352 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 13:45:07,353 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 13:45:07,358 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 2, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,358 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,360 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,361 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,361 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 2, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,363 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 4, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 13:45:07,367 Configuration change for component class opsagent.messaging.StompComponent: before: {}, after: {:ping-channel "/ping", :stomp-port 61620, :ips nil, :local-interface nil, :stomp-interface "10.101.34.47", :send-without-validation false, :agent_rpc_broadcast_address nil, :conf-request-channel "/conf-request", :use-ssl? false, :conf-channel "/778837015/conf", :opscenter-ssl-strict-subject-validation false, :pong-timeout-ms 5000, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :pong-channel "/778837015/pong", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :handle-new-conf-fn #object[opsagent.conf$handle_new_conf 0x156d7556 "opsagent.conf$handle_new_conf@156d7556"]}
+  INFO [main] 2020-01-10 13:45:07,369 Configuration change for component class opsagent.environment.dynamic.DynamicEnvironmentComponent: before: {}, after: {:location-conf {:agent_address_yaml_location nil, :cassandra_binary_location nil, :cassandra_log_location "/var/log/cassandra", :dse_env_location nil, :dse_binary_location nil, :agent_binary_location nil, :spark_log_location nil, :agent_log_location nil, :solr_log_location nil, :cassandra_conf_location nil, :dse_defaults_location nil, :spark_conf_location nil, :agent_config_location nil, :dse_conf_location nil}, :address-conf {:local_interface nil, :cassandra_rpc_interface nil, :agent_rpc_interface nil, :agent_rpc_broadcast_address nil}, :kerb-conf {:kerberos_service nil, :kerberos_keytab_location nil, :kerberos_client_principal nil}, :run-from-fresh-jmx false}
+  INFO [main] 2020-01-10 13:45:07,371 Configuration change for component class opsagent.nodedetails.NodeDetailsComponent: before: {}, after: {:realtime-interval 5, :alias nil, :longtime-interval 300, :shorttime-interval 10, :nodedetails-threadpool-size 3}
+  INFO [main] 2020-01-10 13:45:07,373 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {}, after: {:rollups86400-ttl 0, :storage-cassandra-password "*REDACTED*", :separate-storage-cluster? false, :storage-keystore-password "*REDACTED*", :max-reconnect-time 15000, :storage-cassandra-user nil, :rollup-state-ttl 259200, :connection-timeout 30, :storage-keystore-path nil, :kerberos-service nil, :storage-truststore-path nil, :storage-hosts ["127.0.0.1"], :rollups7200-ttl 31536000, :rollups60-ttl 604800, :rollups300-ttl 2419200, :storage-port 9042, :storage-truststore-password "*REDACTED*", :host-read-timeout-ms nil, :storage-keyspace "OpsCenter"}
+  INFO [main] 2020-01-10 13:45:07,376 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {}, after: {:monitored-cassandra-user nil, :separate-storage-cluster? false, :monitored-keystore-password "*REDACTED*", :max-reconnect-time 15000, :monitored-hosts ["127.0.0.1"], :monitored-port 9042, :monitored-cassandra-password "*REDACTED*", :connection-timeout 30, :kerberos-service nil, :monitored-keyspace "system", :monitored-truststore-password "*REDACTED*", :monitored-keystore-path nil, :monitored-truststore-path nil, :host-read-timeout-ms nil}
+  INFO [main] 2020-01-10 13:45:07,377 Configuration change for component class opsagent.metrics.config.MetricDefinitionComponent: before: {}, after: {:conf-path "/var/lib/datastax-agent/conf", :definition-override nil}
+  INFO [main] 2020-01-10 13:45:07,379 Configuration change for component class opsagent.metrics.graphite_reporter.GraphiteReporterComponent: before: {}, after: {:graphite_host "", :graphite_port 2003, :graphite_prefix "opscenter"}
+  INFO [main] 2020-01-10 13:45:07,381 Configuration change for component class opsagent.rollup.RollupComponent: before: {}, after: {:rollup-snapshot-threshold 300, :rollup-rate-burst 16, :rollup-chan-size 2048, :max-rollup-writes 127, :rollup-rate 200, :rollup-rate-unit :second, :rollup-snapshot-period 300, :rollup-id nil, :bypass-dse-metrics-storage false}
+  INFO [main] 2020-01-10 13:45:07,385 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {}, after: {:ignored-keyspaces [], :metrics-enabled? true, :ignored-cores [], :jmx-metrics-threadpool-size 7, :ignored-cfs [], :poll-period 60}
+  INFO [main] 2020-01-10 13:45:07,388 Configuration change for component class opsagent.nodedetails.performance.PerformanceService: before: {}, after: {:refresh-interval 5, :history 3600000, :limit 500, :ignore ["OpsCenter" "dse_perf"]}
+  INFO [main] 2020-01-10 13:45:07,390 Configuration change for component class opsagent.status.StatusComponent: before: {}, after: {:api-port 61621, :status-reporting-interval 20, :agent-rpc-interface nil, :use-ssl false}
+  INFO [main] 2020-01-10 13:45:07,393 Configuration change for component class opsagent.nodedetails.repair.RepairComponent: before: {}, after: {:max-pending-repairs 5}
+  INFO [main] 2020-01-10 13:45:07,395 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {}, after: {:notification-jmx-pool nil, :dsr-page-size 1000, :tmp-dir #object[java.io.File 0x321302bc "/var/lib/datastax-agent/tmp/persistent/dsr"]}
+  INFO [main] 2020-01-10 13:45:07,398 Configuration change for component class opsagent.http.server.HTTPServer: before: {}, after: {:opscenter_ssl_truststore_password "*REDACTED*", :api-port 61621, :opscenter-id nil, :agent-rpc-interface nil, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :use-ssl false, :opscenter_ssl_truststore "/var/lib/datastax-agent/ssl/agentKeyStore", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :swagger-enabled false}
+  INFO [main] 2020-01-10 13:45:07,400 Configuration change for component class opsagent.conf.ConfigRequestComponent: before: {}, after: {:conf-channel "/778837015/conf", :conf-request-channel "/conf-request", :version "6.7.7"}
+  INFO [main] 2020-01-10 13:45:07,406 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {}, after: {:pit-enabled? false, :staging-dir #object[java.io.File 0x73cfafd8 "/var/lib/datastax-agent/commitlogs"], :storage-dir #object[java.io.File 0x4b517357 "/var/lib/datastax-agent/backups"]}
+  INFO [main] 2020-01-10 13:45:07,411 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {}, after: {:local-interface nil, :metrics-enabled? true, :poll-period 60}
+  INFO [main] 2020-01-10 13:45:07,415 Configuration change for component class opsagent.os.collection.DiskUsageCollection: before: {}, after: {:disk-usage-update-period 60}
+  INFO [main] 2020-01-10 13:45:07,419 Configuration change for component class opsagent.alerts.SubscriptionService: before: {}, after: {:rollup-subscriptions []}
+  INFO [main] 2020-01-10 13:45:07,423 Configuration change for component class opsagent.backups.destinations.DestinationService: before: {}, after: {:destinations nil, :dest-map {}, :pool-size 10, :pool-keepalive-time 2}
+  INFO [async-dispatch-2] 2020-01-10 13:45:07,429 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 13:45:07,438 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:07,565 Starting DestinationService
+  INFO [async-dispatch-2] 2020-01-10 13:45:07,566 Starting storage database connection.
+  INFO [async-dispatch-2] 2020-01-10 13:45:08,586 The storage connection state is closed?  false
+  INFO [async-dispatch-2] 2020-01-10 13:45:08,588 Starting BackupSyncComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:08,610 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,187 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,225 Got new config [note values in address.yaml override those from OpsCenter]: {:local_interface "10.101.35.71", :cassandra_rpc_interface "0.0.0.0", :agent_rpc_interface "0.0.0.0", :agent_rpc_broadcast_address "10.101.35.71", :pit-enabled? false, :cassandra-host-id "7cd32cd2-be27-4881-b9bc-8020dd09ebf2"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,226 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,226 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,227 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,227 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,231 Configuration change for component class opsagent.messaging.StompComponent: before: {:agent_rpc_broadcast_address nil, :local-interface nil}, after: {:agent_rpc_broadcast_address "10.101.35.71", :local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,233 Configuration change for component class opsagent.environment.dynamic.DynamicEnvironmentComponent: before: {:address-conf {:agent_rpc_broadcast_address nil, :agent_rpc_interface nil, :cassandra_rpc_interface nil, :local_interface nil}}, after: {:address-conf {:agent_rpc_broadcast_address "10.101.35.71", :agent_rpc_interface "0.0.0.0", :cassandra_rpc_interface "0.0.0.0", :local_interface "10.101.35.71"}}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,234 Configuration change for component class opsagent.rollup.RollupComponent: before: {:rollup-id nil}, after: {:rollup-id "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,235 Configuration change for component class opsagent.status.StatusComponent: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,236 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,237 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {:local-interface nil}, after: {:local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,239 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,257 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,267 Starting monitored database connection.
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,367 The monitored connection state is closed?   false
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,369 Building Metrics Definition
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,392 Using version 4.0.0.670 from ["2.0.11.83" "2.0.12.200" "2.1.5.469" "2.1.8.621" "2.1.9.791" "3.0.0" "3.0.11.1564" "3.0.15.2078" "3.10.0" "4.0.0" "4.0.0.670" "uploaded"] [4.0.0.677]
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,393 Downloading definition...  /var/lib/datastax-agent/conf/cassandra-metrics.json
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,405 Download complete
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,452 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,467 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,478 Starting RepairComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,771 Starting Performance Service
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,774 Starting StompComponent
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,777 SSL communication is disabled
+  INFO [async-dispatch-2] 2020-01-10 13:45:09,778 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-2] 2020-01-10 13:47:17,069 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async.impl.ioc_macros$take_BANG_$fn__5797.invoke(ioc_macros.clj:986)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1546$fn__1547.invoke(channels.clj:95)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-2] 2020-01-10 13:47:17,078 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,094 Configuration change for component class opsagent.http.server.HTTPServer: before: null, after: {:opscenter_ssl_truststore_password "*REDACTED*", :api-port 61621, :opscenter-id nil, :agent-rpc-interface nil, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :use-ssl false, :opscenter_ssl_truststore "/var/lib/datastax-agent/ssl/agentKeyStore", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :swagger-enabled false}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,290 Jetty server started
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,295 Starting JMXNotificationComponent
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,303 Starting SubscriptionService
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,303 Finished starting system.
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,307 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,308 Configuration change for component class opsagent.messaging.StompComponent: before: {:agent_rpc_broadcast_address nil, :local-interface nil}, after: {:agent_rpc_broadcast_address "10.101.35.71", :local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,309 Configuration change for component class opsagent.rollup.RollupComponent: before: {:rollup-id nil}, after: {:rollup-id "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,310 Configuration change for component class opsagent.status.StatusComponent: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,316 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,316 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,317 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {:local-interface nil}, after: {:local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,319 The following components have had a config change and will be rebuilt and restarted:  (:stomp-component :rollup-component :status-component :distributed-repair-component :http-server :os-stat-component)
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,320 The component restart for  (:stomp-component :rollup-component :status-component :distributed-repair-component :http-server :os-stat-component)  when accounting for dependencies requires these components to be restarted  #{:jmx-metric-component :rollup-reporter :status-component :disk-usage-collection :backup-service-reporter-component :request-component :stomp-component :rollup-component :http-server :config-request :nodedetails-component :distributed-repair-component :os-stat-component}
+  INFO [async-dispatch-6] 2020-01-10 13:47:17,327 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,330 Starting DynamicEnvironmentComponent
+  INFO [MLog-Init-Reporter] 2020-01-10 13:47:17,353 MLog clients using slf4j logging.
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,816 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,824 Starting RollupComponent at 200/second [<127]
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,833 Attempting to load stored metric values.
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,840 Completed loading 0 stored rollup states
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,841 Starting OSStatCollection (Linux)
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,851 Starting StompComponent
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,851 SSL communication is disabled
+  INFO [async-dispatch-2] 2020-01-10 13:47:17,852 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-2] 2020-01-10 13:49:25,068 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async.impl.ioc_macros$take_BANG_$fn__5797.invoke(ioc_macros.clj:986)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1546$fn__1547.invoke(channels.clj:95)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-2] 2020-01-10 13:49:25,069 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 13:49:25,071 Stopping Jetty server.
+  INFO [async-dispatch-2] 2020-01-10 13:49:25,099 Jetty server started
+  INFO [async-dispatch-2] 2020-01-10 13:49:25,102 Starting JMXMetricComponent
+  INFO [async-dispatch-2] 2020-01-10 13:49:25,103 Starting Cassandra JMX metric collectors
+  INFO [async-dispatch-2] 2020-01-10 13:49:25,120 Finished starting system.
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,122 Starting system.
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,125 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,126 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,126 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-3] 2020-01-10 13:49:35,127 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,141 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,530 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,540 Starting StompComponent
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,541 SSL communication is disabled
+  INFO [async-dispatch-1] 2020-01-10 13:49:35,541 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-1] 2020-01-10 13:51:42,796 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-1] 2020-01-10 13:51:42,798 Finished starting system.
+  INFO [async-dispatch-4] 2020-01-10 13:51:52,799 Starting system.
+  INFO [async-dispatch-4] 2020-01-10 13:51:52,801 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-4] 2020-01-10 13:51:52,801 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-4] 2020-01-10 13:51:52,802 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-8] 2020-01-10 13:51:52,803 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-4] 2020-01-10 13:51:52,804 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-4] 2020-01-10 13:51:53,199 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-4] 2020-01-10 13:51:53,211 Starting StompComponent
+  INFO [async-dispatch-4] 2020-01-10 13:51:53,211 SSL communication is disabled
+  INFO [async-dispatch-4] 2020-01-10 13:51:53,211 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-4] 2020-01-10 13:54:00,523 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-4] 2020-01-10 13:54:00,525 Finished starting system.
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,526 Starting system.
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,528 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,529 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,529 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-8] 2020-01-10 13:54:10,530 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,532 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,931 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,950 Starting StompComponent
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,951 SSL communication is disabled
+  INFO [async-dispatch-3] 2020-01-10 13:54:10,951 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-3] 2020-01-10 13:56:18,251 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-3] 2020-01-10 13:56:18,253 Finished starting system.
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,253 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,255 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,256 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,257 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-3] 2020-01-10 13:56:28,258 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,261 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,641 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,653 Starting StompComponent
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,654 SSL communication is disabled
+  INFO [async-dispatch-2] 2020-01-10 13:56:28,654 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-2] 2020-01-10 13:58:35,979 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-2] 2020-01-10 13:58:35,981 Finished starting system.
+  INFO [async-dispatch-8] 2020-01-10 13:58:45,981 Starting system.
+  INFO [async-dispatch-8] 2020-01-10 13:58:45,983 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-8] 2020-01-10 13:58:45,983 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-8] 2020-01-10 13:58:45,984 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-5] 2020-01-10 13:58:45,984 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-8] 2020-01-10 13:58:45,989 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-8] 2020-01-10 13:58:46,397 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-8] 2020-01-10 13:58:46,408 Starting StompComponent
+  INFO [async-dispatch-8] 2020-01-10 13:58:46,408 SSL communication is disabled
+  INFO [async-dispatch-8] 2020-01-10 13:58:46,408 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-8] 2020-01-10 14:00:53,707 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-8] 2020-01-10 14:00:53,709 Finished starting system.
+  INFO [async-dispatch-4] 2020-01-10 14:01:03,709 Starting system.
+  INFO [async-dispatch-4] 2020-01-10 14:01:03,711 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-4] 2020-01-10 14:01:03,711 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-4] 2020-01-10 14:01:03,712 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-7] 2020-01-10 14:01:03,713 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-4] 2020-01-10 14:01:03,714 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-4] 2020-01-10 14:01:04,088 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-4] 2020-01-10 14:01:04,098 Starting StompComponent
+  INFO [async-dispatch-4] 2020-01-10 14:01:04,099 SSL communication is disabled
+  INFO [async-dispatch-4] 2020-01-10 14:01:04,099 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-4] 2020-01-10 14:03:11,435 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-4] 2020-01-10 14:03:11,437 Finished starting system.
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,437 Starting system.
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,439 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,440 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,440 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-6] 2020-01-10 14:03:21,441 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,443 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,820 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,829 Starting StompComponent
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,829 SSL communication is disabled
+  INFO [async-dispatch-1] 2020-01-10 14:03:21,829 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-1] 2020-01-10 14:05:29,167 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-1] 2020-01-10 14:05:29,172 Finished starting system.
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,172 Starting system.
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,173 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,174 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,174 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-2] 2020-01-10 14:05:39,175 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,176 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,594 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,612 Starting StompComponent
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,613 SSL communication is disabled
+  INFO [async-dispatch-7] 2020-01-10 14:05:39,613 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-7] 2020-01-10 14:07:46,891 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-7] 2020-01-10 14:07:46,893 Finished starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:07:56,894 Starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:07:56,898 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-6] 2020-01-10 14:07:56,898 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-6] 2020-01-10 14:07:56,898 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-8] 2020-01-10 14:07:56,899 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-6] 2020-01-10 14:07:56,900 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-6] 2020-01-10 14:07:57,322 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-6] 2020-01-10 14:07:57,333 Starting StompComponent
+  INFO [async-dispatch-6] 2020-01-10 14:07:57,333 SSL communication is disabled
+  INFO [async-dispatch-6] 2020-01-10 14:07:57,333 Creating stomp connection to 10.101.34.47:61620
+ ERROR [async-dispatch-6] 2020-01-10 14:10:04,619 Error connecting via stomp.
+ java.net.ConnectException: Connection timed out (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at java.net.Socket.connect(Socket.java:556)
+	at java.net.Socket.<init>(Socket.java:452)
+	at java.net.Socket.<init>(Socket.java:229)
+	at javax.net.DefaultSocketFactory.createSocket(SocketFactory.java:271)
+	at org.jgroups.client.StompConnection.buildSocket(StompConnection.java:412)
+	at org.jgroups.client.StompConnection.connectToDestination(StompConnection.java:427)
+	at org.jgroups.client.StompConnection.connectToSingleDestination(StompConnection.java:372)
+	at opsagent.messaging$setup_conn.invokeStatic(messaging.clj:188)
+	at opsagent.messaging$setup_conn.invoke(messaging.clj:167)
+	at opsagent.messaging.StompComponent.start(messaging.clj:270)
+	at com.stuartsierra.component$fn__2617$G__2611__2619.invoke(component.clj:4)
+	at com.stuartsierra.component$fn__2617$G__2610__2622.invoke(component.clj:4)
+	at clojure.lang.Var.invoke(Var.java:379)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.Var.applyTo(Var.java:700)
+	at clojure.core$apply.invokeStatic(core.clj:648)
+	at clojure.core$apply.invoke(core.clj:641)
+	at com.stuartsierra.component$try_action.invokeStatic(component.clj:116)
+	at com.stuartsierra.component$try_action.invoke(component.clj:115)
+	at clojure.lang.Var.invoke(Var.java:401)
+	at opsagent.config_service$update_system$fn__23840.invoke(config_service.clj:223)
+	at clojure.lang.ArraySeq.reduce(ArraySeq.java:114)
+	at clojure.core$reduce.invokeStatic(core.clj:6544)
+	at clojure.core$reduce.invoke(core.clj:6527)
+	at opsagent.config_service$update_system.invokeStatic(config_service.clj:217)
+	at opsagent.config_service$update_system.doInvoke(config_service.clj:213)
+	at clojure.lang.RestFn.invoke(RestFn.java:425)
+	at opsagent.config_service$start_system_BANG_.invokeStatic(config_service.clj:243)
+	at opsagent.config_service$start_system_BANG_.invoke(config_service.clj:236)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948$fn__23950.invoke(config_service.clj:266)
+	at opsagent.config_service$fn__23946$fn__23947$state_machine__5781__auto____23948.invoke(config_service.clj:266)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invokeStatic(ioc_macros.clj:973)
+	at clojure.core.async.impl.ioc_macros$run_state_machine.invoke(ioc_macros.clj:972)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invokeStatic(ioc_macros.clj:977)
+	at clojure.core.async.impl.ioc_macros$run_state_machine_wrapped.invoke(ioc_macros.clj:975)
+	at clojure.core.async$ioc_alts_BANG_$fn__5970.invoke(async.clj:384)
+	at clojure.core.async$do_alts$fn__5924$fn__5927.invoke(async.clj:253)
+	at clojure.core.async.impl.channels.ManyToManyChannel$fn__1593.invoke(channels.clj:265)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+ INFO [async-dispatch-6] 2020-01-10 14:10:04,621 Finished starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:10:14,622 Starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:10:14,624 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-6] 2020-01-10 14:10:14,625 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-6] 2020-01-10 14:10:14,625 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-4] 2020-01-10 14:10:14,626 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-6] 2020-01-10 14:10:14,627 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,062 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,074 Starting StompComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,074 SSL communication is disabled
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,074 Creating stomp connection to 10.101.34.47:61620
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,135 Starting NodeDetailsComponent
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,195 Got new config [note values in address.yaml override those from OpsCenter]: {:rollup_subscriptions [], :destinations {}, :metrics_ignored_column_families "", :metrics_enabled true, :cassandra_log_location "/var/log/cassandra", :hosts ["10.101.35.71"], :jmx_user "", :kerberos_service "", :config_md5 "78b0dce6d907789b46ee175404de6cc9", :monitored_cassandra_pass "*REDACTED*", :metrics_ignored_solr_cores "", :use_s3_cli "", :rollups60_ttl 604800, :backup_storage_dir "", :max_pending_repairs 5, :api_port "61621", :cassandra_port 9042, :jmx_pass "*REDACTED*", :remote_backup_region "us-west-1", :use_swift_cli false, :swift_cli_sync_status_delay_seconds 10, :kerberos_keytab_location "", :rollups300_ttl 2419200, :separate_storage_cluster false, :cassandra_pass "*REDACTED*", :metrics_ignored_keyspaces "system, system_traces, system_auth, system_distributed, dse_auth, OpsCenter, system_views, system_virtual_schema", :use_ssl false, :cassandra_user "", :monitored_cassandra_user "", :storage_keyspace "OpsCenter", :monitored_cassandra_port 9042, :kerberos_client_principal "", :cassandra_install_location "", :restore_req_update_period 1, :jmx_port 7199, :ec2_metadata_api_host "169.254.169.254", :rollups86400_ttl 0, :jmx_operations_pool_size 4, :backup_staging_dir "", :rollups7200_ttl 31536000}
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,196 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,197 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,197 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,198 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,203 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {:storage-hosts ["127.0.0.1"]}, after: {:storage-hosts ["10.101.35.71"]}
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,204 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {:monitored-hosts ["127.0.0.1"]}, after: {:monitored-hosts ["10.101.35.71"]}
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,206 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {:ignored-keyspaces nil}, after: {:ignored-keyspaces ["system" "system_traces" "system_auth" "system_distributed" "dse_auth" "OpsCenter" "system_views" "system_virtual_schema"]}
+  INFO [StompConnection receiver] 2020-01-10 14:10:15,216 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {:storage-dir #object[java.io.File 0x4d885813 "/var/lib/datastax-agent/backups"], :staging-dir #object[java.io.File 0x5f48891 "/var/lib/datastax-agent/commitlogs"]}, after: {:storage-dir nil, :staging-dir nil}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,552 Starting RequestComponent.
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,554 Starting DiskUsageCollection
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,557 Starting RollupReporter
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,566 Finished starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,566 Starting system.
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,568 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {:storage-hosts ["127.0.0.1"]}, after: {:storage-hosts ["10.101.35.71"]}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,568 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {:monitored-hosts ["127.0.0.1"]}, after: {:monitored-hosts ["10.101.35.71"]}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,576 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {:ignored-keyspaces nil}, after: {:ignored-keyspaces ["system" "system_traces" "system_auth" "system_distributed" "dse_auth" "OpsCenter" "system_views" "system_virtual_schema"]}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,577 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@45b8e52c, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@64dc4893, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@1eaee5cf, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,578 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {:storage-dir #object[java.io.File 0x4b517357 "/var/lib/datastax-agent/backups"], :staging-dir #object[java.io.File 0x73cfafd8 "/var/lib/datastax-agent/commitlogs"]}, after: {:storage-dir nil, :staging-dir nil}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,578 The following components have had a config change and will be rebuilt and restarted:  (:storage-database :monitored-database :jmx-metric-component :distributed-repair-component :commitlog-archiving-component)
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,578 The component restart for  (:storage-database :monitored-database :jmx-metric-component :distributed-repair-component :commitlog-archiving-component)  when accounting for dependencies requires these components to be restarted  #{:monitored-database :jmx-metric-component :rollup-reporter :status-component :metrics-config :storage-database :rollup-component :http-server :config-request :nodedetails-component :performance-service :distributed-repair-component :os-stat-component :commitlog-archiving-component}
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,579 Stopping JMXMetricComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:15,580 Shutting down JMXMetricComponent threadpool.
+  WARN [jmx-cf-metrics] 2020-01-10 14:10:15,584 Exception while processing JMX data: java.lang.InterruptedException
+ ERROR [async-dispatch-6] 2020-01-10 14:10:20,581 Unable to shutdown  JMXMetricComponent  threadpool within  5  second timeout
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,581 Stopping RollupReporter
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,582 Stopping StatusComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,583 Stopping NodeDetailsComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,585 Stopping Performance Service.
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,585 Shutting down Performance Service threadpool.
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,586 Stopping OSStatCollection
+  INFO [async-dispatch-3] 2020-01-10 14:10:20,586 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-6] 2020-01-10 14:10:20,587 Shutting down OSStatCollection threadpool.
+ ERROR [async-dispatch-6] 2020-01-10 14:10:25,587 Unable to shutdown  OSStatCollection  threadpool within  5  second timeout
+  INFO [async-dispatch-6] 2020-01-10 14:10:25,588 Stopping RollupComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:25,591 Removing metric definition
+  INFO [async-dispatch-6] 2020-01-10 14:10:25,592 Stopping monitored database connection.
+  INFO [async-dispatch-6] 2020-01-10 14:10:27,828 Stopping storage database connection.
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,043 Starting storage database connection.
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,164 The storage connection state is closed?  false
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,164 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,533 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,540 Starting monitored database connection.
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,596 The monitored connection state is closed?   false
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,599 Building Metrics Definition
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,607 Using version 4.0.0.670 from ["2.0.11.83" "2.0.12.200" "2.1.5.469" "2.1.8.621" "2.1.9.791" "3.0.0" "3.0.11.1564" "3.0.15.2078" "3.10.0" "4.0.0" "4.0.0.670" "uploaded"] [4.0.0.677]
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,643 Starting RollupComponent at 200/second [<127]
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,644 Attempting to load stored metric values.
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,648 Completed loading 0 stored rollup states
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,649 Starting OSStatCollection (Linux)
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,651 Starting Performance Service
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,652 Starting NodeDetailsComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,977 Starting RollupReporter
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,977 Starting JMXMetricComponent
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,977 Starting Cassandra JMX metric collectors
+  INFO [async-dispatch-6] 2020-01-10 14:10:30,994 Finished starting system.
+  INFO [qtp972224398-117] 2020-01-10 14:11:19,154 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-117] 2020-01-10 14:11:19,170 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-116] 2020-01-10 14:11:24,661 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-116] 2020-01-10 14:11:24,672 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-115] 2020-01-10 14:11:54,686 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-115] 2020-01-10 14:11:54,692 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-116] 2020-01-10 14:13:16,603 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-116] 2020-01-10 14:13:16,609 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-115] 2020-01-10 14:18:53,980 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp972224398-115] 2020-01-10 14:18:53,984 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [main] 2020-01-10 16:36:40,833 Loading conf files: /var/lib/datastax-agent/conf/address.yaml
+  INFO [main] 2020-01-10 16:36:40,903 Java vendor/version: OpenJDK 64-Bit Server VM/1.8.0_232
+  INFO [main] 2020-01-10 16:36:40,904 DataStax Agent version: 6.7.7
+  INFO [main] 2020-01-10 16:36:40,934 Default config values: {:rollup_subscriptions [], :support_shell_timeout 30, :destinations {}, :rollup_snapshot_threshold 300, :rollup_state_ttl 259200, :is_package true, :metrics_ignored_column_families [], :cassandra-host-id nil, :agent_address_yaml_location nil, :nodedetails_threadpool_size 3, :opscenter_ssl_truststore_password "*REDACTED*", :cassandra_binary_location nil, :metrics_enabled true, :status_reporting_interval 20, :s3-transfer-pool-size 10, :s3_proxy_host nil, :cassandra_log_location "/var/log/cassandra", :send_without_validation false, :private-conf-props {:cassandra.yaml #{"native_transport_address" "rpc_address" "initial_token" "broadcast_rpc_address" "listen_address" "native_transport_broadcast_address" "broadcast_address"}}, :dse_env_location nil, :hosts ["127.0.0.1"], :dse_binary_location nil, :max_file_transfer_attempts 3, :jmx_user nil, :longtime_interval 300, :kerberos_service nil, :remote_verify_initial_delay 1000, :config_md5 nil, :tmp_dir "/var/lib/datastax-agent/tmp/", :slow_query_past 3600000, :ssl_keystore nil, :remote_verify_max 300000, :realtime_interval 5, :max_rollup_writes 127, :monitored_cassandra_pass "*REDACTED*", :ping_channel "/ping", :agent_binary_location nil, :cassandra_rpc_interface nil, :pong_channel nil, :conf_request_channel "/conf-request", :metrics_ignored_solr_cores [], :spark_log_location nil, :agent-conf-group "global-cluster-agent-group", :use_s3_cli false, :rollup_rate_unit :second, :storage_dse_connection_timeout 30, :slow_query_fetch_size 500, :jmx_queue_poll_timeout 10, :rollups60_ttl 604800, :backup_storage_dir "/var/lib/datastax-agent/backups/", :max_pending_repairs 5, :api_port 61621, :ssl_truststore_password "*REDACTED*", :agent_rpc_broadcast_address nil, :poll_period 60, :jmx_host "127.0.0.1", :definition_override nil, :config_encryption_key_path nil, :destination-transfer-pool-keepalive 2, :cassandra_port 9042, :storage_dse_host_read_timeout nil, :jmx_pass "*REDACTED*", :rollup_rate_burst 16, :remote_backup_region "us-west-1", :graphite_port 2003, :finished-request-cache-size 100, :use_swift_cli false, :swift_cli_sync_status_delay_seconds 10, :kerberos_keytab_location nil, :s3_proxy_port nil, :dsr_page_size 1000, :rollup_chan_size 2048, :agent_log_location nil, :tcp_response_timeout 240000, :destination-transfer-pool-size 10, :config_encryption_active false, :ssl_keystore_password "*REDACTED*", :graphite_host "", :jmx_metrics_threadpool_size 7, :restore_on_transfer_failure false, :alias nil, :shorttime_interval 10, :solr_log_location nil, :rollups300_ttl 2419200, :cassandra_conf_location nil, :separate_storage_cluster false, :cassandra_pass "*REDACTED*", :remote_backup_timeout 1000, :pong_timeout_ms 5000, :metrics_ignored_keyspaces [], :use_ssl false, :cassandra_user nil, :disk_wait 5000, :monitored_ssl_truststore_password "*REDACTED*", :config_encryption_key_name nil, :monitored_cassandra_user nil, :dse_defaults_location nil, :disk_usage_update_period 60, :bypass_dse_metrics_storage false, :rollup_rate 200, :swagger_enabled false, :slow_query_refresh 5, :monitored_ssl_keystore nil, :stomp_interface "10.101.34.47", :storage_keyspace "OpsCenter", :s3-transfer-pool-keepalive 2, :spark_conf_location nil, :jmx_retry_timeout 30, :monitored_ssl_keystore_password "*REDACTED*", :stomp_port 61620, :pit-enabled? false, :ssl_truststore nil, :monitored_cassandra_port 9042, :agent_rpc_interface nil, :kerberos_client_principal nil, :sstableloader_max_heap_size nil, :rollup_snapshot_period 300, :trace_delay 300, :jmx_thread_pool_size 5, :version "6.7.7", :monitored_dse_connection_timeout 30, :cassandra_install_location nil, :restore_req_update_period 60, :opscenter_ssl_keystore_password "*REDACTED*", :monitored_ssl_truststore nil, :slow_query_ignore ["OpsCenter" "dse_perf"], :jmx_port 7199, :agent_config_location nil, :remote_backup_retries 3, :local_interface nil, :opscenter_ssl_strict_subject_validation false, :ec2_metadata_api_host "169.254.169.254", :opscenter_ssl_truststore nil, :monitored_dse_host_read_timeout nil, :conf_path "/var/lib/datastax-agent/conf", :conf_channel nil, :rollups86400_ttl 0, :jmx_operations_pool_size 4, :backup_staging_dir "/var/lib/datastax-agent/commitlogs/", :max_reconnect_time 15000, :opscenter_ssl_keystore nil, :dse_conf_location nil, :rollups7200_ttl 31536000, :graphite_prefix "opscenter", :destination_pretest_timeout 60, :use_azure_cli_only false, :running-request-cache-size 500, :runs_sudo true}
+  INFO [main] 2020-01-10 16:36:40,935 Waiting for the config from OpsCenter
+  INFO [main] 2020-01-10 16:36:42,648 Static environment data: {:hardware {:cloud-provider :ec2, :metadata {:instance-id "i-000e09ae", :instance-type "c3.2xlarge", :ami-id "ami-0000065b", :placement "availability-zone", :public-ipv4 "", :local-ipv4 "10.101.35.71"}}, :os {:type "linux", :version "4.4.0-171-generic", :package-manager :apt-get}, :agent {:install-type :package, :install-location "/usr/share/datastax-agent", :agent-address-yaml "/var/lib/datastax-agent/conf/address.yaml", :agent-config "/etc/datastax-agent", :agent-binary "/usr/share/datastax-agent/bin", :agent-log "/var/log/datastax-agent", :agent-opscenter-ssl "/var/lib/datastax-agent/ssl"}}
+  INFO [main] 2020-01-10 16:36:42,652 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 16:36:42,654 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [main] 2020-01-10 16:36:42,655 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 16:36:42,655 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [main] 2020-01-10 16:36:42,661 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 2, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,661 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,663 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,664 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 1, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,664 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 2, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,665 Configuration change for component class opsagent.jmx.JMXComponent: before: {}, after: {:jmx-pass "*REDACTED*", :capacity 4, :jmx-user nil, :jmx-host "127.0.0.1", :jmx-queue-poll-timeout 10, :jmx-port 7199}
+  INFO [main] 2020-01-10 16:36:42,671 Configuration change for component class opsagent.messaging.StompComponent: before: {}, after: {:ping-channel "/ping", :stomp-port 61620, :ips nil, :local-interface nil, :stomp-interface "10.101.34.47", :send-without-validation false, :agent_rpc_broadcast_address nil, :conf-request-channel "/conf-request", :use-ssl? false, :conf-channel "/1903727601/conf", :opscenter-ssl-strict-subject-validation false, :pong-timeout-ms 5000, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :pong-channel "/1903727601/pong", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :handle-new-conf-fn #object[opsagent.conf$handle_new_conf 0x31b6eec8 "opsagent.conf$handle_new_conf@31b6eec8"]}
+  INFO [main] 2020-01-10 16:36:42,673 Configuration change for component class opsagent.environment.dynamic.DynamicEnvironmentComponent: before: {}, after: {:location-conf {:agent_address_yaml_location nil, :cassandra_binary_location nil, :cassandra_log_location "/var/log/cassandra", :dse_env_location nil, :dse_binary_location nil, :agent_binary_location nil, :spark_log_location nil, :agent_log_location nil, :solr_log_location nil, :cassandra_conf_location nil, :dse_defaults_location nil, :spark_conf_location nil, :agent_config_location nil, :dse_conf_location nil}, :address-conf {:local_interface nil, :cassandra_rpc_interface nil, :agent_rpc_interface nil, :agent_rpc_broadcast_address nil}, :kerb-conf {:kerberos_service nil, :kerberos_keytab_location nil, :kerberos_client_principal nil}, :run-from-fresh-jmx false}
+  INFO [main] 2020-01-10 16:36:42,675 Configuration change for component class opsagent.nodedetails.NodeDetailsComponent: before: {}, after: {:realtime-interval 5, :alias nil, :longtime-interval 300, :shorttime-interval 10, :nodedetails-threadpool-size 3}
+  INFO [main] 2020-01-10 16:36:42,677 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {}, after: {:rollups86400-ttl 0, :storage-cassandra-password "*REDACTED*", :separate-storage-cluster? false, :storage-keystore-password "*REDACTED*", :max-reconnect-time 15000, :storage-cassandra-user nil, :rollup-state-ttl 259200, :connection-timeout 30, :storage-keystore-path nil, :kerberos-service nil, :storage-truststore-path nil, :storage-hosts ["127.0.0.1"], :rollups7200-ttl 31536000, :rollups60-ttl 604800, :rollups300-ttl 2419200, :storage-port 9042, :storage-truststore-password "*REDACTED*", :host-read-timeout-ms nil, :storage-keyspace "OpsCenter"}
+  INFO [main] 2020-01-10 16:36:42,680 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {}, after: {:monitored-cassandra-user nil, :separate-storage-cluster? false, :monitored-keystore-password "*REDACTED*", :max-reconnect-time 15000, :monitored-hosts ["127.0.0.1"], :monitored-port 9042, :monitored-cassandra-password "*REDACTED*", :connection-timeout 30, :kerberos-service nil, :monitored-keyspace "system", :monitored-truststore-password "*REDACTED*", :monitored-keystore-path nil, :monitored-truststore-path nil, :host-read-timeout-ms nil}
+  INFO [main] 2020-01-10 16:36:42,682 Configuration change for component class opsagent.metrics.config.MetricDefinitionComponent: before: {}, after: {:conf-path "/var/lib/datastax-agent/conf", :definition-override nil}
+  INFO [main] 2020-01-10 16:36:42,683 Configuration change for component class opsagent.metrics.graphite_reporter.GraphiteReporterComponent: before: {}, after: {:graphite_host "", :graphite_port 2003, :graphite_prefix "opscenter"}
+  INFO [main] 2020-01-10 16:36:42,685 Configuration change for component class opsagent.rollup.RollupComponent: before: {}, after: {:rollup-snapshot-threshold 300, :rollup-rate-burst 16, :rollup-chan-size 2048, :max-rollup-writes 127, :rollup-rate 200, :rollup-rate-unit :second, :rollup-snapshot-period 300, :rollup-id nil, :bypass-dse-metrics-storage false}
+  INFO [main] 2020-01-10 16:36:42,689 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {}, after: {:ignored-keyspaces [], :metrics-enabled? true, :ignored-cores [], :jmx-metrics-threadpool-size 7, :ignored-cfs [], :poll-period 60}
+  INFO [main] 2020-01-10 16:36:42,690 Configuration change for component class opsagent.nodedetails.performance.PerformanceService: before: {}, after: {:refresh-interval 5, :history 3600000, :limit 500, :ignore ["OpsCenter" "dse_perf"]}
+  INFO [main] 2020-01-10 16:36:42,692 Configuration change for component class opsagent.status.StatusComponent: before: {}, after: {:api-port 61621, :status-reporting-interval 20, :agent-rpc-interface nil, :use-ssl false}
+  INFO [main] 2020-01-10 16:36:42,694 Configuration change for component class opsagent.nodedetails.repair.RepairComponent: before: {}, after: {:max-pending-repairs 5}
+  INFO [main] 2020-01-10 16:36:42,697 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {}, after: {:notification-jmx-pool nil, :dsr-page-size 1000, :tmp-dir #object[java.io.File 0xc0b10ae "/var/lib/datastax-agent/tmp/persistent/dsr"]}
+  INFO [main] 2020-01-10 16:36:42,699 Configuration change for component class opsagent.http.server.HTTPServer: before: {}, after: {:opscenter_ssl_truststore_password "*REDACTED*", :api-port 61621, :opscenter-id nil, :agent-rpc-interface nil, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :use-ssl false, :opscenter_ssl_truststore "/var/lib/datastax-agent/ssl/agentKeyStore", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :swagger-enabled false}
+  INFO [main] 2020-01-10 16:36:42,701 Configuration change for component class opsagent.conf.ConfigRequestComponent: before: {}, after: {:conf-channel "/1903727601/conf", :conf-request-channel "/conf-request", :version "6.7.7"}
+  INFO [main] 2020-01-10 16:36:42,705 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {}, after: {:pit-enabled? false, :staging-dir #object[java.io.File 0x7bb4f09d "/var/lib/datastax-agent/commitlogs"], :storage-dir #object[java.io.File 0xee7a538 "/var/lib/datastax-agent/backups"]}
+  INFO [main] 2020-01-10 16:36:42,711 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {}, after: {:local-interface nil, :metrics-enabled? true, :poll-period 60}
+  INFO [main] 2020-01-10 16:36:42,714 Configuration change for component class opsagent.os.collection.DiskUsageCollection: before: {}, after: {:disk-usage-update-period 60}
+  INFO [main] 2020-01-10 16:36:42,717 Configuration change for component class opsagent.alerts.SubscriptionService: before: {}, after: {:rollup-subscriptions []}
+  INFO [main] 2020-01-10 16:36:42,721 Configuration change for component class opsagent.backups.destinations.DestinationService: before: {}, after: {:destinations nil, :dest-map {}, :pool-size 10, :pool-keepalive-time 2}
+  INFO [async-dispatch-2] 2020-01-10 16:36:42,726 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 16:36:42,734 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:42,818 Starting DestinationService
+  INFO [async-dispatch-2] 2020-01-10 16:36:42,820 Starting storage database connection.
+  INFO [async-dispatch-2] 2020-01-10 16:36:43,752 The storage connection state is closed?  false
+  INFO [async-dispatch-2] 2020-01-10 16:36:43,754 Starting BackupSyncComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:43,758 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,262 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,295 Discovered Solr HTTP address(es): ["/0.0.0.0:8983"]
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,296 Selected Solr HTTP address: /0.0.0.0:8983
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,301 Got new config [note values in address.yaml override those from OpsCenter]: {:local_interface "10.101.35.71", :cassandra_rpc_interface "0.0.0.0", :agent_rpc_interface "0.0.0.0", :agent_rpc_broadcast_address "10.101.35.71", :pit-enabled? false, :cassandra-host-id "96f2331c-48ee-4e4d-9a60-7673579b559c"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,304 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,304 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,305 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,305 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,309 Configuration change for component class opsagent.messaging.StompComponent: before: {:agent_rpc_broadcast_address nil, :local-interface nil}, after: {:agent_rpc_broadcast_address "10.101.35.71", :local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,311 Configuration change for component class opsagent.environment.dynamic.DynamicEnvironmentComponent: before: {:address-conf {:agent_rpc_broadcast_address nil, :agent_rpc_interface nil, :cassandra_rpc_interface nil, :local_interface nil}}, after: {:address-conf {:agent_rpc_broadcast_address "10.101.35.71", :agent_rpc_interface "0.0.0.0", :cassandra_rpc_interface "0.0.0.0", :local_interface "10.101.35.71"}}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,313 Configuration change for component class opsagent.rollup.RollupComponent: before: {:rollup-id nil}, after: {:rollup-id "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,313 Configuration change for component class opsagent.status.StatusComponent: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,314 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,315 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {:local-interface nil}, after: {:local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,317 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,337 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,367 Starting monitored database connection.
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,513 The monitored connection state is closed?   false
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,515 Building Metrics Definition
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,548 Using version 4.0.0.670 from ["2.0.11.83" "2.0.12.200" "2.1.5.469" "2.1.8.621" "2.1.9.791" "3.0.0" "3.0.11.1564" "3.0.15.2078" "3.10.0" "4.0.0" "4.0.0.670" "uploaded"] [4.0.0.677]
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,651 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,667 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,675 Starting RepairComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,873 Starting Performance Service
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,876 Starting StompComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,880 SSL communication is disabled
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,880 Creating stomp connection to 10.101.34.47:61620
+  INFO [async-dispatch-2] 2020-01-10 16:36:44,984 Starting NodeDetailsComponent
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,039 Got new config [note values in address.yaml override those from OpsCenter]: {:rollup_subscriptions [], :destinations {}, :metrics_ignored_column_families "", :metrics_enabled true, :cassandra_log_location "/var/log/cassandra", :hosts ["10.101.35.71"], :jmx_user "", :kerberos_service "", :config_md5 "78b0dce6d907789b46ee175404de6cc9", :monitored_cassandra_pass "*REDACTED*", :metrics_ignored_solr_cores "", :use_s3_cli "", :rollups60_ttl 604800, :backup_storage_dir "", :max_pending_repairs 5, :api_port "61621", :cassandra_port 9042, :jmx_pass "*REDACTED*", :remote_backup_region "us-west-1", :use_swift_cli false, :swift_cli_sync_status_delay_seconds 10, :kerberos_keytab_location "", :rollups300_ttl 2419200, :separate_storage_cluster false, :cassandra_pass "*REDACTED*", :metrics_ignored_keyspaces "system, system_traces, system_auth, system_distributed, dse_auth, OpsCenter, system_views, system_virtual_schema", :use_ssl false, :cassandra_user "", :monitored_cassandra_user "", :storage_keyspace "OpsCenter", :monitored_cassandra_port 9042, :kerberos_client_principal "", :cassandra_install_location "", :restore_req_update_period 1, :jmx_port 7199, :ec2_metadata_api_host "169.254.169.254", :rollups86400_ttl 0, :jmx_operations_pool_size 4, :backup_staging_dir "", :rollups7200_ttl 31536000}
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,039 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,040 DSR initializing with dsr_dir /var/lib/datastax-agent/tmp/persistent/dsr, dsr-page-size 1000
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,041 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,041 default keystore path: /var/lib/datastax-agent/ssl
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,045 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {:storage-hosts ["127.0.0.1"]}, after: {:storage-hosts ["10.101.35.71"]}
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,046 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {:monitored-hosts ["127.0.0.1"]}, after: {:monitored-hosts ["10.101.35.71"]}
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,048 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {:ignored-keyspaces nil}, after: {:ignored-keyspaces ["system" "system_traces" "system_auth" "system_distributed" "dse_auth" "OpsCenter" "system_views" "system_virtual_schema"]}
+  INFO [StompConnection receiver] 2020-01-10 16:36:45,050 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {:storage-dir #object[java.io.File 0x7ef6a82f "/var/lib/datastax-agent/backups"], :staging-dir #object[java.io.File 0x574a0a85 "/var/lib/datastax-agent/commitlogs"]}, after: {:storage-dir nil, :staging-dir nil}
+  INFO [async-dispatch-2] 2020-01-10 16:36:45,959 Starting JMXComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,034 Configuration change for component class opsagent.http.server.HTTPServer: before: null, after: {:opscenter_ssl_truststore_password "*REDACTED*", :api-port 61621, :opscenter-id nil, :agent-rpc-interface nil, :version "6.7.7", :opscenter_ssl_keystore_password "*REDACTED*", :use-ssl false, :opscenter_ssl_truststore "/var/lib/datastax-agent/ssl/agentKeyStore", :opscenter_ssl_keystore "/var/lib/datastax-agent/ssl/agentKeyStore", :swagger-enabled false}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,290 Jetty server started
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,293 Starting RequestComponent.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,295 Starting JMXNotificationComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,303 Starting DiskUsageCollection
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,361 Starting SubscriptionService
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,361 Finished starting system.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,362 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,363 Configuration change for component class opsagent.messaging.StompComponent: before: {:agent_rpc_broadcast_address nil, :local-interface nil}, after: {:agent_rpc_broadcast_address "10.101.35.71", :local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,365 Configuration change for component class opsagent.cassandra.StorageDatabase: before: {:storage-hosts ["127.0.0.1"]}, after: {:storage-hosts ["10.101.35.71"]}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,366 Configuration change for component class opsagent.cassandra.MonitoredDatabase: before: {:monitored-hosts ["127.0.0.1"]}, after: {:monitored-hosts ["10.101.35.71"]}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,366 Configuration change for component class opsagent.rollup.RollupComponent: before: {:rollup-id nil}, after: {:rollup-id "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,368 Configuration change for component class opsagent.metrics.jmx.JMXMetricComponent: before: {:ignored-keyspaces nil}, after: {:ignored-keyspaces ["system" "system_traces" "system_auth" "system_distributed" "dse_auth" "OpsCenter" "system_views" "system_virtual_schema"]}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,368 Configuration change for component class opsagent.status.StatusComponent: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,374 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@34b4e71f, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@77fa2c2e, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@3e773c20, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,375 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,376 Configuration change for component class opsagent.backups.pit.CommitLogArchivingComponent: before: {:storage-dir #object[java.io.File 0xee7a538 "/var/lib/datastax-agent/backups"], :staging-dir #object[java.io.File 0x7bb4f09d "/var/lib/datastax-agent/commitlogs"]}, after: {:storage-dir nil, :staging-dir nil}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,377 Configuration change for component class opsagent.os.collection.OSStatCollection: before: {:local-interface nil}, after: {:local-interface "10.101.35.71"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,380 The following components have had a config change and will be rebuilt and restarted:  (:stomp-component :storage-database :monitored-database :rollup-component :jmx-metric-component :status-component :distributed-repair-component :http-server :commitlog-archiving-component :os-stat-component)
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,381 The component restart for  (:stomp-component :storage-database :monitored-database :rollup-component :jmx-metric-component :status-component :distributed-repair-component :http-server :commitlog-archiving-component :os-stat-component)  when accounting for dependencies requires these components to be restarted  #{:monitored-database :jmx-metric-component :rollup-reporter :status-component :metrics-config :disk-usage-collection :storage-database :backup-service-reporter-component :request-component :stomp-component :rollup-component :http-server :config-request :nodedetails-component :performance-service :distributed-repair-component :os-stat-component :commitlog-archiving-component}
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,383 Stopping DiskUsageCollection
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,384 Stopping BackupServiceReporterComponent.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,385 Stopping RequestComponent.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,387 Stopping StatusComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,388 Stopping NodeDetailsComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,389 Stopping StompComponent.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,391 Stopping Performance Service.
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,391 Shutting down Performance Service threadpool.
+  INFO [async-dispatch-3] 2020-01-10 16:36:46,394 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,397 Removing metric definition
+  INFO [async-dispatch-2] 2020-01-10 16:36:46,398 Stopping monitored database connection.
+  INFO [MLog-Init-Reporter] 2020-01-10 16:36:46,433 MLog clients using slf4j logging.
+  WARN [node-details-2] 2020-01-10 16:36:46,519 Exception while processing JMX data: java.lang.InterruptedException
+  INFO [async-dispatch-2] 2020-01-10 16:36:48,685 Stopping storage database connection.
+  INFO [async-dispatch-2] 2020-01-10 16:36:50,909 Starting storage database connection.
+  INFO [async-dispatch-2] 2020-01-10 16:36:50,987 The storage connection state is closed?  false
+  INFO [async-dispatch-2] 2020-01-10 16:36:50,988 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,386 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,396 Discovered Solr HTTP address(es): ["/0.0.0.0:8983"]
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,397 Selected Solr HTTP address: /0.0.0.0:8983
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,398 Starting monitored database connection.
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,492 The monitored connection state is closed?   false
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,492 Building Metrics Definition
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,498 Using version 4.0.0.670 from ["2.0.11.83" "2.0.12.200" "2.1.5.469" "2.1.8.621" "2.1.9.791" "3.0.0" "3.0.11.1564" "3.0.15.2078" "3.10.0" "4.0.0" "4.0.0.670" "uploaded"] [4.0.0.677]
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,521 Starting RollupComponent at 200/second [<127]
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,525 Attempting to load stored metric values.
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,530 Completed loading 0 stored rollup states
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,532 Starting OSStatCollection (Linux)
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,541 Starting Performance Service
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,542 Starting StompComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,542 SSL communication is disabled
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,542 Creating stomp connection to 10.101.34.47:61620
+  INFO [async-dispatch-2] 2020-01-10 16:36:51,551 Starting NodeDetailsComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,144 Configuration change for component class opsagent.http.server.HTTPServer: before: {:agent-rpc-interface nil}, after: {:agent-rpc-interface "0.0.0.0"}
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,148 Stopping Jetty server.
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,179 Jetty server started
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,180 Starting RequestComponent.
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,180 Starting DiskUsageCollection
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,180 Starting RollupReporter
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,191 Starting JMXMetricComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,192 Starting Cassandra JMX metric collectors
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,209 Finished starting system.
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,209 Starting system.
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,217 Configuration change for component class opsagent.nodedetails.distributed_repair.DistributedRepairComponent: before: {:notification-jmx-pool JMXComponent #{:jmx-host 127.0.0.1, :jmx-user , :jmx-pass *REDACTED*, :jmx-port 7199, :capacity 1, :jmx-queue-poll-timeout 10, :trigger-jmx-down opsagent.util$debounce_last$fn__1127@34b4e71f, :wrapper-fn opsagent.jmx$create_jmx_pool_with_config$wrapper__4292@77fa2c2e, :shutdown-fn opsagent.jmx$create_jmx_pool_with_config$shutdown__4307@3e773c20, :error }}, after: {:notification-jmx-pool nil}
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,217 The following components have had a config change and will be rebuilt and restarted:  (:distributed-repair-component)
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,218 The component restart for  (:distributed-repair-component)  when accounting for dependencies requires these components to be restarted  #{:http-server :distributed-repair-component}
+  INFO [async-dispatch-3] 2020-01-10 16:36:52,219 DSR repair loop dequeued task :poison-pill
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,220 Starting DynamicEnvironmentComponent
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,741 Dynamic environment script output:  paths:
+  cassandra-conf: /etc/dse//cassandra
+  cassandra-log: /var/log/cassandra
+  spark-log: /var/log/spark
+  dse-env: /etc/dse
+  dse-conf: /etc/dse/
+  spark-conf: /etc/dse//spark
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,748 Discovered Solr HTTP address(es): ["/0.0.0.0:8983"]
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,749 Selected Solr HTTP address: /0.0.0.0:8983
+  INFO [async-dispatch-2] 2020-01-10 16:36:52,753 Finished starting system.
+  INFO [qtp714535921-156] 2020-01-10 16:39:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 16:39:45,972 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:41:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:41:45,968 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:44:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:44:45,971 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:49:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:49:46,002 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:51:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:51:46,015 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 16:51:55,000 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 16:51:55,006 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:52:03,280 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 16:52:03,285 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:52:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:52:46,015 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:53:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 16:53:46,156 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:04:45,958 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:04:45,997 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:05:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:05:46,001 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:06:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:06:45,997 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:08:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:08:45,974 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:09:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:09:45,973 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:10:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:10:45,983 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:11:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:11:45,991 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:14:45,956 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:14:45,992 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:17:45,957 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:17:46,052 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cluster/solr-cores","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:17:56,969 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:17:56,973 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:19:21,736 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:19:21,741 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/dse-performance-status","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:19:24,423 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cassandra/check-system-log-location","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:19:24,430 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cassandra/check-system-log-location","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:19:29,322 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/check-diagnostics-size","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:19:29,373 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/check-diagnostics-size","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:19:29,627 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"Java/1.8.0_232","connection":"close","host":"10.101.35.71:61621","accept":"text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"},"server-port":61621,"content-length":null,"content-type":null,"character-encoding":null,"uri":"/v1/diagnostics","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:20:26,241 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"Java/1.8.0_232","connection":"close","host":"10.101.35.71:61621","accept":"text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"},"server-port":61621,"content-length":null,"status":200,"content-type":null,"character-encoding":null,"uri":"/v1/diagnostics","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:20:29,187 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cassandra/check-system-log-location","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-154] 2020-01-10 17:20:29,190 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/cassandra/check-system-log-location","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:20:37,680 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/check-diagnostics-size","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-156] 2020-01-10 17:20:37,722 HTTP request completed: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"http-kit/2.0","host":"10.101.35.71:61621","accept-encoding":"gzip, deflate","content-length":"2","opscenter-id":"d37371e8c6f84622bf1dc5cedfeac989","content-type":"application/json"},"server-port":61621,"content-length":2,"status":200,"content-type":"application/json","character-encoding":"UTF-8","uri":"/v1/check-diagnostics-size","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+  INFO [qtp714535921-155] 2020-01-10 17:20:37,875 HTTP request started: {"protocol":"HTTP/1.1","remote-addr":"10.101.34.47","params":{},"headers":{"user-agent":"Java/1.8.0_232","connection":"close","host":"10.101.35.71:61621","accept":"text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"},"server-port":61621,"content-length":null,"content-type":null,"character-encoding":null,"uri":"/v1/diagnostics","server-name":"10.101.35.71","query-string":"","scheme":"http","request-method":"get"}
+ 

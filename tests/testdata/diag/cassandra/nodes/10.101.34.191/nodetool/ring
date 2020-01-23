@@ -1,0 +1,11 @@
+
+Datacenter: datacenter1
+==========
+Address        Rack        Status State   Load            Owns                Token                                       
+                                                                              3074457345618258602                         
+10.101.35.67   rack1       Up     Normal  111.09 KB       66.67%              -9223372036854775808                        
+10.101.34.223  rack1       Up     Normal  92.05 KB        66.67%              -3074457345618258603                        
+10.101.34.191  rack1       Up     Normal  107.43 KB       66.67%              3074457345618258602                         
+
+
+  

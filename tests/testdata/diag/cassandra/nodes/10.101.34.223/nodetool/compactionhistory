@@ -1,0 +1,61 @@
+Compaction History: 
+id                                       keyspace_name      columnfamily_name            compacted_at              bytes_in       bytes_out      rows_merged
+9c7fcf30-2f37-11ea-a982-090cbe678691     system             size_estimates               1578172648355             913            196            {4:1}
+2c96c7a0-2eec-11ea-a982-090cbe678691     system             size_estimates               1578140248346             895            196            {4:1}
+c6ec2740-3000-11ea-a982-090cbe678691     system             size_estimates               1578259048372             895            196            {4:1}
+0c67ec60-2f83-11ea-a982-090cbe678691     system             size_estimates               1578205048358             913            196            {4:1}
+fd0c60f0-2d72-11ea-a982-090cbe678691     system             size_estimates               1577978248319             895            196            {4:1}
+41120f60-31ac-11ea-a982-090cbe678691     system             size_estimates               1578442648406             929            196            {4:1}
+868dfb90-312e-11ea-a982-090cbe678691     system             size_estimates               1578388648393             910            196            {4:1}
+e1fc57a0-2eb9-11ea-a982-090cbe678691     system             size_estimates               1578118648346             913            211            {4:1}
+368c0f90-3207-11ea-a982-090cbe678691     system             schema_columnfamilies        1578481714953             10220          7073           {1:2, 3:1}
+72141360-2e6e-11ea-a982-090cbe678691     system             size_estimates               1578086248342             894            196            {4:1}
+b7957dd0-2df0-11ea-a982-090cbe678691     system             size_estimates               1578032248365             895            196            {4:1}
+022b32e0-2e23-11ea-a982-090cbe678691     system             size_estimates               1578053848334             928            196            {4:1}
+27790720-2e3c-11ea-a982-090cbe678691     system             size_estimates               1578064648338             913            211            {4:1}
+225a5c40-2d8c-11ea-a982-090cbe678691     system             size_estimates               1577989048324             894            195            {4:1}
+4cc5f100-2e55-11ea-a982-090cbe678691     system             size_estimates               1578075448336             909            195            {4:1}
+074c27b0-2ed3-11ea-a982-090cbe678691     system             size_estimates               1578129448363             909            196            {4:1}
+31b59990-2f9c-11ea-a982-090cbe678691     system             size_estimates               1578215848361             895            196            {4:1}
+368c36a0-3207-11ea-a982-090cbe678691     system             schema_columns               1578481714954             14097          8568           {1:2, 3:1}
+cc09e7c0-30b0-11ea-a982-090cbe678691     system             size_estimates               1578334648380             911            196            {4:1}
+92425260-2dd7-11ea-a982-090cbe678691     system             size_estimates               1578021448326             895            196            {4:1}
+57067b10-2fb5-11ea-a982-090cbe678691     system             size_estimates               1578226648385             913            196            {4:1}
+abdd5670-3147-11ea-a982-090cbe678691     system             size_estimates               1578399448407             895            196            {4:1}
+36d44470-304c-11ea-a982-090cbe678691     system             size_estimates               1578291448375             928            196            {4:1}
+b2712da0-2d40-11ea-a982-090cbe678691     system             size_estimates               1577956648314             913            196            {4:1}
+c1cf0300-2f50-11ea-a982-090cbe678691     system             size_estimates               1578183448368             912            211            {4:1}
+e71a3f30-2f69-11ea-a982-090cbe678691     system             size_estimates               1578194248355             927            196            {4:1}
+11869740-3033-11ea-a982-090cbe678691     system             size_estimates               1578280648372             931            211            {4:1}
+dcddacc0-2e09-11ea-a982-090cbe678691     system             size_estimates               1578043048332             913            211            {4:1}
+8d23a780-2d27-11ea-a982-090cbe678691     system             size_estimates               1577945848312             895            196            {4:1}
+6cf4f350-2dbe-11ea-a982-090cbe678691     system             size_estimates               1578010648325             895            196            {4:1}
+ec393830-3019-11ea-a982-090cbe678691     system             size_estimates               1578269848371             913            196            {4:1}
+1bc4fe70-3193-11ea-a982-090cbe678691     system             size_estimates               1578431848407             914            212            {4:1}
+bcaed180-2ea0-11ea-a982-090cbe678691     system             size_estimates               1578107848344             911            196            {4:1}
+9760fd40-2e87-11ea-a982-090cbe678691     system             size_estimates               1578097048340             913            196            {4:1}
+d6476490-3210-11ea-a982-090cbe678691     system             size_estimates               1578485848409             1040           249            {2:1, 4:1}
+3bf2ef50-30fc-11ea-a982-090cbe678691     system             size_estimates               1578367048389             895            196            {4:1}
+8bac7f60-31de-11ea-a982-090cbe678691     system             size_estimates               1578464248406             911            196            {4:1}
+51e53820-2f05-11ea-a982-090cbe678691     system             size_estimates               1578151048354             913            196            {4:1}
+fb9b2c40-3229-11ea-a982-090cbe678691     system             size_estimates               1578496648452             1101           249            {4:2}
+16a54220-30e3-11ea-a982-090cbe678691     system             size_estimates               1578356248386             913            196            {4:1}
+61402750-3115-11ea-a982-090cbe678691     system             size_estimates               1578377848389             913            211            {4:1}
+a6bcfde0-3097-11ea-a982-090cbe678691     system             size_estimates               1578323848382             895            196            {4:1}
+1d3b3c30-2cdc-11ea-a982-090cbe678691     system             size_estimates               1577913448307             927            196            {4:1}
+47a79440-2da5-11ea-a982-090cbe678691     system             size_estimates               1577999848324             894            196            {4:1}
+b0fac8d0-31f7-11ea-a982-090cbe678691     system             size_estimates               1578475048413             895            196            {4:1}
+a19e7a10-2fe7-11ea-a982-090cbe678691     system             size_estimates               1578248248369             913            196            {4:1}
+7731faf0-2f1e-11ea-a982-090cbe678691     system             size_estimates               1578161848351             895            196            {4:1}
+f7eddd20-2cc2-11ea-a982-090cbe678691     system             size_estimates               1577902648306             913            211            {4:1}
+5c2218b0-3065-11ea-a982-090cbe678691     system             size_estimates               1578302248379             913            196            {4:1}
+f157e310-30c9-11ea-a982-090cbe678691     system             size_estimates               1578345448385             895            196            {4:1}
+816f50b0-307e-11ea-a982-090cbe678691     system             size_estimates               1578313048379             895            196            {4:1}
+d12955f0-3160-11ea-a982-090cbe678691     system             size_estimates               1578410248399             913            196            {4:1}
+f67666e0-3179-11ea-a982-090cbe678691     system             size_estimates               1578421048398             895            196            {4:1}
+7c50cce0-2fce-11ea-a982-090cbe678691     system             size_estimates               1578237448366             895            196            {4:1}
+67d62160-2d0e-11ea-a982-090cbe678691     system             size_estimates               1577935048310             910            196            {4:1}
+13d382d0-3207-11ea-a982-090cbe678691     system             schema_keyspaces             1578481656701             691            242            {1:2, 3:1}
+665ef940-31c5-11ea-a982-090cbe678691     system             size_estimates               1578453448404             895            196            {4:1}
+d7beb3c0-2d59-11ea-a982-090cbe678691     system             size_estimates               1577967448316             895            196            {4:1}
+4288c250-2cf5-11ea-a982-090cbe678691     system             size_estimates               1577924248309             913            211            {4:1}

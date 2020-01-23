@@ -1,0 +1,2 @@
+Cluster: Sperf Cluster
+Partitioner: Murmur3Partitioner

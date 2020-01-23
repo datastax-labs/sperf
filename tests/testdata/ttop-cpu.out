@@ -1,0 +1,151 @@
+Monitoring threads ...
+
+2020-01-09T16:08:06.535+0000 Process summary 
+  process cpu=45.70%
+  application cpu=28.06% (user=20.23% sys=7.83%)
+  other: cpu=17.64% 
+  thread count: 120
+  heap allocation rate 3461kb/s
+[000015] user=16.29% sys= 7.23% alloc=   317b/s - ParkedThreadsMonitor
+[000424] user= 2.43% sys= 0.47% alloc= 1170kb/s - RMI TCP Connection(2)-127.0.0.1
+[000019] user= 1.12% sys= 0.03% alloc= 2183kb/s - CoreThread-0
+[000419] user= 0.19% sys=-0.09% alloc=   38kb/s - DseGossipStateUpdater
+[000016] user= 0.19% sys=-0.11% alloc=   24kb/s - ScheduledTasks:1
+[000394] user= 0.00% sys= 0.06% alloc=   19kb/s - NodeHealthPlugin-Scheduler-thread-0
+[000329] user= 0.00% sys= 0.05% alloc=   323b/s - OptionalTasks:1
+[000425] user= 0.00% sys= 0.04% alloc=  4278b/s - JMX server connection timeout 425
+[000401] user= 0.00% sys= 0.02% alloc=  6154b/s - ContainerBackgroundProcessor[StandardEngine[Solr]]
+[000391] user= 0.00% sys= 0.02% alloc=  2531b/s - PO-thread-1
+[000020] user= 0.00% sys= 0.02% alloc=  1294b/s - CoreThread-1
+[000023] user= 0.00% sys= 0.01% alloc=  1236b/s - CoreThread-4
+[000021] user= 0.00% sys= 0.01% alloc=  1230b/s - CoreThread-2
+[000354] user= 0.00% sys= 0.01% alloc=   841b/s - GossipTasks:1
+[000025] user= 0.00% sys= 0.01% alloc=  1737b/s - CoreThread-6
+[000014] user= 0.00% sys= 0.01% alloc=  1944b/s - AsyncAppender-Worker-ASYNCDEBUGLOG
+[000395] user= 0.00% sys= 0.01% alloc=  1409b/s - LeasePlugin-1
+[000355] user= 0.00% sys= 0.01% alloc=  1096b/s - NonPeriodicTasks:1
+[000311] user= 0.00% sys= 0.01% alloc=   710b/s - RxSchedulerPurge-1
+[000330] user= 0.00% sys= 0.00% alloc=     0b/s - internode-messaging RemoteMessageServer acceptor-4-1
+
+
+
+
+2020-01-09T16:08:16.379+0000 Process summary 
+  process cpu=28.84%
+  application cpu=25.84% (user=19.40% sys=6.44%)
+  other: cpu=3.01% 
+  thread count: 108
+  heap allocation rate 3306kb/s
+[000015] user=16.86% sys= 5.87% alloc=   321b/s - ParkedThreadsMonitor
+[000424] user= 1.52% sys= 0.45% alloc= 1079kb/s - RMI TCP Connection(2)-127.0.0.1
+[000019] user= 0.91% sys= 0.00% alloc= 2189kb/s - CoreThread-0
+[000016] user= 0.00% sys= 0.08% alloc=   24kb/s - ScheduledTasks:1
+[000329] user= 0.00% sys= 0.03% alloc=   319b/s - OptionalTasks:1
+[000425] user= 0.00% sys= 0.03% alloc=  4185b/s - JMX server connection timeout 425
+[000354] user= 0.00% sys= 0.01% alloc=   910b/s - GossipTasks:1
+[000401] user= 0.10% sys=-0.09% alloc=  4245b/s - ContainerBackgroundProcessor[StandardEngine[Solr]]
+[000395] user= 0.00% sys= 0.01% alloc=  1516b/s - LeasePlugin-1
+[000356] user= 0.00% sys= 0.01% alloc=  1578b/s - BatchlogTasks:1
+[000311] user= 0.00% sys= 0.01% alloc=   641b/s - RxSchedulerPurge-1
+[000024] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-5
+[000023] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-4
+[000013] user= 0.00% sys= 0.00% alloc=    32b/s - AsyncFileHandlerWriter-2032188048
+[000022] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-3
+[000330] user= 0.00% sys= 0.00% alloc=     0b/s - internode-messaging RemoteMessageServer acceptor-4-1
+[000020] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-1
+[000326] user= 0.00% sys= 0.00% alloc=   135b/s - PERIODIC-COMMIT-LOG-SYNCER
+[000025] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-6
+[000021] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-2
+
+
+
+
+2020-01-09T16:08:26.133+0000 Process summary 
+  process cpu=28.81%
+  application cpu=27.13% (user=20.40% sys=6.73%)
+  other: cpu=1.67% 
+  thread count: 108
+  heap allocation rate 3246kb/s
+[000015] user=18.04% sys= 6.29% alloc=   318b/s - ParkedThreadsMonitor
+[000424] user= 1.23% sys= 0.47% alloc= 1084kb/s - RMI TCP Connection(2)-127.0.0.1
+[000019] user= 0.92% sys=-0.03% alloc= 2125kb/s - CoreThread-0
+[000016] user= 0.10% sys=-0.03% alloc=   24kb/s - ScheduledTasks:1
+[000329] user= 0.10% sys=-0.07% alloc=   299b/s - OptionalTasks:1
+[000425] user= 0.00% sys= 0.02% alloc=  4224b/s - JMX server connection timeout 425
+[000354] user= 0.00% sys= 0.01% alloc=   918b/s - GossipTasks:1
+[000395] user= 0.00% sys= 0.01% alloc=  1531b/s - LeasePlugin-1
+[000401] user= 0.00% sys= 0.01% alloc=  3340b/s - ContainerBackgroundProcessor[StandardEngine[Solr]]
+[000356] user= 0.00% sys= 0.01% alloc=  1593b/s - BatchlogTasks:1
+[000311] user= 0.00% sys= 0.00% alloc=   583b/s - RxSchedulerPurge-1
+[000024] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-5
+[000330] user= 0.00% sys= 0.00% alloc=     0b/s - internode-messaging RemoteMessageServer acceptor-4-1
+[000022] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-3
+[000013] user= 0.00% sys= 0.00% alloc=    32b/s - AsyncFileHandlerWriter-2032188048
+[000020] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-1
+[000023] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-4
+[000025] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-6
+[000021] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-2
+[000413] user= 0.00% sys= 0.00% alloc=    57b/s - http-bio-127.0.0.1-8983-AsyncTimeout
+
+
+
+
+2020-01-09T16:08:36.478+0000 Process summary 
+  process cpu=28.23%
+  application cpu=27.30% (user=20.59% sys=6.71%)
+  other: cpu=0.93% 
+  thread count: 108
+  heap allocation rate 3296kb/s
+[000015] user=17.50% sys= 6.39% alloc=   321b/s - ParkedThreadsMonitor
+[000424] user= 1.55% sys= 0.45% alloc= 1069kb/s - RMI TCP Connection(2)-127.0.0.1
+[000019] user= 1.16% sys= 0.02% alloc= 2188kb/s - CoreThread-0
+[000016] user= 0.10% sys=-0.01% alloc=   24kb/s - ScheduledTasks:1
+[000329] user= 0.00% sys= 0.04% alloc=   325b/s - OptionalTasks:1
+[000425] user= 0.10% sys=-0.07% alloc=  4180b/s - JMX server connection timeout 425
+[000354] user= 0.00% sys= 0.01% alloc=   866b/s - GossipTasks:1
+[000395] user= 0.00% sys= 0.01% alloc=  1443b/s - LeasePlugin-1
+[000401] user= 0.00% sys= 0.01% alloc=  3149b/s - ContainerBackgroundProcessor[StandardEngine[Solr]]
+[000356] user= 0.00% sys= 0.01% alloc=  1502b/s - BatchlogTasks:1
+[000392] user= 0.00% sys= 0.01% alloc=  1304b/s - PO-thread-2
+[000023] user= 0.10% sys=-0.09% alloc=   438b/s - CoreThread-4
+[000422] user= 0.00% sys= 0.01% alloc=   190b/s - RMI TCP Connection(idle)
+[000311] user= 0.00% sys= 0.00% alloc=   672b/s - RxSchedulerPurge-1
+[000022] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-3
+[000025] user= 0.10% sys=-0.09% alloc=     0b/s - CoreThread-6
+[000024] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-5
+[000013] user= 0.00% sys= 0.00% alloc=    30b/s - AsyncFileHandlerWriter-2032188048
+[000021] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-2
+[000020] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-1
+
+
+
+
+2020-01-09T16:08:46.251+0000 Process summary 
+  process cpu=27.32%
+  application cpu=25.38% (user=17.09% sys=8.30%)
+  other: cpu=1.93% 
+  thread count: 108
+  heap allocation rate 3316kb/s
+[000015] user=14.84% sys= 7.90% alloc=   317b/s - ParkedThreadsMonitor
+[000424] user= 1.13% sys= 0.40% alloc= 1077kb/s - RMI TCP Connection(2)-127.0.0.1
+[000019] user= 0.92% sys=-0.01% alloc= 2201kb/s - CoreThread-0
+[000016] user= 0.10% sys=-0.02% alloc=   24kb/s - ScheduledTasks:1
+[000329] user= 0.00% sys= 0.03% alloc=   305b/s - OptionalTasks:1
+[000425] user= 0.00% sys= 0.02% alloc=  4174b/s - JMX server connection timeout 425
+[000401] user= 0.00% sys= 0.01% alloc=  4276b/s - ContainerBackgroundProcessor[StandardEngine[Solr]]
+[000354] user= 0.10% sys=-0.09% alloc=   916b/s - GossipTasks:1
+[000395] user= 0.00% sys= 0.01% alloc=  1528b/s - LeasePlugin-1
+[000356] user= 0.00% sys= 0.01% alloc=  1590b/s - BatchlogTasks:1
+[000311] user= 0.00% sys= 0.01% alloc=   646b/s - RxSchedulerPurge-1
+[000022] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-3
+[000013] user= 0.00% sys= 0.00% alloc=    32b/s - AsyncFileHandlerWriter-2032188048
+[000330] user= 0.00% sys= 0.00% alloc=     0b/s - internode-messaging RemoteMessageServer acceptor-4-1
+[000413] user= 0.00% sys= 0.00% alloc=    57b/s - http-bio-127.0.0.1-8983-AsyncTimeout
+[000020] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-1
+[000024] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-5
+[000025] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-6
+[000023] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-4
+[000021] user= 0.00% sys= 0.00% alloc=     0b/s - CoreThread-2
+
+
+

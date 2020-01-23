@@ -1,0 +1,11 @@
+proxy histograms
+Percentile      Read Latency     Write Latency     Range Latency
+                    (micros)          (micros)          (micros)
+50%                  1109.00           6866.00           1109.00
+75%                  1597.00           6866.00           1597.00
+95%                  3311.00           6866.00           5722.00
+98%                  5722.00           6866.00          17084.00
+99%                  5722.00           6866.00          17084.00
+Min                   180.00           5723.00             73.00
+Max                  5722.00           6866.00          17084.00
+

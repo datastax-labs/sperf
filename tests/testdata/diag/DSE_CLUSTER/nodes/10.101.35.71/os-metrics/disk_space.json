@@ -1,0 +1,14 @@
+{
+  "free" : {
+    "/dev/vda2" : 67.19,
+    "/dev/vdb" : 79.98
+  },
+  "used" : {
+    "/dev/vda2" : 4.49,
+    "/dev/vdb" : 0.0
+  },
+  "percentage" : {
+    "/dev/vda2" : 7,
+    "/dev/vdb" : 1
+  }
+}

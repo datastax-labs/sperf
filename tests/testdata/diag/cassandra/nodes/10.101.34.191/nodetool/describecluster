@@ -1,0 +1,7 @@
+Cluster Information:
+	Name: COSS_tarball
+	Snitch: org.apache.cassandra.locator.DynamicEndpointSnitch
+	Partitioner: org.apache.cassandra.dht.Murmur3Partitioner
+	Schema versions:
+		6d02aa79-9cbd-3d26-adc6-528086138fe4: [10.101.35.67, 10.101.34.223, 10.101.34.191]
+

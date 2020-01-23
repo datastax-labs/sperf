@@ -1,0 +1,8 @@
+Cluster Information:
+	Name: Sperf Cluster
+	Snitch: com.datastax.bdp.snitch.DseSimpleSnitch
+	DynamicEndPointSnitch: enabled
+	Partitioner: org.apache.cassandra.dht.Murmur3Partitioner
+	Schema versions:
+		efd03e46-a18c-3327-9bfe-29cf0cfe1f52: [10.101.33.205, 10.101.35.71, 10.101.35.102]
+

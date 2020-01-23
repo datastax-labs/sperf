@@ -1,0 +1,2 @@
+data: /usr/local/lib/cassandra/data/data
+commitlog: /usr/local/lib/cassandra/data/commitlog

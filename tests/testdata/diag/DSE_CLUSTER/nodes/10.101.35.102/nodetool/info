@@ -1,0 +1,17 @@
+ID                     : e6f09523-3513-42ab-b395-8f264eaceb34
+Gossip active          : true
+Native Transport active: true
+Load                   : 133.63 MiB
+Generation No          : 1578673412
+Uptime (seconds)       : 3460
+Heap Memory (MB)       : 1269.88 / 3760.00
+Off Heap Memory (MB)   : 58.00
+Data Center            : Solr
+Rack                   : rack1
+Exceptions             : 0
+Key Cache              : entries 0, size 0 bytes, capacity 100 MiB, 0 hits, 0 requests, NaN recent hit rate, 14400 save period in seconds
+Row Cache              : entries 0, size 0 bytes, capacity 0 bytes, 0 hits, 0 requests, NaN recent hit rate, 0 save period in seconds
+Counter Cache          : entries 0, size 0 bytes, capacity 50 MiB, 0 hits, 0 requests, NaN recent hit rate, 7200 save period in seconds
+Chunk Cache            : entries 29765, size 1.05 GiB, capacity 2.62 GiB, 29771 misses, 50932496 requests, 0.999 recent hit rate, 2244.643 microseconds miss latency
+Percent Repaired       : 0.0%
+Token                  : (invoke with -T/--tokens to see all 32 tokens)

@@ -1,0 +1,62 @@
+Pool Name                                     Active      Pending (w/Backpressure)   Delayed      Completed   Blocked  All time blocked
+AuthzStage                                         0                       0 (N/A)       N/A              1         0                 0
+BackgroundIoStage                                  0                       0 (N/A)       N/A            691         0                 0
+CompactionExecutor                                 0                       0 (N/A)       N/A           5983         0                 0
+GossipStage                                        0                       0 (N/A)       N/A          16405         0                 0
+HintsDispatcher                                    0                       0 (N/A)       N/A              1         0                 0
+InternalResponseStage                              0                       0 (N/A)       N/A             10         0                 0
+MemtableFlushWriter                                0                       0 (N/A)       N/A            170         0                 0
+MemtablePostFlush                                  0                       0 (N/A)       N/A            621         0                 0
+MemtableReclaimMemory                              0                       0 (N/A)       N/A            171         0                 0
+MigrationStage                                     0                       0 (N/A)       N/A             18         0                 0
+PendingRangeCalculator                             0                       0 (N/A)       N/A              4         0                 0
+PerDiskMemtableFlushWriter_0                       0                       0 (N/A)       N/A            136         0                 0
+ReadRepairStage                                    0                       0 (N/A)       N/A          70512         0                 0
+SecondaryIndexManagement                           0                       0 (N/A)       N/A              1         0                 0
+TPC/all/EVENTLOOP_PARK                             0                     N/A (N/A)       N/A        3779913       N/A               N/A
+TPC/all/EVENTLOOP_PROCESSED_TASKS                  0                     N/A (N/A)       N/A       29924981       N/A               N/A
+TPC/all/EVENTLOOP_SCHEDULED_TASKS                  0                     N/A (N/A)       N/A       43372123       N/A               N/A
+TPC/all/EVENTLOOP_SELECTOR_EVENTS                  0                     N/A (N/A)       N/A        4273141       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_CALLS                     7                     N/A (N/A)       N/A        8565102       N/A               N/A
+TPC/all/EVENTLOOP_SELECT_NOW_CALLS                 0                     N/A (N/A)       N/A      170037854       N/A               N/A
+TPC/all/EVENTLOOP_SPIN                             0                     N/A (N/A)       N/A      136817627       N/A               N/A
+TPC/all/EVENTLOOP_YIELD                            0                     N/A (N/A)       N/A      149818738       N/A               N/A
+TPC/all/EXECUTE_STATEMENT                          0                     N/A (N/A)       N/A             70       N/A               N/A
+TPC/all/HINT_RESPONSE                              0                     N/A (N/A)       N/A            691       N/A               N/A
+TPC/all/NODESYNC_VALIDATION                        0                     N/A (N/A)       N/A           1434       N/A               N/A
+TPC/all/READ_DEFERRED                              0                       0 (N/A)       N/A         583397       N/A                 0
+TPC/all/READ_DISK_ASYNC                            0                     N/A (N/A)       N/A          31444       N/A               N/A
+TPC/all/READ_INTERNAL                              0                     N/A (N/A)       N/A          11187       N/A               N/A
+TPC/all/READ_LOCAL                                 0                       0 (N/A)       N/A         820177       N/A                 0
+TPC/all/READ_RANGE_INTERNAL                        0                     N/A (N/A)       N/A           2930       N/A               N/A
+TPC/all/READ_RANGE_SWITCH_FOR_RESPONSE             0                     N/A (N/A)       N/A            623       N/A               N/A
+TPC/all/READ_REMOTE                                0                       0 (N/A)       N/A         157240       N/A                 0
+TPC/all/READ_SPECULATE                             0                     N/A (N/A)       N/A           1818       N/A               N/A
+TPC/all/READ_SWITCH_FOR_RESPONSE                   0                     N/A (N/A)       N/A         833444       N/A               N/A
+TPC/all/TIMED_TIMEOUT                              0                     N/A (N/A)       N/A          67687       N/A               N/A
+TPC/all/TIMED_UNKNOWN                              0                     N/A (N/A)       N/A              8       N/A               N/A
+TPC/all/UNKNOWN                                    0                     N/A (N/A)       N/A        4252814       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SEGMENT              0                     N/A (N/A)       N/A             35       N/A               N/A
+TPC/all/WRITE_INTERNAL                             0                     N/A (N/A)       N/A           7332       N/A               N/A
+TPC/all/WRITE_LOCAL                                0                       0 (N/A)       N/A        1416929       N/A                 0
+TPC/all/WRITE_REMOTE                               0                       0 (N/A)       N/A        2829077       N/A                 0
+TPC/all/WRITE_SWITCH_FOR_MEMTABLE                  0                     N/A (N/A)       N/A           1037       N/A               N/A
+TPC/all/WRITE_SWITCH_FOR_RESPONSE                  0                     N/A (N/A)       N/A        4300390       N/A               N/A
+
+Message type            Dropped                  Latency waiting in queue (micros)                                    
+                                              50%               95%               99%               Max
+RANGE_SLICE                   0              0.00            917.50           1835.01           3145.73
+SNAPSHOT                      0               N/A               N/A               N/A               N/A
+HINT                          0              0.00            917.50           2621.44           6291.46
+COUNTER_MUTATION              0               N/A               N/A               N/A               N/A
+LWT                           0               N/A               N/A               N/A               N/A
+BATCH_STORE                   0               N/A               N/A               N/A               N/A
+VIEW_MUTATION                 0               N/A               N/A               N/A               N/A
+READ                          0              0.00           1835.01           7340.03          12582.91
+OTHER                         0              0.00            917.50            917.50           1048.58
+REPAIR                        0               N/A               N/A               N/A               N/A
+SCHEMA                        0              0.00            917.50            917.50           1048.58
+MUTATION                      0              0.00            917.50           8388.61         671088.64
+NODESYNC                      0              0.00           1835.01           8388.61          33554.43
+READ_REPAIR                   0              0.00            917.50            917.50           1048.58
+TRUNCATE                      0               N/A               N/A               N/A               N/A

@@ -1,0 +1,8 @@
+kernel_name: Linux
+node_name: ip-10-101-34-191.srv101.dsinternal.org
+kernel_release: 4.4.0-166-generic
+kernel_version: #195-Ubuntu SMP Tue Oct 1 09:35:25 UTC 2019
+machine_type: x86_64
+processor_type: x86_64
+platform_type: x86_64
+os_type: GNU/Linux
