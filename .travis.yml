@@ -11,7 +11,8 @@ matrix:
     language: shell
     before_install:
     - unset PYENV_ROOT
-    - curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+    - curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
+      | bash
     - export PATH="$HOME/.pyenv/bin:$PATH"
     - env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.7.6
     - pyenv global system 3.7.6
@@ -22,7 +23,7 @@ matrix:
     language: shell
     before_install:
     - choco install zip & choco install python --version 3.7.6
-    env: PATH=/c/Python37:/c/Python37/Scripts:$PATH 
+    env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
 install:
 - pip3 install coverage
 - pip3 install -r requirements.txt
@@ -30,3 +31,12 @@ script:
 - scripts/cov
 - scripts/lint
 - scripts/build
+deploy:
+  provider: releases
+  api_key:
+    secure: gud5WVCXrVKvyfCuYb6koKlRPaLDEJ28osvMB1Z1SedpoVYCua44YR+FJvAL/pYwIZ4KVjm1m1rQA2w/+3bzNbEwKZS2VFXc2lIAw9N3WjY+OFACh4kYcgqzWISHtBQ4k+sokWkN56XlsMHULvY93wj7CffG4lPtyC+Iys/GVBDUt94/kMzIimjukKLmIUrZ2p1gVDLDdbS/57ch2Ipw8eYl+3h4Gb/Bih8lqP5SWKUMusgBTR/ZfmXHj+WdJYFsb2N2DZY0vBR1nma1fuzGmlWzgIUJ8/hE29v5RThitEStDGFtagAPQB6XIToqpWu3OAhshiNC1j7lS9rI+FE7YTgEhl+lZiVKyYdhqhY0FRXM4JyJRZv41IUI1482oAhCLdIMP1VwggESHQZeRxplVYB90MJQN2Nq74mKCOEnjcvsYPYXDHY1/FCGphHXA2okNx9jI+fyCoF0/I7nBLJelc2GF+sh2aLzY8w7h4AAWmlmXr7MZ2sdBX9SeluURdz6kmx7/ZKQarrlnANwjUcz+gDX+Czpowi0ZBuVOuNt6qmqrI1U1JQsM1pImbe19CKhS2PFB6+DQwRo1dqV5fuWTqbdd+Q/qUwKQcS1mD8uj+gvib8DDKDSm3g+wI4sI6f+xEmkcO8dzbXcngTZY2a1+bFTUlBanNW52Dl1zvMpe88=
+  file: dist/build/sperf-$TRAVIS_OS_NAME.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: riptano/sperf
