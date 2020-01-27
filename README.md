@@ -17,7 +17,7 @@ sperf is a command line tool that can analyze diag tarballs, log files and iosta
 
 ## Getting started
 
-1. Download binary install for your platform in the releases section. Because we use [Pyinstaller](https://www.pyinstaller.org) no Python environment is required (or utilized).
+1. Download binary install for your platform in the (releases)[https://github.com/riptano/sperf/releases] section. Because we use [Pyinstaller](https://www.pyinstaller.org) no Python environment is required (or utilized).
 2. Navigate to tarball directory (should see a 'nodes' folder) and run `sperf`. The output will give you a simple health check and provide some recommendations for next steps.
 
 ### For high CPU issues
