@@ -178,7 +178,7 @@ def _format_spark_connector(config):
 def _format_compaction_throughput(throughput):
     if not throughput:
         return NA
-    return "%s mb (per compactor)" % throughput
+    return "%s mb" % throughput
 
 def format_disk_access_mode(config):
     """provides disk access mode translation"""
