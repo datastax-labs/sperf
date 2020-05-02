@@ -133,6 +133,11 @@ def test_format_bytes_1000_pb():
     assert humanize.format_bytes((1024 ** 5) * 1000) == "1,000.00 pb"
     assert humanize.format_bytes((1024 ** 5) * 1000.04) == "1,000.04 pb"
 
+def test_format_bytes_none():
+    """undefined input"""
+    assert humanize.format_bytes(None) == "Not available"
+
+
 def test_format_num():
     """test various numbers with separator"""
     assert humanize.format_num(999) == "999"

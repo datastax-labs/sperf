@@ -75,20 +75,25 @@ def to_bytes(num, unit):
 
 def format_bytes(num_bytes, prec=2):
     """converts bytes into a human readable string. NOTE: uses 1024 base and not 1000 base"""
-    if num_bytes < KB:
-        return "%s %s" % (format_num(round(num_bytes)), pluralize(num_bytes, "byte"))
-    if num_bytes < MB:
-        return "%s kb" % format_num_float(float(num_bytes) / KB, prec)
-    if num_bytes < GB:
+    formatted = ""
+    if num_bytes is None:
+        formatted = "Not available"
+    elif num_bytes < KB:
+        formatted = "%s %s" % (format_num(round(num_bytes)), pluralize(num_bytes, "byte"))
+    elif num_bytes < MB:
+        formatted = "%s kb" % format_num_float(float(num_bytes) / KB, prec)
+    elif num_bytes < GB:
         mbs = float(num_bytes) / MB
-        return "%s mb" % format_num_float(mbs, prec)
-    if num_bytes < TB:
+        formatted = "%s mb" % format_num_float(mbs, prec)
+    elif num_bytes < TB:
         gbs = float(num_bytes) / GB
-        return "%s gb" % format_num_float(gbs, prec)
-    if num_bytes < PB:
+        formatted = "%s gb" % format_num_float(gbs, prec)
+    elif num_bytes < PB:
         tbs = float(num_bytes) / TB
-        return "%s tb" % format_num_float(tbs, prec)
-    return "%s pb" % format_num_float(float(num_bytes) / PB, prec)
+        formatted = "%s tb" % format_num_float(tbs, prec)
+    else:
+        formatted = "%s pb" % format_num_float(float(num_bytes) / PB, prec)
+    return formatted
 
 def pluralize(num, string, precision=2):
     """very very naive pluralize, just adds s"""
