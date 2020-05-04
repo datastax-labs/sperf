@@ -10,8 +10,8 @@
 
 ## Getting started
 
-1. Download binary install for your platform in the [releases](https://github.com/riptano/sperf/releases) section. Because we use [Pyinstaller](https://www.pyinstaller.org) no Python environment is required (or utilized).
-2. Generate a diagnostic tarball from your cluster. If you're using DSE we suggest using [OpsCenter](https://docs.datastax.com/en/opscenter/6.7/opsc/online_help/opscCollectingDiagnosticData_t.html) and if on Apache Cassandra™ contact [Luna support](https://www.datastax.com/services/datastax-luna) for the tooling needed.
+1. Download binary install for your platform in the [releases](https://github.com/DataStax-Toolkit/sperf/releases) section. Because we use [Pyinstaller](https://www.pyinstaller.org) no Python environment is required (or utilized).
+2. Generate a diagnostic tarball from your cluster. If you're using DSE we suggest using [OpsCenter](https://docs.datastax.com/en/opscenter/6.7/opsc/online_help/opscCollectingDiagnosticData_t.html) and if on Apache Cassandra™ contact [Luna support](https://www.datastax.com/services/datastax-luna) for the tooling needed (or use [diagnostic collection scripts](https://github.com/DataStax-Toolkit/diagnostic-collection)).
 3. Navigate to tarball directory (one should see a 'nodes' folder) and run `sperf`. The output will give you a simple health check and provide some recommendations for next steps.
 
 ### For high CPU issues
@@ -69,10 +69,10 @@ To see each command's available flags, documentation and examples just add the -
 ## Contributing
 
 1. Make sure you have Python 3.7.x. If not then look at https://github.com/pyenv/pyenv
-2. run `git clone git@github.com:riptano/sperf.git`
+2. run `git clone git@github.com:DataStax-Toolkit/sperf.git`
 3. run `cd sperf/pysper`
-4. run `python3 -m venv ./venv'
-5. run `source ./venv/bin/activate'
+4. run `python3 -m venv ./venv`
+5. run `source ./venv/bin/activate`
 6. run `pip install -r requirements.txt` to install dependencies
 7. run `./scripts/sperf -h` and you should see the help for sperf
 8. run `pip install pylint`
