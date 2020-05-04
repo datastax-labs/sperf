@@ -70,12 +70,11 @@ To see each command's available flags, documentation and examples just add the -
 
 1. Make sure you have Python 3.7.x. If not then look at https://github.com/pyenv/pyenv
 2. run `git clone git@github.com:DataStax-Toolkit/sperf.git`
-3. run `cd sperf/pysper`
+3. run `cd sperf`
 4. run `python3 -m venv ./venv`
 5. run `source ./venv/bin/activate`
 6. run `pip install -r requirements.txt` to install dependencies
 7. run `./scripts/sperf -h` and you should see the help for sperf
-8. run `pip install pylint`
 
 ## Testing and validation
 
