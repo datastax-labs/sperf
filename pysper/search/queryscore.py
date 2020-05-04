@@ -47,9 +47,9 @@ def parse(args):
         with diag.FileWithProgress(filename) as log_file:
             events = parser.read_system_log(log_file)
             for event in events:
-                if event['event_type'] == 'query_logs' and \
-                event['event_product'] == 'solr' and \
-                event['event_category'] == 'query_component':
+                if event.get('event_type', '') == 'query_logs' and \
+                event.get('event_product', '') == 'solr' and \
+                event.get('event_category', '') == 'query_component':
                     queries.append(parse_event(event))
     return Parsed(
         queries=queries,
@@ -60,7 +60,7 @@ def parse(args):
 
 def parse_event(event):
     """parse the query"""
-    query = event["query"]
+    query = event.get("query", '')
     rows = 0
     stats_active = False
     facet_active = False
