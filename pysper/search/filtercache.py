@@ -111,10 +111,10 @@ def _get_stats(events, ctor, key_name):
     Note the the get_id hack is error prone when spanning logs as half an event could not finish
     """
     eviction_stats = {event.get("id", i): ctor(event) for (i, event) \
-                      in enumerate([event for event in events if event['event_type'] == key_name])
+                      in enumerate([event for event in events if event.get('event_type', '') == key_name])
                      }
     duration_stats = {event.get("id", i): event for (i, event) \
-                      in enumerate([event for event in events if event['event_type'] == (key_name + "_duration")])
+                      in enumerate([event for event in events if event.get('event_type', '') == (key_name + "_duration")])
                      }
     for key, stats in eviction_stats.items():
         duration_event = duration_stats.get(key)
@@ -135,9 +135,10 @@ def parse(args):
         start_log_time, last_log_time = diag.log_range(log)
         with diag.FileWithProgress(log) as log_file:
             raw_events = parser.read_system_log(log_file)
-            events = [event for event in raw_events if event['date'] > after_time and event['date'] < before_time]
-            filter_cache_events = [event for event in events \
-                    if event['event_category'] == 'filter_cache']
+            filter_cache_events_all = [event for event in raw_events \
+                                   if event.get('event_category', '') == 'filter_cache']
+            filter_cache_events = [event for event in filter_cache_events_all \
+                                   if 'date' in event and event['date'] > after_time and event['date'] < before_time]
             item_eviction_stats = _get_stats(filter_cache_events, ItemFCStats, 'eviction_items')
             bytes_eviction_stats = _get_stats(filter_cache_events, BytesFCStats, 'eviction_bytes')
             node = util.extract_node_name(log, True)
