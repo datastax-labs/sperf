@@ -14,7 +14,7 @@
 
 """the solrqueryagg library"""
 import math
-from collections import namedtuple, defaultdict
+from collections import namedtuple, defaultdict, OrderedDict
 from operator import attrgetter
 from pysper import diag, util, parser
 
@@ -129,7 +129,7 @@ def get_bad_query_summary(queries_above_threshold, total):
 def add_body(queries_above_threshold, unique_reasons, top_n_worst):
     """adds the report body"""
     builder = []
-    visited_reasons = {}
+    visited_reasons = OrderedDict()
     count = 0
     for query_score in queries_above_threshold:
         reasons_array = []
