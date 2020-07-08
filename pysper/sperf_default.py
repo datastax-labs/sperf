@@ -11,11 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 """sperf default command run when you type `sperf`"""
+from collections import OrderedDict
+
 from pysper import humanize
-from pysper.core.diag import warn_missing, node_env, read_ahead, table_stats
+from pysper.core.diag import parse_diag
 from pysper import diag
 from pysper import parser, util
 from pysper.core.diag.reporter import format_gc, format_table_stat, format_table_stat_float, \
@@ -24,55 +24,26 @@ from pysper.core.diag.reporter import format_gc, format_table_stat, format_table
 
 def parse(args):
     """read diag tarball"""
-    #find output logs
-    node_configs = node_env.initialize_node_configs(args.diag_dir)
-    output_logs = diag.find_logs(args.diag_dir, args.output_log_prefix)
-    #find system.logs
-    system_logs = diag.find_logs(args.diag_dir, args.system_log_prefix)
-    warnings = node_env.find_config_in_logs(node_configs, output_logs, system_logs)
-    warn_missing(node_configs, output_logs, warnings, "missing output logs")
-    warn_missing(node_configs, system_logs, warnings, "missing system logs")
-    #find block dev
-    node_info_list = diag.find_logs(args.diag_dir, args.node_info_prefix)
-    if node_info_list:
-        #only set block_dev_results if we find a single node_info.json
-        with diag.FileWithProgress(node_info_list[0]) as node_info_json:
-            #read all the block dev reports
-            if node_info_json.error:
-                warnings.append(node_info_json.error)
-            block_dev_reports = diag.find_logs(args.diag_dir, args.block_dev_prefix)
-            warn_missing(node_configs, block_dev_reports, warnings, "missing blockdev_reports")
-            cass_drive_ra = read_ahead.get_cass_drive_read_ahead(node_info_json, block_dev_reports)
-            read_ahead.add_block_dev_to_config(cass_drive_ra, node_configs)
-    else:
-        warnings.append("unable to read '%s'" % args.node_info_prefix)
-    summary = [calculate(node_configs)]
-    for warn in node_env.add_gc_to_configs(summary, system_logs):
-        warnings.append(warn)
-    #add cfstats if present
-    cfstats_files = diag.find_logs(args.diag_dir, args.cfstats_prefix)
-    warn_missing(node_configs, cfstats_files, warnings, "missing cfstats")
-    for warn in table_stats.add_stats_to_config(summary, cfstats_files):
-        warnings.append(warn)
+    res = parse_diag(args, lambda n: [calculate(n)])
     #use debug logs for statuslogger output on 5.1.17+, 6.0.10+, 6.7.5+ and 6.8+
     debug_logs = diag.find_logs(args.diag_dir, args.debug_log_prefix)
     return {
         "diag_dir": args.diag_dir,
-        "warnings": warnings,
-        "configs": node_configs,
-        "summary": summary[0],
-        "rec_logs": system_logs + debug_logs,
+        "warnings": res.get("warnings"),
+        "configs": res.get("original_configs"),
+        "summary": res.get("configs")[0],
+        "rec_logs": res.get("system_logs") + debug_logs,
     }
 
 def calculate(node_config):
     """aggregate parsed information for the report"""
     summary = {
-        "nodes": {},
+        "nodes": OrderedDict(),
         "versions": set(),
         "cassandra_versions": set(),
         "spark_versions": set(),
         "solr_versions": set(),
-        "workloads": {},
+        "workloads": OrderedDict(),
         "nodes_list": [],
         }
     for node, config in node_config.items():
@@ -108,7 +79,7 @@ def _recs_on_stages(recommendations, gc_over_500, delayed_counter,
 
 def _recs_on_configs(recommendations, configs):
     #pylint: disable=too-many-branches
-    recs_by_issue = {}
+    recs_by_issue = OrderedDict()
     for node, config in configs.items():
         disk_access = format_disk_access_mode(config)
         cassandra_version = config.get("cassandra_version")
