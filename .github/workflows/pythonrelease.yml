@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Build with pyinstaller
       run: |
-        scripts/build
+        ./scripts/build
       env:
         TRAVIS_OS_NAME: linux
     - name: Create Release
