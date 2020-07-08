@@ -26,8 +26,10 @@ def test_schema_report():
         "mvs": 10,
         "solr": 31,
         "solr_table": 11,
+        "parsed_file": "test",
         })
     assert repr(report) == repr("""
+Schema read     : test
 Keyspace Count  : 16
 Table Count     : 124
 2i Count        : 6
