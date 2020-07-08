@@ -19,7 +19,7 @@ jobs:
         python -m pip install --upgrade pip
         curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
         pip3 install coverage
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install -r requirements.txt
     - name: Build with pyinstaller
       run: |
         ./scripts/build
