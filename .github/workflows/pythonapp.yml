@@ -16,10 +16,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
-	  with:
+      with:
           python-version: ${{ matrix.python }}
     - name: Install dependencies
-	  run: |
+      run: |
         python -m pip install --upgrade pip
         curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
         pip3 install coverage
@@ -27,6 +27,6 @@ jobs:
     - name: Lint with pylint
       run: |
         scripts/lint
-	- name: Run Tox
-	  # Run tox using the version of Python in `PATH`
-	  run: tox -e py
+    - name: Run Tox
+      # Run tox using the version of Python in `PATH`
+      run: tox -e py
