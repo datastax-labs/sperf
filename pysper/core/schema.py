@@ -28,10 +28,12 @@ def read(files):
         "mvs": 0,
         "solr": 0,
         "solr_table": 0,
+        "parsed_file": "Not Found",
         }
     if not files:
         return report
     schema_file = files[0]
+    report["parsed_files"] = schema_file
     solr_tables = set()
     solr_indexes = []
     with diag.FileWithProgress(schema_file) as file_desc:
@@ -62,6 +64,7 @@ def generate_report(parsed_schema):
     """generate_report provides"""
     report = []
     report.append("")
+    report.append("Schema read     : %s" % parsed_schema["parsed_file"])
     report.append("Keyspace Count  : %i" % parsed_schema["keyspaces"])
     report.append("Table Count     : %i" % parsed_schema["tables"])
     report.append("2i Count        : %i" % parsed_schema["2i"])
