@@ -14,7 +14,7 @@
 
 """ pysper statuslogger module """
 import re
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from pysper import VERSION
 from pysper import env
 from pysper import parser
@@ -23,6 +23,7 @@ from pysper.util import get_percentiles, get_percentile_headers, node_name
 from pysper.humanize import format_seconds, format_bytes, format_num, pad_table
 from pysper.recs import Engine, Stage
 from pysper.dates import date_parse
+from pysper.core import OrderedDefaultDict
 
 WANTED_STAGES_PREFIXES = ('TPC/all/READ', 'TPC/all/WRITE', 'Gossip', 'Messaging',
                           'Compaction', 'MemtableFlush', 'Mutation', 'Read', 'Native')
@@ -40,8 +41,8 @@ class Node:
     def __init__(self):
         self.start = None
         self.end = None
-        self.tables = defaultdict(Table)
-        self.stages = defaultdict(lambda: defaultdict(list))
+        self.tables = OrderedDefaultDict(Table)
+        self.stages = OrderedDefaultDict(lambda: defaultdict(list))
         self.pauses = []
         self.version = None
         self.lines = 0

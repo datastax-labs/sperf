@@ -14,17 +14,14 @@
 
 """validate the config_diff module"""
 from pysper.core.diag import config_diff
+from collections import OrderedDict
 
 def test_group_configurations():
     """all grouped"""
-    node_config = {
-        "node1": {
-            "abc": "xyz",
-                },
-        "node2": {
-            "abc": "xyz",
-            },
-        }
+    node_config = OrderedDict([
+        ("node1", OrderedDict([("abc", "xyz")])),
+        ("node2", OrderedDict([("abc", "xyz")]))
+        ])
     groups = config_diff.group_configurations(node_config)
     assert len(groups) == 1
     first_group = groups[0]
@@ -34,14 +31,10 @@ def test_group_configurations():
 
 def test_group_configurations_with_diffs():
     """one of each"""
-    node_config = {
-        "node1": {
-            "abc": "zzz",
-                },
-        "node2": {
-            "abc": "xyz",
-            },
-        }
+    node_config = OrderedDict([
+        ("node1", OrderedDict([("abc", "zzz")])),
+        ("node2", OrderedDict([("abc", "xyz")]))
+        ])
     groups = config_diff.group_configurations(node_config)
     assert len(groups) == 2
     first_group = groups[0]

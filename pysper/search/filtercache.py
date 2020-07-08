@@ -15,6 +15,7 @@
 """module for the filtercache report"""
 import functools
 import sys
+from collections import OrderedDict
 from operator import attrgetter, itemgetter
 from pysper import dates, diag, parser, util, humanize, recs
 
@@ -119,7 +120,7 @@ def _get_stats(events, ctor, key_name):
     for key, stats in eviction_stats.items():
         duration_event = duration_stats.get(key)
         if not duration_event:
-            duration_event = {}
+            duration_event = OrderedDict()
         stats.add_duration_event(duration_event)
     return eviction_stats
 
@@ -128,7 +129,7 @@ def parse(args):
     from a tarball or series of files"""
     logs = diag.find_files(args, args.system_log_prefix)
     print("from directory '%s':" % args.diag_dir)
-    node_stats = {}
+    node_stats = OrderedDict()
     after_time = dates.date_parse(args.after)
     before_time = dates.date_parse(args.before)
     for log in logs:
@@ -142,14 +143,14 @@ def parse(args):
             item_eviction_stats = _get_stats(filter_cache_events, ItemFCStats, 'eviction_items')
             bytes_eviction_stats = _get_stats(filter_cache_events, BytesFCStats, 'eviction_bytes')
             node = util.extract_node_name(log, True)
-            node_stats[node] = {"evictions" : (bytes_eviction_stats, item_eviction_stats), \
-                "start": start_log_time, "end": last_log_time, \
-                }
-    return { \
-            "nodes": node_stats, \
-            "after_time": after_time, \
-            "before_time": before_time, \
-            }
+            node_stats[node] = OrderedDict([("evictions" , (bytes_eviction_stats, item_eviction_stats)), \
+                ("start", start_log_time), ("end", last_log_time), \
+                ])
+    return OrderedDict([ \
+            ("nodes", node_stats), \
+            ("after_time", after_time), \
+            ("before_time", before_time), \
+            ])
 
 def create_report_block(first_evict, last_evict, events, log_duration, name):
     """creates the report block for the node"""
@@ -208,18 +209,18 @@ def calculate_report(parsed):
     node_info_agg = sorted(node_info_agg, key=attrgetter('name'))
     node_info_agg = sorted(node_info_agg, key=attrgetter('avg_evict_duration'), reverse=True)
     node_info_agg = sorted(node_info_agg, key=functools.cmp_to_key(sort_evict_freq))
-    return {
-        "start_log": start_log,
-        "last_log": last_log,
-        "node_info": node_info_agg,
-        }
+    return OrderedDict([
+        ("start_log", start_log),
+        ("last_log", last_log),
+        ("node_info", node_info_agg),
+        ])
 
 def generate_recommendations(report, node_info):
     """generate recommendations and add them to report"""
     report.append("recommendations")
     report.append("---------------")
     # generate recommendations
-    fc_recs = {}
+    fc_recs = OrderedDict()
     for node in node_info:
         key = recs.analyze_filter_cache_stats(node)
         if key[0] and key[1]:

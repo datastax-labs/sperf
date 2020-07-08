@@ -14,12 +14,13 @@
 
 """ ttop file analyzer """
 import re
-from collections import defaultdict
+from collections import OrderedDict 
 from pysper.parser.rules import date
 from pysper.util import textbar
 from pysper.dates import date_parse
 from pysper.humanize import format_bytes
 from pysper import env, VERSION
+from pysper.core import OrderedDefaultDict
 
 class TTopParser:
     """ parses ttop output files """
@@ -60,8 +61,8 @@ class TTopParser:
     # pylint: disable=too-many-statements, too-many-branches
     def parse(self, log):
         """ parse ttop output """
-        total = {}
-        threads = defaultdict(dict)
+        total = OrderedDict()
+        threads = OrderedDefaultDict(dict)
         for line in log:
             if self.state is None:
                 m = self.begin_match.match(line)
@@ -115,8 +116,8 @@ class TTopParser:
                 if line == '\n':
                     self.state = None
                     yield total, threads
-                    total = {}
-                    threads = defaultdict(dict)
+                    total = OrderedDict()
+                    threads = OrderedDefaultDict(dict)
                 else:
                     m = self.tinfo_match.match(line)
                     if not m:
@@ -143,7 +144,7 @@ class TTopAnalyzer:
 
     def collate_threads(self, threads):
         """ combines similar threads """
-        ret = defaultdict(lambda: defaultdict(float))
+        ret = OrderedDefaultDict(lambda: OrderedDefaultDict(float))
         exprs = []
         exprs.append(r':.*')
         exprs.append(r'-\d+.*')
