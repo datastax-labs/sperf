@@ -29,6 +29,6 @@ jobs:
     - name: Lint with pylint
       run: |
         scripts/lint
-    - name: Test with pytest
+    - name: test with tox
       run: |
-        scripts/cov
+        tox
