@@ -23,6 +23,7 @@ from pysper.util import get_percentiles, get_percentile_headers, node_name
 from pysper.humanize import format_seconds, format_bytes, format_num, pad_table
 from pysper.recs import Engine, Stage
 from pysper.dates import date_parse
+from pysper.core import OrderedDefaultDict
 
 WANTED_STAGES_PREFIXES = ('TPC/all/READ', 'TPC/all/WRITE', 'Gossip', 'Messaging',
                           'Compaction', 'MemtableFlush', 'Mutation', 'Read', 'Native')
@@ -40,8 +41,8 @@ class Node:
     def __init__(self):
         self.start = None
         self.end = None
-        self.tables = defaultdict(Table)
-        self.stages = defaultdict(lambda: defaultdict(list))
+        self.tables = OrderedDefaultDict(Table)
+        self.stages = OrderedDefaultDict(lambda: defaultdict(list))
         self.pauses = []
         self.version = None
         self.lines = 0
@@ -130,6 +131,7 @@ class Summary:
 class StatusLogger:
     """ status logger """
 
+    # pylint: disable=too-many-arguments
     def __init__(self, diag_dir, files=None, start=None, end=None, \
          wanted_stages=WANTED_STAGES_PREFIXES, command_name="sperf core statuslogger",
                  syslog_prefix="system.log", dbglog_prefix="debug.log"):
@@ -153,6 +155,7 @@ class StatusLogger:
             self.end = date_parse(end)
 
     # pylint: disable=too-many-branches
+    # pylint: disable=too-many-statements
     def analyze(self):
         """ analyze log files """
         if self.analyzed:

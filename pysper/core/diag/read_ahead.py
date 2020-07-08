@@ -30,7 +30,7 @@ def get_cass_drive_read_ahead(node_info_json, block_dev_reports):
         return {}
     for node in node_info:
         drives = {}
-        drive_data  = node_info.get(node, {}).get('partitions', {}).get('data', {})
+        drive_data = node_info.get(node, {}).get('partitions', {}).get('data', {})
         if drive_data is None:
             continue
         for drive in drive_data:

@@ -15,11 +15,12 @@
 """formats the output of the diag parsed data"""
 import json
 import operator
+from collections import OrderedDict
 
 IGNORE_LIST = ['nodes_list', 'nodes']
 
 def _get_common_configs(node_configs):
-    common_config = {}
+    common_config = OrderedDict()
     for i, node in enumerate(node_configs.keys()):
         if i == 0:
             #first configuration sets the base config
@@ -32,7 +33,7 @@ def _get_common_configs(node_configs):
                 common_jvm_args = common_config.get("jvm_args")
                 if not common_jvm_args:
                     continue
-                new_common_jvm_args = {}
+                new_common_jvm_args = OrderedDict()
                 for arg, jvm_value in value.items():
                     common_jvm_value = common_jvm_args.get(arg)
                     if common_jvm_value == jvm_value:
@@ -50,7 +51,7 @@ def filter_unique_jvm_flags(jvm_flags):
          '-Djdk.internal.lambda.dumpProxyClasses', \
          '-XX:ErrorFile', '-Ddse.system_memory_in_mb',\
     ]
-    return {x: y for (x, y) in jvm_flags.items() if x not in always_unique_jvm_flags}
+    return OrderedDict([x for x in jvm_flags.items() if x[0] not in always_unique_jvm_flags])
 
 def filter_unique_config_flags(node_config_params):
     """filters out the always unique config params from configuration comparision"""
@@ -63,7 +64,7 @@ def filter_unique_config_flags(node_config_params):
             'audit_logging_options', 'transparent_data_encryption_options', \
             'initial_token', \
     ]
-    return {x: y for (x, y) in node_config_params.items() if x not in always_unique_conf}
+    return OrderedDict([x for x in node_config_params.items() if x[0] not in always_unique_conf])
 
 def _add_diff_from_common(node_configs):
     common_config = _get_common_configs(node_configs)
@@ -88,7 +89,7 @@ def _add_diff_from_common(node_configs):
 
 def group_configurations(node_configs):
     """compares common configurations"""
-    configurations = {}
+    configurations = OrderedDict()
     _add_diff_from_common(node_configs)
     for node, config in node_configs.items():
         key = json.dumps(config["diff"])

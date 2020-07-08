@@ -14,7 +14,7 @@
 
 """the solrqueryagg library"""
 import math
-from collections import namedtuple, defaultdict
+from collections import namedtuple, defaultdict, OrderedDict
 from operator import attrgetter
 from pysper import diag, util, parser
 
@@ -129,7 +129,7 @@ def get_bad_query_summary(queries_above_threshold, total):
 def add_body(queries_above_threshold, unique_reasons, top_n_worst):
     """adds the report body"""
     builder = []
-    visited_reasons = {}
+    visited_reasons = OrderedDict()
     count = 0
     for query_score in queries_above_threshold:
         reasons_array = []
@@ -175,29 +175,34 @@ def generate_report(parsed):
 TOO_MANY_ROWS = 9999
 UNLIMITED = -1
 
+def _count_reason(reasons, key, count=1):
+    if key not in reasons:
+        reasons[key] = 0
+    reasons[key] += count
+
 def score_query(query):
     """gives the query a score based on the number of bad things going on"""
-    reasons = defaultdict(int)
+    reasons = OrderedDict()
     score = 0
     for limit in query.field_facet_limits:
         if limit == UNLIMITED:
             score += 1
-            reasons["unlimited facets"] += 1
+            _count_reason(reasons, "unlimited facets")
         if query.global_facet_limit == UNLIMITED:
             score += 1
-            reasons["unlimited facets"] += 1
+            _count_reason(reasons, "unlimited facets")
     pivot_depth = len(query.pivot_facets)
     if pivot_depth > 0:
         pivot_depth_score = math.exp(pivot_depth)
         score += pivot_depth_score
-        reasons["pivot facet"] = pivot_depth_score
+        _count_reason(reasons, "pivot facet", pivot_depth_score)
     if query.stats_active:
         score += 1
-        reasons["stats query"] += 1
+        _count_reason(reasons, "stats query")
     if query.rows > TOO_MANY_ROWS:
         modifier = round((float(query.rows) / float(TOO_MANY_ROWS)))
         score += modifier
-        reasons["10k+ rows"] = modifier
+        _count_reason(reasons,  "10k+ rows", modifier)
     return score, reasons
 
 def clean(query_params):

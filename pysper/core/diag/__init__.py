@@ -46,13 +46,20 @@ def warn_missing(node_configs, file_list, warnings, text):
     if not file_list:
         warnings.append("%s: all nodes" % text)
         return
-    nodes = [n for n in node_configs]
+    nodes = node_configs.keys()
     nodes_files = [util.extract_node_name(f) for f in file_list]
     nodes_missing = [n for n in nodes if n not in nodes_files]
     if nodes_missing:
         warnings.append("%s: %s" % (text, ", ".join(nodes_missing)))
 
-def parse_diag(args):
+def _group_uniq(node_configs):
+    #group the configurations together
+    unique_configs = config_diff.group_configurations(node_configs)
+    for config in unique_configs:
+        config["nodes_list"] = sorted(config["nodes_list"], reverse=True)
+    return unique_configs
+
+def parse_diag(args, transform=_group_uniq):
     """
     parses the following files to generate a report object:
     - all system.log (GC pause times)
@@ -83,19 +90,18 @@ def parse_diag(args):
             read_ahead.add_block_dev_to_config(cass_drive_ra, node_configs)
     else:
         warnings.append("unable to read '%s'" % args.node_info_prefix)
-    #group the configurations together
-    unique_configs = config_diff.group_configurations(node_configs)
-    for config in unique_configs:
-        config["nodes_list"] = sorted(config["nodes_list"], reverse=True)
-    for warn in node_env.add_gc_to_configs(unique_configs, system_logs):
+    transformed_configs = transform(node_configs)
+    for warn in node_env.add_gc_to_configs(transformed_configs, system_logs):
         warnings.append(warn)
     #add cfstats if present
     cfstats_files = diag.find_logs(args.diag_dir, args.cfstats_prefix)
     warn_missing(node_configs, cfstats_files, warnings, "missing cfstats")
-    for warn in table_stats.add_stats_to_config(unique_configs, cfstats_files):
+    for warn in table_stats.add_stats_to_config(transformed_configs, cfstats_files):
         warnings.append(warn)
     return {
         "diag_dir": args.diag_dir,
         "warnings": warnings,
-        "configs": unique_configs,
+        "original_configs": node_configs,
+        "configs": transformed_configs,
+        "system_logs": system_logs,
         }

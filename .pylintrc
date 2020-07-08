@@ -9,3 +9,4 @@ disable=C0103,
 
 [SIMILARITIES]
 ignore-docstrings=no
+min-similarity-lines=8

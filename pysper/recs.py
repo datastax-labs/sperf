@@ -13,20 +13,22 @@
 # limitations under the License.
 
 """the recommendation engine for sperf"""
-from dataclasses import dataclass
-from enum import Enum, auto
+from enum import Enum
 import sys
 
-@dataclass
 class Stage:
     """stage dataclass"""
-    name: str
-    active: int
-    pending: int
-    local_backpressure: int
-    completed: int
-    blocked: int
-    all_time_blocked: int
+    #pylint: disable=too-many-arguments
+    def __init__(self, name="", active=0, pending=0,
+                 local_backpressure=0, completed=0, blocked=0,
+                 all_time_blocked=0):
+        self.name = name
+        self.active = active
+        self.pending = pending
+        self.local_backpressure = local_backpressure
+        self.completed = completed
+        self.blocked = blocked
+        self.all_time_blocked = all_time_blocked
 
 class Engine:
     """stage analyzer will make recommendations on stages based on
@@ -128,10 +130,10 @@ def _calculate_eviction_state(node):
 
 class EvictionReason(Enum):
     """eviction reason for filter cache statistics"""
-    NONE = auto()
-    MIXED = auto()
-    ITEM = auto()
-    BYTE = auto()
+    NONE = 1
+    MIXED = 2
+    ITEM = 3
+    BYTE = 4
 
 def analyze_filter_cache_stats(node):
     """look at filter cache statistics and generate recommendations"""
