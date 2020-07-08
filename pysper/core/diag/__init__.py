@@ -46,7 +46,7 @@ def warn_missing(node_configs, file_list, warnings, text):
     if not file_list:
         warnings.append("%s: all nodes" % text)
         return
-    nodes = [n for n in node_configs]
+    nodes = node_configs.keys()
     nodes_files = [util.extract_node_name(f) for f in file_list]
     nodes_missing = [n for n in nodes if n not in nodes_files]
     if nodes_missing:

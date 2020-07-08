@@ -18,8 +18,9 @@ import sys
 
 class Stage:
     """stage dataclass"""
+    #pylint: disable=too-many-arguments
     def __init__(self, name="", active=0, pending=0,
-    local_backpressure=0, completed=0, blocked=0,
+                 local_backpressure=0, completed=0, blocked=0,
                  all_time_blocked=0):
         self.name = name
         self.active = active

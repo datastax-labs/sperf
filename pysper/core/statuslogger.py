@@ -14,7 +14,7 @@
 
 """ pysper statuslogger module """
 import re
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 from pysper import VERSION
 from pysper import env
 from pysper import parser
@@ -131,6 +131,7 @@ class Summary:
 class StatusLogger:
     """ status logger """
 
+    # pylint: disable=too-many-arguments
     def __init__(self, diag_dir, files=None, start=None, end=None, \
          wanted_stages=WANTED_STAGES_PREFIXES, command_name="sperf core statuslogger",
                  syslog_prefix="system.log", dbglog_prefix="debug.log"):
@@ -154,6 +155,7 @@ class StatusLogger:
             self.end = date_parse(end)
 
     # pylint: disable=too-many-branches
+    # pylint: disable=too-many-statements
     def analyze(self):
         """ analyze log files """
         if self.analyzed:

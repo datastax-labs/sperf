@@ -14,7 +14,7 @@
 
 """ ttop file analyzer """
 import re
-from collections import OrderedDict 
+from collections import OrderedDict
 from pysper.parser.rules import date
 from pysper.util import textbar
 from pysper.dates import date_parse

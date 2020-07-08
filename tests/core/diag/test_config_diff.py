@@ -13,8 +13,8 @@
 # limitations under the License.
 
 """validate the config_diff module"""
-from pysper.core.diag import config_diff
 from collections import OrderedDict
+from pysper.core.diag import config_diff
 
 def test_group_configurations():
     """all grouped"""

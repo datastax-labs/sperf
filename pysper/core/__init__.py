@@ -11,16 +11,27 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """ pysper core package"""
-from collections import OrderedDict, Callable
+try:
+    from collections.abc import Callable
+except ImportError:
+    from collections import Callable
+from collections import OrderedDict
+import copy
 
 class OrderedDefaultDict(OrderedDict):
+    """we were relying a lot on defaultdict for a variety
+    of functions supporting older versions of python
+    without order in dictionaries meant we had a lot of code
+    break that we had added since supporting 3.6+.
+    This gives us a way to have an ordereddict with default
+    behavior.
+    Source: http://stackoverflow.com/a/6190500/562769
+    """
 
-    # Source: http://stackoverflow.com/a/6190500/562769
+    #pylint: disable=keyword-arg-before-vararg
     def __init__(self, default_factory=None, *a, **kw):
-        if (default_factory is not None and
-           not isinstance(default_factory, Callable)):
+        if (default_factory is not None and not isinstance(default_factory, Callable)):
             raise TypeError('first argument must be callable')
         OrderedDict.__init__(self, *a, **kw)
         self.default_factory = default_factory
@@ -41,7 +52,7 @@ class OrderedDefaultDict(OrderedDict):
         if self.default_factory is None:
             args = tuple()
         else:
-            args = self.default_factory,
+            args = (self.default_factory, None)
         return type(self), args, None, None, self.items()
 
     def copy(self):
@@ -51,7 +62,6 @@ class OrderedDefaultDict(OrderedDict):
         return type(self)(self.default_factory, self)
 
     def __deepcopy__(self, memo):
-        import copy
         return type(self)(self.default_factory,
                           copy.deepcopy(self.items()))
 
