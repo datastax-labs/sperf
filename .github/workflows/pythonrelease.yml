@@ -56,14 +56,14 @@ jobs:
         pip3 install coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Install Zip 
-        run: choco install zip 
-        if: matrix.os == 'windows-latest'
-     - name: Set release upload URL
-        shell: bash
-        id: release_info
-        run: |
-          release_upload_url="$(cat artifacts/release-upload-url)"
-          echo "::set-env name=RELEASE_UPLOAD_URL::$release_upload_url"
+      run: choco install zip 
+      if: matrix.os == 'windows-latest'
+    - name: Set release upload URL
+      shell: bash
+      id: release_info
+      run: |
+        release_upload_url="$(cat artifacts/release-upload-url)"
+        echo "::set-env name=RELEASE_UPLOAD_URL::$release_upload_url"
     - name: Build with pyinstaller
       run: |
         ./scripts/build
