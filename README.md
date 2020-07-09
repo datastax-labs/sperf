@@ -70,7 +70,7 @@ To see each command's available flags, documentation and examples just add the -
 
 ## Contributing
 
-1. Make sure you have Python 3.7.x. If not then look at https://github.com/pyenv/pyenv
+1. Make sure you have Python 3.5.x or greater. If not then look at https://github.com/pyenv/pyenv
 2. run `git clone git@github.com:DataStax-Toolkit/sperf.git`
 3. run `cd sperf`
 4. run `python3 -m venv ./venv`
