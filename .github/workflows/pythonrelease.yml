@@ -1,4 +1,4 @@
-name: Upload Github Release
+    name: Upload Github Release
 
 on:
   push:
@@ -9,6 +9,8 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
+    - name: Create artifacts directory
+      run: mkdir artifacts
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
