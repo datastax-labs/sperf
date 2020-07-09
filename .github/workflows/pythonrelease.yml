@@ -7,9 +7,9 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
   create-release:
-	runs-on: ubuntu-latest
-	steps:
-	- name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -18,18 +18,18 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: true
-      - name: Save release upload URL to artifact
-        run: echo "${{ steps.release.outputs.upload_url }}" > artifacts/release-upload-url
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: artifacts
-          path: artifacts
+    - name: Save release upload URL to artifact
+      run: echo "${{ steps.release.outputs.upload_url }}" > artifacts/release-upload-url
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifacts
+        path: artifacts
   build-release:
-	name: Build Release
-	needs: ["create-release"]
-	runs-on: ${{ matrix.os }}
-	strategy:
+    name: Build Release
+    needs: ["create-release"]
+    runs-on: ${{ matrix.os }}
+    strategy:
       fail-fast: false
       matrix:
         build:
@@ -55,7 +55,7 @@ jobs:
         curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
         pip3 install coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-	- name: Install Zip 
+    - name: Install Zip 
         run: choco install zip 
         if: matrix.os == 'windows-latest'
      - name: Set release upload URL
@@ -69,7 +69,7 @@ jobs:
         ./scripts/build
       env:
         TRAVIS_OS_NAME: ${{ matrix.build }}
-	- name: Upload Release Asset
+    - name: Upload Release Asset
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
       env:
