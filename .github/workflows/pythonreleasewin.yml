@@ -21,6 +21,7 @@ jobs:
         pip3 install coverage
         pip install -r requirements.txt
     - name: Build with pyinstaller
+      shell: bash
       run: |
         ./scripts/build
       env:
