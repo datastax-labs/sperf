@@ -15,12 +15,11 @@
 """ analyzes debug.logs for slow queries """
 import re
 from collections import defaultdict
-import numpy as np
 from pysper.diag import find_logs
 from pysper.parser.rules import date
 from pysper.util import bucketize
 from pysper.dates import date_parse
-from pysper import VERSION
+from pysper import VERSION, perc
 
 class SlowQueryParser:
     """ parses logs for slow queries """
@@ -138,11 +137,11 @@ class SlowQueryAnalyzer:
 
     def __print_query_times(self, data):
         """ print data to the user, expecting datetime keys and list(int) values """
-        timings = np.array([q[1] for q in self.queries])
-        window = np.percentile(timings, 25) - 1
-        window2 = np.percentile(timings, 50) - 1
-        window3 = np.percentile(timings, 75) - 1
-        window4 = np.percentile(timings, 99) - 1
+        timings = perc.Stats([q[1] for q in self.queries])
+        window = timings.percentile(25) - 1
+        window2 = timings.percentile(50) - 1
+        window3 = timings.percentile(75) - 1
+        window4 = timings.percentile(99) - 1
         print(". <%sms + >%sms ! >%sms X >%sms" % (window, window2, window3, window4))
         print('-'*30)
         worst = None

@@ -122,13 +122,15 @@ class UnableToReadDiagException(Exception):
     """standard exception through when the diag tarball is not accessible"""
 
     def __init__(self, directory, ex):
-        super().__init__(("unable to access directory diag tarball in '%s'.\n" % directory) + \
+        msg = "unable to access directory diag tarball in '%s'.\n" % (directory) + \
             "run this command again from a diag tarball directory (should " + \
             "contain a 'nodes' folder)\n" + \
-            "or specify the -d flag with the target diag tarball folder", ex)
+            "or specify the -d flag with the target diag tarball folder"
+        super().__init__(msg, ex)
+        self.msg = msg
 
     def __str__(self):
-        return super().args[0]
+        return self.msg
 
 LogLine = namedtuple('LogLine', 'level thread timestamp reporter raw_data')
 

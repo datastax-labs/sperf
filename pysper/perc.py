@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2020 DataStax, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,8 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-python -m nuitka  --standalone --follow-imports --plugin-enable=pylint-warnings  $PARENT_PATH/sperf
-TAR=sperf-$TRAVIS_OS_NAME.tar
-echo "compressing $TAR"
-tar -cvf $TAR sperf
+"""percentile implementations"""
+
+class Stats:
+    """Stats is an array wrapper that provides min, max and percentiles"""
+
+    def __init__(self, data):
+        """must do a sort on startup"""
+        self.data = sorted(data)
+
+    def max(self):
+        """max gets the largest element"""
+        return self.data[-1]
+
+    def min(self):
+        """max gets the smallest element"""
+        return self.data[0]
+
+    def percentile(self, percentile):
+        """provides a naive implemenation of percentiles"""
+        return self.data[int(len(self.data) * (percentile/100.0))]

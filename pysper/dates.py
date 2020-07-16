@@ -13,9 +13,8 @@
 # limitations under the License.
 
 """responsible for date parsing and format detection"""
-from datetime import datetime
+from datetime import datetime, timezone
 import json
-import pytz
 from pysper import env
 
 CASSANDRA_LOG_FORMAT = "%Y-%m-%d %H:%M:%S,%f"
@@ -29,19 +28,17 @@ class DateTimeJSONEncoder(json.JSONEncoder):
 
 def max_utc_time():
     """returns max UTC time"""
-    utc_tz = pytz.utc
-    return utc_tz.localize(dt=datetime.max, is_dst=False)
+    return datetime.max.replace(tzinfo=timezone.utc)
 
 def min_utc_time():
     """returns min UTC time"""
-    utc_tz = pytz.utc
-    return utc_tz.localize(dt=datetime.min, is_dst=False)
+    return datetime.min.replace(tzinfo=timezone.utc)
 
 def date_parse(date_string):
     """uses dateutil to parse and sets the tz if none is provided"""
     dt = LogDateFormatParser().parse_timestamp(date_string)
     if not dt.tzinfo:
-        return pytz.utc.localize(dt=dt, is_dst=False)
+        return dt.replace(tzinfo=timezone.utc)
     return dt
 
 class LogDateFormatParser:
@@ -72,5 +69,4 @@ class LogDateFormatParser:
                 )
         except ValueError as e:
             raise Exception("invalid date, try to rerun with sperf -l eu <subcommand> error was %s" % e)
-        utc_tz = pytz.utc
-        return utc_tz.localize(dt=parsed, is_dst=False)
+        return parsed.replace(tzinfo=timezone.utc)

@@ -31,3 +31,4 @@ build/
 __pycache__
 dist
 sperf.spec
+sperf.build

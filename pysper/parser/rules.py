@@ -18,8 +18,8 @@ parsing the lines in a log fil
 '''
 import re
 from collections import defaultdict
-import pytz
 from pysper import dates
+from datetime import timezone
 
 class switch:
     '''
@@ -172,7 +172,7 @@ class date:
     def __call__(self, adate):
         parsed = self.parser.parse_timestamp(adate)
         if not parsed.tzinfo:
-            return pytz.utc.localize(dt=parsed, is_dst=False)
+            return parsed.replace(tzinfo=timezone.utc)
         return parsed
 
 class split:
