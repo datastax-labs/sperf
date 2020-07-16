@@ -45,7 +45,7 @@ class SlowQueryParser:
                     self.state = self.BEGIN
                     ret['numslow'] = int(m.group('numslow'))
                     ret['timeslow'] = int(m.group('timeslow'))
-                    ret['date'] = date('%Y-%m-%d %H:%M:%S,%f')(m.group('date'))
+                    ret['date'] = date()(m.group('date'))
                 continue
             if self.state == self.BEGIN:
                 for match in [self.slow_match, self.fail_match, self.slow_match_single, self.fail_match_single]:
