@@ -16,3 +16,4 @@
 
 PROGRESS = False
 DEBUG = False
+IS_US_FMT = True
