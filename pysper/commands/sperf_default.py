@@ -14,9 +14,10 @@
 
 """sperf bare command that is aimed at new users and provides a general summary
 """
+from pysper import env
 from pysper import sperf_default
 from pysper.commands.core.diag import add_args
-#from pysper import VERSION
+from pysper import VERSION
 
 def build(diag_parser):
     """build uses the args from the new command"""
@@ -29,4 +30,11 @@ def build(diag_parser):
 
 def run(args):
     """launches 'sperf default command'"""
-    sperf_default.run(args)
+    try:
+        sperf_default.run(args)
+    except Exception as ex:  # pylint: disable=broad-except
+        if env.DEBUG:
+            raise ex
+        print(str(ex))
+        print("")
+        print("To show strack trace use the -v flag. For example: 'sperf -v cassread'")

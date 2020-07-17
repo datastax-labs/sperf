@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """module for the filtercache report"""
 import functools
 import sys
@@ -108,14 +107,15 @@ class ItemFCStats:
                 (self.time_stamp, self.fc_id, self.duration)
 
 def _get_stats(events, ctor, key_name):
-    """adds the corresponding duration event. 
+    """adds the corresponding duration event.
     Note the the get_id hack is error prone when spanning logs as half an event could not finish
     """
     eviction_stats = {event.get("id", i): ctor(event) for (i, event) \
                       in enumerate([event for event in events if event.get('event_type', '') == key_name])
                      }
     duration_stats = {event.get("id", i): event for (i, event) \
-                      in enumerate([event for event in events if event.get('event_type', '') == (key_name + "_duration")])
+                      in enumerate([event for event in events if event.get('event_type', '') \
+                          == (key_name + "_duration")])
                      }
     for key, stats in eviction_stats.items():
         duration_event = duration_stats.get(key)
@@ -143,7 +143,7 @@ def parse(args):
             item_eviction_stats = _get_stats(filter_cache_events, ItemFCStats, 'eviction_items')
             bytes_eviction_stats = _get_stats(filter_cache_events, BytesFCStats, 'eviction_bytes')
             node = util.extract_node_name(log, True)
-            node_stats[node] = OrderedDict([("evictions" , (bytes_eviction_stats, item_eviction_stats)), \
+            node_stats[node] = OrderedDict([("evictions", (bytes_eviction_stats, item_eviction_stats)), \
                 ("start", start_log_time), ("end", last_log_time), \
                 ])
     return OrderedDict([ \
@@ -239,7 +239,8 @@ def generate_recommendations(report, node_info):
         report.append("NOTE: Do top recommendation first.")
         report.append("")
     for rec in sorted_recs:
-        nodes_fmtd = humanize.format_list(rec[2], newline="\n" + " " * 17) #allows nodes to be tabbed out for a block look
+        #allows nodes to be tabbed out for a block look
+        nodes_fmtd = humanize.format_list(rec[2], newline="\n" + " " * 17)
         report.append("* affects nodes: %s\n  reason: %s\n  fix: %s" % (nodes_fmtd, rec[0], rec[1]))
     report.append("")
 

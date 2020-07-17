@@ -22,11 +22,14 @@ def _build_sperf_cmd():
     parser = argparse.ArgumentParser(description='Sperf provides a number of useful ' + \
             'reports from the diagtarball, iostat and the nodes themselves.',
                                      formatter_class=flags.LineWrapRawTextHelpFormatter)
-    parser.add_argument('-p', '--progress', dest="progress", action='store_true',
+    parser.add_argument('-x', '--no-progress', dest="noprogress", action='store_true',
                         help='shows file progress to show how long it takes to process each file')
     parser.add_argument('-v', '--debug', dest="debug", action='store_true',
                         help='shows debug output. ' + \
                                 'Useful for bug reports and diagnosing issues with sperf')
+    parser.add_argument("-e", "--eu", dest="eu", \
+            action="store_true",
+            help="set log format to EU. Is ignored by sysbottle which has it's own logging engine")
     sperf_default.build(parser)
     return parser, parser.add_subparsers(title='Commands')
 
@@ -43,10 +46,11 @@ def run():
     """run is the entry point that selects the subcommand to run"""
     parser = build_parser()
     args = parser.parse_args()
-    if args.progress:
-        env.PROGRESS = args.progress
+    env.PROGRESS = not args.noprogress
     if args.debug:
         env.DEBUG = args.debug
+    if args.eu:
+        env.IS_US_FMT = False
     if hasattr(args, 'func'):
         try:
             args.func(args)
