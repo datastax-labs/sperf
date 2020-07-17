@@ -14,7 +14,7 @@
 
 """the solrqueryagg library"""
 import math
-from collections import namedtuple, defaultdict, OrderedDict
+from collections import namedtuple, OrderedDict
 from operator import attrgetter
 from pysper import diag, util, parser
 
@@ -202,7 +202,7 @@ def score_query(query):
     if query.rows > TOO_MANY_ROWS:
         modifier = round((float(query.rows) / float(TOO_MANY_ROWS)))
         score += modifier
-        _count_reason(reasons,  "10k+ rows", modifier)
+        _count_reason(reasons, "10k+ rows", modifier)
     return score, reasons
 
 def clean(query_params):

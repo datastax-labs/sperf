@@ -18,16 +18,16 @@ from pysper.commands import sperf
 def test_sperf_global_flags():
     """testing global flags are wired up"""
     parser = sperf.build_parser()
-    args = parser.parse_args(["--debug", "--progress"])
+    args = parser.parse_args(["--debug", "--no-progress"])
     assert hasattr(args, "debug")
-    assert hasattr(args, "progress")
+    assert hasattr(args, "noprogress")
 
 def test_sperf_global_short_flags():
     """tests the global short flag"""
     parser = sperf.build_parser()
-    args = parser.parse_args(["-v", "-p"])
+    args = parser.parse_args(["-v", "-x"])
     assert hasattr(args, "debug")
-    assert hasattr(args, "progress")
+    assert hasattr(args, "noprogress")
 
 def test_sperf_will_break_if_incorrect_comamnd_is_used():
     """this is here so we can rely on the parser tests
