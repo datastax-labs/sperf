@@ -75,7 +75,7 @@ To see each command's available flags, documentation and examples just add the -
 3. run `cd sperf`
 4. run `python3 -m venv ./venv`
 5. run `source ./venv/bin/activate`
-6. run `pip install -r requirements.txt` to install dependencies
+6. run `pip install -r requirements_dev.txt` to install dev dependencies
 7. run `./scripts/sperf -h` and you should see the help for sperf
 
 ## Testing and validation
