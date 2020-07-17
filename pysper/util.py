@@ -17,20 +17,20 @@ import os
 import itertools
 import bisect
 import datetime
-import numpy as np
+from pysper import perc
 
 #pylint: disable=too-many-arguments
 def print_percentiles(label, data_list, indent=11, width=8, strformat="%.2f", pmin=True, pmax=True,
                       reverse=False, percentiles=(99, 75, 50, 25)):
     """ prints formatted percentiles using numpy from data in a list """
-    np_array = np.array(data_list)
+    np_array = perc.Stats(data_list)
     printables = [label.ljust(indent)]
     if pmax:
-        printables.append((strformat % np.amax(np_array)).ljust(width))
+        printables.append((strformat % np_array.max()).ljust(width))
     for p in percentiles:
-        printables.append((strformat % np.percentile(np_array, p)).ljust(width))
+        printables.append((strformat % np_array.percentile(p)).ljust(width))
     if pmin:
-        printables.append((strformat % np.amin(np_array)).ljust(width))
+        printables.append((strformat % np_array.min()).ljust(width))
     if reverse:
         printables = reversed(printables)
     print("".join(printables))
@@ -46,14 +46,14 @@ def print_percentile_headers(label='', names=('max', 'p99', 'p75', 'p50', 'p25',
 def get_percentiles(label, data_list, strformat="%.2f", pmin=True, pmax=True,
                     reverse=False, percentiles=(99, 75, 50, 25)):
     """ gets formatted percentiles using numpy from data in a list """
-    np_array = np.array(data_list)
+    np_array = perc.Stats(data_list)
     printables = [label]
     if pmax:
-        printables.append((strformat % np.amax(np_array)))
+        printables.append((strformat % np_array.max()))
     for p in percentiles:
-        printables.append((strformat % np.percentile(np_array, p)))
+        printables.append((strformat % np_array.percentile(p)))
     if pmin:
-        printables.append((strformat % np.amin(np_array)))
+        printables.append((strformat % np_array.min()))
     if reverse:
         printables = list(reversed(printables))
     return printables

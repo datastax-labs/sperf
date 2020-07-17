@@ -71,7 +71,7 @@ class BucketGrep:
                 #the last date for any straregex lines that match
                 current_dt = self.valid_log_regex.match(line)
                 if current_dt:
-                    dt = date('%Y-%m-%d %H:%M:%S,%f')(current_dt.group('date'))
+                    dt = date()(current_dt.group('date'))
                     #if the log line is valite we want to set the last_time
                     self.last_time = dt
                 #we now can validate if our search term matches the log line

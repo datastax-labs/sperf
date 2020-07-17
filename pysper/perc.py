@@ -11,5 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""top level module for sperf python port"""
-VERSION = "0.6.2"
+"""percentile implementations"""
+
+class Stats:
+    """Stats is an array wrapper that provides min, max and percentiles"""
+
+    def __init__(self, data):
+        """must do a sort on startup"""
+        self.data = sorted(data)
+
+    def max(self):
+        """max gets the largest element"""
+        return self.data[-1]
+
+    def min(self):
+        """max gets the smallest element"""
+        return self.data[0]
+
+    def percentile(self, percentile):
+        """provides a naive implemenation of percentiles"""
+        return self.data[int(len(self.data) * (percentile/100.0))]

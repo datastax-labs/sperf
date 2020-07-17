@@ -47,9 +47,9 @@ def test_get_percentiles():
     assert perc[0] == 'my_label'
     assert perc[1] == "10.00"
     assert perc[2] == "10.00"
-    assert perc[3] == "8.61"
-    assert perc[4] == "6.11"
-    assert perc[5] == "3.61"
+    assert perc[3] == "8.89"
+    assert perc[4] == "6.67"
+    assert perc[5] == "3.33"
     assert perc[6] == "1.11"
 
 def test_get_percentiles_reverse():
@@ -60,9 +60,9 @@ def test_get_percentiles_reverse():
     assert perc[6] == 'my_label'
     assert perc[5] == "10.00"
     assert perc[4] == "10.00"
-    assert perc[3] == "8.61"
-    assert perc[2] == "6.11"
-    assert perc[1] == "3.61"
+    assert perc[3] == "8.89"
+    assert perc[2] == "6.67"
+    assert perc[1] == "3.33"
     assert perc[0] == "1.11"
 
 

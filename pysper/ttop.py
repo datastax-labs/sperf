@@ -15,7 +15,7 @@
 """ ttop file analyzer """
 import re
 from collections import OrderedDict
-from pysper.parser.rules import date
+from datetime import datetime
 from pysper.util import textbar
 from pysper.dates import date_parse
 from pysper.humanize import format_bytes
@@ -67,7 +67,7 @@ class TTopParser:
             if self.state is None:
                 m = self.begin_match.match(line)
                 if m:
-                    dt = date('%Y-%m-%dT%H:%M:%S.%f%z')(m.group('date'))
+                    dt = datetime.strptime(m.group('date'), '%Y-%m-%dT%H:%M:%S.%f%z')
                     if self.start and dt < self.start:
                         continue
                     if self.end and dt > self.end:

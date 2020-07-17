@@ -13,10 +13,9 @@
 # limitations under the License.
 
 """responsible for date parsing and format detection"""
-from datetime import datetime
+from datetime import datetime, timezone
 import json
-import pytz
-from dateutil import parser
+from pysper import env
 
 CASSANDRA_LOG_FORMAT = "%Y-%m-%d %H:%M:%S,%f"
 
@@ -29,19 +28,17 @@ class DateTimeJSONEncoder(json.JSONEncoder):
 
 def max_utc_time():
     """returns max UTC time"""
-    utc_tz = pytz.utc
-    return utc_tz.localize(dt=datetime.max, is_dst=False)
+    return datetime.max.replace(tzinfo=timezone.utc)
 
 def min_utc_time():
     """returns min UTC time"""
-    utc_tz = pytz.utc
-    return utc_tz.localize(dt=datetime.min, is_dst=False)
+    return datetime.min.replace(tzinfo=timezone.utc)
 
 def date_parse(date_string):
     """uses dateutil to parse and sets the tz if none is provided"""
-    dt = parser.parse(date_string)
+    dt = LogDateFormatParser().parse_timestamp(date_string)
     if not dt.tzinfo:
-        return pytz.utc.localize(dt=dt, is_dst=False)
+        return dt.replace(tzinfo=timezone.utc)
     return dt
 
 class LogDateFormatParser:
@@ -49,26 +46,27 @@ class LogDateFormatParser:
     DSE logs
     """
     def __init__(self):
-        self.cassandra_log_format = "%Y-%m-%d %H:%M:%S,%f"
-        self.cassandra_log_format_eu = "%Y-%d-%m %H:%M:%S,%f"
-        self.current_format = self.cassandra_log_format
+        if env.IS_US_FMT:
+            self.mp = 5
+            self.dp = 8
+        else:
+            self.mp = 8
+            self.dp = 5
 
     def parse_timestamp(self, time_str):
         """ParseTimestamp creates a LogTimestamp based on the
         CASSANDRA_LOG_FORMAT and assumes UTC timezone always"""
         parsed = None
-        time_str = time_str.replace(".", ",")
         try:
-            parsed = datetime.strptime(time_str, self.current_format)
-        except ValueError:
-            #try opposite of whatever DEFAULT_FORMAT was
-            alternate_format = ""
-            if self.current_format == self.cassandra_log_format:
-                alternate_format = self.cassandra_log_format_eu
-            else:
-                alternate_format = self.cassandra_log_format
-            parsed = datetime.strptime(time_str, alternate_format)
-            #if successful flip default
-            self.current_format = alternate_format
-        utc_tz = pytz.utc
-        return utc_tz.localize(dt=parsed, is_dst=False)
+            parsed = datetime(
+                int(time_str[:4]),
+                int(time_str[self.mp:self.mp+2]),
+                int(time_str[self.dp:self.dp+2]),
+                int(time_str[11:13]),
+                int(time_str[14:16]),
+                int(time_str[17:19]),
+                int(time_str[20:23]) * 1000
+                )
+        except ValueError as e:
+            raise Exception("invalid date, try to rerun with sperf -l eu <subcommand> error was %s" % e)
+        return parsed.replace(tzinfo=timezone.utc)

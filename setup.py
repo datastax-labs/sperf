@@ -7,10 +7,10 @@ import setuptools
 
 setup(
     name='sperf',
-    version='0.6.1',
+    version='0.6.2',
     description='Diagnostic utility for DSE and Cassandra',
     url='https://www.github.com/DataStax-Toolkit/sperf',
-    app=["sperf.py"],
+    app=["scripts/sperf"],
     setup_requires=['PyInstaller', 'pytest'],
     package_dir={'': 'pysper'},
 )

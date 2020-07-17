@@ -17,9 +17,9 @@ A set of functions defining a domain-specific language that specifies a set of r
 parsing the lines in a log fil
 '''
 import re
-from datetime import datetime
 from collections import defaultdict
-import pytz
+from datetime import timezone
+from pysper import dates
 
 class switch:
     '''
@@ -165,14 +165,14 @@ class date:
     """Parses the supplied date and returns the resulting datetime value.
     assumes UTC format since none of our logs provide TZ"""
 
-    def __init__(self, newformat):
+    def __init__(self):
         "Constructor expects a date string supported by datetime.strptime."
-        self.format = newformat
+        self.parser = dates.LogDateFormatParser()
 
     def __call__(self, adate):
-        parsed = datetime.strptime(adate, self.format)
+        parsed = self.parser.parse_timestamp(adate)
         if not parsed.tzinfo:
-            return pytz.utc.localize(dt=parsed, is_dst=False)
+            return parsed.replace(tzinfo=timezone.utc)
         return parsed
 
 class split:
@@ -204,7 +204,7 @@ def mkcapture(cap_rule, update_func, with_date=True):
     if with_date:
         return rule(
             cap_rule,
-            convert(date('%Y-%m-%d %H:%M:%S,%f'), 'date'),
+            convert(date(), 'date'),
             convert(int, 'source_line'),
             update_func,
             default(event_product='unknown', event_category='unknown', event_type='unknown'))
