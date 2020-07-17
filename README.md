@@ -12,7 +12,7 @@
 
 ## Getting started
 
-1. Download binary install for your platform in the [releases](https://github.com/DataStax-Toolkit/sperf/releases) section. Because we use [Pyinstaller](https://www.pyinstaller.org) no Python environment is required (or utilized).
+1. Download binary install for your platform in the [releases](https://github.com/DataStax-Toolkit/sperf/releases) section, or Use [Homebrew](https://brew.sh) on OS X or Linux to install `brew tap foundev/sperf && brew install sperf`
 2. Generate a diagnostic tarball from your cluster. If you're using DSE we suggest using [OpsCenter](https://docs.datastax.com/en/opscenter/6.7/opsc/online_help/opscCollectingDiagnosticData_t.html) and if on Apache Cassandra™ contact [Luna support](https://www.datastax.com/services/datastax-luna) for the tooling needed (or use [diagnostic collection scripts](https://github.com/DataStax-Toolkit/diagnostic-collection)).
 3. Navigate to tarball directory (one should see a 'nodes' folder) and run `sperf`. The output will give you a simple health check and provide some recommendations for next steps.
 
