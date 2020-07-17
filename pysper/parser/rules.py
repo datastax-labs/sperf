@@ -18,8 +18,8 @@ parsing the lines in a log fil
 '''
 import re
 from collections import defaultdict
-from pysper import dates
 from datetime import timezone
+from pysper import dates
 
 class switch:
     '''
