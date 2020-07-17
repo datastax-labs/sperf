@@ -1,7 +1,10 @@
 altgraph==0.17
+appdirs==1.4.4
 astroid==2.4.2
 attrs==19.3.0
 coverage==5.2
+distlib==0.3.1
+filelock==3.0.12
 isort==4.3.21
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
@@ -16,5 +19,7 @@ pytest==5.4.3
 pytest-cov==2.10.0
 six==1.15.0
 toml==0.10.1
+tox==3.17.1
+virtualenv==20.0.27
 wcwidth==0.2.5
 wrapt==1.12.1
