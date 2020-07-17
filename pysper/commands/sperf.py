@@ -28,7 +28,7 @@ def _build_sperf_cmd():
                         help='shows debug output. ' + \
                                 'Useful for bug reports and diagnosing issues with sperf')
     parser.add_argument("-e", "--eu", dest="eu", \
-            action="store_true",
+            action="store_true", \
             help="set log format to EU. Is ignored by sysbottle which has it's own logging engine")
     sperf_default.build(parser)
     return parser, parser.add_subparsers(title='Commands')

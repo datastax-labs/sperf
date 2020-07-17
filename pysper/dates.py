@@ -71,7 +71,9 @@ class LogDateFormatParser:
             fmt = "eu"
             fix = ""
             if env.IS_US_FMT:
-               fmt = "us"
-               fix = "-e "
-            raise Exception("invalid date, current mode log format is %s. Try to rerun with sperf %s<subcommand> error was %s" % (fmt, fix, e))
+                fmt = "us"
+                fix = "-e "
+            msg = "invalid date, current mode log format " + \
+                    "is %s. Try to rerun with sperf %s<subcommand> error was %s" % (fmt, fix, e)
+            raise Exception(msg)
         return parsed.replace(tzinfo=timezone.utc)
