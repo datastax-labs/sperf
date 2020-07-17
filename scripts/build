@@ -13,7 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-python -m nuitka  --standalone --follow-imports --plugin-enable=pylint-warnings  $PARENT_PATH/sperf
-TAR=sperf-$TRAVIS_OS_NAME.tar
-echo "compressing $TAR"
-tar -cvf $TAR sperf
+pyinstaller -F $PARENT_PATH/sperf
+[ -d $PARENT_PATH/../dist/build ] || mkdir $PARENT_PATH/../dist/build
+
+ZIP=$PARENT_PATH/../dist/build/sperf-$TRAVIS_OS_NAME.zip
+echo "zipping up $ZIP"
+if [ "$TRAVIS_OS_NAME" == "windows" ]; then
+    zip -j -D $ZIP $PARENT_PATH/../dist/sperf.exe
+else
+    zip -j -D $ZIP $PARENT_PATH/../dist/sperf
+fi
+echo "files in build directory: $(ls $PARENT_PATH/../dist/build/)"
