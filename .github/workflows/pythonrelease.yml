@@ -67,10 +67,6 @@ jobs:
         release_upload_url="$(cat artifacts/release-upload-url)"
         echo "::set-env name=RELEASE_UPLOAD_URL::$release_upload_url"
         echo "release upload url: $release_upload_url"
-    - name: install zip windows
-      run: |
-        choco install zip -y
-      if: matrix.os == 'windows-2016'
     - name: Build binary
       shell: bash
       run: |

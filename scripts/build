@@ -19,8 +19,8 @@ pyinstaller -F $PARENT_PATH/sperf
 ZIP=$PARENT_PATH/../dist/build/sperf-$TRAVIS_OS_NAME.zip
 echo "zipping up $ZIP"
 if [ "$TRAVIS_OS_NAME" == "windows" ]; then
-    zip -j -D $ZIP $PARENT_PATH/../dist/sperf.exe
+    7z a -tzip $ZIP $PARENT_PATH/../dist/sperf.exe -mx0
 else
-    zip -j -D $ZIP $PARENT_PATH/../dist/sperf
+    7z a -tzip $ZIP $PARENT_PATH/../dist/sperf -mx0
 fi
 echo "files in build directory: $(ls $PARENT_PATH/../dist/build/)"
