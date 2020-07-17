@@ -1,3 +1,22 @@
+sperf 0.6.2
+-----------
+* removed all 3rd party dependencies except for development time (pytest, pyinstaller, tox, etc) this results in a much smaller
+production binary and is much faster to launch. It is now nearly as small as the go binary for more platforms.
+* date parsing is now less magic and one must choose the dates format to parse now. If parsing EU format (month and day are reversed of US)
+then pass the '' flag to the command line. This allows more accurate log parsing as it is now impossible to guess the wrong format for some logs
+and the correct format for others, making a fake timeline of the logs. This also speeds up runtime performance substantially.
+* date parsing is now much faster because we removed the use of datetime.strptime which was the adding a nearly 80% increase in runtime in some cases.
+* Improvements to release process to work with more versions of linux and Windows. Mac is still unfortunately compiled on Catalina so OS X 10.12 and older
+will not work. However with the improvements to the binary releases it is easier to run sperf from source.
+* Not using tar to create zips anymore but 7zip as it is more compatible with more zip utilities.
+
+sperf 0.6.1
+-----------
+* new releases for windows, linux and Mac
+* now more gracefully handle empty data
+* python 3.5 to 3.8 support
+* schema report now tells you which schema file it read to get it's information as well as failing to read the file if none is present.
+
 sperf 0.6.0
 -----------
 * initial open source release
