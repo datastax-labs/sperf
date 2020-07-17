@@ -68,5 +68,12 @@ class LogDateFormatParser:
                 int(time_str[20:23]) * 1000
                 )
         except ValueError as e:
-            raise Exception("invalid date, try to rerun with sperf -l eu <subcommand> error was %s" % e)
+            fmt = "eu"
+            fix = ""
+            if env.IS_US_FMT:
+                fmt = "us"
+                fix = "-e "
+            msg = "invalid date, current mode log format " + \
+                    "is %s. Try to rerun with sperf %s<subcommand> error was %s" % (fmt, fix, e)
+            raise Exception(msg)
         return parsed.replace(tzinfo=timezone.utc)
