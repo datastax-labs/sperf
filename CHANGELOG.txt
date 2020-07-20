@@ -1,3 +1,12 @@
+sperf 0.6.3
+-----------
+hotfix for v0.6.2 with the following changes
+
+* added in missing -e flag to enable eu format
+* fixed default sperf commands handling of exceptions
+* file progress by default, this should help with default experience
+* bunch of lint fixes that were hidden before by a missing package file
+
 sperf 0.6.2
 -----------
 * removed all 3rd party dependencies except for development time (pytest, pyinstaller, tox, etc) this results in a much smaller

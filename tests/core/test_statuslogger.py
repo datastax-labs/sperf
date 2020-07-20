@@ -13,8 +13,9 @@
 # limitations under the License.
 
 """ tests the statuslogger module """
+import os
 from pysper.core.statuslogger import StatusLogger, Summary
-from tests import test_dse_tarball
+from tests import test_dse_tarball, current_dir
 
 def test_skip_duplicate_events_diag():
     """should merge events on the same node in different logs"""
@@ -26,3 +27,31 @@ def test_skip_duplicate_events_diag():
     assert s.lines == 22054
     assert s.skipped_lines == 444
     assert s.get_busiest_stages()[0] == ['10.101.35.102', 'active', 'CompactionExecutor', 1]
+
+def test_db2552_debug_log_format():
+    """should work with new statuslogger files"""
+    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statusloggernew_debug.log')]
+    sl = StatusLogger(None, files=files)
+    sl.analyze()
+    assert sl.analyzed
+    s = Summary(sl.nodes)
+    busiest_stages = s.get_busiest_stages()
+    name, status, stage, value = busiest_stages[0]
+    assert name == files[0]
+    assert stage == "TPC/all/WRITE_REMOTE"
+    assert status == "pending"
+    assert value == 13094
+
+def test_db2552_system_log_format():
+    """should work with new statuslogger files"""
+    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_new.log')]
+    sl = StatusLogger(None, files=files)
+    sl.analyze()
+    assert sl.analyzed
+    s = Summary(sl.nodes)
+    busiest_stages = s.get_busiest_stages()
+    name, status, stage, value = busiest_stages[0]
+    assert name == files[0]
+    assert stage == "TPC/all/WRITE_REMOTE"
+    assert status == "pending"
+    assert value == 13094

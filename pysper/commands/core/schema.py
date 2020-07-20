@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """schema subcommand builder"""
-from pysper import diag, VERSION
+from pysper import diag, env, VERSION
 from pysper.core import schema
 from pysper.commands import flags
 
@@ -38,5 +38,7 @@ def run_func(args, cmd_name):
     print("%s: %s\n" % (cmd_name, VERSION))
     config = schema.Config(args.files, args.diag_dir)
     files = diag.find_files(config, "schema")
+    if env.DEBUG:
+        print("found schema files: %s", files)
     parsed_schema = schema.read(files)
     print(schema.generate_report(parsed_schema))

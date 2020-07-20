@@ -28,12 +28,12 @@ def read(files):
         "mvs": 0,
         "solr": 0,
         "solr_table": 0,
-        "parsed_file": "Not Found",
+        "parsed_file": "No Schema File Found",
         }
     if not files:
         return report
     schema_file = files[0]
-    report["parsed_files"] = schema_file
+    report["parsed_file"] = schema_file
     solr_tables = set()
     solr_indexes = []
     with diag.FileWithProgress(schema_file) as file_desc:

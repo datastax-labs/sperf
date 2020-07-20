@@ -14,7 +14,9 @@
 
 """validates the low level parsing of systemlog"""
 # pylint: disable=line-too-long
+import os
 from pysper.parser import systemlog
+from tests import current_dir
 
 def test_filtercache_parsing():
     """happy path"""
@@ -41,7 +43,7 @@ def test_filtercache_parsing():
     assert events[2]['usage'] == 32441266
     assert events[2]['usage_unit'] == 'bytes'
     assert events[2]['id'] == '1@7c723229'
-    assert events[3]['entries'] == 3999974 
+    assert events[3]['entries'] == 3999974
     assert events[3]['maximum'] == 8000000
     assert events[3]['id'] == '1@324b2c16'
     assert events[4]['entries'] == 3999962
@@ -58,4 +60,3 @@ def test_filtercache_parsing():
     assert events[6]['usage'] == 114781220
     assert events[6]['entries'] == 159
     assert events[6]['id'] == '6@5af917a4'
-
