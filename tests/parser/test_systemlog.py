@@ -18,6 +18,38 @@ import os
 from pysper.parser import systemlog
 from tests import current_dir
 
+def test_60_format():
+    """validating we can parse the 6.0-6.7 statuslogger format"""
+    #       Pool Name                                     Active      Pending (w/Backpressure)   Delayed      Completed   Blocked  All Time Blocked
+    line = "TPC/all/WRITE_REMOTE                               1                       2 (N/A)       N/A      5       N/A                 6"
+    event = systemlog.capture_line(line)
+    assert event
+    assert event["active"] == '1'
+    assert event["pending"] == '2'
+    assert not event["backpressure"]
+    assert not event["delayed"]
+    assert event["completed"] == '5'
+    assert not event["blocked"]
+    assert event["all_time_blocked"] == '6'
+
+
+def test_68_format():
+    """validating we can parse the 6.8 statuslogger format"""
+    #       Pool Name                                       Active        Pending   Backpressure   Delayed      Shared      Stolen      Completed   Blocked  All Time Blocked
+    line = "TPC/all/BACKPRESSURE_RESCHEDULE                      1              2            N/A       N/A           3           4              5       N/A                 6"
+    event = systemlog.capture_line(line)
+    assert event
+    assert event["active"] == '1'
+    assert event["pending"] == '2'
+    assert not event["backpressure"]
+    assert not event["delayed"]
+    assert event["shared"] == '3'
+    assert event["stolen"] == '4'
+    assert event["completed"] == '5'
+    assert not event["blocked"]
+    assert event["all_time_blocked"] == '6'
+
+
 def test_filtercache_parsing():
     """happy path"""
     lines = [
