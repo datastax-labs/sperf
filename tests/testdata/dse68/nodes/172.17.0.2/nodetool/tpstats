@@ -1,0 +1,54 @@
+Pools                                           Active        Pending   Backpressure   Delayed      Shared      Stolen      Completed   Blocked  All time blocked
+CompactionExecutor                                   0              0            N/A       N/A         N/A         N/A         132138         0                 0
+InternalResponseStage                                0              0            N/A       N/A         N/A         N/A              2         0                 0
+LwtStage                                             0              0            N/A       N/A         N/A         N/A          33425         0                 0
+MemtableFlushWriter                                  0              0            N/A       N/A         N/A         N/A            498         0                 0
+MemtablePostFlush                                    0              0            N/A       N/A         N/A         N/A           1350         0                 0
+MemtableReclaimMemory                                0              0            N/A       N/A         N/A         N/A            498         0                 0
+MigrationStage                                       0              0            N/A       N/A         N/A         N/A              2         0                 0
+PendingRangeCalculator                               0              0            N/A       N/A         N/A         N/A              1         0                 0
+PerDiskMemtableFlushWriter_0                         0              0            N/A       N/A         N/A         N/A            487         0                 0
+RequestResponseStage                                 0              0            N/A       N/A         N/A         N/A         200664         0                 0
+TPC/all/BACKPRESSURE_RESCHEDULE                      0              0            N/A       N/A           0           0         124661       N/A                 0
+TPC/all/EXECUTE_STATEMENT                            0            N/A            N/A       N/A         278         278          68088       N/A               N/A
+TPC/all/FRAME_DECODE                                 0            N/A            N/A       N/A           0           0        1063137       N/A               N/A
+TPC/all/INCREMENTAL_NODESYNC_MAINTENANCE             0            N/A            N/A       N/A           0           0            105       N/A               N/A
+TPC/all/LWT_COMMIT                                   0              0            N/A       N/A           0           0          66888       N/A                 0
+TPC/all/LWT_PREPARE                                  0              0            N/A       N/A           0           0          66888       N/A                 0
+TPC/all/LWT_PROPOSE                                  0              0            N/A       N/A           0           0          66888       N/A                 0
+TPC/all/READ_DISK_ASYNC                              0            N/A            N/A       N/A           0           0            272       N/A               N/A
+TPC/all/READ_INTERNAL                                0            N/A            N/A       N/A          13          13          71973       N/A               N/A
+TPC/all/READ_LOCAL                                   0              0            N/A       N/A         178         178            347       N/A                 0
+TPC/all/READ_RANGE_INTERNAL                          0            N/A            N/A       N/A          74          74            227       N/A               N/A
+TPC/all/READ_RANGE_SWITCH_FOR_RESPONSE               0            N/A            N/A       N/A          28          28            227       N/A               N/A
+TPC/all/READ_SWITCH_FOR_RESPONSE                     0            N/A            N/A       N/A        2239        2239          72320       N/A               N/A
+TPC/all/SAVE_LOCAL_NODE                              0            N/A            N/A       N/A           0           0             37       N/A               N/A
+TPC/all/TIMED_TIMEOUT                                0            N/A            N/A       N/A           0           0        1004529       N/A               N/A
+TPC/all/UNKNOWN                                      0            N/A            N/A       N/A           0           0          33425       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SEGMENT                0            N/A            N/A       N/A           0           0           1069       N/A               N/A
+TPC/all/WRITE_INTERNAL                               0            N/A            N/A       N/A           0           0              4       N/A               N/A
+TPC/all/WRITE_LOCAL                                  0              0            N/A       N/A           0           0       34331275       N/A                 0
+TPC/all/WRITE_SWITCH_FOR_MEMTABLE                    0            N/A            N/A       N/A           0           0          19291       N/A               N/A
+TPC/all/WRITE_SWITCH_FOR_RESPONSE                    0            N/A            N/A       N/A     6149913     6149913       34331279       N/A               N/A
+
+Meters                                   One Minute Rate    Five Minute Rate     Fifteen Minute Rate      Mean Rate          Count    Connections
+TPC/all/CLIENT_REQUEST                              1.33                0.64                    0.33         341.88       34345619              4
+TPC/all/INTERNODE_MESSAGE                           0.00                0.00                    0.00           0.00              0              0
+
+Messages                Dropped                  Latency waiting in queue (micros)                                    
+                                              50%               95%               99%               Max
+NODESYNC                      0               N/A               N/A               N/A               N/A
+BATCH_STORE                   0               N/A               N/A               N/A               N/A
+READ_REPAIR                   0               N/A               N/A               N/A               N/A
+READ                          0               N/A               N/A               N/A               N/A
+OTHER                         0               N/A               N/A               N/A               N/A
+RANGE_SLICE                   0               N/A               N/A               N/A               N/A
+REPAIR                        0               N/A               N/A               N/A               N/A
+COUNTER_MUTATION              0               N/A               N/A               N/A               N/A
+MUTATION                      0               N/A               N/A               N/A               N/A
+LWT                           0               N/A               N/A               N/A               N/A
+HINT                          0               N/A               N/A               N/A               N/A
+TRUNCATE                      0               N/A               N/A               N/A               N/A
+SNAPSHOT                      0               N/A               N/A               N/A               N/A
+VIEW_MUTATION                 0               N/A               N/A               N/A               N/A
+SCHEMA                        0               N/A               N/A               N/A               N/A

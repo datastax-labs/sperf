@@ -1,3 +1,8 @@
+sperf 0.6.4
+-----------
+* DSE 6.8 statuslogger support
+* DSE 6.8 testing for diag and sperf_default
+
 sperf 0.6.3
 -----------
 hotfix for v0.6.2 with the following changes

@@ -1,0 +1,925 @@
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+HiveMetaStore/sparkmetastore histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_analytics/rm_executors histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+dse_analytics/rm_shared_data histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               642                 2
+75%             0.00              0.00              0.00               642                 2
+95%             0.00              0.00              0.00               642                 2
+98%             0.00              0.00              0.00               642                 2
+99%             0.00              0.00              0.00               642                 2
+Min             0.00              0.00              0.00               536                 2
+Max             0.00              0.00              0.00               642                 2
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_insights/insights_config histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.33              0.00            147.46               NaN               NaN
+75%             0.67              0.00            196.61               NaN               NaN
+95%             0.67              0.00            196.61               NaN               NaN
+98%             0.67              0.00            196.61               NaN               NaN
+99%             0.67              0.00            196.61               NaN               NaN
+Min             0.00              0.00            131.07               NaN               NaN
+Max             0.00              0.00            229.38               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_insights/tokens histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+dse_insights_local/insights_config histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               446                12
+75%             0.00              0.00              0.00               446                12
+95%             0.00              0.00              0.00               446                12
+98%             0.00              0.00              0.00               446                12
+99%             0.00              0.00              0.00               446                12
+Min             0.00              0.00              0.00               373                11
+Max             0.00              0.00              0.00               446                12
+
+dse_leases/leases histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             1.49              0.00            132.71                86                 3
+75%             1.75             67.58            157.29                86                 3
+95%             1.95             79.87            212.99                86                 3
+98%             1.97             98.30            221.18                86                 3
+99%             1.98             98.30            229.38                86                 3
+Min             1.00              0.00              0.00                73                 3
+Max             1.00            114.69            262.14                86                 3
+
+dse_leases/logs histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                72                 2
+75%             0.00              0.00              0.00                72                 2
+95%             0.00              0.00              0.00                72                 2
+98%             0.00              0.00              0.00                72                 2
+99%             0.00              0.00              0.00                72                 2
+Min             0.00              0.00              0.00                61                 2
+Max             0.00              0.00              0.00                72                 2
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_perf/graph_event_log histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_perf/node_slow_log histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_perf/schema_migration_log histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_perf/slow_transaction_log histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_security/digest_tokens histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_security/role_options histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_security/spark_security histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_system/encrypted_keys histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_system/shared_data histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.50              0.00            131.07               NaN               NaN
+95%             0.50              0.00            131.07               NaN               NaN
+98%             0.50              0.00            131.07               NaN               NaN
+99%             0.50              0.00            131.07               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00            163.84               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_system/shared_data_versions histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dse_system_local/solr_resources histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/auth histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/block_offsets histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/blocks histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/compression_strategies histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/delete_hints histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/inodes histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/locations histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/locks histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/names histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/transaction_log histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/transaction_log_ranges histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+dsefs/transactions histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+keyspace1/counter1 histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+keyspace1/standard1 histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               258                 5
+75%             0.00              0.00              0.00               258                 5
+95%             0.00              0.00              0.00             14237                 5
+98%             0.00              0.00              0.00             17084                 5
+99%             0.00              0.00              0.00             20501                 5
+Min             0.00              0.00              0.00               180                 5
+Max             0.00              0.00              0.00             42510                 5
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+solr_admin/solr_resources histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/IndexInfo histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/available_ranges histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/batches histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/built_views histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+system/compaction_history histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               124                 6
+75%             0.00              0.00              0.00               149                 7
+95%             0.00              0.00              0.00               149                 8
+98%             0.00              0.00              0.00               179                10
+99%             0.00              0.00              0.00               179                10
+Min             0.00              0.00              0.00                87                 6
+Max             0.00              0.00              0.00               179                10
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/local histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/nodesync_checkpoints histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+system/paxos histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             1.50              0.00            137.63               258                 7
+75%             1.74             61.44            301.47               258                 7
+95%             1.95             94.21            622.59               258                 7
+98%             1.97            120.15            786.43               258                 7
+99%             1.98            131.07            917.50               258                 7
+Min             1.00              0.00              0.00               216                 7
+Max             1.00            163.84           1048.58               258                 7
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/peer_events histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/peers histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+system/prepared_statements histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               149                 2
+75%             0.00              0.00              0.00               215                 2
+95%             0.00              0.00              0.00               535                 2
+98%             0.00              0.00              0.00               924                 2
+99%             0.00              0.00              0.00               924                 2
+Min             0.00              0.00              0.00                87                 2
+Max             0.00              0.00              0.00               924                 2
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/range_xfers histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/repairs histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+system/size_estimates histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00             73.73              0.00               372                 8
+75%             0.00             92.84              0.00               535                12
+95%             0.00            147.46              0.00              2299                50
+98%             0.00            262.14              0.00              2299                50
+99%             0.00            262.14              0.00              2299                50
+Min             0.00              0.00              0.00               180                 4
+Max             0.00            327.68              0.00              2299                50
+
+system/sstable_activity histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00            131.07              0.00                86                 2
+75%             0.00            163.84              0.00                86                 2
+95%             0.00            163.84              0.00               103                 2
+98%             0.00            163.84              0.00               103                 2
+99%             0.00            163.84              0.00               103                 2
+Min             0.00            131.07              0.00                36                 0
+Max             0.00            196.61              0.00               103                 2
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/transferred_ranges histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system/view_builds_in_progress histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_auth/role_members histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_auth/role_permissions histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_auth/roles histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_backups/backup_configurations histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_backups/backup_stores histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/backup_task_state histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/backups histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/nodesync_status histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/nodesync_user_validations histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/parent_repair_history histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/repair_history histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/restore_task_state histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_distributed/view_build_status histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+system_schema/aggregates histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/columns histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               770                60
+75%             0.00              0.00              0.00              3973               258
+95%             0.00              0.00              0.00             11864               770
+98%             0.00              0.00              0.00             11864               770
+99%             0.00              0.00              0.00             11864               770
+Min             0.00              0.00              0.00               180                11
+Max             0.00              0.00              0.00             11864               770
+
+system_schema/dropped_columns histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                29                 1
+75%             0.00              0.00              0.00                72                 3
+95%             0.00              0.00              0.00                72                 3
+98%             0.00              0.00              0.00                72                 3
+99%             0.00              0.00              0.00                72                 3
+Min             0.00              0.00              0.00                25                 0
+Max             0.00              0.00              0.00                72                 3
+
+system_schema/edges histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/functions histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/hidden_columns histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/indexes histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/keyspaces histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               124                 3
+75%             0.00              0.00              0.00               149                 3
+95%             0.00              0.00              0.00               149                 3
+98%             0.00              0.00              0.00               149                 3
+99%             0.00              0.00              0.00               149                 3
+Min             0.00              0.00              0.00                87                 3
+Max             0.00              0.00              0.00               149                 3
+
+system_schema/tables histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00              1109                42
+75%             0.00              0.00              0.00              2299                86
+95%             0.00              0.00              0.00              9887               372
+98%             0.00              0.00              0.00              9887               372
+99%             0.00              0.00              0.00              9887               372
+Min             0.00              0.00              0.00               373                18
+Max             0.00              0.00              0.00              9887               372
+
+system_schema/triggers histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/types histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               215                 4
+75%             0.00              0.00              0.00               642                 4
+95%             0.00              0.00              0.00              1331                12
+98%             0.00              0.00              0.00              1331                12
+99%             0.00              0.00              0.00              1331                12
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00              1331                12
+
+system_schema/vertices histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+system_schema/views histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00                24                 1
+75%             0.00              0.00              0.00                29                 1
+95%             0.00              0.00              0.00                29                 1
+98%             0.00              0.00              0.00                29                 1
+99%             0.00              0.00              0.00                29                 1
+Min             0.00              0.00              0.00                21                 0
+Max             0.00              0.00              0.00                29                 1
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_traces/events histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+
+No SSTables exists, unable to calculate 'Partition Size' and 'Cell Count' percentiles
+system_traces/sessions histograms
+Percentile  SSTables     Write Latency      Read Latency    Partition Size        Cell Count
+                              (micros)          (micros)           (bytes)                  
+50%             0.00              0.00              0.00               NaN               NaN
+75%             0.00              0.00              0.00               NaN               NaN
+95%             0.00              0.00              0.00               NaN               NaN
+98%             0.00              0.00              0.00               NaN               NaN
+99%             0.00              0.00              0.00               NaN               NaN
+Min             0.00              0.00              0.00               NaN               NaN
+Max             0.00              0.00              0.00               NaN               NaN
+

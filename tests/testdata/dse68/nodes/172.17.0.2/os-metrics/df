@@ -1,0 +1,9 @@
+Filesystem     1K-blocks     Used Available Use% Mounted on
+overlay         39251660 18574948  18952072  50% /
+tmpfs              65536        0     65536   0% /dev
+tmpfs            3825720        0   3825720   0% /sys/fs/cgroup
+shm                65536        0     65536   0% /dev/shm
+/dev/vda2       39251660 18574948  18952072  50% /etc/hosts
+tmpfs            3825720        0   3825720   0% /proc/acpi
+tmpfs            3825720        0   3825720   0% /proc/scsi
+tmpfs            3825720        0   3825720   0% /sys/firmware

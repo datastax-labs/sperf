@@ -1,0 +1,2 @@
+available: kvm-clock tsc acpi_pm 
+current: kvm-clock

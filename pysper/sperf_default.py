@@ -51,6 +51,10 @@ def calculate(node_config):
             summary["versions"].add(config.get("version"))
         if config.get('cassandra_version'):
             summary["cassandra_versions"].add(config.get("cassandra_version"))
+        else:
+            version = config.get("version")
+            if version and version.startswith("6"):
+                summary["cassandra_versions"].add("DSE private fork")
         if config.get('solr_version'):
             summary["solr_versions"].add(config.get("solr_version"))
         if config.get('spark_version'):

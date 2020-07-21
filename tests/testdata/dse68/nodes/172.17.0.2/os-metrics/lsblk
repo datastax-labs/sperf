@@ -1,0 +1,11 @@
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0    7:0    0   55M  1 loop 
+loop1    7:1    0 96.5M  1 loop 
+loop2    7:2    0   97M  1 loop 
+loop3    7:3    0   55M  1 loop 
+loop4    7:4    0 91.9M  1 loop 
+loop5    7:5    0 91.8M  1 loop 
+vda    252:0    0   40G  0 disk 
+├─vda1 252:1    0    8M  0 part 
+└─vda2 252:2    0   40G  0 part /var/lib/dsefs
+vdb    252:16   0   40G  0 disk 

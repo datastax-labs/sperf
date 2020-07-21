@@ -1,0 +1,9 @@
+
+Datacenter: dc1
+==========
+Address     Rack        Status State   Load            Owns                Token                                       
+
+172.17.0.2  rack1       Up     Normal  1.79 GiB        100.00%             -5374840111441183029                        
+
+
+  

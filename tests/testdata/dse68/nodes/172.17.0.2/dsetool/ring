@@ -1,0 +1,2 @@
+Address          DC                   Rack         Workload             Graph  Status  State    Load             Effective-Ownership  Token                                        Health [0,1] 
+172.17.0.2       dc1                  rack1        SearchAnalytics(SM)  yes    Up      Normal   1.79 GiB         100.00%              -5374840111441183029                         1.00         

@@ -37,7 +37,7 @@ def test_sperf():
     assert "\n" + output == """
 nodes                               3                                                    
 dse version(s) (startup logs)       { 6.7.7 }                                            
-cassandra version(s) (startup logs) N/A                                                  
+cassandra version(s) (startup logs) { DSE private fork }                                 
 solr version(s) (startup logs)      { 6.0.1.2.2647 }                                     
 spark version(s) (startup logs)     { 2.2.3.9 }                                          
 worst gc pause (system logs)        800.00 ms (10.101.35.71)                             

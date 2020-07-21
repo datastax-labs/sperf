@@ -1,0 +1,7 @@
+{
+  "mode" : "ENABLED_WITH_LOCAL_STORAGE",
+  "config_refresh_interval_in_seconds" : 30,
+  "metric_sampling_interval_in_seconds" : 30,
+  "data_dir_max_size_in_mb" : 1024,
+  "node_system_info_report_period" : "PT1H"
+}

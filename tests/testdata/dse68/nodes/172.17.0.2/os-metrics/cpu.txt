@@ -1,0 +1,6 @@
+user: 8.3
+nice: 0.0
+system: 10.0
+iowait: 0.0
+steal: 0.0
+idle: 81.7

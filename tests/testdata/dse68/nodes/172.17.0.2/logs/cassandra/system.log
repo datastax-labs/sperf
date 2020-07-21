@@ -1,0 +1,958 @@
+INFO  [main] 2020-07-20 09:09:27,757  DseModule.java:102 - Loading DSE module
+INFO  [main] 2020-07-20 09:09:28,160  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [main] 2020-07-20 09:09:28,335  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [main] 2020-07-20 09:09:28,364  DseConfigYamlLoader.java:41 - Loading settings from file:/opt/dse/resources/dse/conf/dse.yaml
+INFO  [main] 2020-07-20 09:09:28,569  DseConfig.java:348 - Load of settings is done.
+INFO  [main] 2020-07-20 09:09:28,600  Config.java:684 - Node configuration:[aggregated_request_timeout_in_ms=120000; allocate_tokens_for_keyspace=null; allocate_tokens_for_local_replication_factor=null; audit_logging_options={enabled=false, retention_time=0}; authenticator=com.datastax.bdp.cassandra.auth.DseAuthenticator; authorizer=com.datastax.bdp.cassandra.auth.DseAuthorizer; auto_bootstrap=true; auto_snapshot=true; back_pressure_enabled=false; back_pressure_strategy=org.apache.cassandra.net.RateBasedBackPressure{high_ratio=0.9, factor=5, flow=FAST}; backup_service={backups_max_retry_attemps=5, enabled=false, staging_directory=null}; batchlog_endpoint_strategy=random_remote; batchlog_replay_throttle_in_kb=1024; broadcast_address=172.17.0.2; buffer_pool_use_heap_if_exhausted=false; cas_contention_timeout_in_ms=1000; cdc_enabled=false; cdc_free_space_check_interval_ms=250; cdc_raw_directory=/var/lib/cassandra/cdc_raw; cdc_total_space_in_mb=0; client_encryption_options=<REDACTED>; cluster_name=Test Cluster; column_index_cache_size_in_kb=2; column_index_size_in_kb=16; commit_failure_policy=stop; commitlog_compression=null; commitlog_directory=/var/lib/cassandra/commitlog; commitlog_max_compression_buffers_in_pool=3; commitlog_segment_size_in_mb=32; commitlog_sync=periodic; commitlog_sync_batch_window_in_ms=NaN; commitlog_sync_group_window_in_ms=NaN; commitlog_sync_period_in_ms=10000; commitlog_total_space_in_mb=null; compaction_throughput_mb_per_sec=16; concurrent_compactors=null; concurrent_lw_transactions=null; concurrent_materialized_view_builders=2; concurrent_validations=2147483647; continuous_paging={cancel_timeout_sec=5, client_timeout_sec=600, max_concurrent_sessions=60, max_local_query_time_ms=5000, max_page_size_mb=8, max_session_pages=4, paused_check_interval_ms=1}; counter_cache_keys_to_save=2147483647; counter_cache_save_period=7200; counter_cache_size_in_mb=null; counter_write_request_timeout_in_ms=5000; cross_dc_rtt_in_ms=0; cross_node_timeout=false; data_file_directories=[/var/lib/cassandra/data]; direct_reads_size_in_mb=-1; disk_access_mode=auto; disk_failure_policy=stop; disk_optimization_estimate_percentile=0.95; disk_optimization_page_cross_chance=0.1; disk_optimization_strategy=ssd; dynamic_snitch=true; dynamic_snitch_badness_threshold=0.1; dynamic_snitch_reset_interval_in_ms=600000; dynamic_snitch_update_interval_in_ms=100; echo_attempts_before_reset=10; emulate_dbaas_defaults=false; enable_scripted_user_defined_functions=false; enable_user_defined_functions=false; enable_user_defined_functions_threads=true; encryption_options=<REDACTED>; endpoint_snitch=com.datastax.bdp.snitch.DseDelegateSnitch; file_cache_round_up=null; file_cache_size_in_mb=-1; full_query_log_dir=null; gc_log_threshold_in_ms=200; gc_warn_threshold_in_ms=1000; guardrails=org.apache.cassandra.config.GuardrailsConfig@6e28bb87; hinted_handoff_disabled_datacenters=[]; hinted_handoff_enabled=true; hinted_handoff_throttle_in_kb=1024; hints_compression=null; hints_directory=/var/lib/cassandra/hints; hints_flush_period_in_ms=10000; ideal_consistency_level=null; incremental_backups=false; inflight_data_overhead_in_mb=-1; initial_token=null; inter_dc_stream_throughput_outbound_megabits_per_sec=200; inter_dc_tcp_nodelay=false; internode_authenticator=null; internode_compression=dc; internode_recv_buff_size_in_bytes=0; internode_send_buff_size_in_bytes=0; io_global_queue_depth=null; key_cache_keys_to_save=2147483647; key_cache_save_period=14400; key_cache_size_in_mb=null; leaks_detection_params=null; listen_address=172.17.0.2; listen_interface=null; listen_interface_prefer_ipv6=false; listen_on_broadcast_address=false; max_hint_window_in_ms=10800000; max_hints_delivery_threads=2; max_hints_file_size_in_mb=128; max_memory_to_lock_fraction=0.2; max_memory_to_lock_mb=0; max_mutation_size_in_kb=null; max_pending_lw_transactions=10000; max_value_size_in_mb=256; memtable_allocation_type=offheap_objects; memtable_cleanup_threshold=null; memtable_flush_writers=0; memtable_heap_space_in_mb=null; memtable_offheap_space_in_mb=null; memtable_space_in_mb=null; metadata_directory=/var/lib/cassandra/metadata; metrics_histogram_update_interval_millis=1000; min_free_space_per_drive_in_mb=50; native_transport_address=0.0.0.0; native_transport_allow_older_protocols=true; native_transport_broadcast_address=172.17.0.2; native_transport_interface=null; native_transport_interface_prefer_ipv6=null; native_transport_keepalive=true; native_transport_max_concurrent_connections=-1; native_transport_max_concurrent_connections_per_ip=-1; native_transport_max_frame_size_in_mb=256; native_transport_max_threads=128; native_transport_port=9042; native_transport_port_ssl=null; nodesync={enabled=true, max_inflight_validations=16, max_threads=8, min_inflight_validations=2, min_threads=1, page_size_in_kb=512, rate_in_kb=1024, trace_ttl_sec=604800}; num_tokens=-1; otc_backlog_expiration_interval_ms=-1; otc_coalescing_enough_coalesced_messages=32; otc_coalescing_strategy=DISABLED; otc_coalescing_window_us=100; otc_large_max_message_buffer_kb=1024; otc_small_connection_pool_size=-1; otc_small_max_message_buffer_kb=64; partitioner=org.apache.cassandra.dht.Murmur3Partitioner; permissions_cache_initial_capacity=128; permissions_cache_max_entries=1000; permissions_update_interval_in_ms=-1; permissions_validity_in_ms=120000; phi_convict_threshold=8.0; pick_level_on_streaming=true; prepared_statements_cache_size_mb=null; range_request_timeout_in_ms=10000; read_request_timeout_in_ms=5000; repair_command_pool_full_strategy=queue; repair_command_pool_size=2147483647; request_timeout_in_ms=10000; role_manager=com.datastax.bdp.cassandra.auth.DseRoleManager; roles_cache_initial_capacity=128; roles_cache_max_entries=1000; roles_update_interval_in_ms=-1; roles_validity_in_ms=120000; row_cache_class_name=org.apache.cassandra.cache.OHCProvider; row_cache_keys_to_save=2147483647; row_cache_save_period=0; row_cache_size_in_mb=0; saved_caches_directory=/var/lib/cassandra/saved_caches; seed_gossip_probability=1.0; seed_provider=org.apache.cassandra.locator.SimpleSeedProvider{seeds=172.17.0.2}; server_encryption_options=<REDACTED>; slow_query_log_timeout_in_ms=500; snapshot_before_compaction=false; ssl_storage_port=7001; sstable_preemptive_open_interval_in_mb=50; start_native_transport=true; storage_port=7000; stream_max_outbound_buffers_in_kb=0; stream_outbound_buffer_in_kb=64; stream_throughput_outbound_megabits_per_sec=200; streaming_connections_per_host=1; streaming_keep_alive_period_in_secs=300; system_info_encryption=<REDACTED>; system_key_directory=<REDACTED>; system_keyspaces_filtering=false; tpc_concurrent_requests_limit=128; tpc_cores=null; tpc_io_cores=null; tpc_pending_requests_limit=128; tracetype_query_ttl=86400; tracetype_repair_ttl=604800; transparent_data_encryption_options=<REDACTED>; trickle_fsync=true; trickle_fsync_interval_in_kb=10240; truncate_request_timeout_in_ms=60000; user_defined_function_fail_heap_mb=500; user_defined_function_fail_micros=10000; user_defined_function_warn_heap_mb=200; user_defined_function_warn_micros=500; user_function_timeout_policy=die; windows_timer_interval=1; write_request_timeout_in_ms=2000; zerocopy_max_sstables=256; zerocopy_max_unused_metadata_in_mb=200; zerocopy_streaming_enabled=true]
+INFO  [main] 2020-07-20 09:09:28,602  DatabaseDescriptor.java:672 - DiskAccessMode is standard, indexAccessMode is standard, commitlogAccessMode is standard
+INFO  [main] 2020-07-20 09:09:28,604  DatabaseDescriptor.java:1167 - Detected max direct memory 2.736GiB and max heap 1.824GiB
+INFO  [main] 2020-07-20 09:09:28,607  DatabaseDescriptor.java:1205 - Using file cache of 1.368GiB, 50% of max direct memory
+INFO  [main] 2020-07-20 09:09:28,608  DatabaseDescriptor.java:1221 - Using direct reads cache of 16.000MiB, refer to the the direct_reads_size_in_mb property
+INFO  [main] 2020-07-20 09:09:28,609  DatabaseDescriptor.java:707 - Global memtable memory threshold is enabled at 467 MiB
+WARN  [main] 2020-07-20 09:09:28,641  DatabaseDescriptor.java:845 - Only 28.998GiB free across all data volumes. Consider adding more capacity to your cluster or removing obsolete snapshots
+INFO  [main] 2020-07-20 09:09:28,641  DatabaseDescriptor.java:881 - Using 8 memtable flush writers with global cleanup threshold of 0.15000000596046448
+INFO  [main] 2020-07-20 09:09:28,645  DiskOptimizationStrategy.java:52 - Disk optimization strategy for Solid-State drives (SSD) using min buffer size of 4096 bytes and max buffer size of 65536 bytes
+INFO  [main] 2020-07-20 09:09:28,646  DatabaseDescriptor.java:991 - Assuming Solid-State drives (SSD) based on disk_optimization_strategy YAML property. Please update this property if this is incorrect as a number of optimizations depend on it and an incorrect value may result in degraded performances.
+INFO  [main] 2020-07-20 09:09:28,685  RateBasedBackPressure.java:133 - Initialized back-pressure with high ratio: 0.9, factor: 5, flow: FAST, window size: 2000.
+INFO  [main] 2020-07-20 09:09:28,686  DatabaseDescriptor.java:1011 - Back-pressure is disabled with strategy org.apache.cassandra.net.RateBasedBackPressure{high_ratio=0.9, factor=5, flow=FAST}.
+INFO  [main] 2020-07-20 09:09:28,689  DatabaseDescriptor.java:1120 - Outbound TCP connection settings: strategy=DISABLED, window=100µs, enough-coalesced-messages=32, small-message-pool-size=1, small-max-message-buffer=64KB, large-max-message-buffer=1024KB
+WARN  [main] 2020-07-20 09:09:28,729  DatabaseDescriptor.java:1517 - JMX is not enabled to receive remote connections. Please see cassandra-env.sh for more info.
+INFO  [main] 2020-07-20 09:09:28,730  DseDelegateSnitch.java:39 - Setting my workloads to [Analytics, Cassandra, Search, Graph]
+INFO  [main] 2020-07-20 09:09:28,742  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [main] 2020-07-20 09:09:28,746  DseDelegateSnitch.java:41 - Initialized DseDelegateSnitch with workloads [Analytics, Cassandra, Search, Graph], delegating to org.apache.cassandra.locator.GossipingPropertyFileSnitch
+INFO  [main] 2020-07-20 09:09:28,768  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [main] 2020-07-20 09:09:30,022  AuthConfig.java:125 - System keyspaces filtering not enabled.
+INFO  [main] 2020-07-20 09:09:30,023  IAuditLogger.java:136 - Audit logging is disabled
+INFO  [main] 2020-07-20 09:09:30,129  Slf4JLogger.java:106 - Created AIO Context with params: Max concurrency: 43, Max pending: 65536
+INFO  [main] 2020-07-20 09:09:30,144  Slf4JLogger.java:106 - Created AIO Context with params: Max concurrency: 43, Max pending: 65536
+INFO  [main] 2020-07-20 09:09:30,145  Slf4JLogger.java:106 - Created AIO Context with params: Max concurrency: 42, Max pending: 65536
+INFO  [main] 2020-07-20 09:09:30,151  DefaultTPCBackpressureController.java:82 - Enabled TPC backpressure with following per core parameters: threshold at 384, max queue size at 16384, max backpressured bytes at 9223372036854775807, idle reschedule at 100000ns
+INFO  [main] 2020-07-20 09:09:30,152  EpollTPCEventLoopGroup.java:179 - TPC extended backoff is disabled
+INFO  [main] 2020-07-20 09:09:30,152  TPC.java:141 - Created 3 epoll event loops.
+INFO  [main] 2020-07-20 09:09:30,164  TPC.java:155 - Created 1 TPC timers due to configured ratio of 5.
+INFO  [main] 2020-07-20 09:09:30,493  DseConfig.java:368 - CQL slow log is enabled
+INFO  [main] 2020-07-20 09:09:30,493  DseConfig.java:369 - CQL system info tables are not enabled
+INFO  [main] 2020-07-20 09:09:30,494  DseConfig.java:370 - Resource level latency tracking is not enabled
+INFO  [main] 2020-07-20 09:09:30,494  DseConfig.java:371 - Database summary stats are not enabled
+INFO  [main] 2020-07-20 09:09:30,495  DseConfig.java:372 - Cluster summary stats are not enabled
+INFO  [main] 2020-07-20 09:09:30,495  DseConfig.java:373 - Histogram data tables are not enabled
+INFO  [main] 2020-07-20 09:09:30,495  DseConfig.java:374 - User level latency tracking is not enabled
+INFO  [main] 2020-07-20 09:09:30,495  DseConfig.java:376 - Spark cluster info tables are not enabled
+INFO  [main] 2020-07-20 09:09:30,496  DseConfig.java:416 - Cql solr query paging is: off
+INFO  [main] 2020-07-20 09:09:30,502  DseConfig.java:420 - This instance appears to have 1 thread per CPU core and 4 total CPU threads.
+INFO  [main] 2020-07-20 09:09:30,503  DseConfig.java:437 - Server ID:02-42-AC-11-00-02
+INFO  [main] 2020-07-20 09:09:30,860  GraphYamlConfigurationReader.java:185 - Loading graph settings from file:/opt/dse/resources/dse/conf/dse.yaml
+INFO  [main] 2020-07-20 09:09:30,865  GraphYamlConfigurationReader.java:102 - No graph settings found in DSE config file at file:/opt/dse/resources/dse/conf/dse.yaml (lacks top-level key named graph)
+INFO  [main] 2020-07-20 09:09:30,935  DseGraphModule.java:165 - DSE Graph module loaded
+INFO  [main] 2020-07-20 09:09:30,944  DseGraphOLAPModule.scala:42 - DSE Graph OLAP module loaded
+INFO  [main] 2020-07-20 09:09:31,193  NamedMemoryLimiter.java:34 - [SSTable-attached Index Segment Builder]: Memory limiter using limit of 1.000GiB...
+INFO  [main] 2020-07-20 09:09:32,279  PluginBean.java:53 - CqlSlowLog plugin is now enabled
+INFO  [main] 2020-07-20 09:09:32,302  DseSearchConfig.java:141 - Solr latency snapshots are not enabled
+INFO  [main] 2020-07-20 09:09:32,303  DseSearchConfig.java:142 - Solr slow sub-query log is not enabled
+INFO  [main] 2020-07-20 09:09:32,304  DseSearchConfig.java:143 - Solr update handler metrics are not enabled
+INFO  [main] 2020-07-20 09:09:32,304  DseSearchConfig.java:144 - Solr request handler metrics are not enabled
+INFO  [main] 2020-07-20 09:09:32,305  DseSearchConfig.java:145 - Solr index statistics reporting is not enabled
+INFO  [main] 2020-07-20 09:09:32,306  DseSearchConfig.java:146 - Solr cache statistics reporting is not enabled
+INFO  [main] 2020-07-20 09:09:32,307  DseSearchConfig.java:147 - Health-based query routing is enabled
+INFO  [main] 2020-07-20 09:09:32,308  DseSearchConfig.java:148 - Global Solr decryption cache on-heap threshold is enabled at 256MB 
+INFO  [main] 2020-07-20 09:09:32,310  DseSearchConfig.java:151 - Solr timeAllowed by default is enabled
+INFO  [main] 2020-07-20 09:09:32,322  TTLBean.java:58 - Setting TTL to 600
+INFO  [main] 2020-07-20 09:09:36,098  QueryProcessor.java:144 - Initialized prepared statement caches with 10 MB
+INFO  [main] 2020-07-20 09:09:36,099  ClientState.java:67 - Using com.datastax.bdp.cassandra.cql3.DseQueryHandler as query handler for native protocol queries (as requested with -Dcassandra.custom_query_handler_class)
+INFO  [main] 2020-07-20 09:09:36,198  Log.java:169 - Logging initialized @12133ms to org.eclipse.jetty.util.log.Slf4jLog
+INFO  [main] 2020-07-20 09:09:36,211  SolrResourceLoader.java:761 - No /solr/home in JNDI
+INFO  [main] 2020-07-20 09:09:36,212  SolrResourceLoader.java:771 - using system property solr.solr.home: solr/
+INFO  [main] 2020-07-20 09:09:36,212  SolrResourceLoader.java:156 - new SolrResourceLoader for directory: '/opt/dse/solr'
+INFO  [main] 2020-07-20 09:09:36,213  SolrResourceLoader.java:761 - No /solr/home in JNDI
+INFO  [main] 2020-07-20 09:09:36,213  SolrResourceLoader.java:771 - using system property solr.solr.home: solr/
+INFO  [main] 2020-07-20 09:09:36,472  CorePropertiesLocator.java:57 - Config-defined core root directory: /opt/dse/solr
+INFO  [main] 2020-07-20 09:09:36,550  CoreContainer.java:166 - New CoreContainer 1577428742
+INFO  [DSE main thread] 2020-07-20 09:09:36,699  DseDaemon.java:515 - DSE version: 6.8.1
+INFO  [DSE main thread] 2020-07-20 09:09:36,699  DseDaemon.java:520 - Solr version: 6.0.1.4.2746
+INFO  [DSE main thread] 2020-07-20 09:09:36,699  DseDaemon.java:521 - Appender version: 3.1.0
+INFO  [DSE main thread] 2020-07-20 09:09:36,699  DseDaemon.java:522 - Spark version: 2.4.0.14
+INFO  [DSE main thread] 2020-07-20 09:09:36,700  DseDaemon.java:523 - Spark Job Server version: 0.8.0.49
+INFO  [DSE main thread] 2020-07-20 09:09:36,700  DseDaemon.java:525 - DSE Spark Connector version: 6.8.1
+INFO  [DSE main thread] 2020-07-20 09:09:36,700  DseDaemon.java:529 - Maximum Key Length (AES): 2147483647
+INFO  [DSE main thread] 2020-07-20 09:09:36,738  DseConfig.java:368 - CQL slow log is enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,738  DseConfig.java:369 - CQL system info tables are not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,739  DseConfig.java:370 - Resource level latency tracking is not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,740  DseConfig.java:371 - Database summary stats are not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,740  DseConfig.java:372 - Cluster summary stats are not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,741  DseConfig.java:373 - Histogram data tables are not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,742  DseConfig.java:374 - User level latency tracking is not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,742  DseConfig.java:376 - Spark cluster info tables are not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,743  DseConfig.java:416 - Cql solr query paging is: off
+INFO  [DSE main thread] 2020-07-20 09:09:36,743  DseConfig.java:420 - This instance appears to have 1 thread per CPU core and 4 total CPU threads.
+INFO  [DSE main thread] 2020-07-20 09:09:36,744  DseConfig.java:437 - Server ID:02-42-AC-11-00-02
+INFO  [DSE main thread] 2020-07-20 09:09:36,746  DseDaemon.java:664 - AlwaysOn SQL is not enabled
+INFO  [DSE main thread] 2020-07-20 09:09:36,795  LeaseProtocol.java:92 - Registered LeaseProtocol
+INFO  [DSE main thread] 2020-07-20 09:09:36,799  InternalQueryRouterProtocol.java:53 - Registered InternalQueryRouterProtocol
+INFO  [DSE main thread] 2020-07-20 09:09:36,821  SearchProtocol.java:71 - Registered SearchProtocol
+INFO  [DSE main thread] 2020-07-20 09:09:36,893  RemoteMessageServer.java:76 - Starting internode-messaging internal message server on [/172.17.0.2]:8609
+INFO  [DSE main thread] 2020-07-20 09:09:36,959  InternodeMessaging.java:125 - Internode messaging server has been bound
+INFO  [DSE main thread] 2020-07-20 09:09:37,027  JMXServerUtils.java:255 - Configured JMX server at: service:jmx:rmi://127.0.0.1/jndi/rmi://127.0.0.1:7199/jmxrmi
+INFO  [DSE main thread] 2020-07-20 09:09:37,041  CassandraDaemon.java:557 - Hostname: 23e273b32652
+INFO  [DSE main thread] 2020-07-20 09:09:37,041  CassandraDaemon.java:564 - JVM vendor/version: OpenJDK 64-Bit Server VM/1.8.0_252
+INFO  [DSE main thread] 2020-07-20 09:09:37,042  CassandraDaemon.java:565 - Heap size: 1.824GiB/1.824GiB
+INFO  [DSE main thread] 2020-07-20 09:09:37,044  CassandraDaemon.java:570 - Code Cache Non-heap memory: init = 2555904(2496K) used = 17377408(16970K) committed = 17498112(17088K) max = 251658240(245760K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,045  CassandraDaemon.java:570 - Metaspace Non-heap memory: init = 0(0K) used = 64029392(62528K) committed = 66007040(64460K) max = -1(-1K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,045  CassandraDaemon.java:570 - Compressed Class Space Non-heap memory: init = 0(0K) used = 8680456(8477K) committed = 9121792(8908K) max = 1073741824(1048576K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,045  CassandraDaemon.java:570 - G1 Eden Space Heap memory: init = 102760448(100352K) used = 1141899264(1115136K) committed = 1200619520(1172480K) max = -1(-1K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,046  CassandraDaemon.java:570 - G1 Survivor Space Heap memory: init = 0(0K) used = 98566144(96256K) committed = 98566144(96256K) max = -1(-1K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,046  CassandraDaemon.java:570 - G1 Old Gen Heap memory: init = 1855979520(1812480K) used = 17558056(17146K) committed = 1855979520(1812480K) max = 1958739968(1912832K)
+INFO  [DSE main thread] 2020-07-20 09:09:37,047  CassandraDaemon.java:572 - Classpath: /opt/dse/lib/dse-advrep-6.8.1.jar:/opt/dse/lib/dse-analytics-core-6.8.1.jar:/opt/dse/lib/dse-core-6.8.1.jar:/opt/dse/lib/dse-dsefs-plugin-6.8.1.jar:/opt/dse/lib/dse-graph-6.8.1.jar:/opt/dse/lib/dse-graph-olap-6.8.1.jar:/opt/dse/lib/dse-graph-server-6.8.1.jar:/opt/dse/lib/dse-hadoop2-client-6.8.1.jar:/opt/dse/lib/dse-indexing-6.8.1.jar:/opt/dse/lib/dse-search-6.8.1.jar:/opt/dse/lib/dse-spark-6.8.1.jar:/opt/dse/resources/dse/lib/activation-1.1.1.jar:/opt/dse/resources/dse/lib/airline-2.2.0.jar:/opt/dse/resources/dse/lib/airline-io-2.2.0.jar:/opt/dse/resources/dse/lib/alfredo-0.1.7.4.jar:/opt/dse/resources/dse/lib/ant-1.10.3.jar:/opt/dse/resources/dse/lib/ant-launcher-1.10.3.jar:/opt/dse/resources/dse/lib/aopalliance-1.0.jar:/opt/dse/resources/dse/lib/apacheds-i18n-2.0.0-M24.jar:/opt/dse/resources/dse/lib/apacheds-kerberos-codec-2.0.0-M24.jar:/opt/dse/resources/dse/lib/api-asn1-api-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-asn1-ber-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-i18n-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-client-api-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-codec-core-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-codec-standalone-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-extras-aci-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-extras-codec-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-extras-codec-api-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-model-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-ldap-net-mina-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/api-util-1.0.0.2.dse.jar:/opt/dse/resources/dse/lib/asm-7.0.jar:/opt/dse/resources/dse/lib/asm-analysis-7.0.jar:/opt/dse/resources/dse/lib/asm-commons-7.0.jar:/opt/dse/resources/dse/lib/asm-tree-7.0.jar:/opt/dse/resources/dse/lib/asm-util-7.0.jar:/opt/dse/resources/dse/lib/base64-2.3.8.jar:/opt/dse/resources/dse/lib/bcprov-jdk15on-1.58.jar:/opt/dse/resources/dse/lib/cglib-3.2.9.jar:/opt/dse/resources/dse/lib/commons-beanutils-1.9.4.jar:/opt/dse/resources/dse/lib/commons-cli-1.3.1.jar:/opt/dse/resources/dse/lib/commons-codec-1.10.jar:/opt/dse/resources/dse/lib/commons-collections-3.2.2.jar:/opt/dse/resources/dse/lib/commons-collections4-4.1.jar:/opt/dse/resources/dse/lib/commons-compiler-3.0.0.jar:/opt/dse/resources/dse/lib/commons-compress-1.18.jar:/opt/dse/resources/dse/lib/commons-configuration-1.10.jar:/opt/dse/resources/dse/lib/commons-io-2.5.jar:/opt/dse/resources/dse/lib/commons-lang-2.6.jar:/opt/dse/resources/dse/lib/commons-lang3-3.5.jar:/opt/dse/resources/dse/lib/commons-pool-1.6.jar:/opt/dse/resources/dse/lib/commons-text-1.6.jar:/opt/dse/resources/dse/lib/compiler-0.9.6.jar:/opt/dse/resources/dse/lib/disruptor-3.3.6.jar:/opt/dse/resources/dse/lib/dse-analytics-common-6.8.1.jar:/opt/dse/resources/dse/lib/dse-commons-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-client-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-common-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-hadoop-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-scala-driver-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-server-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-shell-6.8.1.jar:/opt/dse/resources/dse/lib/dse-dsefs-util-6.8.1.jar:/opt/dse/resources/dse/lib/dse-hadoop2-client-6.8.1.jar:/opt/dse/resources/dse/lib/dse-lucene-analyzers-common-7.5.0.jar:/opt/dse/resources/dse/lib/dse-lucene-core-7.5.0.jar:/opt/dse/resources/dse/lib/durian-3.4.0.jar:/opt/dse/resources/dse/lib/ehcache-2.10.4.jar:/opt/dse/resources/dse/lib/esri-geometry-api-1.2.1.jar:/opt/dse/resources/dse/lib/guava-19.0.jar:/opt/dse/resources/dse/lib/guice-4.0.jar:/opt/dse/resources/dse/lib/guice-multibindings-4.0.jar:/opt/dse/resources/dse/lib/http2-client-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/http2-common-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/http2-hpack-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/http2-server-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/insights-client-0.1.0-dev.210+23548bd.jar:/opt/dse/resources/dse/lib/insights-core-0.1.0-dev.210+23548bd.jar:/opt/dse/resources/dse/lib/jackson-annotations-2.9.10.jar:/opt/dse/resources/dse/lib/jackson-core-2.9.10.jar:/opt/dse/resources/dse/lib/jackson-core-asl-1.9.13.1.dse.jar:/opt/dse/resources/dse/lib/jackson-databind-2.9.10.2.jar:/opt/dse/resources/dse/lib/jackson-datatype-guava-2.9.10.jar:/opt/dse/resources/dse/lib/jackson-datatype-jdk8-2.9.10.jar:/opt/dse/resources/dse/lib/jackson-datatype-jsr310-2.9.10.jar:/opt/dse/resources/dse/lib/janino-3.0.0.jar:/opt/dse/resources/dse/lib/jansi-1.11.jar:/opt/dse/resources/dse/lib/javassist-3.24.0-GA.jar:/opt/dse/resources/dse/lib/java-uuid-generator-3.1.3.jar:/opt/dse/resources/dse/lib/javax.activation-1.1.0.v201105071233.jar:/opt/dse/resources/dse/lib/javax.annotation-api-1.3.jar:/opt/dse/resources/dse/lib/javax.inject-1.jar:/opt/dse/resources/dse/lib/javax.mail.glassfish-1.4.1.v201005082020.jar:/opt/dse/resources/dse/lib/java-xmlbuilder-1.2.jar:/opt/dse/resources/dse/lib/javax.security.auth.message-1.0.0.v201108011116.jar:/opt/dse/resources/dse/lib/javax.servlet-api-3.1.0.jar:/opt/dse/resources/dse/lib/javax.transaction-api-1.3.jar:/opt/dse/resources/dse/lib/javax.websocket-api-1.0.jar:/opt/dse/resources/dse/lib/javax.websocket-client-api-1.0.jar:/opt/dse/resources/dse/lib/javax-websocket-client-impl-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/javax-websocket-server-impl-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jbcrypt-0.4d.jar:/opt/dse/resources/dse/lib/jcl-over-slf4j-1.7.25.jar:/opt/dse/resources/dse/lib/jets3t-0.9.4.jar:/opt/dse/resources/dse/lib/jetty-alpn-client-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-annotations-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-client-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-continuation-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-deploy-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-http-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-io-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-jaspi-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-jmx-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-jndi-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-plus-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-quickstart-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-rewrite-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-security-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-server-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-servlets-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-util-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-webapp-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jetty-xml-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/jffi-1.2.16.jar:/opt/dse/resources/dse/lib/jffi-1.2.16-native.jar:/opt/dse/resources/dse/lib/jline-2.14.6.jar:/opt/dse/resources/dse/lib/jnr-constants-0.9.9.jar:/opt/dse/resources/dse/lib/jnr-ffi-2.1.7.jar:/opt/dse/resources/dse/lib/jnr-posix-3.0.44.jar:/opt/dse/resources/dse/lib/jnr-x86asm-1.0.2.jar:/opt/dse/resources/dse/lib/journalio-1.4.2.jar:/opt/dse/resources/dse/lib/json-20090211.jar:/opt/dse/resources/dse/lib/jsr305-3.0.0.jar:/opt/dse/resources/dse/lib/kmip-1.7.1e.jar:/opt/dse/resources/dse/lib/kryo-4.0.2.jar:/opt/dse/resources/dse/lib/metrics-core-2.2.0.jar:/opt/dse/resources/dse/lib/metrics-core-3.2.6.jar:/opt/dse/resources/dse/lib/metrics-healthchecks-3.2.6.jar:/opt/dse/resources/dse/lib/metrics-scala_2.11-3.5.6.jar:/opt/dse/resources/dse/lib/mina-core-2.0.21.jar:/opt/dse/resources/dse/lib/minlog-1.3.0.jar:/opt/dse/resources/dse/lib/moshi-1.5.0.jar:/opt/dse/resources/dse/lib/netty-all-4.1.25.6.dse.jar:/opt/dse/resources/dse/lib/netty-transport-native-kqueue-4.1.25.6.dse-osx-x86_64.jar:/opt/dse/resources/dse/lib/objenesis-2.5.1.jar:/opt/dse/resources/dse/lib/okhttp-3.8.1.jar:/opt/dse/resources/dse/lib/okio-1.13.0.jar:/opt/dse/resources/dse/lib/org.apache.servicemix.bundles.antlr-2.7.7_5.jar:/opt/dse/resources/dse/lib/reflectasm-1.11.3.jar:/opt/dse/resources/dse/lib/reflections-0.9.10.jar:/opt/dse/resources/dse/lib/RoaringBitmap-0.7.45.jar:/opt/dse/resources/dse/lib/rxjava-1.3.6.jar:/opt/dse/resources/dse/lib/rxjava-string-1.1.1.jar:/opt/dse/resources/dse/lib/rxscala_2.11-0.26.5.jar:/opt/dse/resources/dse/lib/scala-async_2.11-0.9.6.jar:/opt/dse/resources/dse/lib/scala-library-2.11.12.jar:/opt/dse/resources/dse/lib/scala-logging_2.11-3.5.0.jar:/opt/dse/resources/dse/lib/scala-parser-combinators_2.11-1.0.6.jar:/opt/dse/resources/dse/lib/scala-reflect-2.11.12.jar:/opt/dse/resources/dse/lib/scopt_2.11-3.7.0.jar:/opt/dse/resources/dse/lib/shims-0.7.45.jar:/opt/dse/resources/dse/lib/slf4j-api-1.7.25.jar:/opt/dse/resources/dse/lib/spray-json_2.11-1.3.5.jar:/opt/dse/resources/dse/lib/typetools-0.5.0.jar:/opt/dse/resources/dse/lib/validation-api-1.1.0.Final.jar:/opt/dse/resources/dse/lib/websocket-api-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/websocket-client-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/websocket-common-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/websocket-server-9.4.20.v20190813.jar:/opt/dse/resources/dse/lib/websocket-servlet-9.4.20.v20190813.jar:/opt/dse/resources/dse/conf:/opt/dse/resources/cassandra/conf:/opt/dse/resources/cassandra/lib/agrona-0.9.26.jar:/opt/dse/resources/cassandra/lib/airline-0.7.jar:/opt/dse/resources/cassandra/lib/antlr-3.5.2.jar:/opt/dse/resources/cassandra/lib/antlr-runtime-3.5.2.jar:/opt/dse/resources/cassandra/lib/asm-7.0.jar:/opt/dse/resources/cassandra/lib/asm-analysis-7.0.jar:/opt/dse/resources/cassandra/lib/asm-commons-7.0.jar:/opt/dse/resources/cassandra/lib/asm-tree-7.0.jar:/opt/dse/resources/cassandra/lib/aws-java-sdk-core-1.11.647.jar:/opt/dse/resources/cassandra/lib/aws-java-sdk-kms-1.11.647.jar:/opt/dse/resources/cassandra/lib/aws-java-sdk-s3-1.11.647.jar:/opt/dse/resources/cassandra/lib/aws-java-sdk-sts-1.11.647.jar:/opt/dse/resources/cassandra/lib/caffeine-2.6.2.jar:/opt/dse/resources/cassandra/lib/commons-cli-1.3.1.jar:/opt/dse/resources/cassandra/lib/commons-codec-1.11.jar:/opt/dse/resources/cassandra/lib/commons-collections-3.2.2.jar:/opt/dse/resources/cassandra/lib/commons-io-2.5.jar:/opt/dse/resources/cassandra/lib/commons-lang3-3.5.jar:/opt/dse/resources/cassandra/lib/commons-math3-3.4.1.jar:/opt/dse/resources/cassandra/lib/compress-lzf-1.0.3.jar:/opt/dse/resources/cassandra/lib/concurrent-trees-2.4.0.jar:/opt/dse/resources/cassandra/lib/dse-commons-6.8.1.jar:/opt/dse/resources/cassandra/lib/dse-db-all-6.8.1.jar:/opt/dse/resources/cassandra/lib/durian-3.4.0.jar:/opt/dse/resources/cassandra/lib/ecj-3.15.1.jar:/opt/dse/resources/cassandra/lib/elephant-bird-hadoop-compat-4.3.jar:/opt/dse/resources/cassandra/lib/fastutil-6.5.7.jar:/opt/dse/resources/cassandra/lib/google-cloud-nio-shaded-0.116.0-alpha.jar:/opt/dse/resources/cassandra/lib/guava-19.0.jar:/opt/dse/resources/cassandra/lib/HdrHistogram-2.1.10.jar:/opt/dse/resources/cassandra/lib/hppc-0.7.3.jar:/opt/dse/resources/cassandra/lib/httpclient-4.5.9.jar:/opt/dse/resources/cassandra/lib/httpcore-4.4.11.jar:/opt/dse/resources/cassandra/lib/ion-java-1.0.2.jar:/opt/dse/resources/cassandra/lib/jackson-annotations-2.9.10.jar:/opt/dse/resources/cassandra/lib/jackson-core-2.9.10.jar:/opt/dse/resources/cassandra/lib/jackson-core-asl-1.9.13.1.dse.jar:/opt/dse/resources/cassandra/lib/jackson-databind-2.9.10.2.jar:/opt/dse/resources/cassandra/lib/jackson-dataformat-cbor-2.6.7.jar:/opt/dse/resources/cassandra/lib/jackson-dataformat-msgpack-0.8.16.jar:/opt/dse/resources/cassandra/lib/jackson-mapper-asl-1.9.13.1.dse.jar:/opt/dse/resources/cassandra/lib/jamm-0.3.3.jar:/opt/dse/resources/cassandra/lib/javax.inject-1.jar:/opt/dse/resources/cassandra/lib/jbcrypt-0.4d.jar:/opt/dse/resources/cassandra/lib/jcl-over-slf4j-1.7.25.jar:/opt/dse/resources/cassandra/lib/jcommander-1.30.jar:/opt/dse/resources/cassandra/lib/jctools-core-2.1.2.jar:/opt/dse/resources/cassandra/lib/jmespath-java-1.11.647.jar:/opt/dse/resources/cassandra/lib/jna-5.0.0.jar:/opt/dse/resources/cassandra/lib/joda-time-2.9.3.jar:/opt/dse/resources/cassandra/lib/json-simple-1.1.jar:/opt/dse/resources/cassandra/lib/jsr305-3.0.0.jar:/opt/dse/resources/cassandra/lib/jvm-attach-api-1.4.jar:/opt/dse/resources/cassandra/lib/log4j-over-slf4j-1.7.25.jar:/opt/dse/resources/cassandra/lib/logback-classic-1.2.3.jar:/opt/dse/resources/cassandra/lib/logback-core-1.2.3.jar:/opt/dse/resources/cassandra/lib/lz4-java-1.4.1.jar:/opt/dse/resources/cassandra/lib/metrics-core-3.2.6.jar:/opt/dse/resources/cassandra/lib/metrics-jvm-3.2.6.jar:/opt/dse/resources/cassandra/lib/metrics-logback-3.2.6.jar:/opt/dse/resources/cassandra/lib/msgpack-core-0.8.16.jar:/opt/dse/resources/cassandra/lib/mxdump-0.10.1.jar:/opt/dse/resources/cassandra/lib/netty-all-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-buffer-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-common-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-resolver-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-transport-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-transport-native-kqueue-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/netty-transport-native-unix-common-4.1.25.6.dse.jar:/opt/dse/resources/cassandra/lib/ohc-core-0.7.0.jar:/opt/dse/resources/cassandra/lib/psjava-0.1.19.jar:/opt/dse/resources/cassandra/lib/reactive-streams-1.0.2.jar:/opt/dse/resources/cassandra/lib/reporter-config3-3.0.3.jar:/opt/dse/resources/cassandra/lib/reporter-config-base-3.0.3.jar:/opt/dse/resources/cassandra/lib/rxjava-2.2.7.jar:/opt/dse/resources/cassandra/lib/scala-library-2.11.12.jar:/opt/dse/resources/cassandra/lib/scala-reflect-2.11.12.jar:/opt/dse/resources/cassandra/lib/sigar-1.6.4.jar:/opt/dse/resources/cassandra/lib/sjk-cli-0.10.1.jar:/opt/dse/resources/cassandra/lib/sjk-core-0.10.1.jar:/opt/dse/resources/cassandra/lib/sjk-hflame-0.10.1.jar:/opt/dse/resources/cassandra/lib/sjk-jfr-0.3.jar:/opt/dse/resources/cassandra/lib/sjk-nps-0.3.jar:/opt/dse/resources/cassandra/lib/sjk-stacktrace-0.10.1.jar:/opt/dse/resources/cassandra/lib/slf4j-api-1.7.25.jar:/opt/dse/resources/cassandra/lib/snakeyaml-1.15.jar:/opt/dse/resources/cassandra/lib/snappy-java-1.1.7.2.jar:/opt/dse/resources/cassandra/lib/snowball-stemmer-1.3.0.581.1.jar:/opt/dse/resources/cassandra/lib/ST4-4.0.8.jar:/opt/dse/resources/cassandra/lib/stream-2.7.0.jar:/opt/dse/resources/cassandra/../driver/lib/dse-java-driver-core-1.10.0-dse+20200217.jar:/opt/dse/resources/dse/lib/slf4j-api-1.7.25.jar:/opt/dse/resources/solr/conf:/opt/dse/resources/solr/lib/jackcess-encrypt-2.1.1.jar:/opt/dse/resources/solr/lib/jackson-annotations-2.9.10.jar:/opt/dse/resources/solr/lib/jetty-io-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/juniversalchardet-1.0.3.jar:/opt/dse/resources/solr/lib/protobuf-java-2.5.0.jar:/opt/dse/resources/solr/lib/java-libpst-0.8.1.jar:/opt/dse/resources/solr/lib/fontbox-2.0.6.jar:/opt/dse/resources/solr/lib/pdfbox-2.0.6.jar:/opt/dse/resources/solr/lib/sis-feature-0.8.jar:/opt/dse/resources/solr/lib/slice-0.15.jar:/opt/dse/resources/solr/lib/sis-utility-0.8.jar:/opt/dse/resources/solr/lib/xmpcore-5.1.3.jar:/opt/dse/resources/solr/lib/jsonic-1.2.7.jar:/opt/dse/resources/solr/lib/jts-core-1.16.0.jar:/opt/dse/resources/solr/lib/json-20140107.jar:/opt/dse/resources/solr/lib/jetty-servlet-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/jackson-core-2.9.10.jar:/opt/dse/resources/solr/lib/sis-metadata-0.8.jar:/opt/dse/resources/solr/lib/morfologik-stemming-2.1.0.jar:/opt/dse/resources/solr/lib/vorbis-java-core-0.8.jar:/opt/dse/resources/solr/lib/isoparser-1.1.18.jar:/opt/dse/resources/solr/lib/xmlbeans-2.6.0.jar:/opt/dse/resources/solr/lib/jhighlight-1.0.2.jar:/opt/dse/resources/solr/lib/org.restlet-2.3.0.jar:/opt/dse/resources/solr/lib/opennlp-tools-1.8.4.jar:/opt/dse/resources/solr/lib/jempbox-1.8.13.jar:/opt/dse/resources/solr/lib/asm-7.0.jar:/opt/dse/resources/solr/lib/noggit-0.6.jar:/opt/dse/resources/solr/lib/vorbis-java-tika-0.8.jar:/opt/dse/resources/solr/lib/jackcess-2.1.8.jar:/opt/dse/resources/solr/lib/json-simple-1.1.1.jar:/opt/dse/resources/solr/lib/asm-analysis-7.0.jar:/opt/dse/resources/solr/lib/stax-api-1.0.1.jar:/opt/dse/resources/solr/lib/xz-1.6.jar:/opt/dse/resources/solr/lib/antlr4-runtime-4.7.1.jar:/opt/dse/resources/solr/lib/jdom-2.0.2.jar:/opt/dse/resources/solr/lib/jwnl-1.3.3.jar:/opt/dse/resources/solr/lib/commons-exec-1.3.jar:/opt/dse/resources/solr/lib/joda-time-2.9.3.jar:/opt/dse/resources/solr/lib/jackson-dataformat-smile-2.7.9.jar:/opt/dse/resources/solr/lib/stax-api-1.0-2.jar:/opt/dse/resources/solr/lib/icu4j-56.1.jar:/opt/dse/resources/solr/lib/morfologik-fsa-2.1.0.jar:/opt/dse/resources/solr/lib/commons-fileupload-1.3.3.jar:/opt/dse/resources/solr/lib/apache-mime4j-dom-0.7.2.jar:/opt/dse/resources/solr/lib/jdom-1.0.jar:/opt/dse/resources/solr/lib/asm-tree-7.0.jar:/opt/dse/resources/solr/lib/woodstox-core-asl-4.4.1.jar:/opt/dse/resources/solr/lib/pdfbox-tools-2.0.6.jar:/opt/dse/resources/solr/lib/tika-core-1.12.jar:/opt/dse/resources/solr/lib/stax2-api-3.1.4.jar:/opt/dse/resources/solr/lib/opennlp-maxent-3.0.3.jar:/opt/dse/resources/solr/lib/t-digest-3.1.jar:/opt/dse/resources/solr/lib/jetty-util-6.1.26.jar:/opt/dse/resources/solr/lib/sis-referencing-0.8.jar:/opt/dse/resources/solr/lib/solr-uber-with-auth_2.1-6.0.1.4.2746.jar:/opt/dse/resources/solr/lib/geoapi-3.0.1.jar:/opt/dse/resources/solr/lib/sis-netcdf-0.8.jar:/opt/dse/resources/solr/lib/htrace-core-3.0.4.jar:/opt/dse/resources/solr/lib/sis-storage-0.8.jar:/opt/dse/resources/solr/lib/pdfbox-debugger-2.0.6.jar:/opt/dse/resources/solr/lib/org.restlet.ext.servlet-2.3.0.jar:/opt/dse/resources/solr/lib/apache-mime4j-core-0.7.2.jar:/opt/dse/resources/solr/lib/morfologik-polish-2.1.0.jar:/opt/dse/resources/solr/lib/commons-collections4-4.1.jar:/opt/dse/resources/solr/lib/tagsoup-1.2.1.jar:/opt/dse/resources/solr/lib/jetty-security-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/javax.inject-1.jar:/opt/dse/resources/solr/lib/commons-compress-1.18.jar:/opt/dse/resources/solr/lib/solr-web-6.0.1.4.2746.jar:/opt/dse/resources/solr/lib/langdetect-1.1-20120112.jar:/opt/dse/resources/solr/lib/rome-1.5.1.jar:/opt/dse/resources/solr/lib/nekohtml-1.9.17.jar:/opt/dse/resources/solr/lib/commons-cli-1.3.1.jar:/opt/dse/resources/solr/lib/asm-commons-7.0.jar:/opt/dse/resources/solr/lib/commons-lang-2.6.jar:/opt/dse/resources/solr/lib/gson-2.2.4.jar:/opt/dse/resources/solr/lib/javax.servlet-api-3.1.0.jar:/opt/dse/resources/solr/lib/commons-io-2.5.jar:/opt/dse/resources/solr/lib/curvesapi-1.04.jar:/opt/dse/resources/solr/lib/presto-parser-0.122.jar:/opt/dse/resources/solr/lib/guava-19.0.jar:/opt/dse/resources/solr/lib/rome-utils-1.5.1.jar:/opt/dse/resources/solr/lib/boilerpipe-1.1.0.jar:/opt/dse/resources/solr/lib/spatial4j-0.7.jar:/opt/dse/resources/solr/lib/jackson-databind-2.9.10.2.jar:/opt/dse/resources/solr/lib/jetty-http-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/jetty-server-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/jetty-util-9.4.20.v20190813.jar:/opt/dse/resources/solr/lib/jmatio-1.2.jar:/opt/dse/resources/solr/lib/metadata-extractor-2.9.1.jar:/opt/dse/resources/solr/lib/unit-api-1.0.jar:/opt/dse/resources/tomcat/conf:/opt/dse/resources/tomcat/lib/tomcat-jasper-el-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-el-api-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-embed-logging-juli-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-util-scan-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-util-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-juli-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-annotations-api-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-embed-jasper-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-jasper-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-api-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-jsp-api-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-embed-core-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-servlet-api-8.0.53.jar:/opt/dse/resources/tomcat/lib/tomcat-embed-el-8.0.53.jar:/opt/dse/resources/hadoop2-client/conf:/opt/dse/resources/hadoop2-client/lib/commons-codec-1.11.jar:/opt/dse/resources/hadoop2-client/lib/jsr305-3.0.0.jar:/opt/dse/resources/hadoop2-client/lib/commons-lang3-3.5.jar:/opt/dse/resources/hadoop2-client/lib/zookeeper-3.4.6.jar:/opt/dse/resources/hadoop2-client/lib/jaxb-api-2.2.2.jar:/opt/dse/resources/hadoop2-client/lib/protobuf-java-2.5.0.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-mapreduce-client-common-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-yarn-api-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/dse-commons-6.8.1.jar:/opt/dse/resources/hadoop2-client/lib/ant-launcher-1.10.3.jar:/opt/dse/resources/hadoop2-client/lib/api-ldap-model-1.0.0.jar:/opt/dse/resources/hadoop2-client/lib/xmlenc-0.52.jar:/opt/dse/resources/hadoop2-client/lib/commons-beanutils-1.9.4.jar:/opt/dse/resources/hadoop2-client/lib/httpcore-4.4.11.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-yarn-client-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/mina-core-2.0.21.jar:/opt/dse/resources/hadoop2-client/lib/asm-7.0.jar:/opt/dse/resources/hadoop2-client/lib/activation-1.1.1.jar:/opt/dse/resources/hadoop2-client/lib/jackson-core-asl-1.9.13.1.dse.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-mapreduce-client-core-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-hdfs-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-mapreduce-client-shuffle-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/curator-recipes-2.7.1.jar:/opt/dse/resources/hadoop2-client/lib/commons-collections-3.2.2.jar:/opt/dse/resources/hadoop2-client/lib/apacheds-kerberos-codec-2.0.0-M24.jar:/opt/dse/resources/hadoop2-client/lib/curator-client-2.7.1.jar:/opt/dse/resources/hadoop2-client/lib/commons-net-3.1.jar:/opt/dse/resources/hadoop2-client/lib/jersey-guice-1.9.jar:/opt/dse/resources/hadoop2-client/lib/jettison-1.1.jar:/opt/dse/resources/hadoop2-client/lib/base64-2.3.8.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-auth-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/jackson-mapper-asl-1.9.13.1.dse.jar:/opt/dse/resources/hadoop2-client/lib/durian-3.4.0.jar:/opt/dse/resources/hadoop2-client/lib/avro-1.7.4.jar:/opt/dse/resources/hadoop2-client/lib/ehcache-2.10.4.jar:/opt/dse/resources/hadoop2-client/lib/htrace-core-3.1.0-incubating.jar:/opt/dse/resources/hadoop2-client/lib/httpclient-4.5.9.jar:/opt/dse/resources/hadoop2-client/lib/stax-api-1.0-2.jar:/opt/dse/resources/hadoop2-client/lib/snappy-java-1.1.7.2.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-common-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-mapreduce-client-app-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/apacheds-i18n-2.0.0-M24.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-mapreduce-client-jobclient-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/curator-framework-2.7.1.jar:/opt/dse/resources/hadoop2-client/lib/ant-1.10.3.jar:/opt/dse/resources/hadoop2-client/lib/api-asn1-ber-1.0.0.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-azure-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/api-asn1-api-1.0.0.jar:/opt/dse/resources/hadoop2-client/lib/api-util-1.0.0.jar:/opt/dse/resources/hadoop2-client/lib/cglib-3.2.9.jar:/opt/dse/resources/hadoop2-client/lib/jsch-0.1.54.jar:/opt/dse/resources/hadoop2-client/lib/scala-reflect-2.11.12.jar:/opt/dse/resources/hadoop2-client/lib/javax.inject-1.jar:/opt/dse/resources/hadoop2-client/lib/java-xmlbuilder-1.2.jar:/opt/dse/resources/hadoop2-client/lib/aws-java-sdk-1.7.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-yarn-common-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-annotations-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/azure-storage-2.0.0.jar:/opt/dse/resources/hadoop2-client/lib/commons-cli-1.3.1.jar:/opt/dse/resources/hadoop2-client/lib/commons-lang-2.6.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-yarn-server-nodemanager-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/gson-2.2.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-client-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/bcprov-jdk15on-1.58.jar:/opt/dse/resources/hadoop2-client/lib/commons-io-2.5.jar:/opt/dse/resources/hadoop2-client/lib/commons-compress-1.4.1.jar:/opt/dse/resources/hadoop2-client/lib/xz-1.0.jar:/opt/dse/resources/hadoop2-client/lib/jcl-over-slf4j-1.7.25.jar:/opt/dse/resources/hadoop2-client/lib/org.apache.servicemix.bundles.antlr-2.7.7_5.jar:/opt/dse/resources/hadoop2-client/lib/guava-19.0.jar:/opt/dse/resources/hadoop2-client/lib/jsp-api-2.1.jar:/opt/dse/resources/hadoop2-client/lib/commons-configuration-1.10.jar:/opt/dse/resources/hadoop2-client/lib/slf4j-api-1.7.25.jar:/opt/dse/resources/hadoop2-client/lib/api-i18n-1.0.0.jar:/opt/dse/resources/hadoop2-client/lib/paranamer-2.3.jar:/opt/dse/resources/hadoop2-client/lib/leveldbjni-all-1.8.jar:/opt/dse/resources/hadoop2-client/lib/commons-math3-3.1.1.jar:/opt/dse/resources/hadoop2-client/lib/jets3t-0.9.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-aws-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/hadoop-yarn-server-common-2.7.1.4.jar:/opt/dse/resources/hadoop2-client/lib/scala-library-2.11.12.jar:/opt/dse/resources/hadoop2-client/lib/xercesImpl-2.9.1.jar:/opt/dse/resources/spark/conf:/opt/dse/resources/spark/lib/joda-convert-1.8.1.jar:/opt/dse/resources/spark/lib/validation-api-2.0.1.Final.jar:/opt/dse/resources/spark/lib/dse-java-driver-extras-1.10.0-dse+20200217.jar:/opt/dse/resources/spark/lib/jersey-container-servlet-core-2.29.jar:/opt/dse/resources/spark/lib/json4s-ast_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/RoaringBitmap-0.7.45.jar:/opt/dse/resources/spark/lib/hive-beeline-1.2.1.3.dse_spark2.jar:/opt/dse/resources/spark/lib/jpam-1.1.jar:/opt/dse/resources/spark/lib/machinist_2.11-0.6.1.jar:/opt/dse/resources/spark/lib/macro-compat_2.11-1.1.1.jar:/opt/dse/resources/spark/lib/libfb303-0.9.3.jar:/opt/dse/resources/spark/lib/jdo-api-3.0.1.jar:/opt/dse/resources/spark/lib/breeze_2.11-0.13.2.jar:/opt/dse/resources/spark/lib/JavaEWAH-0.3.2.jar:/opt/dse/resources/spark/lib/univocity-parsers-2.7.3.jar:/opt/dse/resources/spark/lib/json4s-ext_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/janino-3.0.9.jar:/opt/dse/resources/spark/lib/commons-compiler-3.0.9.jar:/opt/dse/resources/spark/lib/spark-unsafe_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/breeze-macros_2.11-0.13.2.jar:/opt/dse/resources/spark/lib/spire-macros_2.11-0.13.0.jar:/opt/dse/resources/spark/lib/hive-exec-1.2.1.3.dse_spark2.jar:/opt/dse/resources/spark/lib/dse-java-driver-mapping-1.10.0-dse+20200217.jar:/opt/dse/resources/spark/lib/jakarta.inject-2.5.0.jar:/opt/dse/resources/spark/lib/zstd-jni-1.3.2-2.jar:/opt/dse/resources/spark/lib/shapeless_2.11-2.3.2.jar:/opt/dse/resources/spark/lib/aopalliance-repackaged-2.5.0.jar:/opt/dse/resources/spark/lib/netty-3.9.9.Final.jar:/opt/dse/resources/spark/lib/jta-1.1.jar:/opt/dse/resources/spark/lib/hive-cli-1.2.1.3.dse_spark2.jar:/opt/dse/resources/spark/lib/pyrolite-4.13.jar:/opt/dse/resources/spark/lib/spark-network-common_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/istack-commons-runtime-3.0.8.jar:/opt/dse/resources/spark/lib/spark-catalyst_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/minlog-1.3.0.jar:/opt/dse/resources/spark/lib/core-1.1.2.jar:/opt/dse/resources/spark/lib/parquet-hadoop-1.10.0.jar:/opt/dse/resources/spark/lib/arrow-format-0.10.0.jar:/opt/dse/resources/spark/lib/jersey-container-servlet-2.29.jar:/opt/dse/resources/spark/lib/datanucleus-rdbms-3.2.9.jar:/opt/dse/resources/spark/lib/parquet-column-1.10.0.jar:/opt/dse/resources/spark/lib/spark-streaming_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/mail-1.4.7.jar:/opt/dse/resources/spark/lib/noggit-0.6.jar:/opt/dse/resources/spark/lib/spark-sql_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/parquet-jackson-1.10.0.jar:/opt/dse/resources/spark/lib/derby-10.12.1.1.jar:/opt/dse/resources/spark/lib/datanucleus-api-jdo-3.2.6.jar:/opt/dse/resources/spark/lib/json4s-core_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/jakarta.annotation-api-1.3.4.jar:/opt/dse/resources/spark/lib/xbean-asm6-shaded-4.8.jar:/opt/dse/resources/spark/lib/arrow-memory-0.10.0.jar:/opt/dse/resources/spark/lib/jackson-module-scala_2.11-2.9.10.jar:/opt/dse/resources/spark/lib/stax-api-1.0.1.jar:/opt/dse/resources/spark/lib/avro-ipc-1.7.7.jar:/opt/dse/resources/spark/lib/parquet-encoding-1.10.0.jar:/opt/dse/resources/spark/lib/hive-metastore-1.2.1.3.dse_spark2.jar:/opt/dse/resources/spark/lib/spark-connector-6.8.1.jar:/opt/dse/resources/spark/lib/unused-1.0.0.jar:/opt/dse/resources/spark/lib/datanucleus-core-3.2.10.jar:/opt/dse/resources/spark/lib/objenesis-2.5.1.jar:/opt/dse/resources/spark/lib/chill_2.11-0.9.3.jar:/opt/dse/resources/spark/lib/eigenbase-properties-1.1.5.jar:/opt/dse/resources/spark/lib/spark-hive-thriftserver_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/parquet-common-1.10.0.jar:/opt/dse/resources/spark/lib/httpmime-4.5.5.jar:/opt/dse/resources/spark/lib/jersey-media-jaxb-2.29.jar:/opt/dse/resources/spark/lib/orc-shims-1.5.2.jar:/opt/dse/resources/spark/lib/parquet-hadoop-bundle-1.6.0.jar:/opt/dse/resources/spark/lib/spark-repl_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/metrics-json-3.2.6.jar:/opt/dse/resources/spark/lib/hk2-locator-2.5.0.jar:/opt/dse/resources/spark/lib/spark-network-shuffle_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/flatbuffers-1.2.0-3f79e055.jar:/opt/dse/resources/spark/lib/spark-hive_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/jaxb-runtime-2.3.2.jar:/opt/dse/resources/spark/lib/woodstox-core-asl-4.4.1.jar:/opt/dse/resources/spark/lib/spark-kvstore_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/orc-mapreduce-1.5.2-nohive.jar:/opt/dse/resources/spark/lib/snappy-0.2.jar:/opt/dse/resources/spark/lib/libthrift-0.9.3.jar:/opt/dse/resources/spark/lib/jersey-hk2-2.29.jar:/opt/dse/resources/spark/lib/jakarta.ws.rs-api-2.1.5.jar:/opt/dse/resources/spark/lib/velocity-1.7.jar:/opt/dse/resources/spark/lib/stax2-api-3.1.4.jar:/opt/dse/resources/spark/lib/jetty-util-6.1.26.jar:/opt/dse/resources/spark/lib/javolution-5.5.1.jar:/opt/dse/resources/spark/lib/avro-1.8.2.jar:/opt/dse/resources/spark/lib/xml-apis-1.3.04.jar:/opt/dse/resources/spark/lib/commons-crypto-1.0.0.jar:/opt/dse/resources/spark/lib/kryo-4.0.2.jar:/opt/dse/resources/spark/lib/jackson-xc-1.9.13.1.dse.jar:/opt/dse/resources/spark/lib/hive-jdbc-1.2.1.3.dse_spark2.jar:/opt/dse/resources/spark/lib/spire_2.11-0.13.0.jar:/opt/dse/resources/spark/lib/json4s-native_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/aircompressor-0.10.jar:/opt/dse/resources/spark/lib/json4s-scalap_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/chill-java-0.9.3.jar:/opt/dse/resources/spark/lib/antlr4-runtime-4.7.jar:/opt/dse/resources/spark/lib/calcite-core-1.2.0-incubating.jar:/opt/dse/resources/spark/lib/ivy-2.4.0.jar:/opt/dse/resources/spark/lib/jakarta.xml.bind-api-2.3.2.jar:/opt/dse/resources/spark/lib/jackson-module-paranamer-2.9.10.jar:/opt/dse/resources/spark/lib/dse-analytics-aoss-app-6.8.1.jar:/opt/dse/resources/spark/lib/jul-to-slf4j-1.7.25.jar:/opt/dse/resources/spark/lib/jersey-client-2.29.jar:/opt/dse/resources/spark/lib/osgi-resource-locator-1.0.3.jar:/opt/dse/resources/spark/lib/spark-core_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/shims-0.7.45.jar:/opt/dse/resources/spark/lib/spark-mllib_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/hk2-api-2.5.0.jar:/opt/dse/resources/spark/lib/commons-dbcp-1.4.jar:/opt/dse/resources/spark/lib/reflectasm-1.11.3.jar:/opt/dse/resources/spark/lib/spark-tags_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/solr-solrj-6.0.1.4.2746.jar:/opt/dse/resources/spark/lib/avro-mapred-1.8.2-hadoop2.jar:/opt/dse/resources/spark/lib/jersey-server-2.29.jar:/opt/dse/resources/spark/lib/xz-1.5.jar:/opt/dse/resources/spark/lib/jtransforms-2.4.0.jar:/opt/dse/resources/spark/lib/hk2-utils-2.5.0.jar:/opt/dse/resources/spark/lib/opencsv-2.3.jar:/opt/dse/resources/spark/lib/arrow-vector-0.10.0.jar:/opt/dse/resources/spark/lib/spark-graphx_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/spark-launcher_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/json4s-jackson_2.11-3.5.3.jar:/opt/dse/resources/spark/lib/jersey-common-2.29.jar:/opt/dse/resources/spark/lib/arpack_combined_all-0.1.jar:/opt/dse/resources/spark/lib/jackson-jaxrs-1.9.13.1.dse.jar:/opt/dse/resources/spark/lib/py4j-0.10.7.jar:/opt/dse/resources/spark/lib/spark-mllib-local_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/calcite-avatica-1.2.0-incubating.jar:/opt/dse/resources/spark/lib/orc-core-1.5.2-nohive.jar:/opt/dse/resources/spark/lib/bonecp-0.8.0.RELEASE.jar:/opt/dse/resources/spark/lib/calcite-linq4j-1.2.0-incubating.jar:/opt/dse/resources/spark/lib/oro-2.0.8.jar:/opt/dse/resources/spark/lib/super-csv-2.2.0.jar:/opt/dse/resources/spark/lib/spark-sketch_2.11-2.4.0.14.jar:/opt/dse/resources/spark/lib/parquet-format-2.4.0.jar:/opt/dse/resources/analytics-core/lib/scala-compiler-2.11.12.jar:/opt/dse/resources/analytics-core/lib/scala-logging_2.11-3.5.0.jar:/opt/dse/resources/analytics-core/lib/scala-parser-combinators_2.11-1.0.6.jar:/opt/dse/resources/analytics-core/lib/scalap-2.11.12.jar:/opt/dse/resources/analytics-core/lib/scala-reflect-2.11.12.jar:/opt/dse/resources/analytics-core/lib/scala-xml_2.11-1.0.5.jar:/opt/dse/resources/analytics-core/lib/slf4j-api-1.7.25.jar:/opt/dse/resources/analytics-core/lib/scala-library-2.11.12.jar:/opt/dse/resources/graph/lib/gremlin-scala_2.11-3.2.2.0.jar:/opt/dse/resources/graph/lib/auto-common-0.6.jar:/opt/dse/resources/graph/lib/groovy-sandbox-1.19.DSE.jar:/opt/dse/resources/graph/lib/macros_2.11-3.2.2.0.jar:/opt/dse/resources/graph/lib/macro-compat_2.11-1.1.1.jar:/opt/dse/resources/graph/lib/groovy-2.5.7.jar:/opt/dse/resources/graph/lib/gremlin-server-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph/lib/shapeless_2.11-2.3.2.jar:/opt/dse/resources/graph/lib/org.eclipse.equinox.registry-3.5.101.jar:/opt/dse/resources/graph/lib/org.eclipse.core.jobs-3.5.100.jar:/opt/dse/resources/graph/lib/org.eclipse.core.resources-3.7.100.jar:/opt/dse/resources/graph/lib/minlog-1.3.0.jar:/opt/dse/resources/graph/lib/org.eclipse.osgi-3.7.1.jar:/opt/dse/resources/graph/lib/org.eclipse.text-3.5.101.jar:/opt/dse/resources/graph/lib/org.eclipse.equinox.common-3.6.0.jar:/opt/dse/resources/graph/lib/gremlin-console-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph/lib/org.eclipse.core.expressions-3.4.300.jar:/opt/dse/resources/graph/lib/velocity-1.7.jar:/opt/dse/resources/graph/lib/auto-factory-1.0-beta5.jar:/opt/dse/resources/graph/lib/org.eclipse.core.contenttype-3.4.100.jar:/opt/dse/resources/graph/lib/kryo-4.0.2.jar:/opt/dse/resources/graph/lib/google-java-format-1.1.jar:/opt/dse/resources/graph/lib/org.eclipse.equinox.app-1.3.100.jar:/opt/dse/resources/graph/lib/reflectasm-1.11.3.jar:/opt/dse/resources/graph/lib/org.eclipse.jdt.core-3.10.0.jar:/opt/dse/resources/graph/lib/org.eclipse.core.commands-3.6.0.jar:/opt/dse/resources/graph/lib/org.eclipse.core.runtime-3.7.0.jar:/opt/dse/resources/graph/lib/org.eclipse.equinox.preferences-3.4.1.jar:/opt/dse/resources/graph/lib/org.eclipse.core.filesystem-1.3.100.jar:/opt/dse/resources/graph-server/lib/validation-api-2.0.1.Final.jar:/opt/dse/resources/graph-server/lib/dse-java-driver-extras-1.10.0-dse+20200217.jar:/opt/dse/resources/graph-server/lib/jcabi-manifests-1.1.jar:/opt/dse/resources/graph-server/lib/dse-hadoop2-client-6.8.1.jar:/opt/dse/resources/graph-server/lib/jersey-container-servlet-core-2.29.jar:/opt/dse/resources/graph-server/lib/jnr-posix-3.0.44.jar:/opt/dse/resources/graph-server/lib/json4s-ast_2.11-3.5.3.jar:/opt/dse/resources/graph-server/lib/zookeeper-3.4.6.jar:/opt/dse/resources/graph-server/lib/RoaringBitmap-0.7.45.jar:/opt/dse/resources/graph-server/lib/javapoet-1.8.0.jar:/opt/dse/resources/graph-server/lib/jaxb-api-2.2.2.jar:/opt/dse/resources/graph-server/lib/libfb303-0.9.3.jar:/opt/dse/resources/graph-server/lib/jdo-api-3.0.1.jar:/opt/dse/resources/graph-server/lib/JavaEWAH-0.3.2.jar:/opt/dse/resources/graph-server/lib/univocity-parsers-2.7.3.jar:/opt/dse/resources/graph-server/lib/rxjava2-extensions-0.20.5.jar:/opt/dse/resources/graph-server/lib/hadoop-mapreduce-client-common-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/hadoop-yarn-api-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/streamex-0.6.5.jar:/opt/dse/resources/graph-server/lib/janino-3.0.9.jar:/opt/dse/resources/graph-server/lib/commons-compiler-3.0.9.jar:/opt/dse/resources/graph-server/lib/spark-unsafe_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/hive-exec-1.2.1.3.dse_spark2.jar:/opt/dse/resources/graph-server/lib/dse-java-driver-mapping-1.10.0-dse+20200217.jar:/opt/dse/resources/graph-server/lib/jakarta.inject-2.5.0.jar:/opt/dse/resources/graph-server/lib/zstd-jni-1.3.2-2.jar:/opt/dse/resources/graph-server/lib/commons-codec-1.12.jar:/opt/dse/resources/graph-server/lib/aopalliance-repackaged-2.5.0.jar:/opt/dse/resources/graph-server/lib/netty-3.9.9.Final.jar:/opt/dse/resources/graph-server/lib/jnr-ffi-2.1.7.jar:/opt/dse/resources/graph-server/lib/jta-1.1.jar:/opt/dse/resources/graph-server/lib/groovy-jsr223-2.5.7-indy.jar:/opt/dse/resources/graph-server/lib/asm-util-7.0.jar:/opt/dse/resources/graph-server/lib/pyrolite-4.13.jar:/opt/dse/resources/graph-server/lib/spark-network-common_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/groovy-swing-2.5.7.jar:/opt/dse/resources/graph-server/lib/xmlenc-0.52.jar:/opt/dse/resources/graph-server/lib/spark-catalyst_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/hadoop-yarn-client-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/graphframes_2.11-0.6.0.1-spark2.4.jar:/opt/dse/resources/graph-server/lib/parquet-hadoop-1.10.0.jar:/opt/dse/resources/graph-server/lib/arrow-format-0.10.0.jar:/opt/dse/resources/graph-server/lib/hamcrest-library-1.3.jar:/opt/dse/resources/graph-server/lib/jersey-container-servlet-2.29.jar:/opt/dse/resources/graph-server/lib/datanucleus-rdbms-3.2.9.jar:/opt/dse/resources/graph-server/lib/parquet-column-1.10.0.jar:/opt/dse/resources/graph-server/lib/spark-streaming_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/commons-httpclient-3.1.jar:/opt/dse/resources/graph-server/lib/activation-1.1.1.jar:/opt/dse/resources/graph-server/lib/spark-sql_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/hadoop-mapreduce-client-core-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/parquet-jackson-1.10.0.jar:/opt/dse/resources/graph-server/lib/derby-10.12.1.1.jar:/opt/dse/resources/graph-server/lib/jnr-x86asm-1.0.2.jar:/opt/dse/resources/graph-server/lib/datanucleus-api-jdo-3.2.6.jar:/opt/dse/resources/graph-server/lib/hadoop-hdfs-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/exp4j-0.4.8.jar:/opt/dse/resources/graph-server/lib/hadoop-mapreduce-client-shuffle-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/json4s-core_2.11-3.5.3.jar:/opt/dse/resources/graph-server/lib/apacheds-kerberos-codec-2.0.0-M15.jar:/opt/dse/resources/graph-server/lib/jakarta.annotation-api-1.3.4.jar:/opt/dse/resources/graph-server/lib/xbean-asm6-shaded-4.8.jar:/opt/dse/resources/graph-server/lib/arrow-memory-0.10.0.jar:/opt/dse/resources/graph-server/lib/commons-net-3.1.jar:/opt/dse/resources/graph-server/lib/jackson-module-scala_2.11-2.9.10.jar:/opt/dse/resources/graph-server/lib/jersey-guice-1.9.jar:/opt/dse/resources/graph-server/lib/jettison-1.1.jar:/opt/dse/resources/graph-server/lib/parquet-encoding-1.10.0.jar:/opt/dse/resources/graph-server/lib/hive-metastore-1.2.1.3.dse_spark2.jar:/opt/dse/resources/graph-server/lib/spark-connector-6.8.1.jar:/opt/dse/resources/graph-server/lib/hadoop-auth-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/unused-1.0.0.jar:/opt/dse/resources/graph-server/lib/scala-logging_2.11-3.5.0.jar:/opt/dse/resources/graph-server/lib/datanucleus-core-3.2.10.jar:/opt/dse/resources/graph-server/lib/jcabi-log-0.14.jar:/opt/dse/resources/graph-server/lib/htrace-core-3.1.0-incubating.jar:/opt/dse/resources/graph-server/lib/chill_2.11-0.9.3.jar:/opt/dse/resources/graph-server/lib/groovy-2.5.7-indy.jar:/opt/dse/resources/graph-server/lib/eigenbase-properties-1.1.5.jar:/opt/dse/resources/graph-server/lib/parquet-common-1.10.0.jar:/opt/dse/resources/graph-server/lib/hadoop-common-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/hadoop-mapreduce-client-app-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/guice-assistedinject-4.0.jar:/opt/dse/resources/graph-server/lib/httpmime-4.5.5.jar:/opt/dse/resources/graph-server/lib/picocli-3.9.5.jar:/opt/dse/resources/graph-server/lib/hadoop-mapreduce-client-jobclient-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/jersey-media-jaxb-2.29.jar:/opt/dse/resources/graph-server/lib/orc-shims-1.5.2.jar:/opt/dse/resources/graph-server/lib/parquet-hadoop-bundle-1.6.0.jar:/opt/dse/resources/graph-server/lib/hk2-locator-2.5.0.jar:/opt/dse/resources/graph-server/lib/spark-network-shuffle_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/flatbuffers-1.2.0-3f79e055.jar:/opt/dse/resources/graph-server/lib/spark-hive_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/gremlin-driver-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/spark-kvstore_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/orc-mapreduce-1.5.2-nohive.jar:/opt/dse/resources/graph-server/lib/snappy-0.2.jar:/opt/dse/resources/graph-server/lib/paranamer-2.8.jar:/opt/dse/resources/graph-server/lib/libthrift-0.9.3.jar:/opt/dse/resources/graph-server/lib/scala-parser-combinators_2.11-1.0.6.jar:/opt/dse/resources/graph-server/lib/jersey-hk2-2.29.jar:/opt/dse/resources/graph-server/lib/jakarta.ws.rs-api-2.1.5.jar:/opt/dse/resources/graph-server/lib/groovy-console-2.5.7.jar:/opt/dse/resources/graph-server/lib/jnr-constants-0.9.9.jar:/opt/dse/resources/graph-server/lib/javolution-5.5.1.jar:/opt/dse/resources/graph-server/lib/avro-1.8.2.jar:/opt/dse/resources/graph-server/lib/commons-compress-1.19.jar:/opt/dse/resources/graph-server/lib/xml-apis-1.3.04.jar:/opt/dse/resources/graph-server/lib/groovy-groovysh-2.5.7-indy.jar:/opt/dse/resources/graph-server/lib/gremlin-core-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/commons-crypto-1.0.0.jar:/opt/dse/resources/graph-server/lib/joda-convert-1.2.jar:/opt/dse/resources/graph-server/lib/jackson-xc-1.9.13.1.dse.jar:/opt/dse/resources/graph-server/lib/aircompressor-0.10.jar:/opt/dse/resources/graph-server/lib/json4s-scalap_2.11-3.5.3.jar:/opt/dse/resources/graph-server/lib/chill-java-0.9.3.jar:/opt/dse/resources/graph-server/lib/groovy-templates-2.5.7.jar:/opt/dse/resources/graph-server/lib/calcite-core-1.2.0-incubating.jar:/opt/dse/resources/graph-server/lib/ivy-2.4.0.jar:/opt/dse/resources/graph-server/lib/jackson-module-paranamer-2.9.10.jar:/opt/dse/resources/graph-server/lib/hadoop-gremlin-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/gremlin-groovy-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/spark-gremlin-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/jersey-client-2.29.jar:/opt/dse/resources/graph-server/lib/tinkergraph-gremlin-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/hadoop-yarn-common-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/osgi-resource-locator-1.0.3.jar:/opt/dse/resources/graph-server/lib/hadoop-annotations-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/spark-core_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/apache-log4j-extras-1.2.17.jar:/opt/dse/resources/graph-server/lib/scala-xml_2.11-1.0.5.jar:/opt/dse/resources/graph-server/lib/shims-0.7.45.jar:/opt/dse/resources/graph-server/lib/jffi-1.2.16.jar:/opt/dse/resources/graph-server/lib/hk2-api-2.5.0.jar:/opt/dse/resources/graph-server/lib/commons-dbcp-1.4.jar:/opt/dse/resources/graph-server/lib/jffi-1.2.16-native.jar:/opt/dse/resources/graph-server/lib/spark-tags_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/solr-solrj-6.0.1.4.2746.jar:/opt/dse/resources/graph-server/lib/hadoop-yarn-server-nodemanager-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/hadoop-client-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/avro-mapred-1.8.2-hadoop2.jar:/opt/dse/resources/graph-server/lib/jersey-server-2.29.jar:/opt/dse/resources/graph-server/lib/bcprov-jdk15on-1.58.jar:/opt/dse/resources/graph-server/lib/awaitility-3.1.2.jar:/opt/dse/resources/graph-server/lib/javatuples-1.2.jar:/opt/dse/resources/graph-server/lib/dagger-2.26.jar:/opt/dse/resources/graph-server/lib/hamcrest-core-1.3.jar:/opt/dse/resources/graph-server/lib/jbool_expressions-1.14.jar:/opt/dse/resources/graph-server/lib/apacheds-i18n-2.0.0-M15.jar:/opt/dse/resources/graph-server/lib/hk2-utils-2.5.0.jar:/opt/dse/resources/graph-server/lib/jsp-api-2.1.jar:/opt/dse/resources/graph-server/lib/opencsv-2.3.jar:/opt/dse/resources/graph-server/lib/arrow-vector-0.10.0.jar:/opt/dse/resources/graph-server/lib/objenesis-2.6.jar:/opt/dse/resources/graph-server/lib/leveldbjni-all-1.8.jar:/opt/dse/resources/graph-server/lib/groovy-cli-picocli-2.5.7.jar:/opt/dse/resources/graph-server/lib/dse-analytics-common-6.8.1.jar:/opt/dse/resources/graph-server/lib/spark-launcher_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/json4s-jackson_2.11-3.5.3.jar:/opt/dse/resources/graph-server/lib/jersey-common-2.29.jar:/opt/dse/resources/graph-server/lib/groovy-json-2.5.7-indy.jar:/opt/dse/resources/graph-server/lib/jackson-jaxrs-1.9.13.1.dse.jar:/opt/dse/resources/graph-server/lib/calcite-avatica-1.2.0-incubating.jar:/opt/dse/resources/graph-server/lib/groovy-xml-2.5.7.jar:/opt/dse/resources/graph-server/lib/orc-core-1.5.2-nohive.jar:/opt/dse/resources/graph-server/lib/bonecp-0.8.0.RELEASE.jar:/opt/dse/resources/graph-server/lib/hadoop-yarn-server-common-2.7.1.4.jar:/opt/dse/resources/graph-server/lib/dse-java-driver-graph-1.10.0-dse+20200217.jar:/opt/dse/resources/graph-server/lib/dse-graph-api-6.8.1.jar:/opt/dse/resources/graph-server/lib/gremlin-shaded-3.4.5-20200107-6cec00d8.jar:/opt/dse/resources/graph-server/lib/calcite-linq4j-1.2.0-incubating.jar:/opt/dse/resources/graph-server/lib/oro-2.0.8.jar:/opt/dse/resources/graph-server/lib/spark-sketch_2.11-2.4.0.14.jar:/opt/dse/resources/graph-server/lib/parquet-format-2.4.0.jar:/opt/dse/resources/graph-server/lib/xercesImpl-2.9.1.jar:/opt/dse/resources/cassandra/lib/jamm-0.3.3.jar
+INFO  [DSE main thread] 2020-07-20 09:09:37,048  CassandraDaemon.java:574 - Process information PID 1, JVM arguments: [-Ddse.server_process, -ea, -XX:+UseThreadPriorities, -XX:+HeapDumpOnOutOfMemoryError, -Xss256k, -XX:StringTableSize=1000003, -XX:+AlwaysPreTouch, -XX:+UseTLAB, -XX:+ResizeTLAB, -XX:+UseNUMA, -Djava.net.preferIPv4Stack=true, -XX:-RestrictContended, -XX:+UnlockDiagnosticVMOptions, -XX:GuaranteedSafepointInterval=300000, -XX:-UseBiasedLocking, -XX:+UnlockDiagnosticVMOptions, -XX:+DebugNonSafepoints, -Djdk.nio.maxCachedBufferSize=1048576, -Dio.netty.eventLoop.maxPendingTasks=65536, -Dio.netty.maxDirectMemory=0, -XX:ThreadPriorityPolicy=42, -XX:+UseG1GC, -XX:+ParallelRefProcEnabled, -XX:G1RSetUpdatingPauseTimePercent=5, -XX:MaxGCPauseMillis=500, -XX:+PrintGCDetails, -XX:+PrintGCDateStamps, -XX:+PrintHeapAtGC, -XX:+PrintTenuringDistribution, -XX:+PrintGCApplicationStoppedTime, -XX:+PrintPromotionFailure, -XX:+UseGCLogFileRotation, -XX:NumberOfGCLogFiles=10, -XX:GCLogFileSize=10M, -Xloggc:/var/log/cassandra/gc.log, -XX:MaxDirectMemorySize=2802M, -Xms1868M, -Xmx1868M, -XX:CompileCommandFile=/opt/dse/resources/cassandra/conf/hotspot_compiler, -javaagent:/opt/dse/resources/cassandra/lib/jamm-0.3.3.jar, -Dcassandra.jmx.local.port=7199, -Dcom.sun.management.jmxremote.authenticate=false, -Dcom.sun.management.jmxremote.password.file=/etc/cassandra/jmxremote.password, -Dmx4jaddress=127.0.0.1, -Djava.library.path=/opt/dse/resources/hadoop2-client/lib/native:/opt/dse/resources/cassandra/lib/sigar-bin:, -Ddse.system_memory_in_mb=7472, -Dagrona.disable.bounds.checks=TRUE, -Dguice_include_stack_traces=OFF, -Ddse.system_memory_in_mb=7472, -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader, -XX:OnOutOfMemoryError=kill -9 %p, -Dlogback.configurationFile=logback.xml, -Dcassandra.logdir=/var/log/cassandra, -Dcassandra.storagedir=/opt/dse/data, -Dcassandra-foreground=yes, -Dsearch-service=true, -Dcatalina.home=/opt/dse/resources/tomcat, -Dcatalina.base=/opt/dse/resources/tomcat, -Djava.util.logging.config.file=/opt/dse/resources/tomcat/conf/logging.properties, -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager, -Dtomcat.logs=/opt/dse/tomcat, -Dspark-trackers=true, -Dgraph-enabled=true, -Dsolr.solr.home=solr/, -Ddisable.configEdit=true, -Djava.io.tmpdir=/tmp/dse/dse.FjrZ6G7YU, -Djdk.internal.lambda.dumpProxyClasses=/tmp/dse/dse.FjrZ6G7YU/lni, -Ddse.server=true, -Dguice_include_stack_traces=OFF, -Ddse.system_memory_in_mb=7472, -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader, -Dsolr.web.home=/opt/dse/resources/solr/web]
+WARN  [DSE main thread] 2020-07-20 09:09:37,050  NativeLibrary.java:195 - Unable to lock JVM memory (ENOMEM). This can result in part of the JVM being swapped out, especially with mmapped I/O enabled. Increase RLIMIT_MEMLOCK or run Cassandra as root.
+WARN  [DSE main thread] 2020-07-20 09:09:37,081  StartupChecks.java:158 - jemalloc shared library could not be preloaded to speed up memory allocations
+INFO  [DSE main thread] 2020-07-20 09:09:37,085  SigarLibrary.java:44 - Initializing SIGAR library
+INFO  [DSE main thread] 2020-07-20 09:09:37,104  SigarLibrary.java:180 - Checked OS settings and found them configured for optimal performance.
+INFO  [DSE main thread] 2020-07-20 09:09:37,218  ColumnFamilyStore.java:459 - Initializing system_schema.keyspaces
+INFO  [DSE main thread] 2020-07-20 09:09:37,534  SSTableReader.java:595 - openAll time for table keyspaces using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,668  ColumnFamilyStore.java:459 - Initializing system_schema.tables
+INFO  [DSE main thread] 2020-07-20 09:09:37,670  SSTableReader.java:595 - openAll time for table tables using 4 threads: 0.075ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,681  ColumnFamilyStore.java:459 - Initializing system_schema.columns
+INFO  [DSE main thread] 2020-07-20 09:09:37,682  SSTableReader.java:595 - openAll time for table columns using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,692  ColumnFamilyStore.java:459 - Initializing system_schema.hidden_columns
+INFO  [DSE main thread] 2020-07-20 09:09:37,693  SSTableReader.java:595 - openAll time for table hidden_columns using 4 threads: 0.089ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,703  ColumnFamilyStore.java:459 - Initializing system_schema.triggers
+INFO  [DSE main thread] 2020-07-20 09:09:37,704  SSTableReader.java:595 - openAll time for table triggers using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,713  ColumnFamilyStore.java:459 - Initializing system_schema.dropped_columns
+INFO  [DSE main thread] 2020-07-20 09:09:37,714  SSTableReader.java:595 - openAll time for table dropped_columns using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,819  ColumnFamilyStore.java:459 - Initializing system_schema.views
+INFO  [DSE main thread] 2020-07-20 09:09:37,829  SSTableReader.java:595 - openAll time for table views using 4 threads: 0.062ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,848  ColumnFamilyStore.java:459 - Initializing system_schema.types
+INFO  [DSE main thread] 2020-07-20 09:09:37,850  SSTableReader.java:595 - openAll time for table types using 4 threads: 0.063ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,863  ColumnFamilyStore.java:459 - Initializing system_schema.functions
+INFO  [DSE main thread] 2020-07-20 09:09:37,874  SSTableReader.java:595 - openAll time for table functions using 4 threads: 0.009ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,891  ColumnFamilyStore.java:459 - Initializing system_schema.aggregates
+INFO  [DSE main thread] 2020-07-20 09:09:37,892  SSTableReader.java:595 - openAll time for table aggregates using 4 threads: 0.077ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,910  ColumnFamilyStore.java:459 - Initializing system_schema.indexes
+INFO  [DSE main thread] 2020-07-20 09:09:37,913  SSTableReader.java:595 - openAll time for table indexes using 4 threads: 0.136ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,929  ColumnFamilyStore.java:459 - Initializing system_schema.vertices
+INFO  [DSE main thread] 2020-07-20 09:09:37,933  SSTableReader.java:595 - openAll time for table vertices using 4 threads: 0.143ms
+INFO  [DSE main thread] 2020-07-20 09:09:37,960  ColumnFamilyStore.java:459 - Initializing system_schema.edges
+INFO  [DSE main thread] 2020-07-20 09:09:37,962  SSTableReader.java:595 - openAll time for table edges using 4 threads: 0.103ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,741  StorageService.java:189 - No previous version information found. Current version is DSE 6.8.1
+INFO  [DSE main thread] 2020-07-20 09:09:39,781  ColumnFamilyStore.java:459 - Initializing system.IndexInfo
+INFO  [DSE main thread] 2020-07-20 09:09:39,782  SSTableReader.java:595 - openAll time for table IndexInfo using 4 threads: 0.066ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,791  ColumnFamilyStore.java:459 - Initializing system.batches
+INFO  [DSE main thread] 2020-07-20 09:09:39,792  SSTableReader.java:595 - openAll time for table batches using 4 threads: 0.020ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,799  ColumnFamilyStore.java:459 - Initializing system.paxos
+INFO  [DSE main thread] 2020-07-20 09:09:39,800  SSTableReader.java:595 - openAll time for table paxos using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,811  ColumnFamilyStore.java:459 - Initializing system.peer_events
+INFO  [DSE main thread] 2020-07-20 09:09:39,812  SSTableReader.java:595 - openAll time for table peer_events using 4 threads: 0.068ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,819  ColumnFamilyStore.java:459 - Initializing system.range_xfers
+INFO  [DSE main thread] 2020-07-20 09:09:39,820  SSTableReader.java:595 - openAll time for table range_xfers using 4 threads: 0.066ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,827  ColumnFamilyStore.java:459 - Initializing system.compaction_history
+INFO  [DSE main thread] 2020-07-20 09:09:39,828  SSTableReader.java:595 - openAll time for table compaction_history using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,834  ColumnFamilyStore.java:459 - Initializing system.sstable_activity
+INFO  [DSE main thread] 2020-07-20 09:09:39,836  SSTableReader.java:595 - openAll time for table sstable_activity using 4 threads: 0.088ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,842  ColumnFamilyStore.java:459 - Initializing system.size_estimates
+INFO  [DSE main thread] 2020-07-20 09:09:39,843  SSTableReader.java:595 - openAll time for table size_estimates using 4 threads: 0.078ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,850  ColumnFamilyStore.java:459 - Initializing system.available_ranges
+INFO  [DSE main thread] 2020-07-20 09:09:39,851  SSTableReader.java:595 - openAll time for table available_ranges using 4 threads: 0.095ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,857  ColumnFamilyStore.java:459 - Initializing system.transferred_ranges
+INFO  [DSE main thread] 2020-07-20 09:09:39,858  SSTableReader.java:595 - openAll time for table transferred_ranges using 4 threads: 0.072ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,865  ColumnFamilyStore.java:459 - Initializing system.view_builds_in_progress
+INFO  [DSE main thread] 2020-07-20 09:09:39,865  SSTableReader.java:595 - openAll time for table view_builds_in_progress using 4 threads: 0.009ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,873  ColumnFamilyStore.java:459 - Initializing system.built_views
+INFO  [DSE main thread] 2020-07-20 09:09:39,874  SSTableReader.java:595 - openAll time for table built_views using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,880  ColumnFamilyStore.java:459 - Initializing system.prepared_statements
+INFO  [DSE main thread] 2020-07-20 09:09:39,881  SSTableReader.java:595 - openAll time for table prepared_statements using 4 threads: 0.098ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,887  ColumnFamilyStore.java:459 - Initializing system.repairs
+INFO  [DSE main thread] 2020-07-20 09:09:39,888  SSTableReader.java:595 - openAll time for table repairs using 4 threads: 0.079ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,893  ColumnFamilyStore.java:459 - Initializing system.nodesync_checkpoints
+INFO  [DSE main thread] 2020-07-20 09:09:39,894  SSTableReader.java:595 - openAll time for table nodesync_checkpoints using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,907  ColumnFamilyStore.java:459 - Initializing system.local
+INFO  [DSE main thread] 2020-07-20 09:09:39,910  SSTableReader.java:595 - openAll time for table local using 4 threads: 0.069ms
+INFO  [DSE main thread] 2020-07-20 09:09:39,924  ColumnFamilyStore.java:459 - Initializing system.peers
+INFO  [DSE main thread] 2020-07-20 09:09:39,928  SSTableReader.java:595 - openAll time for table peers using 4 threads: 0.088ms
+INFO  [DSE main thread] 2020-07-20 09:09:40,034  StartupChecks.java:591 - Asynchronous I/O is enabled by default (disk configured as SSD by disk_optimization_strategy and file_cache_size_in_mb > min(8192, system RAM / 8))
+INFO  [DSE main thread] 2020-07-20 09:09:40,051  StartupChecks.java:835 - Virtualization/hypervisor 'unknown (hypervisor CPU flag present)' detected. Make sure the disk_optimization_strategy settings reflect the actual hardware. Be aware that certain startup checks may return wrong results due to virtualization/hypervisors. Be also aware that running on virtualized environments can lead to serious performance penalties.
+INFO  [DSE main thread] 2020-07-20 09:09:40,055  StartupChecks.java:792 - Detected KVM clocksource (constant_tsc=true, nonstop_tsc=false).
+INFO  [DSE main thread] 2020-07-20 09:09:40,069  StartupChecks.java:885 - CPU information: 4 physical processors: Intel Xeon E3-12xx v2 (Ivy Bridge) (1 cores, 1 threads-per-core, 16384 KB cache), Intel Xeon E3-12xx v2 (Ivy Bridge) (1 cores, 1 threads-per-core, 16384 KB cache), Intel Xeon E3-12xx v2 (Ivy Bridge) (1 cores, 1 threads-per-core, 16384 KB cache), Intel Xeon E3-12xx v2 (Ivy Bridge) (1 cores, 1 threads-per-core, 16384 KB cache)
+INFO  [DSE main thread] 2020-07-20 09:09:40,080  StartupChecks.java:898 - CPU scaling governors: CPUs 0-3: no_cpufreq
+WARN  [DSE main thread] 2020-07-20 09:09:40,081  StartupChecks.java:914 - CPU scaling governors could not be inquired, as /sys/devices/system/cpu/cpu*/cpufreq is not readable.
+WARN  [DSE main thread] 2020-07-20 09:09:40,084  StartupChecks.java:752 - CPU does not have PCID (enabled). This will cause an unnecessary performance regression with a kernel having kernel-page-tables-isolation enabled, which should be the case to since CVE-2017-5754 ("Meltdown").
+INFO  [DSE main thread] 2020-07-20 09:09:40,085  StartupChecks.java:951 - Linux NUMA zone-reclaim-mode is set to '0'
+WARN  [DSE main thread] 2020-07-20 09:09:40,094  StartupChecks.java:1003 - Limit for 'memlock' (Max locked memory) is recommended to be 'unlimited', but is 'soft:16777216, hard:16777216 [bytes]'
+WARN  [DSE main thread] 2020-07-20 09:09:40,098  StartupChecks.java:1066 - Linux THP defrag is set to 'madvise', but should be 'never'
+INFO  [DSE main thread] 2020-07-20 09:09:40,101  StartupChecks.java:1127 - saved caches directory /var/lib/cassandra/saved_caches is on device /dev/vda2 (appears to be rotational with logical sector size 512), formatted using ext4 file system
+INFO  [DSE main thread] 2020-07-20 09:09:40,102  StartupChecks.java:1127 - commitlog directory /var/lib/cassandra/commitlog is on device /dev/vda2 (appears to be rotational with logical sector size 512), formatted using ext4 file system
+INFO  [DSE main thread] 2020-07-20 09:09:40,104  StartupChecks.java:1127 - data directory /var/lib/cassandra/data is on device /dev/vda2 (appears to be rotational with logical sector size 512), formatted using ext4 file system
+INFO  [DSE main thread] 2020-07-20 09:09:40,145  StorageService.java:717 - Populating token metadata from system tables
+INFO  [DSE main thread] 2020-07-20 09:09:40,163  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:40,167  StorageService.java:724 - Token metadata: 
+WARN  [DSE main thread] 2020-07-20 09:09:40,258  StorageService.java:1134 - No host ID found, created 5f07e400-cfa8-4afd-a6a0-6935ad90e9dd (Note: This should happen exactly once per node).
+INFO  [DSE main thread] 2020-07-20 09:09:40,313  CacheService.java:113 - Initializing key cache with capacity of 93 MBs.
+INFO  [DSE main thread] 2020-07-20 09:09:40,343  CacheService.java:135 - Initializing row cache with capacity of 0 MBs
+INFO  [DSE main thread] 2020-07-20 09:09:40,347  CacheService.java:164 - Initializing counter cache with capacity of 46 MBs
+INFO  [DSE main thread] 2020-07-20 09:09:40,349  CacheService.java:175 - Scheduling counter cache save to every 7200 seconds (going to save all keys).
+INFO  [DSE main thread] 2020-07-20 09:09:40,379  CommitLog.java:189 - No commitlog files found; skipping replay
+INFO  [DSE main thread] 2020-07-20 09:09:40,734  StorageService.java:717 - Populating token metadata from system tables
+INFO  [DSE main thread] 2020-07-20 09:09:40,743  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:40,743  StorageService.java:724 - Token metadata: 
+INFO  [DSE main thread] 2020-07-20 09:09:40,789  QueryProcessor.java:190 - Preloaded 0 prepared statements
+INFO  [DSE main thread] 2020-07-20 09:09:40,790  StorageService.java:739 - DSE version: 6.8.1
+INFO  [DSE main thread] 2020-07-20 09:09:40,790  StorageService.java:747 - CQL version: 3.4.5
+INFO  [DSE main thread] 2020-07-20 09:09:40,791  StorageService.java:748 - Native protocol supported versions: 3/v3, 4/v4, 5/v5-beta, 65/dse-v1, 66/dse-v2 (default: 66/dse-v2)
+INFO  [DSE main thread] 2020-07-20 09:09:41,211  NettyFactory.java:127 - Starting Messaging Service on /172.17.0.2:7000  (eth0), encryption: disabled
+INFO  [DSE main thread] 2020-07-20 09:09:41,235  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,242  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,243  StorageService.java:656 - Unable to gossip with any peers but continuing anyway since node is in its own seed list
+INFO  [DSE main thread] 2020-07-20 09:09:41,248  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,253  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,260  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,275  StorageService.java:911 - Loading persisted ring state
+INFO  [DSE main thread] 2020-07-20 09:09:41,275  StorageService.java:1060 - Starting up server gossip
+INFO  [DSE main thread] 2020-07-20 09:09:41,285  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,296  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:09:41,349  Gossiper.java:2181 - Waiting for gossip to settle before accepting client requests...
+INFO  [DSE main thread] 2020-07-20 09:10:01,452  Gossiper.java:2250 - No gossip backlog
+INFO  [DSE main thread] 2020-07-20 09:10:01,454  Gossiper.java:2301 - No pending echos; proceeding.  Echos failed 0, Echos succeeded 0
+INFO  [DSE main thread] 2020-07-20 09:10:01,454  Gossiper.java:2311 - Gossip settled; proceeding
+INFO  [DSE main thread] 2020-07-20 09:10:01,472  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:10:01,514  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+INFO  [DSE main thread] 2020-07-20 09:10:01,516  StorageService.java:1193 - This node will not auto bootstrap because it is configured to be a seed node.
+INFO  [DSE main thread] 2020-07-20 09:10:01,538  YamlConfigurationLoader.java:77 - Configuration location: file:/opt/dse/resources/cassandra/conf/cassandra.yaml
+WARN  [DSE main thread] 2020-07-20 09:10:01,552  BootStrapper.java:232 - Picking random token for a single vnode.  You should probably add more vnodes and/or use the automatic token allocation mechanism.
+INFO  [DSE main thread] 2020-07-20 09:10:01,553  BootStrapper.java:287 - Generated random tokens. tokens are {-5374840111441183029}
+INFO  [DSE main thread] 2020-07-20 09:10:01,673  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=system_traces, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=2}}, tables=[system_traces.sessions, system_traces.events], views=[], functions=[], types=[]}
+INFO  [MemtableFlushWriter:7] 2020-07-20 09:10:01,844  PermanentBufferPool.java:73 - CachedReadsBufferPool is enabled, max is 1.368GiB
+INFO  [MemtableFlushWriter:7] 2020-07-20 09:10:01,849  TemporaryBufferPool.java:81 - DirectReadsBufferPool is enabled, max is 16.000MiB
+INFO  [MemtableFlushWriter:7] 2020-07-20 09:10:01,880  ChunkCacheImpl.java:643 - Created chunk cache of size 1.300GiB, allocating page-aligned buffers from cached reads pool except for sizes >= 256.000KiB
+INFO  [DSE main thread] 2020-07-20 09:10:02,331  ColumnFamilyStore.java:459 - Initializing system_traces.events
+INFO  [DSE main thread] 2020-07-20 09:10:02,332  SSTableReader.java:595 - openAll time for table events using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,338  ColumnFamilyStore.java:459 - Initializing system_traces.sessions
+INFO  [DSE main thread] 2020-07-20 09:10:02,339  SSTableReader.java:595 - openAll time for table sessions using 4 threads: 0.033ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,361  PrefetchingRebufferer.java:70 - Read ahead for sequential reads (e.g. range queries, compactions) is 32 k-bytes, window: 0.5, vectored: true
+INFO  [DSE main thread] 2020-07-20 09:10:02,436  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=system_distributed, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=3}}, tables=[system_distributed.repair_history, system_distributed.parent_repair_history, system_distributed.view_build_status, system_distributed.nodesync_status, system_distributed.nodesync_user_validations, system_distributed.backups, system_distributed.backup_task_state, system_distributed.restore_task_state], views=[], functions=[], types=[org.apache.cassandra.db.marshal.UserType(system_distributed,6261636b75705f7461736b5f6d657472696373,736e617073686f747465645f73737461626c6573:org.apache.cassandra.db.marshal.Int32Type,736e617073686f7474696e675f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,75706c6f61645f6d657472696373:org.apache.cassandra.db.marshal.FrozenType(org.apache.cassandra.db.marshal.MapType(org.apache.cassandra.db.marshal.UTF8Type,org.apache.cassandra.db.marshal.UserType(system_distributed,6261636b75705f75706c6f61645f6d657472696373,75706c6f616465645f66696c6573:org.apache.cassandra.db.marshal.Int32Type,6578697374696e675f66696c6573:org.apache.cassandra.db.marshal.Int32Type,75706c6f616465645f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,6578697374696e675f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,75706c6f61645f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,746f74616c5f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,70657263656e746167655f6f665f636f6d706c6574696f6e:org.apache.cassandra.db.marshal.Int32Type))),636c65616e75705f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,746f74616c5f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType), org.apache.cassandra.db.marshal.UserType(system_distributed,6261636b75705f75706c6f61645f6d657472696373,75706c6f616465645f66696c6573:org.apache.cassandra.db.marshal.Int32Type,6578697374696e675f66696c6573:org.apache.cassandra.db.marshal.Int32Type,75706c6f616465645f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,6578697374696e675f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,75706c6f61645f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,746f74616c5f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,70657263656e746167655f6f665f636f6d706c6574696f6e:org.apache.cassandra.db.marshal.Int32Type), org.apache.cassandra.db.marshal.UserType(system_distributed,6e6f646573796e635f6d657472696373,646174615f76616c696461746564:org.apache.cassandra.db.marshal.LongType,646174615f7265706169726564:org.apache.cassandra.db.marshal.LongType,6f626a656374735f76616c696461746564:org.apache.cassandra.db.marshal.LongType,6f626a656374735f7265706169726564:org.apache.cassandra.db.marshal.LongType,7265706169725f646174615f73656e74:org.apache.cassandra.db.marshal.LongType,7265706169725f6f626a656374735f73656e74:org.apache.cassandra.db.marshal.LongType,70616765735f6f7574636f6d6573:org.apache.cassandra.db.marshal.FrozenType(org.apache.cassandra.db.marshal.MapType(org.apache.cassandra.db.marshal.UTF8Type,org.apache.cassandra.db.marshal.LongType))), org.apache.cassandra.db.marshal.UserType(system_distributed,6e6f646573796e635f76616c69646174696f6e,737461727465645f6174:org.apache.cassandra.db.marshal.TimestampType,6f7574636f6d65:org.apache.cassandra.db.marshal.ByteType,6d697373696e675f6e6f646573:org.apache.cassandra.db.marshal.SetType(org.apache.cassandra.db.marshal.InetAddressType),7761735f696e6372656d656e74616c:org.apache.cassandra.db.marshal.BooleanType), org.apache.cassandra.db.marshal.UserType(system_distributed,726573746f72655f646f776e6c6f61645f6d657472696373,646f776e6c6f616465645f66696c6573:org.apache.cassandra.db.marshal.Int32Type,646f776e6c6f616465645f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,646f776e6c6f61645f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,70657263656e746167655f6f665f636f6d706c6574696f6e:org.apache.cassandra.db.marshal.Int32Type), org.apache.cassandra.db.marshal.UserType(system_distributed,726573746f72655f7461736b5f6d657472696373,646f776e6c6f61645f6d657472696373:org.apache.cassandra.db.marshal.FrozenType(org.apache.cassandra.db.marshal.UserType(system_distributed,726573746f72655f646f776e6c6f61645f6d657472696373,646f776e6c6f616465645f66696c6573:org.apache.cassandra.db.marshal.Int32Type,646f776e6c6f616465645f646174615f696e5f6b62:org.apache.cassandra.db.marshal.LongType,646f776e6c6f61645f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,70657263656e746167655f6f665f636f6d706c6574696f6e:org.apache.cassandra.db.marshal.Int32Type)),6c6f6164696e675f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType,746f74616c5f6475726174696f6e:org.apache.cassandra.db.marshal.DurationType)]}
+INFO  [DSE main thread] 2020-07-20 09:10:02,597  ColumnFamilyStore.java:459 - Initializing system_distributed.backup_task_state
+INFO  [DSE main thread] 2020-07-20 09:10:02,598  SSTableReader.java:595 - openAll time for table backup_task_state using 4 threads: 0.087ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,603  ColumnFamilyStore.java:459 - Initializing system_distributed.backups
+INFO  [DSE main thread] 2020-07-20 09:10:02,604  SSTableReader.java:595 - openAll time for table backups using 4 threads: 0.071ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,609  ColumnFamilyStore.java:459 - Initializing system_distributed.nodesync_status
+INFO  [DSE main thread] 2020-07-20 09:10:02,610  SSTableReader.java:595 - openAll time for table nodesync_status using 4 threads: 0.067ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,615  ColumnFamilyStore.java:459 - Initializing system_distributed.nodesync_user_validations
+INFO  [DSE main thread] 2020-07-20 09:10:02,616  SSTableReader.java:595 - openAll time for table nodesync_user_validations using 4 threads: 0.070ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,621  ColumnFamilyStore.java:459 - Initializing system_distributed.parent_repair_history
+INFO  [DSE main thread] 2020-07-20 09:10:02,622  SSTableReader.java:595 - openAll time for table parent_repair_history using 4 threads: 0.080ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,627  ColumnFamilyStore.java:459 - Initializing system_distributed.repair_history
+INFO  [DSE main thread] 2020-07-20 09:10:02,628  SSTableReader.java:595 - openAll time for table repair_history using 4 threads: 0.067ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,633  ColumnFamilyStore.java:459 - Initializing system_distributed.restore_task_state
+INFO  [DSE main thread] 2020-07-20 09:10:02,634  SSTableReader.java:595 - openAll time for table restore_task_state using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,639  ColumnFamilyStore.java:459 - Initializing system_distributed.view_build_status
+INFO  [DSE main thread] 2020-07-20 09:10:02,640  SSTableReader.java:595 - openAll time for table view_build_status using 4 threads: 0.074ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,675  StorageService.java:2053 - JOINING: Finish joining ring
+INFO  [DSE main thread] 2020-07-20 09:10:02,747  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=system_auth, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[system_auth.roles, system_auth.role_members], views=[], functions=[], types=[]}
+INFO  [CoreThread-0] 2020-07-20 09:10:02,862  NodeSyncService.java:381 - Enabled Incremental NodeSync trackers for 10 tables in 130ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,876  ColumnFamilyStore.java:459 - Initializing system_auth.role_members
+INFO  [DSE main thread] 2020-07-20 09:10:02,879  SSTableReader.java:595 - openAll time for table role_members using 4 threads: 0.222ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,892  ColumnFamilyStore.java:459 - Initializing system_auth.roles
+INFO  [DSE main thread] 2020-07-20 09:10:02,893  SSTableReader.java:595 - openAll time for table roles using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:02,952  MigrationManager.java:231 - Create new table: TableMetadata{keyspace=system_auth, table=role_permissions, id=3afbe79f-2194-31a7-add7-f5ab90d8ec9c, partitioner=org.apache.cassandra.dht.Murmur3Partitioner@5108ceda, kind=REGULAR, params={additional_write_policy=99PERCENTILE (default), caching={'keys' : 'ALL', 'rows_per_partition' : 'NONE'} (default), cdc=false (default), comment=permissions granted to db roles, compaction=CompactionParams{class=org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy, options={min_threshold=4, max_threshold=32}} (default), compression={chunk_length_in_kb=64, class=org.apache.cassandra.io.compress.LZ4Compressor} (default), crc_check_chance=1.0 (default), default_time_to_live=0 (default), extensions=org.apache.cassandra.schema.CustomExtensions@0 (default), gc_grace_seconds=7776000, memtable_flush_period_in_ms=0 (default), min_index_interval=128 (default), max_index_interval=2048 (default), nodesync={'incremental': 'true', 'enabled': 'true'}, read_repair=BLOCKING (default), speculative_retry=99PERCENTILE (default), bloom_filter_fp_chance=0.01 (default)}, flags=[COMPOUND], columns=[role, restricted, permissions, grantables, resource], droppedColumns=[], indexes=[], triggers=[], graphLabel=null}
+INFO  [DSE main thread] 2020-07-20 09:10:03,044  ColumnFamilyStore.java:459 - Initializing system_auth.role_permissions
+INFO  [DSE main thread] 2020-07-20 09:10:03,045  SSTableReader.java:595 - openAll time for table role_permissions using 4 threads: 0.082ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,054  ViewManager.java:148 - Not submitting build tasks for views in keyspace system_auth as storage service is not initialized
+INFO  [DSE main thread] 2020-07-20 09:10:03,174  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_security, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[dse_security.digest_tokens, dse_security.role_options, dse_security.spark_security], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:03,232  ColumnFamilyStore.java:459 - Initializing dse_security.digest_tokens
+INFO  [DSE main thread] 2020-07-20 09:10:03,234  SSTableReader.java:595 - openAll time for table digest_tokens using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,239  ColumnFamilyStore.java:459 - Initializing dse_security.role_options
+INFO  [DSE main thread] 2020-07-20 09:10:03,240  SSTableReader.java:595 - openAll time for table role_options using 4 threads: 0.072ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,246  ColumnFamilyStore.java:459 - Initializing dse_security.spark_security
+INFO  [DSE main thread] 2020-07-20 09:10:03,247  SSTableReader.java:595 - openAll time for table spark_security using 4 threads: 0.069ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,314  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=system_backups, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.EverywhereStrategy}}, tables=[system_backups.backup_stores, system_backups.backup_configurations], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:03,367  ColumnFamilyStore.java:459 - Initializing system_backups.backup_configurations
+INFO  [DSE main thread] 2020-07-20 09:10:03,369  SSTableReader.java:595 - openAll time for table backup_configurations using 4 threads: 0.011ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,375  ColumnFamilyStore.java:459 - Initializing system_backups.backup_stores
+INFO  [DSE main thread] 2020-07-20 09:10:03,376  SSTableReader.java:595 - openAll time for table backup_stores using 4 threads: 0.091ms
+INFO  [DSE main thread] 2020-07-20 09:10:03,398  StorageService.java:1337 - Startup with data available + schema info (0b680e17-ccd8-3095-914e-b7064c356a39)
+INFO  [DSE main thread] 2020-07-20 09:10:03,398  StorageService.java:825 - Snitch information: DynamicEndpointSnitch{registered=true, subsnitch=DseDelegateSnitch{workloads=[Analytics, Cassandra, Search, Graph], delegate=GossipingPropertyFileSnitch{psnitch=null, myDC='dc1', myRack='rack1', preferLocal=false, snitchHelperReference=org.apache.cassandra.locator.ReconnectableSnitchHelper@22ae7f89}}}, local DC:dc1 / rack:rack1
+INFO  [DSE main thread] 2020-07-20 09:10:04,268  CassandraDelegationTokenSecretManager.java:75 - Created CassandraDelegationTokenSecretManager with token max-life: 168 hours and renewal interval: 1 hours
+INFO  [DSE main thread] 2020-07-20 09:10:04,352  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_insights_local, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.LocalStrategy}}, tables=[], views=[], functions=[], types=[org.apache.cassandra.db.marshal.UserType(dse_insights_local,696e7369676874735f636f6e6669675f74797065,6d6f6465:org.apache.cassandra.db.marshal.UTF8Type,75706c6f61645f75726c:org.apache.cassandra.db.marshal.UTF8Type,75706c6f61645f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,6d65747269635f73616d706c696e675f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,646174615f6469725f6d61785f73697a655f696e5f6d62:org.apache.cassandra.db.marshal.Int32Type,70726f78795f74797065:org.apache.cassandra.db.marshal.UTF8Type,70726f78795f75726c:org.apache.cassandra.db.marshal.UTF8Type,70726f78795f61757468656e7469636174696f6e:org.apache.cassandra.db.marshal.UTF8Type,6e6f64655f73797374656d5f696e666f5f7265706f72745f706572696f64:org.apache.cassandra.db.marshal.UTF8Type,636f6e6669675f726566726573685f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,66696c746572696e675f72756c6573:org.apache.cassandra.db.marshal.FrozenType(org.apache.cassandra.db.marshal.SetType(org.apache.cassandra.db.marshal.UserType(dse_insights_local,696e7369676874735f66696c746572735f72756c655f74797065,706f6c696379:org.apache.cassandra.db.marshal.UTF8Type,7061747465726e:org.apache.cassandra.db.marshal.UTF8Type,73636f7065:org.apache.cassandra.db.marshal.UTF8Type)))), org.apache.cassandra.db.marshal.UserType(dse_insights_local,696e7369676874735f66696c746572735f72756c655f74797065,706f6c696379:org.apache.cassandra.db.marshal.UTF8Type,7061747465726e:org.apache.cassandra.db.marshal.UTF8Type,73636f7065:org.apache.cassandra.db.marshal.UTF8Type)]}
+INFO  [DSE main thread] 2020-07-20 09:10:04,480  ColumnFamilyStore.java:459 - Initializing dse_insights_local.insights_config
+INFO  [DSE main thread] 2020-07-20 09:10:04,482  SSTableReader.java:595 - openAll time for table insights_config using 4 threads: 0.009ms
+INFO  [DSE main thread] 2020-07-20 09:10:04,503  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_insights, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.EverywhereStrategy}}, tables=[dse_insights.insights_config, dse_insights.tokens], views=[], functions=[], types=[org.apache.cassandra.db.marshal.UserType(dse_insights,696e7369676874735f636f6e6669675f74797065,6d6f6465:org.apache.cassandra.db.marshal.UTF8Type,75706c6f61645f75726c:org.apache.cassandra.db.marshal.UTF8Type,75706c6f61645f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,6d65747269635f73616d706c696e675f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,646174615f6469725f6d61785f73697a655f696e5f6d62:org.apache.cassandra.db.marshal.Int32Type,70726f78795f74797065:org.apache.cassandra.db.marshal.UTF8Type,70726f78795f75726c:org.apache.cassandra.db.marshal.UTF8Type,70726f78795f61757468656e7469636174696f6e:org.apache.cassandra.db.marshal.UTF8Type,6e6f64655f73797374656d5f696e666f5f7265706f72745f706572696f64:org.apache.cassandra.db.marshal.UTF8Type,636f6e6669675f726566726573685f696e74657276616c5f696e5f7365636f6e6473:org.apache.cassandra.db.marshal.Int32Type,66696c746572696e675f72756c6573:org.apache.cassandra.db.marshal.FrozenType(org.apache.cassandra.db.marshal.SetType(org.apache.cassandra.db.marshal.UserType(dse_insights,696e7369676874735f66696c746572735f72756c655f74797065,706f6c696379:org.apache.cassandra.db.marshal.UTF8Type,7061747465726e:org.apache.cassandra.db.marshal.UTF8Type,73636f7065:org.apache.cassandra.db.marshal.UTF8Type)))), org.apache.cassandra.db.marshal.UserType(dse_insights,696e7369676874735f66696c746572735f72756c655f74797065,706f6c696379:org.apache.cassandra.db.marshal.UTF8Type,7061747465726e:org.apache.cassandra.db.marshal.UTF8Type,73636f7065:org.apache.cassandra.db.marshal.UTF8Type)]}
+INFO  [DSE main thread] 2020-07-20 09:10:04,590  ColumnFamilyStore.java:459 - Initializing dse_insights.insights_config
+INFO  [DSE main thread] 2020-07-20 09:10:04,594  SSTableReader.java:595 - openAll time for table insights_config using 4 threads: 0.166ms
+INFO  [DSE main thread] 2020-07-20 09:10:04,609  ColumnFamilyStore.java:459 - Initializing dse_insights.tokens
+INFO  [DSE main thread] 2020-07-20 09:10:04,610  SSTableReader.java:595 - openAll time for table tokens using 4 threads: 0.074ms
+INFO  [DSE main thread] 2020-07-20 09:10:04,840  VersionDependentFeature.java:288 - All live nodes are running DSE 6.0 or newer - GRANT AUTHORIZE FOR and RESTRICT available
+INFO  [DSE main thread] 2020-07-20 09:10:04,840  CassandraDaemon.java:762 - All nodes in this cluster are on DSE version 6.8.1
+WARN  [DSE main thread] 2020-07-20 09:10:04,840  DseDaemon.java:586 - Both Search and Analytics services are enabled. Be advised that workloads will not be isolated within this node.
+INFO  [OptionalTasks:1] 2020-07-20 09:10:13,357  CassandraRoleManager.java:427 - Created default superuser role 'cassandra'
+INFO  [DSE main thread] 2020-07-20 09:10:14,841  SchemaTool.java:253 - All ring nodes are in the NORMAL state now.
+INFO  [DSE main thread] 2020-07-20 09:10:14,842  PluginManager.java:326 - Activating plugins which do not require native transport
+INFO  [DSE main thread] 2020-07-20 09:10:14,847  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.ThreadPoolPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:14,848  ThreadPoolPlugin.java:106 - Starting pool with 4 core threads (32 max) with queue size: 32000
+INFO  [DSE main thread] 2020-07-20 09:10:14,855  PluginManager.java:447 - Activating plugin: com.datastax.bdp.leasemanager.LeasePlugin
+INFO  [DSE main thread] 2020-07-20 09:10:14,865  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_leases, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[dse_leases.leases, dse_leases.logs], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:14,937  ColumnFamilyStore.java:459 - Initializing dse_leases.leases
+INFO  [DSE main thread] 2020-07-20 09:10:14,941  SSTableReader.java:595 - openAll time for table leases using 4 threads: 0.199ms
+INFO  [DSE main thread] 2020-07-20 09:10:14,964  ColumnFamilyStore.java:459 - Initializing dse_leases.logs
+INFO  [DSE main thread] 2020-07-20 09:10:14,967  SSTableReader.java:595 - openAll time for table logs using 4 threads: 0.081ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,046  LeasePlugin.java:185 - Lease service up and running.
+INFO  [DSE main thread] 2020-07-20 09:10:15,053  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.InternalQueryRouterPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:15,054  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.DseSystemPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:15,057  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_system, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.EverywhereStrategy}}, tables=[dse_system.encrypted_keys], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:15,103  ColumnFamilyStore.java:459 - Initializing dse_system.encrypted_keys
+INFO  [DSE main thread] 2020-07-20 09:10:15,106  SSTableReader.java:595 - openAll time for table encrypted_keys using 4 threads: 0.080ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,136  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_system_local, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.LocalStrategy}}, tables=[dse_system_local.solr_resources], views=[], functions=[], types=[]}
+INFO  [graph-scheduled-1] 2020-07-20 09:10:15,167  ColumnFamilyStore.java:459 - Initializing dse_system.shared_data
+INFO  [graph-scheduled-1] 2020-07-20 09:10:15,168  SSTableReader.java:595 - openAll time for table shared_data using 4 threads: 0.428ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,284  ColumnFamilyStore.java:459 - Initializing dse_system_local.solr_resources
+INFO  [DSE main thread] 2020-07-20 09:10:15,289  SSTableReader.java:595 - openAll time for table solr_resources using 4 threads: 0.226ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,349  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=solr_admin, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.EverywhereStrategy}}, tables=[solr_admin.solr_resources], views=[], functions=[], types=[]}
+INFO  [graph-scheduled-1] 2020-07-20 09:10:15,375  ColumnFamilyStore.java:459 - Initializing dse_system.shared_data_versions
+INFO  [graph-scheduled-1] 2020-07-20 09:10:15,376  SSTableReader.java:595 - openAll time for table shared_data_versions using 4 threads: 0.199ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,435  ColumnFamilyStore.java:459 - Initializing solr_admin.solr_resources
+INFO  [DSE main thread] 2020-07-20 09:10:15,437  SSTableReader.java:595 - openAll time for table solr_resources using 4 threads: 0.080ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,457  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.LeaseLeaderManagerPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:15,495  PluginManager.java:447 - Activating plugin: com.datastax.bdp.cassandra.metrics.PerformanceObjectsPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:15,608  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_perf, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:15,674  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.GraphEventPluginImpl
+INFO  [DSE main thread] 2020-07-20 09:10:15,676  CqlWriter.java:107 - DSE version is 6.8.1, running normal mode
+INFO  [DSE main thread] 2020-07-20 09:10:15,676  PerformanceObjectsKeyspace.java:776 - Creating a new table graph_event_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,707  ColumnFamilyStore.java:459 - Initializing dse_perf.graph_event_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,709  SSTableReader.java:595 - openAll time for table graph_event_log using 4 threads: 0.106ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,737  CqlWriter.java:107 - DSE version is 6.8.1, running normal mode
+INFO  [DSE main thread] 2020-07-20 09:10:15,737  PerformanceObjectsKeyspace.java:776 - Creating a new table schema_migration_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,771  ColumnFamilyStore.java:459 - Initializing dse_perf.schema_migration_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,772  SSTableReader.java:595 - openAll time for table schema_migration_log using 4 threads: 0.139ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,813  CqlWriter.java:107 - DSE version is 6.8.1, running normal mode
+INFO  [DSE main thread] 2020-07-20 09:10:15,815  PerformanceObjectsKeyspace.java:776 - Creating a new table slow_transaction_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,852  ColumnFamilyStore.java:459 - Initializing dse_perf.slow_transaction_log
+INFO  [DSE main thread] 2020-07-20 09:10:15,855  SSTableReader.java:595 - openAll time for table slow_transaction_log using 4 threads: 0.083ms
+INFO  [DSE main thread] 2020-07-20 09:10:15,896  PluginManager.java:447 - Activating plugin: com.datastax.bdp.graph.plugin.GremlinServerPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:15,897  GremlinServerPlugin.java:194 - Starting embedded TinkerPop Gremlin Server
+INFO  [DSE main thread] 2020-07-20 09:10:15,949 GREMLIN ServerGremlinExecutor.java:108 - Initialized Gremlin thread pool.  Threads in pool named with pattern gremlin-*
+INFO  [DSE main thread] 2020-07-20 09:10:16,393 GREMLIN GraphYamlConfigurationReader.java:185 - Loading graph settings from jar:file:/opt/dse/lib/dse-graph-6.8.1.jar!/default-sandbox-rules.yaml
+INFO  [DSE main thread] 2020-07-20 09:10:16,510 GREMLIN GraphYamlConfigurationReader.java:185 - Loading graph settings from file:/opt/dse/resources/dse/conf/dse.yaml
+INFO  [DSE main thread] 2020-07-20 09:10:16,515 GREMLIN GraphYamlConfigurationReader.java:102 - No graph settings found in DSE config file at file:/opt/dse/resources/dse/conf/dse.yaml (lacks top-level key named graph)
+INFO  [DSE main thread] 2020-07-20 09:10:16,519 GREMLIN ServerGremlinExecutor.java:130 - Initialized GremlinExecutor and preparing GremlinScriptEngines instances.
+INFO  [DSE main thread] 2020-07-20 09:10:21,714 GREMLIN ServerGremlinExecutor.java:143 - Initialized gremlin-groovy GremlinScriptEngine and registered metrics
+INFO  [DSE main thread] 2020-07-20 09:10:21,761 GREMLIN OpLoader.java:46 - Adding the standard OpProcessor.
+INFO  [DSE main thread] 2020-07-20 09:10:21,770 GREMLIN OpLoader.java:46 - Adding the session OpProcessor.
+INFO  [DSE main thread] 2020-07-20 09:10:21,816 GREMLIN OpLoader.java:46 - Adding the traversal OpProcessor.
+INFO  [DSE main thread] 2020-07-20 09:10:21,836 GREMLIN TraversalOpProcessor.java:167 - Initialized cache for TraversalOpProcessor with size 1000 and expiration time of 600000 ms
+INFO  [DSE main thread] 2020-07-20 09:10:21,943 GREMLIN GremlinServer.java:204 - idleConnectionTimeout was set to 0 which resolves to 0 seconds when configuring this value - this feature will be disabled
+INFO  [DSE main thread] 2020-07-20 09:10:21,944 GREMLIN GremlinServer.java:206 - keepAliveInterval was set to 0 which resolves to 0 seconds when configuring this value - this feature will be disabled
+INFO  [DSE main thread] 2020-07-20 09:10:22,006 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v1.0+json with org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV1d0
+INFO  [DSE main thread] 2020-07-20 09:10:22,011 GREMLIN AbstractChannelizer.java:250 - Configured application/json with org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0
+WARN  [DSE main thread] 2020-07-20 09:10:22,016 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV2d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,169 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v2.0+json with org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV2d0
+INFO  [DSE main thread] 2020-07-20 09:10:22,170 GREMLIN AbstractChannelizer.java:247 - application/json already has org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0 configured - it will not be replaced by org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV2d0, change order of serialization configuration if this is not desired.
+INFO  [DSE main thread] 2020-07-20 09:10:22,175 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v3.0+json with org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV3d0
+INFO  [DSE main thread] 2020-07-20 09:10:22,176 GREMLIN AbstractChannelizer.java:247 - application/json already has org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0 configured - it will not be replaced by org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV3d0, change order of serialization configuration if this is not desired.
+WARN  [DSE main thread] 2020-07-20 09:10:22,180 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,182 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v1.0+gryo-stringd with org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0
+WARN  [DSE main thread] 2020-07-20 09:10:22,186 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,187 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v3.0+gryo-stringd with org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0
+WARN  [DSE main thread] 2020-07-20 09:10:22,200 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GryoLiteMessageSerializerV1d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,202 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v1.0+gryo-lite with org.apache.tinkerpop.gremlin.driver.ser.GryoLiteMessageSerializerV1d0
+WARN  [DSE main thread] 2020-07-20 09:10:22,203 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,203 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v1.0+gryo with org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0
+WARN  [DSE main thread] 2020-07-20 09:10:22,204 GREMLIN AbstractChannelizer.java:222 - The org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0 serialization class is deprecated.
+INFO  [DSE main thread] 2020-07-20 09:10:22,205 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.gremlin-v3.0+gryo with org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0
+INFO  [DSE main thread] 2020-07-20 09:10:22,556 GREMLIN AbstractChannelizer.java:250 - Configured application/vnd.graphbinary-v1.0 with org.apache.tinkerpop.gremlin.driver.ser.GraphBinaryMessageSerializerV1
+INFO  [DSE main thread] 2020-07-20 09:10:22,600 GREMLIN TraversalOpProcessor.java:167 - Initialized cache for TraversalOpProcessor with size 1000 and expiration time of 600000 ms
+INFO  [gremlin-server-boss-1] 2020-07-20 09:10:22,604  GremlinServer.java:178 - Gremlin Server configured with worker thread pool of 2, gremlin pool of 40 and boss thread pool of 1.
+INFO  [gremlin-server-boss-1] 2020-07-20 09:10:22,605  GremlinServer.java:180 - Channel started at port 8182.
+INFO  [DSE main thread] 2020-07-20 09:10:22,618  PluginManager.java:447 - Activating plugin: com.datastax.bdp.cassandra.cql3.DefaultDseGraphQueryOperationFactory
+INFO  [DSE main thread] 2020-07-20 09:10:22,619  PluginManager.java:447 - Activating plugin: com.datastax.bdp.server.system.UnixSocketServerPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:22,620  PluginManager.java:447 - Activating plugin: com.datastax.bdp.cassandra.cql3.CqlSlowLogPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:22,622  PerformanceObjectsKeyspace.java:776 - Creating a new table node_slow_log
+INFO  [DSE main thread] 2020-07-20 09:10:22,662  ColumnFamilyStore.java:459 - Initializing dse_perf.node_slow_log
+INFO  [DSE main thread] 2020-07-20 09:10:22,667  SSTableReader.java:595 - openAll time for table node_slow_log using 4 threads: 0.228ms
+INFO  [DSE main thread] 2020-07-20 09:10:22,905  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.ConfigurationWriterPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:22,911  JobConfUtil.java:184 - Generating default Hadoop configuration to: /opt/dse/resources/hadoop2-client/conf
+INFO  [DSE main thread] 2020-07-20 09:10:22,918  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.DseClientToolPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:22,925  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.MetaStorePlugin
+INFO  [DSE main thread] 2020-07-20 09:10:23,387  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=HiveMetaStore, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:23,480  ColumnFamilyStore.java:459 - Initializing HiveMetaStore.sparkmetastore
+INFO  [DSE main thread] 2020-07-20 09:10:23,483  SSTableReader.java:595 - openAll time for table sparkmetastore using 4 threads: 0.141ms
+INFO  [DSE main thread] 2020-07-20 09:10:23,510  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.SparkPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:25,314  CqlKeyspaceManager.java:191 - Creating keyspace dse_analytics
+INFO  [DSE main thread] 2020-07-20 09:10:25,314  MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dse_analytics, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[], views=[], functions=[], types=[]}
+INFO  [DSE main thread] 2020-07-20 09:10:25,365  CqlKeyspaceManager.java:95 - Validating keyspace dse_analytics
+INFO  [DSE main thread] 2020-07-20 09:10:25,384  CqlTableManager.java:188 - Creating table Uninitialized LazyRef.Uninitialized LazyRef
+INFO  [DSE main thread] 2020-07-20 09:10:25,421  ColumnFamilyStore.java:459 - Initializing dse_analytics.rm_executors
+INFO  [DSE main thread] 2020-07-20 09:10:25,423  SSTableReader.java:595 - openAll time for table rm_executors using 4 threads: 0.085ms
+INFO  [DSE main thread] 2020-07-20 09:10:25,541  CqlTableManager.java:149 - Validating table dse_analytics.rm_executors
+INFO  [DSE main thread] 2020-07-20 09:10:25,575  CqlTableManager.java:188 - Creating table Uninitialized LazyRef.Uninitialized LazyRef
+INFO  [DSE main thread] 2020-07-20 09:10:25,601  ColumnFamilyStore.java:459 - Initializing dse_analytics.rm_shared_data
+INFO  [DSE main thread] 2020-07-20 09:10:25,601  SSTableReader.java:595 - openAll time for table rm_shared_data using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:25,641  CqlTableManager.java:149 - Validating table dse_analytics.rm_shared_data
+INFO  [SPARK-WORKER] 2020-07-20 09:10:25,686 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:25,731  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.health.NodeHealthPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:25,736  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.SolrContainerPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:25,783  SolrContainerPlugin.java:202 - Starting embedded Tomcat
+INFO  [SPARK-MASTER] 2020-07-20 09:10:26,511 SPARK-MASTER Logging.scala:54 - Changing view acls to: dse
+INFO  [SPARK-MASTER] 2020-07-20 09:10:26,513 SPARK-MASTER Logging.scala:54 - Changing modify acls to: dse
+INFO  [SPARK-MASTER] 2020-07-20 09:10:26,515 SPARK-MASTER Logging.scala:54 - Changing view acls groups to: 
+INFO  [SPARK-MASTER] 2020-07-20 09:10:26,517 SPARK-MASTER Logging.scala:54 - Changing modify acls groups to: 
+INFO  [SPARK-MASTER] 2020-07-20 09:10:26,519 SPARK-MASTER Logging.scala:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(dse); groups with view permissions: Set(); users  with modify permissions: Set(dse); groups with modify permissions: Set()
+INFO  [DSE main thread] 2020-07-20 09:10:26,555  DirectJDKLog.java:181 - Server version:        Apache Tomcat/8.0.53
+INFO  [DSE main thread] 2020-07-20 09:10:26,556  DirectJDKLog.java:181 - Server built:          Jun 29 2018 14:42:45 UTC
+INFO  [DSE main thread] 2020-07-20 09:10:26,556  DirectJDKLog.java:181 - Server number:         8.0.53.0
+INFO  [DSE main thread] 2020-07-20 09:10:26,557  DirectJDKLog.java:181 - OS Name:               Linux
+INFO  [DSE main thread] 2020-07-20 09:10:26,558  DirectJDKLog.java:181 - OS Version:            4.15.0-111-generic
+INFO  [DSE main thread] 2020-07-20 09:10:26,558  DirectJDKLog.java:181 - Architecture:          amd64
+INFO  [DSE main thread] 2020-07-20 09:10:26,559  DirectJDKLog.java:181 - Java Home:             /usr/local/openjdk-8/jre
+INFO  [DSE main thread] 2020-07-20 09:10:26,560  DirectJDKLog.java:181 - JVM Version:           1.8.0_252-b09
+INFO  [DSE main thread] 2020-07-20 09:10:26,560  DirectJDKLog.java:181 - JVM Vendor:            Oracle Corporation
+INFO  [DSE main thread] 2020-07-20 09:10:26,561  DirectJDKLog.java:181 - CATALINA_BASE:         /opt/dse/resources/tomcat
+INFO  [DSE main thread] 2020-07-20 09:10:26,561  DirectJDKLog.java:181 - CATALINA_HOME:         /opt/dse/resources/tomcat
+INFO  [DSE main thread] 2020-07-20 09:10:26,562  DirectJDKLog.java:181 - Command line argument: -Ddse.server_process
+INFO  [DSE main thread] 2020-07-20 09:10:26,563  DirectJDKLog.java:181 - Command line argument: -ea
+INFO  [DSE main thread] 2020-07-20 09:10:26,564  DirectJDKLog.java:181 - Command line argument: -XX:+UseThreadPriorities
+INFO  [DSE main thread] 2020-07-20 09:10:26,564  DirectJDKLog.java:181 - Command line argument: -XX:+HeapDumpOnOutOfMemoryError
+INFO  [DSE main thread] 2020-07-20 09:10:26,565  DirectJDKLog.java:181 - Command line argument: -Xss256k
+INFO  [DSE main thread] 2020-07-20 09:10:26,565  DirectJDKLog.java:181 - Command line argument: -XX:StringTableSize=1000003
+INFO  [DSE main thread] 2020-07-20 09:10:26,566  DirectJDKLog.java:181 - Command line argument: -XX:+AlwaysPreTouch
+INFO  [DSE main thread] 2020-07-20 09:10:26,567  DirectJDKLog.java:181 - Command line argument: -XX:+UseTLAB
+INFO  [DSE main thread] 2020-07-20 09:10:26,567  DirectJDKLog.java:181 - Command line argument: -XX:+ResizeTLAB
+INFO  [DSE main thread] 2020-07-20 09:10:26,568  DirectJDKLog.java:181 - Command line argument: -XX:+UseNUMA
+INFO  [DSE main thread] 2020-07-20 09:10:26,568  DirectJDKLog.java:181 - Command line argument: -Djava.net.preferIPv4Stack=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,569  DirectJDKLog.java:181 - Command line argument: -XX:-RestrictContended
+INFO  [DSE main thread] 2020-07-20 09:10:26,569  DirectJDKLog.java:181 - Command line argument: -XX:+UnlockDiagnosticVMOptions
+INFO  [DSE main thread] 2020-07-20 09:10:26,570  DirectJDKLog.java:181 - Command line argument: -XX:GuaranteedSafepointInterval=300000
+INFO  [DSE main thread] 2020-07-20 09:10:26,570  DirectJDKLog.java:181 - Command line argument: -XX:-UseBiasedLocking
+INFO  [DSE main thread] 2020-07-20 09:10:26,571  DirectJDKLog.java:181 - Command line argument: -XX:+UnlockDiagnosticVMOptions
+INFO  [DSE main thread] 2020-07-20 09:10:26,571  DirectJDKLog.java:181 - Command line argument: -XX:+DebugNonSafepoints
+INFO  [DSE main thread] 2020-07-20 09:10:26,572  DirectJDKLog.java:181 - Command line argument: -Djdk.nio.maxCachedBufferSize=1048576
+INFO  [DSE main thread] 2020-07-20 09:10:26,573  DirectJDKLog.java:181 - Command line argument: -Dio.netty.eventLoop.maxPendingTasks=65536
+INFO  [DSE main thread] 2020-07-20 09:10:26,573  DirectJDKLog.java:181 - Command line argument: -Dio.netty.maxDirectMemory=0
+INFO  [DSE main thread] 2020-07-20 09:10:26,574  DirectJDKLog.java:181 - Command line argument: -XX:ThreadPriorityPolicy=42
+INFO  [DSE main thread] 2020-07-20 09:10:26,574  DirectJDKLog.java:181 - Command line argument: -XX:+UseG1GC
+INFO  [DSE main thread] 2020-07-20 09:10:26,575  DirectJDKLog.java:181 - Command line argument: -XX:+ParallelRefProcEnabled
+INFO  [DSE main thread] 2020-07-20 09:10:26,575  DirectJDKLog.java:181 - Command line argument: -XX:G1RSetUpdatingPauseTimePercent=5
+INFO  [DSE main thread] 2020-07-20 09:10:26,576  DirectJDKLog.java:181 - Command line argument: -XX:MaxGCPauseMillis=500
+INFO  [DSE main thread] 2020-07-20 09:10:26,576  DirectJDKLog.java:181 - Command line argument: -XX:+PrintGCDetails
+INFO  [DSE main thread] 2020-07-20 09:10:26,577  DirectJDKLog.java:181 - Command line argument: -XX:+PrintGCDateStamps
+INFO  [DSE main thread] 2020-07-20 09:10:26,577  DirectJDKLog.java:181 - Command line argument: -XX:+PrintHeapAtGC
+INFO  [DSE main thread] 2020-07-20 09:10:26,578  DirectJDKLog.java:181 - Command line argument: -XX:+PrintTenuringDistribution
+INFO  [DSE main thread] 2020-07-20 09:10:26,579  DirectJDKLog.java:181 - Command line argument: -XX:+PrintGCApplicationStoppedTime
+INFO  [DSE main thread] 2020-07-20 09:10:26,579  DirectJDKLog.java:181 - Command line argument: -XX:+PrintPromotionFailure
+INFO  [DSE main thread] 2020-07-20 09:10:26,580  DirectJDKLog.java:181 - Command line argument: -XX:+UseGCLogFileRotation
+INFO  [DSE main thread] 2020-07-20 09:10:26,580  DirectJDKLog.java:181 - Command line argument: -XX:NumberOfGCLogFiles=10
+INFO  [DSE main thread] 2020-07-20 09:10:26,581  DirectJDKLog.java:181 - Command line argument: -XX:GCLogFileSize=10M
+INFO  [DSE main thread] 2020-07-20 09:10:26,582  DirectJDKLog.java:181 - Command line argument: -Xloggc:/var/log/cassandra/gc.log
+INFO  [DSE main thread] 2020-07-20 09:10:26,582  DirectJDKLog.java:181 - Command line argument: -XX:MaxDirectMemorySize=2802M
+INFO  [DSE main thread] 2020-07-20 09:10:26,583  DirectJDKLog.java:181 - Command line argument: -Xms1868M
+INFO  [DSE main thread] 2020-07-20 09:10:26,583  DirectJDKLog.java:181 - Command line argument: -Xmx1868M
+INFO  [DSE main thread] 2020-07-20 09:10:26,584  DirectJDKLog.java:181 - Command line argument: -XX:CompileCommandFile=/opt/dse/resources/cassandra/conf/hotspot_compiler
+INFO  [DSE main thread] 2020-07-20 09:10:26,584  DirectJDKLog.java:181 - Command line argument: -javaagent:/opt/dse/resources/cassandra/lib/jamm-0.3.3.jar
+INFO  [DSE main thread] 2020-07-20 09:10:26,585  DirectJDKLog.java:181 - Command line argument: -Dcassandra.jmx.local.port=7199
+INFO  [DSE main thread] 2020-07-20 09:10:26,585  DirectJDKLog.java:181 - Command line argument: -Dcom.sun.management.jmxremote.authenticate=false
+INFO  [DSE main thread] 2020-07-20 09:10:26,586  DirectJDKLog.java:181 - Command line argument: -Dcom.sun.management.jmxremote.password.file=/etc/cassandra/jmxremote.password
+INFO  [DSE main thread] 2020-07-20 09:10:26,586  DirectJDKLog.java:181 - Command line argument: -Dmx4jaddress=127.0.0.1
+INFO  [DSE main thread] 2020-07-20 09:10:26,587  DirectJDKLog.java:181 - Command line argument: -Djava.library.path=/opt/dse/resources/hadoop2-client/lib/native:/opt/dse/resources/cassandra/lib/sigar-bin:
+INFO  [DSE main thread] 2020-07-20 09:10:26,587  DirectJDKLog.java:181 - Command line argument: -Ddse.system_memory_in_mb=7472
+INFO  [DSE main thread] 2020-07-20 09:10:26,588  DirectJDKLog.java:181 - Command line argument: -Dagrona.disable.bounds.checks=TRUE
+INFO  [DSE main thread] 2020-07-20 09:10:26,588  DirectJDKLog.java:181 - Command line argument: -Dguice_include_stack_traces=OFF
+INFO  [DSE main thread] 2020-07-20 09:10:26,589  DirectJDKLog.java:181 - Command line argument: -Ddse.system_memory_in_mb=7472
+INFO  [DSE main thread] 2020-07-20 09:10:26,590  DirectJDKLog.java:181 - Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+INFO  [DSE main thread] 2020-07-20 09:10:26,590  DirectJDKLog.java:181 - Command line argument: -XX:OnOutOfMemoryError=kill -9 %p
+INFO  [DSE main thread] 2020-07-20 09:10:26,591  DirectJDKLog.java:181 - Command line argument: -Dlogback.configurationFile=logback.xml
+INFO  [DSE main thread] 2020-07-20 09:10:26,591  DirectJDKLog.java:181 - Command line argument: -Dcassandra.logdir=/var/log/cassandra
+INFO  [DSE main thread] 2020-07-20 09:10:26,592  DirectJDKLog.java:181 - Command line argument: -Dcassandra.storagedir=/opt/dse/data
+INFO  [DSE main thread] 2020-07-20 09:10:26,592  DirectJDKLog.java:181 - Command line argument: -Dcassandra-foreground=yes
+INFO  [DSE main thread] 2020-07-20 09:10:26,593  DirectJDKLog.java:181 - Command line argument: -Dsearch-service=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,593  DirectJDKLog.java:181 - Command line argument: -Dcatalina.home=/opt/dse/resources/tomcat
+INFO  [DSE main thread] 2020-07-20 09:10:26,594  DirectJDKLog.java:181 - Command line argument: -Dcatalina.base=/opt/dse/resources/tomcat
+INFO  [DSE main thread] 2020-07-20 09:10:26,595  DirectJDKLog.java:181 - Command line argument: -Djava.util.logging.config.file=/opt/dse/resources/tomcat/conf/logging.properties
+INFO  [DSE main thread] 2020-07-20 09:10:26,595  DirectJDKLog.java:181 - Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+INFO  [DSE main thread] 2020-07-20 09:10:26,596  DirectJDKLog.java:181 - Command line argument: -Dtomcat.logs=/opt/dse/tomcat
+INFO  [DSE main thread] 2020-07-20 09:10:26,596  DirectJDKLog.java:181 - Command line argument: -Dspark-trackers=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,597  DirectJDKLog.java:181 - Command line argument: -Dgraph-enabled=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,597  DirectJDKLog.java:181 - Command line argument: -Dsolr.solr.home=solr/
+INFO  [DSE main thread] 2020-07-20 09:10:26,598  DirectJDKLog.java:181 - Command line argument: -Ddisable.configEdit=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,598  DirectJDKLog.java:181 - Command line argument: -Djava.io.tmpdir=/tmp/dse/dse.FjrZ6G7YU
+INFO  [DSE main thread] 2020-07-20 09:10:26,599  DirectJDKLog.java:181 - Command line argument: -Djdk.internal.lambda.dumpProxyClasses=/tmp/dse/dse.FjrZ6G7YU/lni
+INFO  [DSE main thread] 2020-07-20 09:10:26,599  DirectJDKLog.java:181 - Command line argument: -Ddse.server=true
+INFO  [DSE main thread] 2020-07-20 09:10:26,600  DirectJDKLog.java:181 - Command line argument: -Dguice_include_stack_traces=OFF
+INFO  [DSE main thread] 2020-07-20 09:10:26,601  DirectJDKLog.java:181 - Command line argument: -Ddse.system_memory_in_mb=7472
+INFO  [DSE main thread] 2020-07-20 09:10:26,601  DirectJDKLog.java:181 - Command line argument: -Dcassandra.config.loader=com.datastax.bdp.config.DseConfigurationLoader
+INFO  [DSE main thread] 2020-07-20 09:10:26,602  DirectJDKLog.java:181 - Command line argument: -Dsolr.web.home=/opt/dse/resources/solr/web
+INFO  [DSE main thread] 2020-07-20 09:10:26,606  DirectJDKLog.java:181 - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /opt/dse/resources/hadoop2-client/lib/native:/opt/dse/resources/cassandra/lib/sigar-bin:
+INFO  [SPARK-WORKER] 2020-07-20 09:10:26,687 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:26,896  DirectJDKLog.java:181 - Initialization processed in 1046 ms
+INFO  [DSE main thread] 2020-07-20 09:10:26,897  TomcatSolrRunner.java:150 - server.xml has no connectors so creating a default http connector to run the Solr web application.
+INFO  [DSE main thread] 2020-07-20 09:10:27,058  DirectJDKLog.java:181 - Starting service Solr
+INFO  [DSE main thread] 2020-07-20 09:10:27,058  DirectJDKLog.java:181 - Starting Servlet Engine: Apache Tomcat/8.0.53
+INFO  [localhost-startStop-1] 2020-07-20 09:10:27,109  DirectJDKLog.java:181 - Deploying web application directory /opt/dse/resources/solr/web/solr
+WARN  [localhost-startStop-1] 2020-07-20 09:10:27,239  DirectJDKLog.java:181 - [SetContextPropertiesRule]{Context} Setting property 'processTlds' to 'false' did not find a matching property.
+INFO  [SPARK-MASTER] 2020-07-20 09:10:27,242 SPARK-MASTER Logging.scala:54 - Successfully started service 'MasterUI' on port 7080.
+INFO  [SPARK-MASTER] 2020-07-20 09:10:27,313 SPARK-MASTER Logging.scala:54 - Bound MasterRedirectingUI to 0.0.0.0, and started at http://23e273b32652:7080
+INFO  [SPARK-MASTER] 2020-07-20 09:10:27,314 SPARK-MASTER Logging.scala:35 - Bound redirecting UI
+INFO  [SPARK-WORKER] 2020-07-20 09:10:27,688 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,100  SolrHttpAuditLogFilter.java:212 - Initializing Solr audit logging filter
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,118  SolrDispatchFilter.java:92 - SolrDispatchFilter.init(): sun.misc.Launcher$AppClassLoader@18b4aac2
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,126  SolrResourceLoader.java:761 - No /solr/home in JNDI
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,126  SolrResourceLoader.java:771 - using system property solr.solr.home: solr/
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,361  SolrDispatchFilter.java:113 - user.dir=/opt/dse
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,362  SolrDispatchFilter.java:124 - SolrDispatchFilter.init() done
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,372  RepeatablePOSTQueryFilter.java:76 - Initializing com.datastax.bdp.search.solr.RepeatablePOSTQueryFilter filter
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,430  DirectJDKLog.java:181 - Deployment of web application directory /opt/dse/resources/solr/web/solr has finished in 1,319 ms
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,431  DirectJDKLog.java:181 - Deploying web application directory /opt/dse/resources/solr/web/demos
+WARN  [localhost-startStop-1] 2020-07-20 09:10:28,436  DirectJDKLog.java:181 - [SetContextPropertiesRule]{Context} Setting property 'processTlds' to 'false' did not find a matching property.
+INFO  [localhost-startStop-1] 2020-07-20 09:10:28,479  DirectJDKLog.java:181 - Deployment of web application directory /opt/dse/resources/solr/web/demos has finished in 49 ms
+INFO  [DSE main thread] 2020-07-20 09:10:28,552  DirectJDKLog.java:181 - Initializing ProtocolHandler ["http-bio-0.0.0.0-8983"]
+INFO  [DSE main thread] 2020-07-20 09:10:28,594  DirectJDKLog.java:181 - Starting ProtocolHandler ["http-bio-0.0.0.0-8983"]
+INFO  [DSE main thread] 2020-07-20 09:10:28,640  SolrContainerPlugin.java:205 - Embedded Tomcat started
+INFO  [DSE main thread] 2020-07-20 09:10:28,640  SolrContainerPlugin.java:215 - Configured maximum number of concurrent CQL Search queries: 8
+INFO  [DSE main thread] 2020-07-20 09:10:28,643  PluginManager.java:447 - Activating plugin: com.datastax.bdp.graphv2.inject.GraphServerPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:28,686  PluginManager.java:447 - Activating plugin: com.datastax.bdp.insights.InsightsPlugin
+INFO  [SPARK-WORKER] 2020-07-20 09:10:28,688 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:28,864  InsightsUnixSocketClient.java:458 - Connection to collectd established
+INFO  [SPARK-WORKER] 2020-07-20 09:10:29,689 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:29,781  InsightsUnixSocketClient.java:646 - Starting metric reporting with 30 sec interval
+INFO  [DSE main thread] 2020-07-20 09:10:29,808  PluginManager.java:333 - Activation of plugins which do not require native transport finished
+INFO  [DSE main thread] 2020-07-20 09:10:29,876  Server.java:218 - Using Netty Version: [netty-buffer=netty-buffer-4.1.25.6.dse.5adfbb9, netty-codec=netty-codec-4.1.25.6.dse.5adfbb9, netty-codec-dns=netty-codec-dns-4.1.25.6.dse.5adfbb9, netty-codec-haproxy=netty-codec-haproxy-4.1.25.6.dse.5adfbb9, netty-codec-http=netty-codec-http-4.1.25.6.dse.5adfbb9, netty-codec-http2=netty-codec-http2-4.1.25.6.dse.5adfbb9, netty-codec-memcache=netty-codec-memcache-4.1.25.6.dse.5adfbb9, netty-codec-mqtt=netty-codec-mqtt-4.1.25.6.dse.5adfbb9, netty-codec-redis=netty-codec-redis-4.1.25.6.dse.5adfbb9, netty-codec-smtp=netty-codec-smtp-4.1.25.6.dse.5adfbb9, netty-codec-socks=netty-codec-socks-4.1.25.6.dse.5adfbb9, netty-codec-stomp=netty-codec-stomp-4.1.25.6.dse.5adfbb9, netty-codec-xml=netty-codec-xml-4.1.25.6.dse.5adfbb9, netty-common=netty-common-4.1.25.6.dse.5adfbb9, netty-handler=netty-handler-4.1.25.6.dse.5adfbb9, netty-handler-proxy=netty-handler-proxy-4.1.25.6.dse.5adfbb9, netty-resolver=netty-resolver-4.1.25.6.dse.5adfbb9, netty-resolver-dns=netty-resolver-dns-4.1.25.6.dse.5adfbb9, netty-tcnative=netty-tcnative-2.0.8.Final.066311c, netty-transport=netty-transport-4.1.25.6.dse.5adfbb9, netty-transport-native-epoll=netty-transport-native-epoll-4.1.25.6.dse.5adfbb9, netty-transport-native-kqueue=netty-transport-native-kqueue-4.1.25.6.dse.5adfbb9, netty-transport-native-unix-common=netty-transport-native-unix-common-4.1.25.6.dse.5adfbb9, netty-transport-rxtx=netty-transport-rxtx-4.1.25.6.dse.5adfbb9, netty-transport-sctp=netty-transport-sctp-4.1.25.6.dse.5adfbb9, netty-transport-udt=netty-transport-udt-4.1.25.6.dse.5adfbb9]
+INFO  [DSE main thread] 2020-07-20 09:10:29,877  Server.java:219 - Effective settings: Netty Epoll = true, AIO = true, data directories on SSD = true, system RAM = 7.297GiB, Max Direct Mem = 2.736GiB, file cache size = 1.368GiB
+INFO  [DSE main thread] 2020-07-20 09:10:29,878  Server.java:226 - Starting listening for CQL clients on /0.0.0.0:9042 (unencrypted)...
+INFO  [DSE main thread] 2020-07-20 09:10:29,880  PluginManager.java:326 - Activating plugins which require native transport
+INFO  [DSE main thread] 2020-07-20 09:10:29,881  PluginManager.java:447 - Activating plugin: com.datastax.bdp.plugin.DseFsPlugin
+INFO  [DSE main thread] 2020-07-20 09:10:29,883  ClusterVersionBarrier.java:472 - Cluster is now at DSE version 6.8.1 (required 6.0.0). Performing DSEFS scheme changes and initializing DSEFS server start.
+INFO  [DSE main thread] 2020-07-20 09:10:29,885 DSEFS DseFsPlugin.scala:475 - Starting DSEFS Server...
+INFO  [DSE main thread] 2020-07-20 09:10:30,046 DSEFS MigrationManager.java:186 - Create new Keyspace: KeyspaceMetadata{name=dsefs, kind=REGULAR, params={durable_writes=true, graph_engine=null (default), replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=1}}, tables=[dsefs.locations, dsefs.names, dsefs.inodes, dsefs.blocks, dsefs.block_offsets, dsefs.delete_hints, dsefs.transactions, dsefs.locks, dsefs.transaction_log, dsefs.transaction_log_ranges, dsefs.auth, dsefs.compression_strategies], views=[], functions=[], types=[org.apache.cassandra.db.marshal.UserType(dsefs,616365,616374696f6e:org.apache.cassandra.db.marshal.UTF8Type,7072696e636970616c:org.apache.cassandra.db.marshal.UTF8Type,69735f67726f7570:org.apache.cassandra.db.marshal.BooleanType,696e68657269745f6f7074696f6e73:org.apache.cassandra.db.marshal.Int32Type,7065726d697373696f6e73:org.apache.cassandra.db.marshal.Int32Type), org.apache.cassandra.db.marshal.UserType(dsefs,6368756e6b,6368756e6b5f6964:org.apache.cassandra.db.marshal.Int32Type,6c656e677468:org.apache.cassandra.db.marshal.LongType)]}
+INFO  [DSE main thread] 2020-07-20 09:10:30,139 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.auth
+INFO  [DSE main thread] 2020-07-20 09:10:30,141 DSEFS SSTableReader.java:595 - openAll time for table auth using 4 threads: 0.073ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,158 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.block_offsets
+INFO  [DSE main thread] 2020-07-20 09:10:30,159 DSEFS SSTableReader.java:595 - openAll time for table block_offsets using 4 threads: 0.085ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,189 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.blocks
+INFO  [DSE main thread] 2020-07-20 09:10:30,191 DSEFS SSTableReader.java:595 - openAll time for table blocks using 4 threads: 0.067ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,206 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.compression_strategies
+INFO  [DSE main thread] 2020-07-20 09:10:30,207 DSEFS SSTableReader.java:595 - openAll time for table compression_strategies using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,224 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.delete_hints
+INFO  [DSE main thread] 2020-07-20 09:10:30,225 DSEFS SSTableReader.java:595 - openAll time for table delete_hints using 4 threads: 0.079ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,242 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.inodes
+INFO  [DSE main thread] 2020-07-20 09:10:30,243 DSEFS SSTableReader.java:595 - openAll time for table inodes using 4 threads: 0.095ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,259 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.locations
+INFO  [DSE main thread] 2020-07-20 09:10:30,260 DSEFS SSTableReader.java:595 - openAll time for table locations using 4 threads: 0.101ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,278 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.locks
+INFO  [DSE main thread] 2020-07-20 09:10:30,279 DSEFS SSTableReader.java:595 - openAll time for table locks using 4 threads: 0.101ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,298 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.names
+INFO  [DSE main thread] 2020-07-20 09:10:30,299 DSEFS SSTableReader.java:595 - openAll time for table names using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,316 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.transaction_log
+INFO  [DSE main thread] 2020-07-20 09:10:30,318 DSEFS SSTableReader.java:595 - openAll time for table transaction_log using 4 threads: 0.000ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,337 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.transaction_log_ranges
+INFO  [DSE main thread] 2020-07-20 09:10:30,339 DSEFS SSTableReader.java:595 - openAll time for table transaction_log_ranges using 4 threads: 0.079ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,358 DSEFS ColumnFamilyStore.java:459 - Initializing dsefs.transactions
+INFO  [DSE main thread] 2020-07-20 09:10:30,359 DSEFS SSTableReader.java:595 - openAll time for table transactions using 4 threads: 0.159ms
+INFO  [DSE main thread] 2020-07-20 09:10:30,517 DSEFS Router.java:282 - Updating shards state due to endpoint /172.17.0.2 changing state SCHEMA=a84db5eb-9d55-332e-90d6-c497addecfa8
+WARN  [DSE main thread] 2020-07-20 09:10:30,529 DSEFS DseFsPlugin.scala:376 - DSEFS keyspace "dsefs" is configured with SimpleStrategy replication.
+ This strategy will not replicate metadata properly in multi-datacenter clusters and you may encounter
+ availability problems. Please configure "dsefs" keyspace with NetworkTopologyStrategy.
+WARN  [DSE main thread] 2020-07-20 09:10:30,530 DSEFS DseFsPlugin.scala:384 - DSEFS keyspace "dsefs" replication factor 1 is too low for production use.
+ Please use RF >= 3 to avoid unavailability and data loss.
+INFO  [DSE main thread] 2020-07-20 09:10:30,550 DSEFS DseFsPlugin.scala:209 - Using client-server encryption configuration:
+SslConf:
+  enabled: false
+  optional: false
+  require client auth: false
+  require endpoint verification: false
+  keystore: resources/dse/conf/.keystore
+  keystore type: JKS
+  truststore: conf/.truststore
+  truststore type: JKS
+  algorithm: DseClientReloadableTrustManager
+  protocol: TLS
+  cipher suites: [TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+INFO  [DSE main thread] 2020-07-20 09:10:30,551 DSEFS DseFsPlugin.scala:210 - Using internode encryption configuration:
+SslConf:
+  enabled: false
+  optional: false
+  require client auth: false
+  require endpoint verification: false
+  keystore: resources/dse/conf/.keystore
+  keystore type: JKS
+  truststore: resources/dse/conf/.truststore
+  truststore type: JKS
+  algorithm: DseServerReloadableTrustManager
+  protocol: TLS
+  cipher suites: [TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+INFO  [DSE main thread] 2020-07-20 09:10:30,581 DSEFS GuavaCompatibility.java:176 - Detected Guava >= 19 in the classpath, using modern compatibility layer
+INFO  [DSE main thread] 2020-07-20 09:10:30,662 DSEFS Cluster.java:273 - DataStax Java Driver 1.10.0-dse+20200217 for DataStax Enterprise (DSE) and Apache Cassandra®
+INFO  [SPARK-WORKER] 2020-07-20 09:10:30,690 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:31,155 DSEFS Clock.java:48 - Using native clock to generate timestamps.
+INFO  [DSE main thread] 2020-07-20 09:10:31,427 DSEFS UUIDs.java:161 - PID obtained through native call to getpid(): 1
+INFO  [SPARK-WORKER] 2020-07-20 09:10:31,691 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:32,454 DSEFS DCAwareRoundRobinPolicy.java:102 - Using data-center name 'dc1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
+INFO  [DSE main thread] 2020-07-20 09:10:32,455 DSEFS Cluster.java:1895 - New Cassandra host /172.17.0.2:9042 added
+INFO  [SPARK-WORKER] 2020-07-20 09:10:32,692 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:33,103 DSEFS BlockStore.scala:92 - Location ID file not found at /var/lib/dsefs/data/LOCATION_ID. Will initialize a new data storage directory at /var/lib/dsefs/data...
+INFO  [DSE main thread] 2020-07-20 09:10:33,107 DSEFS BlockStore.scala:71 - Initialized a new empty data storage location 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662 at /var/lib/dsefs/data
+INFO  [DSE main thread] 2020-07-20 09:10:33,108 DSEFS BlockStore.scala:109 - Initializing data directory /var/lib/dsefs/data/blocks ...
+INFO  [DSE main thread] 2020-07-20 09:10:33,262 DSEFS BlockStore.scala:123 - Initialization of /var/lib/dsefs/data/blocks successful
+INFO  [DSE main thread] 2020-07-20 09:10:33,281 DSEFS BlockStoreJournal.scala:63 - Journal /var/lib/dsefs/data/journal for location 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662 replayed successfully
+INFO  [DSE main thread] 2020-07-20 09:10:33,282 DSEFS BlockStoreJournal.scala:75 - Storing initial used space for 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662 in the journal: 0 bytes
+INFO  [SPARK-WORKER] 2020-07-20 09:10:33,694 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [DSE main thread] 2020-07-20 09:10:33,917 DSEFS RestServer.scala:66 - Starting RestServer at 172.17.0.2:5599
+INFO  [dsefs-netty-worker-1] 2020-07-20 09:10:33,933 DSEFS LocationService.scala:258 - Registering new location 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662 for /var/lib/dsefs/data...
+INFO  [DSE main thread] 2020-07-20 09:10:33,950 DSEFS LocationService.scala:581 - Successfully registered owned locations:
+  Location(76c7c57c-ef7a-4a6b-a826-b41eeb0f4662,5f07e400-cfa8-4afd-a6a0-6935ad90e9dd,/172.17.0.2,5599,/172.17.0.2,5598,/var/lib/dsefs/data,23e273b32652,None,Some(rack1),None,Some(dc1),Mon Jul 20 09:10:33 UTC 2020,true,false,268435456,29088313344,0,1.0,None,Some(2))
+INFO  [DSE main thread] 2020-07-20 09:10:33,956 DSEFS LocationService.scala:596 - LocationService started
+INFO  [DSE main thread] 2020-07-20 09:10:33,964 DSEFS RestServer.scala:66 - Starting RestServer at 0.0.0.0:5598
+INFO  [dsefs-netty-worker-1] 2020-07-20 09:10:33,978 DSEFS BlockService.scala:309 - Processing delete hints for location 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662...
+INFO  [DSE main thread] 2020-07-20 09:10:34,046 DSEFS DseFsPlugin.scala:488 - DSEFS Server started
+INFO  [DSE main thread] 2020-07-20 09:10:34,048  PluginManager.java:447 - Activating plugin: com.datastax.bdp.graph.plugin.GraphOLAPPluginImpl$GraphOLAPPluginForRM1Impl
+INFO  [DSE main thread] 2020-07-20 09:10:34,056  PluginManager.java:333 - Activation of plugins which require native transport finished
+INFO  [DSE main thread] 2020-07-20 09:10:34,150  NodeSyncService.java:154 - Enabled NodeSync service (currently inactive as this is the only node in the cluster; will activate automatically once more nodes join)
+INFO  [DSE main thread] 2020-07-20 09:10:34,163  DseDaemon.java:815 - DSE startup complete.
+INFO  [dsefs-netty-worker-1] 2020-07-20 09:10:34,231 DSEFS BlockService.scala:321 - Processed 0 delete hints for location 76c7c57c-ef7a-4a6b-a826-b41eeb0f4662
+INFO  [dsefs-netty-worker-1] 2020-07-20 09:10:34,694 DSEFS TransactionManager.scala:342 - Replayed 0 transactions created by 5f07e400-cfa8-4afd-a6a0-6935ad90e9dd
+INFO  [SPARK-WORKER] 2020-07-20 09:10:34,695 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+INFO  [SPARK-WORKER] 2020-07-20 09:10:35,695 SPARK-WORKER Logging.scala:35 - Spark Master not ready...
+WARN  [PO-thread-2] 2020-07-20 09:10:36,476  LeaseMonitorCore.java:566 - CF 'dse_leases.leases' has only 1 replicas in dc 'dc1', less than the recommended minimum of 3.  A single node failure will render this lease unavailable.  You should increase the replication factor; check the docs at http://docs.datastax.com/en/cql/3.1/cql/cql_using/update_ks_rf_t.html for details.
+INFO  [PO-thread-2] 2020-07-20 09:10:36,556  LeaseMonitorCore.java:164 - Created Leader/master/6.8.dc1 (duration: 30000ms)
+INFO  [PO-thread-2] 2020-07-20 09:10:36,614  LeaseMonitorCore.java:179 - Acquired Leader/master/6.8.dc1 for node 172.17.0.2
+INFO  [PO-thread-2] 2020-07-20 09:10:36,617  SparkPlugin.scala:245 - Got lease change event from null to /172.17.0.2
+INFO  [PO-thread-2] 2020-07-20 09:10:36,621  WorkerCheckupRunner.scala:56 - Scheduling Worker checkups with interval of 1 seconds
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,699 SPARK-WORKER Logging.scala:35 - Starting SPARK-WORKER service
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,742 SPARK-WORKER Logging.scala:54 - Changing view acls to: dse
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,757 SPARK-WORKER Logging.scala:54 - Changing modify acls to: dse
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,758 SPARK-WORKER Logging.scala:54 - Changing view acls groups to: 
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,758 SPARK-WORKER Logging.scala:54 - Changing modify acls groups to: 
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,758 SPARK-WORKER Logging.scala:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(dse); groups with view permissions: Set(); users  with modify permissions: Set(dse); groups with modify permissions: Set()
+INFO  [SPARK-WORKER] 2020-07-20 09:10:36,999 SPARK-WORKER Logging.scala:54 - Successfully started service 'sparkWorker' on port 45127.
+INFO  [SPARK-WORKER] 2020-07-20 09:10:37,253 SPARK-WORKER DseSparkWorker.scala:83 - Temporary data locations: /var/lib/spark/rdd
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,261  Logging.scala:54 - Starting shuffle service on port 7447 with useSasl = true
+INFO  [SPARK-WORKER] 2020-07-20 09:10:37,266 SPARK-WORKER Logging.scala:35 - SPARK-WORKER service is running
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,272  Logging.scala:54 - Starting shuffle service on port 7437 with useSasl = false
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,279  Logging.scala:54 - Starting Spark worker 172.17.0.2:45127 with Map(default -> 3) cores, Map(default -> 3.2 GB) RAM
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,286  Logging.scala:54 - Running Spark version 2.4.0.14
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,288  Logging.scala:54 - Spark home: /opt/dse/resources/spark
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,359  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthFilter to /logPage, /logPage/json, /, /json, /static, /log, /master.
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,365 SPARK-MASTER Logging.scala:35 - Stopped redirecting UI
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,367 SPARK-MASTER Logging.scala:35 - Awaiting LOCAL_QUORUM for Spark Master recovery storage
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,374  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthzFilter to /logPage, /logPage/json, /, /json, /static, /log, /master.
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,382  Logging.scala:54 - Successfully started service 'WorkerUI' on port 7081.
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,446  Logging.scala:54 - Bound WorkerWebUI to 0.0.0.0, and started at http://23e273b32652:7081
+INFO  [worker-register-master-threadpool-0] 2020-07-20 09:10:37,463  Logging.scala:54 - Connecting to master 172.17.0.2:7077...
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,504 SPARK-MASTER Logging.scala:35 - Starting SPARK-MASTER service...
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,530 SPARK-MASTER Logging.scala:54 - Changing view acls to: dse
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,531 SPARK-MASTER Logging.scala:54 - Changing modify acls to: dse
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,532 SPARK-MASTER Logging.scala:54 - Changing view acls groups to: 
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,532 SPARK-MASTER Logging.scala:54 - Changing modify acls groups to: 
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,533 SPARK-MASTER Logging.scala:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(dse); groups with view permissions: Set(); users  with modify permissions: Set(dse); groups with modify permissions: Set()
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,533  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthFilter to /metrics/json.
+INFO  [dispatcher-event-loop-1] 2020-07-20 09:10:37,534  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthzFilter to /metrics/json.
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,604 SPARK-MASTER Logging.scala:54 - Successfully started service 'sparkMaster' on port 7077.
+INFO  [post-lease-change-worker-checkup] 2020-07-20 09:10:37,626  WorkerCheckupRunner.scala:115 - Detected Spark Master is alive at /172.17.0.2:7077, it was set on Mon Jul 20 09:10:36 UTC 2020
+INFO  [netty-rpc-connection-0] 2020-07-20 09:10:37,629  TransportClientFactory.java:267 - Successfully created connection to /172.17.0.2:7077 after 105 ms (0 ms spent in bootstraps)
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,677  Logging.scala:54 - Starting Spark master at spark://172.17.0.2:7077
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,679  Logging.scala:54 - Running Spark version 2.4.0.14
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,702  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthFilter to /app, /app/json, /, /json, /static, /app/kill, /driver/kill.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,703  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthzFilter to /app, /app/json, /, /json, /static, /app/kill, /driver/kill.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,718  Logging.scala:54 - Successfully started service 'MasterUI' on port 7080.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,722  Logging.scala:54 - Bound MasterWebUI to 0.0.0.0, and started at http://23e273b32652:7080
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,734  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthFilter to /metrics/master/json.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,734  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthzFilter to /metrics/master/json.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,737  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthFilter to /metrics/applications/json.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,742  Logging.scala:54 - Adding filter com.datastax.bdp.auth.SparkUIAuthzFilter to /metrics/applications/json.
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,747  CassandraPersistenceEngine.scala:34 - Created CassandraPersistenceEngine for data center dc1
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,760  Logging.scala:54 - 172.17.0.2:47916 got disassociated, removing it.
+INFO  [SPARK-MASTER] 2020-07-20 09:10:37,789 SPARK-MASTER Logging.scala:35 - SPARK-MASTER service is running
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,826  CassandraPersistenceEngine.scala:67 - Read 0 entries for prefix app_
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,828  CassandraPersistenceEngine.scala:67 - Read 0 entries for prefix driver_
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,829  CassandraPersistenceEngine.scala:67 - Read 0 entries for prefix worker_
+INFO  [dispatcher-event-loop-3] 2020-07-20 09:10:37,831  Logging.scala:54 - I have been elected leader! New state: ALIVE
+INFO  [dispatcher-event-loop-2] 2020-07-20 09:10:37,846  Logging.scala:54 - Registering worker 172.17.0.2:45127 with Map(default -> 3) cores, Map(default -> 3.2 GB) RAM
+INFO  [dispatcher-event-loop-2] 2020-07-20 09:10:37,857  CassandraPersistenceEngine.scala:38 - Adding new object worker_worker-20200720091037-172.17.0.2-45127 of type org.apache.spark.deploy.master.WorkerInfo
+INFO  [dispatcher-event-loop-0] 2020-07-20 09:10:38,955  Logging.scala:54 - Successfully registered with master spark://172.17.0.2:7077
+INFO  [CoreThread-2] 2020-07-20 09:15:50,951  QueryProcessor.java:434 - Executing DDL statement 'CREATE KEYSPACE IF NOT EXISTS "keyspace1" WITH replication = {'class': 'org.apache.cassandra.locator.SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+' from client IP /127.0.0.1:54828 by user #<User anonymous>
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,093  Router.java:282 - Updating shards state due to endpoint /172.17.0.2 changing state SCHEMA=0606c9a1-b5f1-33e9-9c77-8d15da405d10
+INFO  [CoreThread-2] 2020-07-20 09:15:51,161  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS standard1 (key blob PRIMARY KEY 
+, "C0" blob
+, "C1" blob
+, "C2" blob
+, "C3" blob
+, "C4" blob) WITH compression = {};
+' from client IP /127.0.0.1:54828 by user #<User anonymous>
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,271  ColumnFamilyStore.java:459 - Initializing keyspace1.standard1
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,273  SSTableReader.java:595 - openAll time for table standard1 using 4 threads: 0.087ms
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,521  Router.java:282 - Updating shards state due to endpoint /172.17.0.2 changing state SCHEMA=dbd3cb3a-52d1-37e0-b15f-09e144e39845
+INFO  [CoreThread-2] 2020-07-20 09:15:51,555  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS counter1 (key blob PRIMARY KEY,
+, "C0" counter
+, "C1" counter
+, "C2" counter
+, "C3" counter
+, "C4" counter) WITH compression = {};
+' from client IP /127.0.0.1:54828 by user #<User anonymous>
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,655  ColumnFamilyStore.java:459 - Initializing keyspace1.counter1
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,656  SSTableReader.java:595 - openAll time for table counter1 using 4 threads: 0.106ms
+INFO  [mainIOThread-0] 2020-07-20 09:15:51,762  Router.java:282 - Updating shards state due to endpoint /172.17.0.2 changing state SCHEMA=66b79eea-3933-3a73-8799-cb2a70106421
+INFO  [CoreThread-1] 2020-07-20 09:15:51,772  PercentileFilter.java:117 - CqlSlowLog plugin now warmed up!
+INFO  [CoreThread-0] 2020-07-20 09:17:52,504  QueryProcessor.java:434 - Executing DDL statement 'CREATE KEYSPACE IF NOT EXISTS "keyspace1" WITH replication = {'class': 'org.apache.cassandra.locator.SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+' from client IP /127.0.0.1:54850 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 09:17:52,514  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS standard1 (key blob PRIMARY KEY 
+, "C0" blob
+, "C1" blob
+, "C2" blob
+, "C3" blob
+, "C4" blob) WITH compression = {};
+' from client IP /127.0.0.1:54850 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 09:17:52,516  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS counter1 (key blob PRIMARY KEY,
+, "C0" counter
+, "C1" counter
+, "C2" counter
+, "C3" counter
+, "C4" counter) WITH compression = {};
+' from client IP /127.0.0.1:54850 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 09:44:50,594  QueryProcessor.java:434 - Executing DDL statement 'CREATE KEYSPACE IF NOT EXISTS "keyspace1" WITH replication = {'class': 'org.apache.cassandra.locator.SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+' from client IP /127.0.0.1:54896 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 09:44:50,603  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS standard1 (key blob PRIMARY KEY 
+, "C0" blob
+, "C1" blob
+, "C2" blob
+, "C3" blob
+, "C4" blob) WITH compression = {};
+' from client IP /127.0.0.1:54896 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 09:44:50,605  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS counter1 (key blob PRIMARY KEY,
+, "C0" counter
+, "C1" counter
+, "C2" counter
+, "C3" counter
+, "C4" counter) WITH compression = {};
+' from client IP /127.0.0.1:54896 by user #<User anonymous>
+INFO  [GCInspector:1] 2020-07-20 09:59:02,134  GCInspector.java:315 - G1 Young Generation GC in 436ms.  G1 Old Gen: 593711496 -> 595005840; G1 Survivor Space: 34603008 -> 62914560; G1 Eden Space: 1073741824 -> 0
+INFO  [GCInspector:1] 2020-07-20 10:00:15,463  GCInspector.java:315 - G1 Young Generation GC in 251ms.  G1 Old Gen: 648549296 -> 649073576; G1 Survivor Space: 48234496 -> 70254592; G1 Eden Space: 988807168 -> 0
+INFO  [CoreThread-0] 2020-07-20 10:03:00,006  QueryProcessor.java:434 - Executing DDL statement 'CREATE KEYSPACE IF NOT EXISTS "keyspace1" WITH replication = {'class': 'org.apache.cassandra.locator.SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+' from client IP /127.0.0.1:54948 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 10:03:00,030  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS standard1 (key blob PRIMARY KEY 
+, "C0" blob
+, "C1" blob
+, "C2" blob
+, "C3" blob
+, "C4" blob) WITH compression = {};
+' from client IP /127.0.0.1:54948 by user #<User anonymous>
+INFO  [CoreThread-0] 2020-07-20 10:03:00,033  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS counter1 (key blob PRIMARY KEY,
+, "C0" counter
+, "C1" counter
+, "C2" counter
+, "C3" counter
+, "C4" counter) WITH compression = {};
+' from client IP /127.0.0.1:54948 by user #<User anonymous>
+WARN  [PO-thread-3] 2020-07-20 10:51:12,156  NoSpamLogger.java:98 - Lease LWT query failed; lease Leader/master/6.8.dc1 will be unavailable until it cansucceed. Most likely this will be fixed by increasing the replication factor for the dse_leases keyspace in this DC (dc1) to 3 and repairing the dse_leases keyspace. If not, something else is causing the queries to fail, such as nodes being overloaded or network connectivity issues. You may also see this warning briefly after increasing the replication factor, and before repair of the keyspace finishes.
+org.apache.cassandra.exceptions.WriteTimeoutException: CAS timed out due to contention - tried 0 times
+	at org.apache.cassandra.service.StorageProxy.doPaxos(StorageProxy.java:374)
+	at org.apache.cassandra.service.StorageProxy.cas(StorageProxy.java:270)
+	at org.apache.cassandra.cql3.statements.ModificationStatement.lambda$executeWithCondition$4(ModificationStatement.java:570)
+	at io.reactivex.internal.operators.single.SingleDefer.subscribeActual(SingleDefer.java:36)
+	at io.reactivex.Single.subscribe(Single.java:3603)
+	at io.reactivex.internal.operators.single.SingleMap.subscribeActual(SingleMap.java:34)
+	at io.reactivex.Single.subscribe(Single.java:3603)
+	at io.reactivex.internal.operators.single.SingleSubscribeOn$SubscribeOnObserver.run(SingleSubscribeOn.java:89)
+	at org.apache.cassandra.concurrent.TPCRunnable.run(TPCRunnable.java:90)
+	at io.reactivex.internal.schedulers.ScheduledDirectTask.call(ScheduledDirectTask.java:38)
+	at io.reactivex.internal.schedulers.ScheduledDirectTask.call(ScheduledDirectTask.java:26)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.cassandra.concurrent.NamedThreadFactory.lambda$threadLocalDeallocator$0(NamedThreadFactory.java:88)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+	at org.apache.cassandra.utils.concurrent.InlinedThreadLocalThread.run(InlinedThreadLocalThread.java:251)
+INFO  [CoreThread-2] 2020-07-21 07:10:31,327  QueryProcessor.java:434 - Executing DDL statement 'CREATE KEYSPACE IF NOT EXISTS "keyspace1" WITH replication = {'class': 'org.apache.cassandra.locator.SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+' from client IP /127.0.0.1:55028 by user #<User anonymous>
+INFO  [CoreThread-2] 2020-07-21 07:10:31,335  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS standard1 (key blob PRIMARY KEY 
+, "C0" blob
+, "C1" blob
+, "C2" blob
+, "C3" blob
+, "C4" blob) WITH compression = {};
+' from client IP /127.0.0.1:55028 by user #<User anonymous>
+INFO  [CoreThread-2] 2020-07-21 07:10:31,344  QueryProcessor.java:434 - Executing DDL statement 'CREATE TABLE IF NOT EXISTS counter1 (key blob PRIMARY KEY,
+, "C0" counter
+, "C1" counter
+, "C2" counter
+, "C3" counter
+, "C4" counter) WITH compression = {};
+' from client IP /127.0.0.1:55028 by user #<User anonymous>
+INFO  [GCInspector:1] 2020-07-21 07:10:44,141  GCInspector.java:315 - G1 Young Generation GC in 615ms.  G1 Old Gen: 650921864 -> 647799112; G1 Survivor Space: 7340032 -> 22020096; G1 Eden Space: 1087373312 -> 0
+WARN  [GCInspector:1] 2020-07-21 07:10:56,164  GCInspector.java:313 - G1 Young Generation GC in 1064ms.  G1 Old Gen: 659333640 -> 649400176; G1 Survivor Space: 22020096 -> 29360128; G1 Eden Space: 1047527424 -> 0
+INFO  [GCInspector:1] 2020-07-21 07:10:56,639  StatusLogger.java:174 - 
+Pool Name                                       Active        Pending   Backpressure   Delayed      Shared      Stolen      Completed   Blocked  All Time Blocked
+AuthzStage                                           0              0            N/A       N/A         N/A         N/A              0         0                 0
+LwtStage                                             0              0            N/A       N/A         N/A         N/A          26374         0                 0
+RequestResponseStage                                 0              0            N/A       N/A         N/A         N/A         158337         0                 0
+AntiCompactionExecutor                               0              0            N/A       N/A         N/A         N/A              0         0                 0
+AntiEntropyStage                                     0              0            N/A       N/A         N/A         N/A              0         0                 0
+BackgroundIoStage                                    0              0            N/A       N/A         N/A         N/A              0         0                 0
+CacheCleanupExecutor                                 0              0            N/A       N/A         N/A         N/A              0         0                 0
+CompactionExecutor                                   1              0            N/A       N/A         N/A         N/A         104325         0                 0
+GossipStage                                          0              0            N/A       N/A         N/A         N/A              0         0                 0
+HintsDispatcher                                      0              0            N/A       N/A         N/A         N/A              0         0                 0
+InternalResponseStage                                0              0            N/A       N/A         N/A         N/A              0         0                 0
+MemtableFlushWriter                                  3              0            N/A       N/A         N/A         N/A            475         0                 0
+MemtablePostFlush                                    1              6            N/A       N/A         N/A         N/A           1300         0                 0
+MemtableReclaimMemory                                0              0            N/A       N/A         N/A         N/A            475         0                 0
+MigrationStage                                       0              0            N/A       N/A         N/A         N/A              0         0                 0
+MiscStage                                            0              0            N/A       N/A         N/A         N/A              0         0                 0
+PendingRangeCalculator                               0              0            N/A       N/A         N/A         N/A              1         0                 0
+PerDiskMemtableFlushWriter_0                         2              0            N/A       N/A         N/A         N/A            465         0                 0
+Repair-Task                                          0              0            N/A       N/A         N/A         N/A              0         0                 0
+Sampler                                              0              0            N/A       N/A         N/A         N/A              0         0                 0
+SecondaryIndexManagement                             0              0            N/A       N/A         N/A         N/A              0         0                 0
+TPC/all                                            N/A            N/A            N/A       N/A         N/A         N/A            N/A       N/A               N/A
+TPC/all/AUTHENTICATION                               0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/AUTHORIZATION                                0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BACKPRESSURED_MESSAGE_DECODE                 0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BACKPRESSURE_RESCHEDULE                      0              0            N/A       N/A           0           0         124661       N/A                 0
+TPC/all/BACKUP_OPERATION                             0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BATCH_REMOVE                                 0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/BATCH_REPLAY                                 0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BATCH_STORE                                  0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/BATCH_STORE_RESPONSE                         0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BLOCKING_OPERATION_RESTART                   0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/BUFFER_POOL_CLEANUP                          0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/CLEAN_BACKUPS_OPERATION                      0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/CONTINUOUS_PAGING                            0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/COUNTER_ACQUIRE_LOCK                         0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/EXECUTE_STATEMENT                            0            N/A            N/A       N/A         191         191          53672       N/A               N/A
+TPC/all/FRAME_DECODE                                 0            N/A            N/A       N/A           0           0        1063137       N/A               N/A
+TPC/all/HINT_DISPATCH                                0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/HINT_RESPONSE                                0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/INCREMENTAL_NODESYNC_MAINTENANCE             0            N/A            N/A       N/A           0           0            105       N/A               N/A
+TPC/all/LWT_COMMIT                                   0              0            N/A       N/A           0           0          52779       N/A                 0
+TPC/all/LWT_PREPARE                                  0              0            N/A       N/A           0           0          52779       N/A                 0
+TPC/all/LWT_PREPARE_AWAIT_LOCK                       0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/LWT_PROPOSE                                  0              0            N/A       N/A           0           0          52779       N/A                 0
+TPC/all/LWT_PROPOSE_AWAIT_LOCK                       0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/NETWORK_BACKPRESSURE                         0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/NODESYNC_VALIDATION                          0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/OUTBOUND_FLUSH                               0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/OUTBOUND_SCHEDULED_FLUSH                     0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/PARALLEL_MESSAGE_DECODE                      0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/POPULATE_VIRTUAL_TABLE                       0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/READ_DISK_ASYNC                              0            N/A            N/A       N/A           0           0            267       N/A               N/A
+TPC/all/READ_INTERNAL                                0            N/A            N/A       N/A          13          13          56805       N/A               N/A
+TPC/all/READ_LOCAL                                   0              0            N/A       N/A         130         130            277       N/A                 0
+TPC/all/READ_RANGE_INTERNAL                          0            N/A            N/A       N/A          38          38            117       N/A               N/A
+TPC/all/READ_RANGE_LOCAL                             0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/READ_RANGE_NODESYNC                          0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/READ_RANGE_REMOTE                            0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/READ_RANGE_SWITCH_FOR_RESPONSE               0            N/A            N/A       N/A          10          10            117       N/A               N/A
+TPC/all/READ_REMOTE                                  0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/READ_SECONDARY_INDEX                         0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/READ_SPECULATE                               0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_ITERATOR                     0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/READ_SWITCH_FOR_RESPONSE                     0            N/A            N/A       N/A        1831        1831          57082       N/A               N/A
+TPC/all/READ_TIMEOUT                                 0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/RESTORE_OPERATION                            0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/SAVE_LOCAL_NODE                              0            N/A            N/A       N/A           0           0             37       N/A               N/A
+TPC/all/SAVE_PEER_NODES                              0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/SOLR_INDEXING                                0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/TIMED_TIMEOUT                                0            N/A            N/A       N/A           0           0         792796       N/A               N/A
+TPC/all/TIMED_UNKNOWN                                0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/TRUNCATE                                     0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/UNKNOWN                                      0            N/A            N/A       N/A           0           0          26374       N/A               N/A
+TPC/all/UPDATE_NOTIFICATION                          0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SEGMENT                0            N/A            N/A       N/A           0           0            939       N/A               N/A
+TPC/all/WRITE_AWAIT_COMMITLOG_SYNC                   0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/WRITE_DEFRAGMENT                             0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/WRITE_INTERNAL                               0            N/A            N/A       N/A           0           0              4       N/A               N/A
+TPC/all/WRITE_LOCAL                                  0              0            N/A       N/A           0           0       34231362       N/A                 0
+TPC/all/WRITE_MEMTABLE_FULL                          0            N/A            N/A       N/A           0           0              0       N/A               N/A
+TPC/all/WRITE_REMOTE                                 0              0            N/A       N/A           0           0              0       N/A                 0
+TPC/all/WRITE_SWITCH_FOR_MEMTABLE                    0            N/A            N/A       N/A           0           0          15435       N/A               N/A
+TPC/all/WRITE_SWITCH_FOR_RESPONSE                    0            N/A            N/A       N/A     6128094     6128094       34231377       N/A               N/A
+ValidationExecutor                                   0              0            N/A       N/A         N/A         N/A              0         0                 0
+ViewBuildExecutor                                    0              0            N/A       N/A         N/A         N/A              0         0                 0
+CompactionManager                 2         2
+MessagingService                n/a       0/0
+Buffer pool size for cached reads: 1.305GiB, for direct reads: 5.000MiB
+Cached reads buffer pool BufferPool for long lived buffers: Size-tiered from 4.000KiB to 4.000KiB buffers, using 1024 buffers per slab.
+Sub pools:
+Buffer size 4.000KiB: 1.300GiB used, 1.305GiB allocated, 334 slabs.
+Overflow: 0.000KiB
+Direct reads buffer pool BufferPool for temporary buffers: allocated 5.000MiB, used 0.000KiB, overflow 0.000KiB, overflow allocations mean rate 0.000000
+Global memtable buffer pool size: onHeap = 5.244MiB, offHeap = 168.471MiB
+Cache Type                     Size                 Capacity               KeysToSave
+KeyCache                          0                 97517568                      all
+RowCache                          0                        0                      all
+Table                       Memtable ops,data
+system_schema.keyspaces                   0,0
+system_schema.hidden_columns                 0,0
+system_schema.edges                       0,0
+system_schema.views                       0,0
+system_schema.columns                     0,0
+system_schema.types                       0,0
+system_schema.indexes                     0,0
+system_schema.vertices                    0,0
+system_schema.dropped_columns                 0,0
+system_schema.aggregates                  0,0
+system_schema.triggers                    0,0
+system_schema.tables                      0,0
+system_schema.functions                   0,0
+system.compaction_history             22,4243
+system.IndexInfo                          0,0
+system.repairs                            0,0
+system.size_estimates             25380,11446
+system.paxos                        36135,270
+system.built_views                        0,0
+system.peer_events                        0,0
+system.range_xfers                        0,0
+system.peers                              0,0
+system.batches                            0,0
+system.transferred_ranges                 0,0
+system.view_builds_in_progress                 0,0
+system.local                              0,0
+system.sstable_activity              1294,847
+system.nodesync_checkpoints                 0,0
+system.available_ranges                   0,0
+system.prepared_statements                 0,0
+system_traces.sessions                    0,0
+system_traces.events                      0,0
+system_distributed.nodesync_status                 0,0
+system_distributed.nodesync_user_validations                 0,0
+system_distributed.parent_repair_history                 0,0
+system_distributed.repair_history                 0,0
+system_distributed.restore_task_state                 0,0
+system_distributed.backups                 0,0
+system_distributed.backup_task_state                 0,0
+system_distributed.view_build_status                 0,0
+system_auth.roles                       1,131
+system_auth.role_members                  0,0
+system_auth.role_permissions                 0,0
+dse_security.digest_tokens                 0,0
+dse_security.role_options                 0,0
+dse_security.spark_security                 0,0
+system_backups.backup_stores                 0,0
+system_backups.backup_configurations                 0,0
+dse_insights_local.insights_config                 0,0
+dse_insights.insights_config                 0,0
+dse_insights.tokens                       0,0
+dse_leases.logs                           0,0
+dse_leases.leases                    14401,45
+dse_system_local.solr_resources                 0,0
+dse_system.shared_data_versions                 0,0
+dse_system.encrypted_keys                 0,0
+dse_system.shared_data                    0,0
+solr_admin.solr_resources                 0,0
+dse_perf.graph_event_log                  0,0
+dse_perf.slow_transaction_log                 0,0
+dse_perf.node_slow_log                    0,0
+dse_perf.schema_migration_log                 0,0
+HiveMetaStore.sparkmetastore                 0,0
+dse_analytics.rm_shared_data                 0,0
+dse_analytics.rm_executors                 0,0
+dsefs.delete_hints                        0,0
+dsefs.locks                               0,0
+dsefs.block_offsets                       0,0
+dsefs.blocks                              0,0
+dsefs.compression_strategies                 0,0
+dsefs.locations                           0,0
+dsefs.transaction_log                     0,0
+dsefs.transactions                        0,0
+dsefs.transaction_log_ranges                2,69
+dsefs.inodes                           3,1464
+dsefs.auth                                0,0
+dsefs.names                             3,525
+keyspace1.counter1                        0,0
+keyspace1.standard1             4237,47609638
+

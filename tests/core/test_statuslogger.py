@@ -55,3 +55,31 @@ def test_db2552_system_log_format():
     assert stage == "TPC/all/WRITE_REMOTE"
     assert status == "pending"
     assert value == 13094
+
+def test_68_debug_log_format():
+    """should work with DSE 6.8 statuslogger debug files"""
+    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger68_debug.log')]
+    sl = StatusLogger(None, files=files)
+    sl.analyze()
+    assert sl.analyzed
+    s = Summary(sl.nodes)
+    busiest_stages = s.get_busiest_stages()
+    name, status, stage, value = busiest_stages[0]
+    assert name == files[0]
+    assert stage == "TPC/all/WRITE_REMOTE"
+    assert status == "pending"
+    assert value == 13094
+
+def test_68_system_log_format():
+    """should work with DSE 6.8 statuslogger files"""
+    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_68.log')]
+    sl = StatusLogger(None, files=files)
+    sl.analyze()
+    assert sl.analyzed
+    s = Summary(sl.nodes)
+    busiest_stages = s.get_busiest_stages()
+    name, status, stage, value = busiest_stages[0]
+    assert name == files[0]
+    assert stage == "TPC/all/WRITE_REMOTE"
+    assert status == "pending"
+    assert value == 13094
