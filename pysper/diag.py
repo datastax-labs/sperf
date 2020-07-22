@@ -195,7 +195,7 @@ def log_range(file_path):
         last = file_handle.readline()         # Read last line.
     return grep_date(first), grep_date(last)
 
-def find_files(config, file_to_find):
+def find_files(config, file_to_find, exact_filename=False):
     """finds all the files in config.diag_dir that matches the prefix or will use
     the config.files string (split on ,) if present and not use a prefix but a full
     file name match.
@@ -204,7 +204,7 @@ def find_files(config, file_to_find):
         file_to_find = "my.log", files = [], diag_dir = "mydir" => matches my.log, my.log.1, my.log.2, etc
     """
     files = []
-    use_as_prefix = True
+    use_as_prefix = not exact_filename
     if config.files:
         files = config.files.split(",")
         use_as_prefix = False
@@ -225,13 +225,12 @@ def find_logs(diag_dir, file_to_find='system.log', use_as_prefix=True):
     matches = []
     for (dirpath, _, files) in os.walk(diag_dir):
         for filename in files:
-            if use_as_prefix:
-                if use_as_prefix and filename.startswith(file_to_find):
-                    fullpath = os.path.join(dirpath, filename)
-                    matches.append(fullpath)
-                elif not use_as_prefix and filename == file_to_find:
-                    fullpath = os.path.join(dirpath, filename)
-                    matches.append(fullpath)
+            if use_as_prefix and filename.startswith(file_to_find):
+                fullpath = os.path.join(dirpath, filename)
+                matches.append(fullpath)
+            elif not use_as_prefix and filename == file_to_find:
+                fullpath = os.path.join(dirpath, filename)
+                matches.append(fullpath)
     return matches
 
 class FileWithProgress:

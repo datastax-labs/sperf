@@ -37,7 +37,8 @@ def run_func(args, cmd_name):
     """for code sharing with deprecated schema"""
     print("%s version: %s\n" % (cmd_name, VERSION))
     config = schema.Config(args.files, args.diag_dir)
-    files = diag.find_files(config, "schema")
+    #do not match on files with schema prefix only on files with schema
+    files = diag.find_files(config, "schema", exact_filename=True)
     if env.DEBUG:
         print("found schema files: %s", files)
     parsed_schema = schema.read(files)

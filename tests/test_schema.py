@@ -34,7 +34,7 @@ as changes in the codebase occur."""
     assert output == "sperf core schema version: %s" % (VERSION) + """
 
 
-Schema read     : %s/testdata/diag/DSE_CLUSTER/nodes/10.101.35.102/driver/schema
+Schema read     : %s/testdata/diag/DSE_CLUSTER/nodes/10.101.33.205/driver/schema
 Keyspace Count  : 15
 Table Count     : 61
 2i Count        : 1
