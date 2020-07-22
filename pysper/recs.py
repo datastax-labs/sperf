@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """the recommendation engine for sperf"""
+from collections import OrderedDict
 from enum import Enum
 import sys
 
@@ -41,15 +42,14 @@ class Engine:
                 "(valid range is 1024-8192)"
         self.tpc_cores_raise_rec = "raise or set tpc_concurrent_requests_limit in " + \
                 "cassandra.yaml (default is 128), if CPU is underutilized."
-        self.engine = {
-            "TPC/all/WRITE_REMOTE": self._write_remote,
-            "TPC/all/WRITE_LOCAL": self._write_local,
-            "TPC/all/WRITE_MEMTABLE_FULL": self._memtable_full,
-            "CompactionManger": self._compaction,
-            "Native-Transport-Requests": self._ntr,
-            "MemtableFlushWriter": self._memtable_flush_writer,
-            "MutationStage": self._mutation,
-        }
+        self.engine = OrderedDict()
+        self.engine["TPC/all/WRITE_REMOTE"] = self._write_remote
+        self.engine["TPC/all/WRITE_LOCAL"] = self._write_local
+        self.engine["TPC/all/WRITE_MEMTABLE_FULL"] = self._memtable_full
+        self.engine["CompactionManger"] = self._compaction
+        self.engine["Native-Transport-Requests"] = self._ntr
+        self.engine["MemtableFlushWriter"] = self._memtable_flush_writer
+        self.engine["MutationStage"] = self._mutation
 
     def _write_remote(self, stage):
         if stage.pending > 10000:

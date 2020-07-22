@@ -14,12 +14,13 @@
 
 """ analyzes debug.logs for slow queries """
 import re
-from collections import defaultdict
+from collections import OrderedDict
 from pysper.diag import find_logs
 from pysper.parser.rules import date
 from pysper.util import bucketize
 from pysper.dates import date_parse
 from pysper import VERSION, perc
+from pysper.core import OrderedDefaultDict
 
 class SlowQueryParser:
     """ parses logs for slow queries """
@@ -36,7 +37,7 @@ class SlowQueryParser:
 
     def parse(self, logfile):
         """ parses a debug log for slow queries """
-        ret = {}
+        ret = OrderedDict()
         for line in logfile:
             if self.state is None:
                 m = self.begin_match.match(line)
@@ -66,7 +67,7 @@ class SlowQueryAnalyzer:
         self.diag_dir = diag_dir
         self.files = files
         self.parser = SlowQueryParser()
-        self.querytimes = defaultdict(list)
+        self.querytimes = OrderedDefaultDict(list)
         self.queries = []
         self.analyzed = False
         self.start = None

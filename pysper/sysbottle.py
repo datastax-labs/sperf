@@ -14,7 +14,8 @@
 
 "Parses and reports on iostat output"
 from datetime import datetime
-from collections import defaultdict
+from collections import OrderedDict
+from pysper.core import OrderedDefaultDict
 from pysper import VERSION, env, humanize
 from pysper.util import get_percentiles, get_percentile_headers
 
@@ -33,11 +34,14 @@ class IOStatParser:
         self.__mkiostat()
 
     def __mkiostat(self):
-        self.iostat = {
-            'cpu': {'cols': [], 'stat': []},
-            'device': {'cols': [], 'stat': {}},
-            'date': None
-            }
+        self.iostat = OrderedDict()
+        self.iostat['cpu'] = OrderedDict()
+        self.iostat['cpu']['cols'] = []
+        self.iostat['cpu']['stat'] = []
+        self.iostat['device'] = OrderedDict()
+        self.iostat['device']['cols'] = []
+        self.iostat['device']['stat'] = OrderedDict()
+        self.iostat['date'] = None
 
     def _parse(self, line):
         if line == '\n': # empty lines are the reset switch
@@ -102,20 +106,20 @@ class SysbottleReport:
         self.count = 0
         self.cpu_exceeded = 0
         self.iowait_exceeded = 0
-        self.devices = defaultdict(lambda: defaultdict(list))
-        self.cpu_stats = defaultdict(list)
-        self.queuedepth = defaultdict(int)
+        self.devices = OrderedDefaultDict(lambda: OrderedDefaultDict(list))
+        self.cpu_stats = OrderedDefaultDict(list)
+        self.queuedepth = OrderedDefaultDict(int)
         self.start = None
         self.end = None
 
-        self.device_index = {}
-        self.cpu_index = {}
+        self.device_index = OrderedDict()
+        self.cpu_index = OrderedDict()
         self.conf = conf or self.__mk_conf()
         self.recs = set()
         self.analyzed = False
 
     def __mk_conf(self):
-        conf = {}
+        conf = OrderedDict()
         conf['iowait_threshold'] = 5
         conf['cpu_threshold'] = 50
         conf['disks'] = []

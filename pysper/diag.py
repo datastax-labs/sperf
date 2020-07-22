@@ -17,7 +17,7 @@ import os
 import re
 import io
 import json
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 from pysper import env, dates
 
 class UnknownStatusLoggerWriter:
@@ -140,7 +140,7 @@ class UniqEventPerNodeFilter:
 
     def __init__(self):
         self.current_node = None
-        self.previous_files_events = {}
+        self.previous_files_events = OrderedDict()
         self.queued_events = set()
 
     def set_node(self, node):
@@ -151,7 +151,7 @@ class UniqEventPerNodeFilter:
             self.previous_files_events[self.current_node][event_id] = None
         #setup new node
         if node not in self.previous_files_events:
-            self.previous_files_events[node] = {}
+            self.previous_files_events[node] = OrderedDict()
         self.current_node = node
         #clear out all previous queued events
         self.queued_events = set()

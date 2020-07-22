@@ -14,12 +14,12 @@
 
 """ bucketgrep module """
 import re
-from collections import defaultdict
 from pysper.parser.rules import date
 from pysper import VERSION
 from pysper.diag import find_logs
 from pysper.util import bucketize, textbar
 from pysper.dates import date_parse
+from pysper.core import OrderedDefaultDict
 
 class BucketGrep:
     """greps for custom regex and bucketizes results"""
@@ -49,7 +49,7 @@ class BucketGrep:
             self.timeregex = re.compile(self.basere+regex+'.*')
             self.supplied_regex = regex
         self.valid_log_regex = re.compile(self.basere)
-        self.matches = defaultdict(list)
+        self.matches = OrderedDefaultDict(list)
         self.count = 0
         self.unknown = 0
         self.analyzed = False

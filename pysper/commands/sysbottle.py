@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """sysbottle subcommand wiring"""
+from collections import OrderedDict
 from pysper import sysbottle
 from pysper.commands import flags
 
@@ -41,7 +42,7 @@ def build(subparsers):
 
 def run(args):
     """"sysbottle subcommand"""
-    conf = {}
+    conf = OrderedDict()
     conf['iowait_threshold'] = args.iowait
     conf['cpu_threshold'] = args.cpu
     if args.disks:

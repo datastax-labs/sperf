@@ -13,11 +13,12 @@
 # limitations under the License.
 
 """processing of the table/cf stats files"""
+from collections import OrderedDict
 from pysper.parser import cfstats
 from pysper import util, env
 
 def _parse_cfstats(cfstats_files):
-    node_parsed_map = {}
+    node_parsed_map = OrderedDict()
     warnings = []
     for cfstat_file in cfstats_files:
         node = util.extract_node_name(cfstat_file)
@@ -32,8 +33,8 @@ def _parse_cfstats(cfstats_files):
 def _add_busiest_table(config, node_parsed_map):
     total_writes = 0
     total_reads = 0
-    table_read_count = {}
-    table_write_count = {}
+    table_read_count = OrderedDict()
+    table_write_count = OrderedDict()
     for node in config.get("nodes_list", []):
         if node not in node_parsed_map:
             continue
