@@ -18,7 +18,7 @@ from pysper.core.statuslogger import StatusLogger
 
 def add_flags(subparsers, run_default_func, is_deprecated=False):
     """for code sharing of flags between deprecated and supported"""
-    help_text = "Provides analysis of StatusLogger log lines. DSE 5.0-6.7"
+    help_text = "Provides analysis of StatusLogger log lines. DSE 5.0-6.8"
     if is_deprecated:
         help_text = help_text + ". DEPRECATED use 'sperf core statuslogger' instead"
     statuslogger_parser = subparsers.add_parser('statuslogger',

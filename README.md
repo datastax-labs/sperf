@@ -49,7 +49,7 @@
 * sperf [core jarcheck](docs/commands/core/jarcheck.md) - Checks jar versions in output.logs. Supports tarballs and files. DSE 5.0-6.7
 * sperf [core schema](docs/commands/core/schema.md) - Analyze schema for summary. DSE 5.0-6.7
 * sperf [core slowquery](docs/commands/core/slowquery.md) - Generates a report of slow queries in debug log. DSE 6.0-6.7
-* sperf [core statuslogger](docs/commands/core/statuslogger.md) - Provides analysis of StatusLogger log lines. DSE 5.0-6.7 Cassandra 2.1-3.11.x
+* sperf [core statuslogger](docs/commands/core/statuslogger.md) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
 * sperf [search filtercache](docs/commands/search/filtercache.md) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
 * sperf [search queryscore](docs/commands/search/queryscore.md) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
 * sperf [sysbottle](docs/commands/sysbottle.md) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
