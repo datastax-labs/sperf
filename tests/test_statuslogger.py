@@ -91,25 +91,25 @@ as changes in the codebase occur."""
     output = steal_output(run)
         #reads better with the extra newline
     assert output == "sperf core statuslogger version: %s\n" % (VERSION) + """
-Summary (10,164 lines)
-Summary (177 skipped lines)
+Summary (20,240 lines)
+Summary (2,196 skipped lines)
 
 dse versions: {'6.8.1'}
 cassandra versions: {'DSE Private Fork'}
 first log time: 2020-07-20 09:09:27.757000+00:00
-last log time: 2020-07-21 07:14:18.779000+00:00
-duration: 22.08 hours
-total stages analyzed: 2
+last log time: 2020-07-22 13:49:40.782000+00:00
+duration: 2.19 days
+total stages analyzed: 17
 total nodes analyzed: 1
 
 GC pauses  max        p99        p75        p50        p25        min        
            ---        ---        ---        ---        ---        ---        
-ms         1064       1064       1064       615        436        251        
-total GC events: 4
+ms         2066       2066       1371       615        436        251        
+total GC events: 7
 
 busiest tables by ops across all nodes
 ------------------------------
-* 172.17.0.2: system.paxos: 36,135 ops / 270 bytes data
+* 172.17.0.2: system.paxos: 103,106 ops / 309 bytes data
 
 busiest table by data across all nodes
 ------------------------------
@@ -122,6 +122,11 @@ busiest stages across all nodes
 * PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)  
 * CompactionExecutor active:            1  (172.17.0.2)  
 * MemtablePostFlush active:             1  (172.17.0.2)  
+* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)  
+* LwtStage active:                      1  (172.17.0.2)  
+* TPC/other active:                     1  (172.17.0.2)  
+* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)  
+* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)  
 
 busiest stages in PENDING
 ------------------------------

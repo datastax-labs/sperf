@@ -18,7 +18,7 @@ from pysper.core.slowquery import SlowQueryAnalyzer
 
 def add_flags(subparsers, run_default_func, is_deprecated=True):
     """add flags used to share code between deprecated and supported commands"""
-    help_text = 'Generates a report of slow queries in debug log. DSE 6.0-6.7'
+    help_text = 'Generates a report of slow queries in debug log. DSE 6.0-6.8'
     if is_deprecated:
         help_text = help_text + ". DEPRECATED use 'sperf core slowquery' instead"
     slowquery_parser = subparsers.add_parser('slowquery',

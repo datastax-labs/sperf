@@ -79,7 +79,7 @@ dse version(s) (startup logs)       { 6.8.1 }
 cassandra version(s) (startup logs) { DSE private fork }                             
 solr version(s) (startup logs)      { 6.0.1.4.2746 }                                 
 spark version(s) (startup logs)     { 2.4.0.14 }                                     
-worst gc pause (system logs)        1.06 seconds (172.17.0.2)                        
+worst gc pause (system logs)        2.07 seconds (172.17.0.2)                        
 worst read latency (cfstats)        0.19 ms (dse_insights.insights_config 172.17.0.2)
 worst write latency (cfstats)       0.42 ms (system.sstable_activity 172.17.0.2)     
 worst tombstones query (cfstats)    1 (dse_system.shared_data 172.17.0.2)            
@@ -96,7 +96,7 @@ errors parsing
 
 recommendations
 ---------------
-* There were 2 incidents of GC over 500ms. Run `sperf core gc` for more analysis."""
+* There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis."""
 
 
 def test_empty_recommendations():
