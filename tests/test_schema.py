@@ -34,13 +34,15 @@ as changes in the codebase occur."""
     assert output == "sperf core schema version: %s" % (VERSION) + """
 
 
-Schema read     : %s/testdata/diag/DSE_CLUSTER/nodes/10.101.33.205/driver/schema
+Schema read     : %s
 Keyspace Count  : 15
 Table Count     : 61
 2i Count        : 1
 MV Count        : 0
 Solr Index Count: 1
-Solr Table Count: 1""" % current_dir(__file__)
+Solr Table Count: 1""" % \
+        os.path.join(current_dir(__file__), "testdata", "diag",
+                     "DSE_CLUSTER", "nodes", "10.101.33.205", "driver", "schema")
 
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf_68():
@@ -56,10 +58,11 @@ as changes in the codebase occur."""
     assert output == "sperf core schema version: %s" % (VERSION) + """
 
 
-Schema read     : %s/testdata/dse68/nodes/172.17.0.2/driver/schema
+Schema read     : %s
 Keyspace Count  : 13
 Table Count     : 36
 2i Count        : 0
 MV Count        : 0
 Solr Index Count: 0
-Solr Table Count: 0""" % current_dir(__file__)
+Solr Table Count: 0""" % \
+        os.path.join(current_dir(__file__), "testdata", "dse68", "nodes", "172.17.0.2", "driver", "schema")
