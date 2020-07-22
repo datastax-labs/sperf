@@ -14,11 +14,10 @@
 
 """statuslogger command flag wiring"""
 from pysper.commands import flags
-from pysper.core.statuslogger import StatusLogger, WANTED_STAGES_PREFIXES
+from pysper.core.statuslogger import StatusLogger
 
 def add_flags(subparsers, run_default_func, is_deprecated=False):
     """for code sharing of flags between deprecated and supported"""
-    csv_stages = ','.join(s for s in WANTED_STAGES_PREFIXES)
     help_text = "Provides analysis of StatusLogger log lines. DSE 5.0-6.7"
     if is_deprecated:
         help_text = help_text + ". DEPRECATED use 'sperf core statuslogger' instead"
@@ -27,8 +26,8 @@ def add_flags(subparsers, run_default_func, is_deprecated=False):
                                                 formatter_class=flags.LineWrapRawTextHelpFormatter)
     statuslogger_parser.add_argument('-r', '--reporter', type=str, nargs='?', const='summary', default='summary',
                                      help="report to run, either summary or histogram (default summary)")
-    statuslogger_parser.add_argument('-s', '--stages', type=str, nargs='?', const=csv_stages, default=csv_stages,
-                                     help="csv list of stage prefixes to collect, or 'all' (default: %s)" % csv_stages)
+    statuslogger_parser.add_argument('-s', '--stages', type=str, nargs='?', default="all",
+                                     help="csv list of stage prefixes to collect, or 'all' (default: all)")
     statuslogger_parser.add_argument('-st', '--start', type=str, nargs='?', const=None, default=None,
                                      help="start date/time to begin parsing")
     statuslogger_parser.add_argument('-et', '--end', type=str, nargs='?', const=None, default=None,

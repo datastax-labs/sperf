@@ -25,8 +25,6 @@ from pysper.recs import Engine, Stage
 from pysper.dates import date_parse
 from pysper.core import OrderedDefaultDict
 
-WANTED_STAGES_PREFIXES = ('TPC/all/READ', 'TPC/all/WRITE', 'Gossip', 'Messaging',
-                          'Compaction', 'MemtableFlush', 'Mutation', 'Read', 'Native')
 class Table:
     """ represents a dse table """
     def __init__(self, ops=0, data=0):
@@ -133,7 +131,7 @@ class StatusLogger:
 
     # pylint: disable=too-many-arguments
     def __init__(self, diag_dir, files=None, start=None, end=None, \
-         wanted_stages=WANTED_STAGES_PREFIXES, command_name="sperf core statuslogger",
+         wanted_stages=None, command_name="sperf core statuslogger",
                  syslog_prefix="system.log", dbglog_prefix="debug.log"):
         self.diag_dir = diag_dir
         self.files = files
@@ -200,6 +198,8 @@ class StatusLogger:
                 if event['event_type'] == 'server_version':
                     if event.get('version'):
                         node.version = event['version']
+                        if node.version.startswith("6"):
+                            node.cassandra_version = "DSE Private Fork"
                     elif event.get('cassandra_version'):
                         node.cassandra_version = event['cassandra_version']
                     #skipping solr, spark etc as it maybe too much noise for statuslogger
