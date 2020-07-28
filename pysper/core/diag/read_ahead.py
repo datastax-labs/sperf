@@ -21,7 +21,10 @@ def add_block_dev_to_config(cass_drive_ra, node_configs):
     """adds the block dev configuration to the configuration statistics"""
     for node, drive_map in cass_drive_ra.items():
         if node in node_configs:
-            node_configs[node]['cass_ra'] = sorted(drive_map.values())
+            values = OrderedDict()
+            if len(drive_map.values()) > 0:
+                values = drive_map.values()
+            node_configs[node]['cass_ra'] = values
 
 def get_cass_drive_read_ahead(node_info_json, block_dev_reports):
     """searches node_info_json for drive mappings and reports on cass drive read ahead settings"""
