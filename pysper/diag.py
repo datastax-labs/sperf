@@ -227,11 +227,33 @@ def find_logs(diag_dir, file_to_find='system.log', use_as_prefix=True):
         for filename in files:
             if use_as_prefix and filename.startswith(file_to_find):
                 fullpath = os.path.join(dirpath, filename)
-                matches.append(fullpath)
+                if not is_binary(fullpath):
+                    matches.append(fullpath)
             elif not use_as_prefix and filename == file_to_find:
                 fullpath = os.path.join(dirpath, filename)
-                matches.append(fullpath)
+                if not is_binary(fullpath):
+                    matches.append(fullpath)
     return matches
+
+def is_binary(filename):
+    """Return true if the given filename is binary.
+    @raise EnvironmentError: if the file does not exist or cannot be accessed.
+    @attention: found @
+	http://bytes.com/topic/python/answers/21222-determine-file-type-binary-text on 6/08/2010
+    @author: Trent Mick <TrentM@ActiveState.com>
+    @author: Jorge Orpinel <jorge@orpinel.com>"""
+    fin = open(filename, 'rb')
+    try:
+        chunk_size = 1024
+        while 1:
+            chunk = fin.read(chunk_size)
+            if b'\0' in chunk: # found null byte
+                return True
+            if len(chunk) < chunk_size:
+                break # done
+    finally:
+        fin.close()
+    return False
 
 class FileWithProgress:
     """logs open, close if --progress is enabled only works with reads. will always log errors"""
