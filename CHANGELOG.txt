@@ -1,7 +1,10 @@
 sperf 0.6.4
 -----------
+* binary files are now longer matched when reading diags, this should allow
+all those pesky zips to be skipped
 * DSE 6.8 `sperf core statuslogger` support
-* DSE 6.8 additional testing for `sperf core diag`, `sperf core schema` and the default `sperf` command 
+* DSE 6.8 additional testing for `sperf core diag`, `sperf core schema`,
+`sperf core slowquery` and the default `sperf` command 
 * `sperf core statuslogger` now defaults to showing all stages to give a more full explanation of what is going on by default. Most people didn't know the 'al stages' flag existed
 and this is largely to force people to narrow their search intentionally. The initial experience maybe overwhelming, but this will make it more likely people will catch outliers
 and therefore problems in clusters.
