@@ -17,9 +17,10 @@ A set of functions defining a domain-specific language that specifies a set of r
 parsing the lines in a log fil
 '''
 import re
-from collections import defaultdict
+from collections import OrderedDict
 from datetime import timezone
 from pysper import dates
+from pysper.core import OrderedDefaultDict
 
 class switch:
     '''
@@ -34,7 +35,7 @@ class switch:
         used to group the rules.
         '''
 
-        self.rules = defaultdict(list)
+        self.rules = OrderedDefaultDict(list)
         keys = None
         for child in children:
             if isinstance(child, case):
@@ -224,7 +225,7 @@ def int_with_commas(value):
 
 def nodeconfig(nodeconfig_line):
     """ converts to nodeconfig """
-    config = {}
+    config = OrderedDict()
     tokens = nodeconfig_line.split('; ')
     for token in tokens:
         pairs = token.split('=')
@@ -234,7 +235,7 @@ def nodeconfig(nodeconfig_line):
 
 def jvm_args(args_line):
     """ converts jvm args to k/v pairs """
-    args = {}
+    args = OrderedDict()
     tokens = args_line.split(',')
     for token in tokens:
         pairs = token.split('=')

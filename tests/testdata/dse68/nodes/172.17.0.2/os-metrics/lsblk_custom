@@ -1,0 +1,11 @@
+NAME   KNAME FSTYPE MOUNTPOINT     LABEL  RA MODEL  SIZE ROTA
+loop0  loop0                             128         55M    1
+loop1  loop1                             128       96.5M    1
+loop2  loop2                             128         97M    1
+loop3  loop3                             128         55M    1
+loop4  loop4                             128       91.9M    1
+loop5  loop5                             128       91.8M    1
+vda    vda                               128         40G    1
+├─vda1 vda1                              128          8M    1
+└─vda2 vda2         /var/lib/dsefs       128         40G    1
+vdb    vdb                               128         40G    1

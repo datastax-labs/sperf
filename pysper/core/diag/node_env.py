@@ -14,11 +14,12 @@
 
 """gets the node environment from the output log"""
 import os
+from collections import OrderedDict
 from pysper import diag, parser, util, env, humanize
 
 def initialize_node_configs(diag_dir):
     """generates a list of empty configuration for each node directory"""
-    matches = {}
+    matches = OrderedDict()
     files = []
     node_dir = os.path.join(diag_dir, "nodes")
     try:
@@ -28,11 +29,11 @@ def initialize_node_configs(diag_dir):
             print(ex)
         raise diag.UnableToReadDiagException(diag_dir, ex)
     for filename in files:
-        matches[filename] = {}
+        matches[filename] = OrderedDict()
     return matches
 
 def _find_configuration_events(events):
-    config = {}
+    config = OrderedDict()
     keys = ['version', 'cassandra_version', 'spark_version', 'dse_spark_version',
             'solr_version', 'spark_connector_version', 'cpu_cores', 'threads_per_core',
             'logged_disk_access_mode', 'logged_index_access_mode',
@@ -42,7 +43,7 @@ def _find_configuration_events(events):
         for key in keys:
             if key in event:
                 config[key] = event[key]
-    cassandra_config = read_cassandra_config(config.get('node_configuration', {}))
+    cassandra_config = read_cassandra_config(config.get('node_configuration', OrderedDict()))
     for key, value in cassandra_config.items():
         config[key] = value
         results = read_jvm_based_parameters(config.get('jvm_args', []))
@@ -54,16 +55,22 @@ def _find_configuration_events(events):
 def find_config_in_logs(node_configs, output_logs, system_logs):
     """read the output logs and extract the configuration from each file"""
     warnings = []
-    node_logs = {}
+    node_logs = OrderedDict()
     for system_log in system_logs:
         node = util.extract_node_name(system_log)
         if node not in node_logs:
-            node_logs[node] = {"system": [], "output":""}
+            node_agg = OrderedDict()
+            node_agg["system"] = []
+            node_agg["output"] = ""
+            node_logs[node] = node_agg
         node_logs[node]["system"].append(system_log)
     for output_log in output_logs:
         node = util.extract_node_name(output_log)
         if node not in node_logs:
-            node_logs[node] = {"system": [], "output":""}
+            node_agg = OrderedDict()
+            node_agg["system"] = []
+            node_agg["output"] = ""
+            node_logs[node] = node_agg
         node_logs[node]["output"] = output_log
     for node, logs in node_logs.items():
         output_log = logs.get("output")
@@ -89,7 +96,7 @@ def find_config_in_logs(node_configs, output_logs, system_logs):
 
 def add_gc_to_configs(configs, system_logs):
     """read the system logs and extract the configuration from each file"""
-    results = {}
+    results = OrderedDict()
     warnings = []
     for system_log in system_logs:
         with diag.FileWithProgress(system_log) as system_log_file:
@@ -145,7 +152,7 @@ def read_jvm_based_parameters(jvm_args):
 
 def read_cassandra_config(cassandra_params):
     """splits out the cassandra parameters"""
-    config = {}
+    config = OrderedDict()
     for key, value in cassandra_params.items():
         if value and key:
             if value == 'null':

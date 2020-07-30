@@ -1,0 +1,43 @@
+Showing N=5 most recent CQL queries slower than 200.0 ms
+---------------------------------------------
+[ {
+  "tables" : "[keyspace1.standard1]",
+  "sourceIp" : "/127.0.0.1",
+  "username" : "anonymous",
+  "startTimeUUID" : "676c6de2-cb21-11ea-814b-39ad851e86eb",
+  "duration" : 1987,
+  "cqlStrings" : "[UPDATE \"standard1\" SET \"C0\" = ?,\"C1\" = ?,\"C2\" = ?,\"C3\" = ?,\"C4\" = ? WHERE KEY=?]",
+  "tracingSessionId" : ""
+}, {
+  "tables" : "[keyspace1.standard1]",
+  "sourceIp" : "/127.0.0.1",
+  "username" : "anonymous",
+  "startTimeUUID" : "676c6de3-cb21-11ea-814b-39ad851e86eb",
+  "duration" : 1987,
+  "cqlStrings" : "[UPDATE \"standard1\" SET \"C0\" = ?,\"C1\" = ?,\"C2\" = ?,\"C3\" = ?,\"C4\" = ? WHERE KEY=?]",
+  "tracingSessionId" : ""
+}, {
+  "tables" : "[keyspace1.standard1]",
+  "sourceIp" : "/127.0.0.1",
+  "username" : "anonymous",
+  "startTimeUUID" : "676c94f0-cb21-11ea-814b-39ad851e86eb",
+  "duration" : 1987,
+  "cqlStrings" : "[UPDATE \"standard1\" SET \"C0\" = ?,\"C1\" = ?,\"C2\" = ?,\"C3\" = ?,\"C4\" = ? WHERE KEY=?]",
+  "tracingSessionId" : ""
+}, {
+  "tables" : "[keyspace1.standard1]",
+  "sourceIp" : "/127.0.0.1",
+  "username" : "anonymous",
+  "startTimeUUID" : "676c6de4-cb21-11ea-814b-39ad851e86eb",
+  "duration" : 1986,
+  "cqlStrings" : "[UPDATE \"standard1\" SET \"C0\" = ?,\"C1\" = ?,\"C2\" = ?,\"C3\" = ?,\"C4\" = ? WHERE KEY=?]",
+  "tracingSessionId" : ""
+}, {
+  "tables" : "[keyspace1.standard1]",
+  "sourceIp" : "/127.0.0.1",
+  "username" : "anonymous",
+  "startTimeUUID" : "5da2efa1-cb21-11ea-814b-39ad851e86eb",
+  "duration" : 1640,
+  "cqlStrings" : "[UPDATE \"standard1\" SET \"C0\" = ?,\"C1\" = ?,\"C2\" = ?,\"C3\" = ?,\"C4\" = ? WHERE KEY=?]",
+  "tracingSessionId" : ""
+} ]

@@ -1,0 +1,9 @@
+[ {
+  "policy" : "deny",
+  "pattern" : "org\\.apache\\.cassandra\\.metrics\\.(keyspace|table).*(system_(?!auth)|system\\.(?!(paxos|batches))|dse_|solr_admin|system$).*",
+  "scope" : "global"
+}, {
+  "policy" : "deny",
+  "pattern" : "org\\.apache\\.cassandra\\.metrics\\.thread_pools\\.[^\\.]+.[^\\.]+\\.tpc_\\d+.*$",
+  "scope" : "global"
+} ]

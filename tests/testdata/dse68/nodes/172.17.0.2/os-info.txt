@@ -1,0 +1,8 @@
+kernel_name: Linux
+node_name: 23e273b32652
+kernel_release: 4.15.0-111-generic
+kernel_version: #112-Ubuntu SMP Thu Jul 9 20:32:34 UTC 2020
+machine_type: x86_64
+processor_type: unknown
+platform_type: unknown
+os_type: GNU/Linux

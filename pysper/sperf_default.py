@@ -27,30 +27,33 @@ def parse(args):
     res = parse_diag(args, lambda n: [calculate(n)])
     #use debug logs for statuslogger output on 5.1.17+, 6.0.10+, 6.7.5+ and 6.8+
     debug_logs = diag.find_logs(args.diag_dir, args.debug_log_prefix)
-    return {
-        "diag_dir": args.diag_dir,
-        "warnings": res.get("warnings"),
-        "configs": res.get("original_configs"),
-        "summary": res.get("configs")[0],
-        "rec_logs": res.get("system_logs") + debug_logs,
-    }
+    parsed = OrderedDict()
+    parsed["diag_dir"] = args.diag_dir
+    parsed["warnings"] = res.get("warnings")
+    parsed["configs"] = res.get("original_configs")
+    parsed["summary"] = res.get("configs")[0]
+    parsed["rec_logs"] = res.get("system_logs") + debug_logs
+    return parsed
 
 def calculate(node_config):
     """aggregate parsed information for the report"""
-    summary = {
-        "nodes": OrderedDict(),
-        "versions": set(),
-        "cassandra_versions": set(),
-        "spark_versions": set(),
-        "solr_versions": set(),
-        "workloads": OrderedDict(),
-        "nodes_list": [],
-        }
+    summary = OrderedDict()
+    summary["nodes"] = OrderedDict()
+    summary["versions"] = set()
+    summary["cassandra_versions"] = set()
+    summary["spark_versions"] = set()
+    summary["solr_versions"] = set()
+    summary["workloads"] = OrderedDict()
+    summary["nodes_list"] = []
     for node, config in node_config.items():
         if config.get('version'):
             summary["versions"].add(config.get("version"))
         if config.get('cassandra_version'):
             summary["cassandra_versions"].add(config.get("cassandra_version"))
+        else:
+            version = config.get("version")
+            if version and version.startswith("6"):
+                summary["cassandra_versions"].add("DSE private fork")
         if config.get('solr_version'):
             summary["solr_versions"].add(config.get("solr_version"))
         if config.get('spark_version'):

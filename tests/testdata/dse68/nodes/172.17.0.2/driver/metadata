@@ -1,0 +1,4 @@
+
+Cluster: Test Cluster
+Partitioner: Murmur3Partitioner
+

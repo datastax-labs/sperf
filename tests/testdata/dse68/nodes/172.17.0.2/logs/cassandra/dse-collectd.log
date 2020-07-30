@@ -1,0 +1,27 @@
+[2020-07-20 09:10:29] type = logfile, key = LogLevel, value = info
+[2020-07-20 09:10:29] plugin_load: plugin "write_scribe" successfully loaded.
+[2020-07-20 09:10:29] write_scribe plugin: Ignoring config option `SocketFile'.
+[2020-07-20 09:10:29] plugin_load: plugin "cpu" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "df" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "vmem" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "numa" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "contextswitch" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "cpufreq" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "irq" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "protocols" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "ethstat" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "disk" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "interface" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "load" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "memory" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "swap" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "uptime" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "processes" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "tcpconns" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "match_regex" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "target_set" successfully loaded.
+[2020-07-20 09:10:29] plugin_load: plugin "target_replace" successfully loaded.
+[2020-07-20 09:10:29] cpufreq plugin: Found 0 CPUs
+[2020-07-20 09:10:29] Initialization complete, entering read-loop.
+[2020-07-20 09:10:29] unixsock plugin: Successfully deleted socket file "/tmp/dse/dse.FjrZ6G7YU/dse-8320700444285780512.sock".
+[2020-07-20 09:10:29] tcpconns plugin: Reading from netlink succeeded. Will use the netlink method from now on.

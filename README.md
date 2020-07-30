@@ -13,7 +13,7 @@
 ## Getting started
 
 1. Download binary install for your platform in the [releases](https://github.com/DataStax-Toolkit/sperf/releases) section, or Use [Homebrew](https://brew.sh) on OS X or Linux to install `brew tap foundev/sperf && brew install sperf`
-2. Generate a diagnostic tarball from your cluster. If you're using DSE we suggest using [OpsCenter](https://docs.datastax.com/en/opscenter/6.7/opsc/online_help/opscCollectingDiagnosticData_t.html) and if on Apache Cassandra™ contact [Luna support](https://www.datastax.com/services/datastax-luna) for the tooling needed (or use [diagnostic collection scripts](https://github.com/DataStax-Toolkit/diagnostic-collection)).
+2. Generate a diagnostic tarball from your cluster via the [diagnostic collection scripts](https://github.com/DataStax-Toolkit/diagnostic-collection)).
 3. Navigate to tarball directory (one should see a 'nodes' folder) and run `sperf`. The output will give you a simple health check and provide some recommendations for next steps.
 
 ### For high CPU issues
@@ -47,9 +47,9 @@
 * sperf [core diag](docs/commands/core/diag.md) - Generates a diagtarball report. DSE 5.0-6.7 and Cassandra 2.1-3.11.x
 * sperf [core gc](docs/commands/core/gc.md) - Show gc info DSE 5.0-6.7 and Cassandra 2.1-3.11.x
 * sperf [core jarcheck](docs/commands/core/jarcheck.md) - Checks jar versions in output.logs. Supports tarballs and files. DSE 5.0-6.7
-* sperf [core schema](docs/commands/core/schema.md) - Analyze schema for summary. DSE 5.0-6.7
+* sperf [core schema](docs/commands/core/schema.md) - Analyze schema for summary. DSE 5.0-6.8
 * sperf [core slowquery](docs/commands/core/slowquery.md) - Generates a report of slow queries in debug log. DSE 6.0-6.7
-* sperf [core statuslogger](docs/commands/core/statuslogger.md) - Provides analysis of StatusLogger log lines. DSE 5.0-6.7 Cassandra 2.1-3.11.x
+* sperf [core statuslogger](docs/commands/core/statuslogger.md) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
 * sperf [search filtercache](docs/commands/search/filtercache.md) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
 * sperf [search queryscore](docs/commands/search/queryscore.md) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
 * sperf [sysbottle](docs/commands/sysbottle.md) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
@@ -64,7 +64,6 @@ To see each command's available flags, documentation and examples just add the -
 * Do I need to install Python? Nope! Just download the binary for your platform.
 * Which tool do I use first? `sperf` run from a diag directory is a good starting point.
 * What's the command I use for iostat and `sperf sysbottle`? `iostat -x -d -c -t 1 600`
-* What about Python 3.8 support? Python 3.8 works fine with sperf, but we cannot yet generate binaries for 3.8 until this issue is closed: https://github.com/pyinstaller/pyinstaller/issues/4311
 
 # Development
 

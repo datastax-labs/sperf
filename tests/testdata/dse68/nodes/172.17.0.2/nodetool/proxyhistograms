@@ -1,0 +1,11 @@
+proxy histograms
+Percentile       Read Latency      Write Latency      Range Latency   CAS Read Latency  CAS Write Latency View Write Latency
+                     (micros)           (micros)           (micros)           (micros)           (micros)           (micros)
+50%                   1817.53               0.00               0.00            2246.95            1872.46               0.00
+75%                   2424.83               0.00            1572.86            3145.73            2202.01               0.00
+95%                   7340.03               0.00            6640.98            9437.18            4194.30               0.00
+98%                   9437.18               0.00            8388.61           10485.76            6291.46               0.00
+99%                  10485.76               0.00            9437.18           10485.76            6291.46               0.00
+Min                    262.14               0.00               0.00            1310.72            1310.72               0.00
+Max                  12582.91               0.00           10485.76           12582.91            7340.03               0.00
+

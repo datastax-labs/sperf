@@ -54,7 +54,7 @@ def add_args(diag_parser):
 
 def add_flags(subparsers, name, run_func, is_deprecated=False):
     """so we can share the parser with the legacy sperf cassread command"""
-    help_text = 'Generates a diagtarball report. DSE 5.0-6.7'
+    help_text = 'Generates a diagtarball report. DSE 5.0-6.8'
     if is_deprecated:
         help_text = help_text + ". DEPRECATED: use 'sperf core diag' instead"
     diag_parser = subparsers.add_parser(name,
@@ -69,6 +69,6 @@ def build(subparsers):
 
 def run(args):
     """launches 'sperf core diag'"""
-    print("sperf core diag: %s\n" % VERSION)
+    print("sperf core diag version: %s\n" % VERSION)
     parsed = parse_diag(args)
     print(generate_report(parsed))

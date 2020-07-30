@@ -16,10 +16,10 @@
 import heapq
 import itertools
 import datetime
-from collections import defaultdict
 from pysper import parser
 from pysper.parser import gc
 from pysper import VERSION
+from pysper.core import OrderedDefaultDict
 from pysper.diag import find_logs
 from pysper.util import node_name, bucketize, get_percentiles, get_percentile_headers
 from pysper.dates import date_parse
@@ -30,12 +30,12 @@ class GCInspector:
     def __init__(self, diag_dir=None, files=None, start=None, end=None):
         self.diag_dir = diag_dir
         self.files = files
-        self.pauses = defaultdict(lambda: defaultdict(list))
-        self.gc_types = defaultdict(int)
+        self.pauses = OrderedDefaultDict(lambda: OrderedDefaultDict(list))
+        self.gc_types = OrderedDefaultDict(int)
         self.start = None
         self.end = None
-        self.starts = defaultdict(datetime.datetime)
-        self.ends = defaultdict(datetime.datetime)
+        self.starts = OrderedDefaultDict(datetime.datetime)
+        self.ends = OrderedDefaultDict(datetime.datetime)
         self.analyzed = False
         self.start_time = None
         self.end_time = None
@@ -89,7 +89,7 @@ class GCInspector:
 
     def all_pauses(self):
         """ get pauses for all nodes """
-        pauses = defaultdict(list)
+        pauses = OrderedDefaultDict(list)
         for pausedata in self.pauses.values():
             for time, pause in pausedata.items():
                 pauses[time].extend(pause)

@@ -24,7 +24,10 @@ def _get_common_configs(node_configs):
     for i, node in enumerate(node_configs.keys()):
         if i == 0:
             #first configuration sets the base config
-            common_config = {k:v for (k, v) in node_configs[node].items() if k not in IGNORE_LIST}
+            common_config = OrderedDict()
+            for k, v in node_configs[node].items():
+                if k not in IGNORE_LIST:
+                    common_config[k] = v
             continue
         for key, value in node_configs[node].items():
             if key in IGNORE_LIST:

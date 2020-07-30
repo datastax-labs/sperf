@@ -14,12 +14,13 @@
 
 """ analyzes debug.logs for slow queries """
 import re
-from collections import defaultdict
-from pysper.diag import find_logs
+from collections import OrderedDict
+from pysper.diag import find_logs, FileWithProgress
 from pysper.parser.rules import date
 from pysper.util import bucketize
 from pysper.dates import date_parse
 from pysper import VERSION, perc
+from pysper.core import OrderedDefaultDict
 
 class SlowQueryParser:
     """ parses logs for slow queries """
@@ -36,7 +37,7 @@ class SlowQueryParser:
 
     def parse(self, logfile):
         """ parses a debug log for slow queries """
-        ret = {}
+        ret = OrderedDict()
         for line in logfile:
             if self.state is None:
                 m = self.begin_match.match(line)
@@ -66,7 +67,7 @@ class SlowQueryAnalyzer:
         self.diag_dir = diag_dir
         self.files = files
         self.parser = SlowQueryParser()
-        self.querytimes = defaultdict(list)
+        self.querytimes = OrderedDefaultDict(list)
         self.queries = []
         self.analyzed = False
         self.start = None
@@ -85,36 +86,36 @@ class SlowQueryAnalyzer:
         target = find_logs(self.diag_dir, 'debug.log')
         if self.files:
             target = self.files
-        for file in target:
-            log = open(file, 'r')
-            for query in parser.parse(log):
-                if self.start_time and query['date'] < self.start_time:
-                    continue
-                if self.end_time and query['date'] > self.end_time:
-                    continue
-                if not self.start:
-                    self.start = query['date']
-                    self.end = query['date']
-                if query['date'] > self.end:
-                    self.end = query['date']
-                if query['date'] < self.start:
-                    self.start = query['date']
-                if 'numslow' in query:
-                    # pylint: disable=unused-variable
-                    for x in range(query['numslow']):
+        for f in target:
+            with FileWithProgress(f) as log:
+                for query in parser.parse(log):
+                    if self.start_time and query['date'] < self.start_time:
+                        continue
+                    if self.end_time and query['date'] > self.end_time:
+                        continue
+                    if not self.start:
+                        self.start = query['date']
+                        self.end = query['date']
+                    if query['date'] > self.end:
+                        self.end = query['date']
+                    if query['date'] < self.start:
+                        self.start = query['date']
+                    if 'numslow' in query:
+                        # pylint: disable=unused-variable
+                        for x in range(query['numslow']):
+                            self.querytimes[query['date']].append(query['timeslow'])
+                    else:
                         self.querytimes[query['date']].append(query['timeslow'])
-                else:
-                    self.querytimes[query['date']].append(query['timeslow'])
-                self.queries.append((query['query'], int(query['timeslow'])))
-                if query['cross'] is not None:
-                    self.cross += 1
+                    self.queries.append((query['query'], int(query['timeslow'])))
+                    if query['cross'] is not None:
+                        self.cross += 1
         self.analyzed = True
 
     def print_report(self, command_name, interval=3600, top=3):
         """ print the report """
         if not self.analyzed:
             self.analyze()
-        print("%s version %s" % (command_name, VERSION))
+        print("%s version: %s" % (command_name, VERSION))
         print('')
         if not self.queries:
             if self.files:
@@ -131,7 +132,7 @@ class SlowQueryAnalyzer:
         print()
         print("Top %s slow queries:" % top)
         print('-'*30)
-        for query, time in sorted(self.queries, key=lambda t: t[1], reverse=True)[0:top]:
+        for query, time in sorted(self.queries, key=lambda t: (t[1], t[0]), reverse=True)[0:top]:
             print("%sms: %s" % (time, query))
             print('')
 

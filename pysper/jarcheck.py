@@ -13,11 +13,11 @@
 # limitations under the License.
 
 """ parses jars from the classpath and compares them """
-from collections import defaultdict
 from pysper.diag import find_logs
 from pysper.humanize import pluralize
 from pysper import parser
 from pysper import env
+from pysper.core import OrderedDefaultDict
 
 class JarCheckParser:
     """ class to parse and analyze the jars in the classpath of an outlog """
@@ -25,7 +25,7 @@ class JarCheckParser:
         self.diag_dir = diag_dir
         self.files = files
         self.analyzed = False
-        self.jars = defaultdict(int)
+        self.jars = OrderedDefaultDict(int)
         self.files_analyzed = 0
 
     def analyze(self):
@@ -42,7 +42,7 @@ class JarCheckParser:
             log = open(file, 'r')
             for event in parser.read_output_log(log):
                 if event['event_type'] == 'classpath':
-                    thisjars = defaultdict(int)
+                    thisjars = OrderedDefaultDict(int)
                     for jar in event['classpath'].split(':'):
                         j = jar.split('/')[-1]
                         if j.endswith("jar"):

@@ -17,7 +17,7 @@ import os
 import re
 import io
 import json
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 from pysper import env, dates
 
 class UnknownStatusLoggerWriter:
@@ -140,7 +140,7 @@ class UniqEventPerNodeFilter:
 
     def __init__(self):
         self.current_node = None
-        self.previous_files_events = {}
+        self.previous_files_events = OrderedDict()
         self.queued_events = set()
 
     def set_node(self, node):
@@ -151,7 +151,7 @@ class UniqEventPerNodeFilter:
             self.previous_files_events[self.current_node][event_id] = None
         #setup new node
         if node not in self.previous_files_events:
-            self.previous_files_events[node] = {}
+            self.previous_files_events[node] = OrderedDict()
         self.current_node = node
         #clear out all previous queued events
         self.queued_events = set()
@@ -195,7 +195,7 @@ def log_range(file_path):
         last = file_handle.readline()         # Read last line.
     return grep_date(first), grep_date(last)
 
-def find_files(config, file_to_find):
+def find_files(config, file_to_find, exact_filename=False):
     """finds all the files in config.diag_dir that matches the prefix or will use
     the config.files string (split on ,) if present and not use a prefix but a full
     file name match.
@@ -204,7 +204,7 @@ def find_files(config, file_to_find):
         file_to_find = "my.log", files = [], diag_dir = "mydir" => matches my.log, my.log.1, my.log.2, etc
     """
     files = []
-    use_as_prefix = True
+    use_as_prefix = not exact_filename
     if config.files:
         files = config.files.split(",")
         use_as_prefix = False
@@ -225,14 +225,35 @@ def find_logs(diag_dir, file_to_find='system.log', use_as_prefix=True):
     matches = []
     for (dirpath, _, files) in os.walk(diag_dir):
         for filename in files:
-            if use_as_prefix:
-                if use_as_prefix and filename.startswith(file_to_find):
-                    fullpath = os.path.join(dirpath, filename)
+            if use_as_prefix and filename.startswith(file_to_find):
+                fullpath = os.path.join(dirpath, filename)
+                if not is_binary(fullpath):
                     matches.append(fullpath)
-                elif not use_as_prefix and filename == file_to_find:
-                    fullpath = os.path.join(dirpath, filename)
+            elif not use_as_prefix and filename == file_to_find:
+                fullpath = os.path.join(dirpath, filename)
+                if not is_binary(fullpath):
                     matches.append(fullpath)
     return matches
+
+def is_binary(filename):
+    """Return true if the given filename is binary.
+    @raise EnvironmentError: if the file does not exist or cannot be accessed.
+    @attention: found @
+	http://bytes.com/topic/python/answers/21222-determine-file-type-binary-text on 6/08/2010
+    @author: Trent Mick <TrentM@ActiveState.com>
+    @author: Jorge Orpinel <jorge@orpinel.com>"""
+    fin = open(filename, 'rb')
+    try:
+        chunk_size = 1024
+        while 1:
+            chunk = fin.read(chunk_size)
+            if b'\0' in chunk: # found null byte
+                return True
+            if len(chunk) < chunk_size:
+                break # done
+    finally:
+        fin.close()
+    return False
 
 class FileWithProgress:
     """logs open, close if --progress is enabled only works with reads. will always log errors"""

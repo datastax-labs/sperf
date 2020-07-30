@@ -13,13 +13,13 @@
 # limitations under the License.
 
 """schema subcommand builder"""
-from pysper import diag, VERSION
+from pysper import diag, env, VERSION
 from pysper.core import schema
 from pysper.commands import flags
 
 def add_flags(subparsers, run_default_func):
     """for code sharing between deprecated and supported commands"""
-    help_text = 'Analyze schema for summary. DSE 5.0-6.7'
+    help_text = 'Analyze schema for summary. DSE 5.0-6.8'
     schema_parser = subparsers.add_parser('schema', help=help_text,
                                           formatter_class=flags.LineWrapRawTextHelpFormatter)
     flags.files_and_diag(schema_parser)
@@ -35,8 +35,11 @@ def run(args):
 
 def run_func(args, cmd_name):
     """for code sharing with deprecated schema"""
-    print("%s: %s\n" % (cmd_name, VERSION))
+    print("%s version: %s\n" % (cmd_name, VERSION))
     config = schema.Config(args.files, args.diag_dir)
-    files = diag.find_files(config, "schema")
+    #do not match on files with schema prefix only on files with schema
+    files = diag.find_files(config, "schema", exact_filename=True)
+    if env.DEBUG:
+        print("found schema files: %s", files)
     parsed_schema = schema.read(files)
     print(schema.generate_report(parsed_schema))

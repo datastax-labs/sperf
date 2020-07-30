@@ -17,6 +17,7 @@ import os
 import itertools
 import bisect
 import datetime
+from collections import OrderedDict
 from pysper import perc
 
 #pylint: disable=too-many-arguments
@@ -106,7 +107,7 @@ def bucketize(data, start, end, seconds=3600):
         # bucket too big, throw everything in a single
         return {start: list(itertools.chain.from_iterable(data.values()))}
     # build with empty lists instead of defaultdict so we cover empty intervals
-    buckets = dict((time, []) for time in grid)
+    buckets = OrderedDict((time, []) for time in grid)
     for time, values in sorted(data.items(), key=lambda t: t[0]):
         # find the closest period in the 'calendar' and put everything there
         idx = bisect.bisect(grid, time)

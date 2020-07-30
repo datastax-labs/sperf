@@ -1,0 +1,23 @@
+/172.17.0.2
+  generation:1595236181
+  heartbeat:105541
+  STATUS:51:NORMAL,-5374840111441183029
+  LOAD:105489:1.925476349E9
+  SCHEMA:485:66b79eea-3933-3a73-8799-cb2a70106421
+  DC:16:dc1
+  RACK:18:rack1
+  RELEASE_VERSION:4:4.0.0.681
+  INTERNAL_IP:14:172.17.0.2
+  NATIVE_TRANSPORT_ADDRESS:3:172.17.0.2
+  DSE_GOSSIP_STATE:11421:{"dse_version":"6.8.1","graph":true,"workloads":"SearchGraphCassandraAnalytics","server_id":"02-42-AC-11-00-02","workload":"SearchAnalytics","active":"true","dsefs_state":{"internodeAuthAlgorithm":"HmacSHA256","internodeAuthKey":[109,41,12,124,71,-88,-119,-120,-43,28,70,-24,-5,49,34,-45,72,-44,-48,-128,127,36,-110,66,76,-59,-79,3,-19,77,-22,-7],"keyspace":"dsefs","privatePort":5599},"health":1.0}
+  NET_VERSION:1:1024
+  HOST_ID:2:5f07e400-cfa8-4afd-a6a0-6935ad90e9dd
+  NATIVE_TRANSPORT_READY:139:true
+  NATIVE_TRANSPORT_PORT:7:9042
+  NATIVE_TRANSPORT_PORT_SSL:8:9042
+  STORAGE_PORT:9:7000
+  STORAGE_PORT_SSL:10:7001
+  JMX_PORT:11:7199
+  SCHEMA_COMPATIBILITY_VERSION:5:2
+  TOKENS:50:<hidden>
+

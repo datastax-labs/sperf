@@ -20,7 +20,7 @@ def build(subparsers):
     """add jarcheck flags"""
     jarcheck_parser = subparsers.add_parser('jarcheck',
                                             help='Checks jar versions in output.logs. ' + \
-                                            'Supports tarballs and files. DSE 5.0-6.7',
+                                            'Supports tarballs and files. DSE 5.0-6.8',
                                             formatter_class=flags.LineWrapRawTextHelpFormatter)
     jarcheck_parser.set_defaults(func=run)
     flags.files_and_diag(jarcheck_parser)

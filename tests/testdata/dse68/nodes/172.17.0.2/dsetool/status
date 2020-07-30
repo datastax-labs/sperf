@@ -1,0 +1,7 @@
+DC: dc1             Workload: SearchAnalytics Graph: yes    Analytics Master: 172.17.0.2
+=======================================================================================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--   Address          Load             Effective-Ownership  Token                                        Rack         Health [0,1] 
+UN   172.17.0.2       1.79 GiB         100.00%              -5374840111441183029                         rack1        1.00         
+

@@ -14,6 +14,7 @@
 
 """cfstats table stat parser"""
 import re
+from collections import OrderedDict
 from pysper import diag
 
 def read_file(cfstat_file):
@@ -30,7 +31,7 @@ class Parser:
     """parses CFStats"""
 
     def __init__(self):
-        self.parsed = {}
+        self.parsed = OrderedDict()
         self.current_table = ""
         self.current_keyspace = ""
         self.rules = [
@@ -54,11 +55,11 @@ class Parser:
 
     def _keyspace_match(self, match):
         self.current_keyspace = match.group('keyspace_name')
-        self.parsed[self.current_keyspace] = {}
+        self.parsed[self.current_keyspace] = OrderedDict()
 
     def _table_match(self, match):
         self.current_table = match.group('table_name')
-        self.parsed[self.current_keyspace][self.current_table] = {}
+        self.parsed[self.current_keyspace][self.current_table] = OrderedDict()
 
     def _table_stat_float_match(self, match):
         key = match.group('key')

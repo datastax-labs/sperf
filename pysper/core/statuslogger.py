@@ -11,10 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """ pysper statuslogger module """
 import re
-from collections import defaultdict
+from collections import OrderedDict
 from pysper import VERSION
 from pysper import env
 from pysper import parser
@@ -25,8 +24,6 @@ from pysper.recs import Engine, Stage
 from pysper.dates import date_parse
 from pysper.core import OrderedDefaultDict
 
-WANTED_STAGES_PREFIXES = ('TPC/all/READ', 'TPC/all/WRITE', 'Gossip', 'Messaging',
-                          'Compaction', 'MemtableFlush', 'Mutation', 'Read', 'Native')
 class Table:
     """ represents a dse table """
     def __init__(self, ops=0, data=0):
@@ -42,7 +39,7 @@ class Node:
         self.start = None
         self.end = None
         self.tables = OrderedDefaultDict(Table)
-        self.stages = OrderedDefaultDict(lambda: defaultdict(list))
+        self.stages = OrderedDefaultDict(lambda: OrderedDefaultDict(list))
         self.pauses = []
         self.version = None
         self.lines = 0
@@ -114,7 +111,7 @@ class Summary:
 
     def get_stages_in(self, status):
         """ return all stages in a given status """
-        ret = {}
+        ret = OrderedDict()
         for name, node in self.nodes.items():
             for stage in node.stages:
                 if stage == status:
@@ -133,17 +130,17 @@ class StatusLogger:
 
     # pylint: disable=too-many-arguments
     def __init__(self, diag_dir, files=None, start=None, end=None, \
-         wanted_stages=WANTED_STAGES_PREFIXES, command_name="sperf core statuslogger",
+         wanted_stages=None, command_name="sperf core statuslogger",
                  syslog_prefix="system.log", dbglog_prefix="debug.log"):
         self.diag_dir = diag_dir
         self.files = files
         self.wanted_stages = wanted_stages
         if env.DEBUG:
             print("wanted stages:", self.wanted_stages)
-        self.nodes = defaultdict(Node)
+        self.nodes = OrderedDefaultDict(Node)
         self.analyzed = False
         self.dumps_analyzed = 0
-        self.rule_types = defaultdict(int)
+        self.rule_types = OrderedDefaultDict(int)
         self.command_name = command_name
         self.syslog_prefix = syslog_prefix
         self.dbglog_prefix = dbglog_prefix
@@ -200,6 +197,8 @@ class StatusLogger:
                 if event['event_type'] == 'server_version':
                     if event.get('version'):
                         node.version = event['version']
+                        if node.version.startswith("6"):
+                            node.cassandra_version = "DSE Private Fork"
                     elif event.get('cassandra_version'):
                         node.cassandra_version = event['cassandra_version']
                     #skipping solr, spark etc as it maybe too much noise for statuslogger
@@ -318,7 +317,7 @@ class StatusLogger:
         engine = Engine()
         recs = set()
         for node in self.nodes.values():
-            rstage = defaultdict(dict)
+            rstage = OrderedDefaultDict(dict)
             for status, stage in node.stages.items():
                 for tpname, vals in stage.items():
                     rstage[tpname][status] = max(vals)
@@ -407,12 +406,16 @@ class StatusLogger:
         self.__print_recs()
 
     def __print_backpressure(self, stages, data):
-        nodes = {}
+        nodes = OrderedDict()
         #get total backpressure and max backpressure per node
         for name, stage in stages.items():
             if name not in nodes:
                 #if not present initialize so aggregate code can safely assume 0 value is already populated
-                nodes[name] = {"total": 0, "count": 0, "max": 0}
+                agg = OrderedDict()
+                agg["total"] = 0
+                agg["count"] = 0
+                agg["max"] = 0
+                nodes[name] = agg
             node_agg = nodes[name]
             for vals in  stage.values():
                 node_agg["count"] += len(vals)

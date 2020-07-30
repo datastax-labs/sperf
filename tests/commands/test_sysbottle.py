@@ -20,7 +20,7 @@ from tests import current_dir
 
 def test_args():
     """verify schema args are wired up correctly"""
-    parser = argparse.ArgumentParser(prog="mine", description="entry point")
+    parser = argparse.ArgumentParser(prog="sysbottle", description="sysbottle is parsed")
     subparsers = parser.add_subparsers()
     sysbottle.build(subparsers)
     args = parser.parse_args(["sysbottle", "abc.txt", "-c", "90", "-q", "1", "-d", "sda", "-i", "5", "-t", "3"])
@@ -33,7 +33,7 @@ def test_args():
 
 def test_sysbottle_run():
     """validates we don't get a bad exit code"""
-    parser = argparse.ArgumentParser(prog="mine", description="entry point")
+    parser = argparse.ArgumentParser(prog="sysbottle", description="sysbottle is parsed")
     subparsers = parser.add_subparsers()
     sysbottle.build(subparsers)
     test_file_1 = os.path.join(current_dir(__file__), '..', 'testdata', 'iostat')

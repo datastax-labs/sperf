@@ -14,7 +14,41 @@
 
 """validates the low level parsing of systemlog"""
 # pylint: disable=line-too-long
+import os
 from pysper.parser import systemlog
+from tests import current_dir
+
+def test_60_format():
+    """validating we can parse the 6.0-6.7 statuslogger format"""
+    #       Pool Name                                     Active      Pending (w/Backpressure)   Delayed      Completed   Blocked  All Time Blocked
+    line = "TPC/all/WRITE_REMOTE                               1                       2 (N/A)       N/A      5       N/A                 6"
+    event = systemlog.capture_line(line)
+    assert event
+    assert event["active"] == '1'
+    assert event["pending"] == '2'
+    assert not event["backpressure"]
+    assert not event["delayed"]
+    assert event["completed"] == '5'
+    assert not event["blocked"]
+    assert event["all_time_blocked"] == '6'
+
+
+def test_68_format():
+    """validating we can parse the 6.8 statuslogger format"""
+    #       Pool Name                                       Active        Pending   Backpressure   Delayed      Shared      Stolen      Completed   Blocked  All Time Blocked
+    line = "TPC/all/BACKPRESSURE_RESCHEDULE                      1              2            N/A       N/A           3           4              5       N/A                 6"
+    event = systemlog.capture_line(line)
+    assert event
+    assert event["active"] == '1'
+    assert event["pending"] == '2'
+    assert not event["backpressure"]
+    assert not event["delayed"]
+    assert event["shared"] == '3'
+    assert event["stolen"] == '4'
+    assert event["completed"] == '5'
+    assert not event["blocked"]
+    assert event["all_time_blocked"] == '6'
+
 
 def test_filtercache_parsing():
     """happy path"""
@@ -41,7 +75,7 @@ def test_filtercache_parsing():
     assert events[2]['usage'] == 32441266
     assert events[2]['usage_unit'] == 'bytes'
     assert events[2]['id'] == '1@7c723229'
-    assert events[3]['entries'] == 3999974 
+    assert events[3]['entries'] == 3999974
     assert events[3]['maximum'] == 8000000
     assert events[3]['id'] == '1@324b2c16'
     assert events[4]['entries'] == 3999962
@@ -58,4 +92,3 @@ def test_filtercache_parsing():
     assert events[6]['usage'] == 114781220
     assert events[6]['entries'] == 159
     assert events[6]['id'] == '6@5af917a4'
-

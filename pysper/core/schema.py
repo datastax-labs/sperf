@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """schema subcommand does a lightweight reporting of the clusters schema"""
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 from pysper import diag
 
 Config = namedtuple('Config', 'files diag_dir')
@@ -21,19 +21,21 @@ Config = namedtuple('Config', 'files diag_dir')
 def read(files):
     """reads the output of cqlsh schema..atm only
     reads the first file until we have diff support"""
-    report = {
-        "keyspaces": 0,
-        "tables": 0,
-        "2i": 0,
-        "mvs": 0,
-        "solr": 0,
-        "solr_table": 0,
-        "parsed_file": "Not Found",
-        }
+    report = OrderedDict()
+    report["keyspaces"] = 0
+    report["tables"] = 0
+    report["2i"] = 0
+    report["mvs"] = 0
+    report["solr"] = 0
+    report["solr_table"] = 0
+    report["parsed_file"] = "No Schema File Found"
     if not files:
         return report
-    schema_file = files[0]
-    report["parsed_files"] = schema_file
+    #we need to sort so we get the same results. Eventually we can start to
+    #retrieve all schema files and check for mismatches but for now doing a sort means
+    #we can at last get the same results
+    schema_file = sorted(files)[0]
+    report["parsed_file"] = schema_file
     solr_tables = set()
     solr_indexes = []
     with diag.FileWithProgress(schema_file) as file_desc:

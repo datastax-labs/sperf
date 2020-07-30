@@ -165,6 +165,10 @@ def status_rules():
     return (case('StatusLogger'),
 
             rule(
+                capture(r'^Pool Name +Active +Pending +Backpressure +Delayed +Shared +Stolen +Completed +Blocked +All Time Blocked$'),
+                update(event_product='cassandra', event_category='status', event_type='threadpool_header', rule_type='6.8')),
+
+            rule(
                 capture(r'Pool Name +Active +Pending \(w/Backpressure\) +Delayed +Completed +Blocked +All Time Blocked$'),
                 update(event_product='cassandra', event_category='status', event_type='threadpool_header', rule_type='new')),
 
@@ -173,7 +177,12 @@ def status_rules():
                 update(event_product='cassandra', event_category='status', event_type='threadpool_header', rule_type='old')),
 
             rule(
-                capture(r'(?P<pool_name>[A-Za-z0-9_/#]+) +((?P<active>[0-9]+)|n/a) +(?P<pending>[0-9]+) +\(((?P<backpressure>[0-9]+)|N/A)\) +((?P<delayed>[0-9]+)|N/A) +(?P<completed>[0-9]+) +((?P<blocked>[0-9]+)|N/A) +(?P<all_time_blocked>[0-9]+)$'),
+                capture(r'(?P<pool_name>[A-Za-z0-9_/#]+) +((?P<active>[0-9]+)|N/A) +((?P<pending>[0-9]+)|N/A) +((?P<backpressure>[0-9]+)|N/A) +((?P<delayed>[0-9]+)|N/A) +((?P<shared>[0-9]+)|N/A) +((?P<stolen>[0-9]+)|N/A) +((?P<completed>[0-9]+)|N/A) +((?P<blocked>[0-9]+)|N/A) +((?P<all_time_blocked>[0-9]+)|N/A)$'),
+                convert(int, 'active', 'pending', 'backpressure', 'delayed', 'shared', 'stolen', 'completed', 'blocked', 'all_time_blocked'),
+                update(event_product='cassandra', event_category='status', event_type='threadpool_status', rule_type='6.8')),
+
+            rule(
+                capture(r'(?P<pool_name>[A-Za-z0-9_/#]+) +((?P<active>[0-9]+)|N/A) +(?P<pending>[0-9]+) +\(((?P<backpressure>[0-9]+)|N/A)\) +((?P<delayed>[0-9]+)|N/A) +(?P<completed>[0-9]+) +((?P<blocked>[0-9]+)|N/A) +(?P<all_time_blocked>[0-9]+)$'),
                 convert(int, 'active', 'pending', 'backpressure', 'delayed', 'completed', 'blocked', 'all_time_blocked'),
                 update(event_product='cassandra', event_category='status', event_type='threadpool_status', rule_type='new')),
 
