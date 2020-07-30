@@ -17,7 +17,7 @@ from collections import OrderedDict
 from pysper import VERSION
 from pysper import env
 from pysper import parser
-from pysper.diag import find_logs, UniqEventPerNodeFilter, UnknownStatusLoggerWriter
+from pysper.diag import find_logs, UniqEventPerNodeFilter, UnknownStatusLoggerWriter, FileWithProgress
 from pysper.util import get_percentiles, get_percentile_headers, node_name
 from pysper.humanize import format_seconds, format_bytes, format_num, pad_table
 from pysper.recs import Engine, Stage
@@ -168,69 +168,69 @@ class StatusLogger:
             target = target_system + target_debug
         else:
             raise Exception("no diag dir and no files specified")
-        for file in target:
-            nodename = node_name(file)
+        for f in target:
+            nodename = node_name(f)
             event_filter.set_node(nodename)
             node = self.nodes[nodename]
             if env.DEBUG:
-                print("parsing", file)
-            log = open(file, 'r')
-            statuslogger_fixer = UnknownStatusLoggerWriter()
-            for event in parser.read_system_log(log):
-                statuslogger_fixer.check(event)
-                if self.start and event['date'] < self.start:
-                    continue
-                if self.end and event['date'] > self.end:
-                    continue
-                self.__setdates(node, statuslogger_fixer.last_event_date)
-                node.lines += 1
-                if event_filter.is_duplicate(event):
-                    node.skipped_lines += 1
-                    continue
-                if env.DEBUG:
-                    if 'rule_type' in event:
-                        self.rule_types[event['rule_type']] += 1
-                    elif event['event_type'] == 'unknown':
-                        self.rule_types['unknown'] += 1
-                    else:
-                        self.rule_types['no type'] += 1
-                if event['event_type'] == 'server_version':
-                    if event.get('version'):
-                        node.version = event['version']
-                        if node.version.startswith("6"):
-                            node.cassandra_version = "DSE Private Fork"
-                    elif event.get('cassandra_version'):
-                        node.cassandra_version = event['cassandra_version']
-                    #skipping solr, spark etc as it maybe too much noise for statuslogger
-                elif event['event_type'] == 'memtable_status':
-                    tname = '.'.join([event['keyspace'], event['table']])
-                    if event['ops'] > node.tables[tname].ops:
-                        node.tables[tname].ops = event['ops']
-                    try:
-                        if event['data'] > node.tables[tname].data:
-                            node.tables[tname].data = event['data']
-                    except Exception as e:
-                        print(event)
-                        raise e
-                elif event['event_type'] == 'pause':
-                    node.pauses.append(event['duration'])
-                elif event['event_type'] == 'threadpool_header':
-                    node.dumps_analyzed += 1
-                    self.dumps_analyzed += 1
-                elif event['event_type'] == 'threadpool_status':
-                    if re.match(r"TPC/\d+$", event['pool_name']):
-                        if not node.version:
-                            node.version = "6.x"
-                        if 'delayed' in event and event['delayed']:
+                print("parsing", f)
+            with FileWithProgress(f) as log:
+                statuslogger_fixer = UnknownStatusLoggerWriter()
+                for event in parser.read_system_log(log):
+                    statuslogger_fixer.check(event)
+                    if self.start and event['date'] < self.start:
+                        continue
+                    if self.end and event['date'] > self.end:
+                        continue
+                    self.__setdates(node, statuslogger_fixer.last_event_date)
+                    node.lines += 1
+                    if event_filter.is_duplicate(event):
+                        node.skipped_lines += 1
+                        continue
+                    if env.DEBUG:
+                        if 'rule_type' in event:
+                            self.rule_types[event['rule_type']] += 1
+                        elif event['event_type'] == 'unknown':
+                            self.rule_types['unknown'] += 1
+                        else:
+                            self.rule_types['no type'] += 1
+                    if event['event_type'] == 'server_version':
+                        if event.get('version'):
+                            node.version = event['version']
+                            if node.version.startswith("6"):
+                                node.cassandra_version = "DSE Private Fork"
+                        elif event.get('cassandra_version'):
+                            node.cassandra_version = event['cassandra_version']
+                        #skipping solr, spark etc as it maybe too much noise for statuslogger
+                    elif event['event_type'] == 'memtable_status':
+                        tname = '.'.join([event['keyspace'], event['table']])
+                        if event['ops'] > node.tables[tname].ops:
+                            node.tables[tname].ops = event['ops']
+                        try:
+                            if event['data'] > node.tables[tname].data:
+                                node.tables[tname].data = event['data']
+                        except Exception as e:
                             print(event)
-                            val = event['delayed']
-                            node.stages['local backpressure'][event['pool_name']].append(val)
-                    else:
-                        for pool in ['active', 'pending',
-                                     'blocked', 'all_time_blocked']:
-                            if pool in event and event[pool]:
-                                if not self.wanted_stages or event['pool_name'].startswith(self.wanted_stages):
-                                    node.stages[pool][event['pool_name']].append(event[pool])
+                            raise e
+                    elif event['event_type'] == 'pause':
+                        node.pauses.append(event['duration'])
+                    elif event['event_type'] == 'threadpool_header':
+                        node.dumps_analyzed += 1
+                        self.dumps_analyzed += 1
+                    elif event['event_type'] == 'threadpool_status':
+                        if re.match(r"TPC/\d+$", event['pool_name']):
+                            if not node.version:
+                                node.version = "6.x"
+                            if 'delayed' in event and event['delayed']:
+                                print(event)
+                                val = event['delayed']
+                                node.stages['local backpressure'][event['pool_name']].append(val)
+                        else:
+                            for pool in ['active', 'pending',
+                                         'blocked', 'all_time_blocked']:
+                                if pool in event and event[pool]:
+                                    if not self.wanted_stages or event['pool_name'].startswith(self.wanted_stages):
+                                        node.stages[pool][event['pool_name']].append(event[pool])
         self.analyzed = True
         if env.DEBUG:
             print(self.rule_types.items())
