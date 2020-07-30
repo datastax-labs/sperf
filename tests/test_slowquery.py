@@ -49,9 +49,9 @@ Top 3 slow queries:
 ------------------------------
 5005ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0057-1aa2-0000-0000002c726f LIMIT 5000>
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>
+5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000>
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000>"""
+5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>"""
 
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf_68():
