@@ -17,6 +17,21 @@ import os
 from pysper.core.statuslogger import StatusLogger, Summary
 from tests import test_dse_tarball, current_dir
 
+def test_should_count_ops():
+    """validate ops counting is doing the right thing even when crossing logs"""
+    tarball = os.path.join(current_dir(__file__), '..', 'testdata', 'sample_table_tarball')
+    sl = StatusLogger(tarball)
+    sl.analyze()
+    s = Summary(sl.nodes)
+    tables = s.get_busiest_tables('ops')
+    #this proves the extra logs in debug.log and system.log that are duplicate are ignored
+    #and that the extra entry from statuslogger is not causing a double count
+    busiest = tables[0]
+    assert busiest[1][0] == 'keyspace1.standard1'
+    assert busiest[1][1].ops == 5931
+    assert busiest[1][1].data == 75690238
+
+
 def test_skip_duplicate_events_diag():
     """should merge events on the same node in different logs"""
     sl = StatusLogger(test_dse_tarball())

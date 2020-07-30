@@ -1,7 +1,8 @@
 sperf 0.6.4
 -----------
-* binary files are now longer matched when reading diags, this should allow
-all those pesky zips to be skipped
+* binary files are now longer matched when reading diags, this should allow all those pesky zips to be skipped
+* `sperf core statuslogger` now reads debug.logs as well as system.logs by
+default. Added additional testing to validate there is no double counting.
 * DSE 6.8 `sperf core statuslogger` support
 * DSE 6.8 additional testing for `sperf core diag`, `sperf core schema`,
 `sperf core slowquery` and the default `sperf` command 
