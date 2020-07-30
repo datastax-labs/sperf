@@ -39,6 +39,7 @@ Keyspace Count  : 15
 Table Count     : 61
 2i Count        : 1
 MV Count        : 0
+UDT Count       : 6
 Solr Index Count: 1
 Solr Table Count: 1""" % \
         os.path.join(current_dir(__file__), "testdata", "diag",
@@ -63,6 +64,7 @@ Keyspace Count  : 13
 Table Count     : 36
 2i Count        : 0
 MV Count        : 0
+UDT Count       : 6
 Solr Index Count: 0
 Solr Table Count: 0""" % \
         os.path.join(current_dir(__file__), "testdata", "dse68", "nodes", "172.17.0.2", "driver", "schema")

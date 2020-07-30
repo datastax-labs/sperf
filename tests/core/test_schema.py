@@ -24,6 +24,7 @@ def test_schema_report():
         "tables": 124,
         "2i": 6,
         "mvs": 10,
+        "udts": 6,
         "solr": 31,
         "solr_table": 11,
         "parsed_file": "test",
@@ -34,6 +35,7 @@ Keyspace Count  : 16
 Table Count     : 124
 2i Count        : 6
 MV Count        : 10
+UDT Count       : 6
 Solr Index Count: 31
 Solr Table Count: 11""")
 
@@ -46,5 +48,6 @@ def test_read_schema():
     assert parsed["tables"] == 61
     assert parsed["2i"] == 1
     assert parsed["mvs"] == 0
+    assert parsed["udts"] == 6
     assert parsed["solr"] == 1
     assert parsed["solr_table"] == 1

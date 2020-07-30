@@ -28,6 +28,7 @@ def read(files):
     report["mvs"] = 0
     report["solr"] = 0
     report["solr_table"] = 0
+    report["udts"] = 0
     report["parsed_file"] = "No Schema File Found"
     if not files:
         return report
@@ -52,6 +53,9 @@ def read(files):
             if "CREATE MATERIALIZED" in line:
                 report["mvs"] += 1
                 continue
+            if "CREATE TYPE" in line:
+                report["udts"] += 1
+                continue
             if "CREATE CUSTOM INDEX" in line:
                 tokens = line.split(" ")
                 table = tokens[5]
@@ -71,6 +75,7 @@ def generate_report(parsed_schema):
     report.append("Table Count     : %i" % parsed_schema["tables"])
     report.append("2i Count        : %i" % parsed_schema["2i"])
     report.append("MV Count        : %i" % parsed_schema["mvs"])
+    report.append("UDT Count       : %i" % parsed_schema["udts"])
     report.append("Solr Index Count: %i" % parsed_schema["solr"])
     report.append("Solr Table Count: %i" % parsed_schema["solr_table"])
     return "\n".join(report)
