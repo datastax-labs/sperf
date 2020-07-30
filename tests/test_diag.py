@@ -16,10 +16,10 @@
 import os
 import types
 import pytest
+from tests import current_dir, steal_output, make_67_diag_args
 from pysper import env
 from pysper.core.diag import parse_diag
 from pysper.diag import find_files
-from tests import current_dir, steal_output
 from pysper.commands.core import diag as diag_cmd
 
 def test_find_files_by_diag_dir():
@@ -118,14 +118,7 @@ def test_parse_diag_reports_missing_files():
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_core_diag_integtration():
     """integration test with 6.7 tarball"""
-    args = types.SimpleNamespace()
-    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
-    args.output_log_prefix = "output.log"
-    args.debug_log_prefix = "debug.log"
-    args.system_log_prefix = "system.log"
-    args.node_info_prefix = "node_info.json"
-    args.block_dev_prefix = "blockdev_report"
-    args.cfstats_prefix = "cfstats"
+    args = make_67_diag_args()
     def run():
         diag_cmd.run(args)
     output = steal_output(run)

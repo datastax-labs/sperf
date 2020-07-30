@@ -16,9 +16,22 @@
 import os
 from io import StringIO
 import contextlib
+import types
 import logging
 
 LOGGER = logging.getLogger(__name__)
+
+def make_67_diag_args():
+    """I use this a couple of places so I make it a common function"""
+    args = types.SimpleNamespace()
+    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
+    args.output_log_prefix = "output.log"
+    args.debug_log_prefix = "debug.log"
+    args.system_log_prefix = "system.log"
+    args.node_info_prefix = "node_info.json"
+    args.block_dev_prefix = "blockdev_report"
+    args.cfstats_prefix = "cfstats"
+    return args
 
 def test_dir():
     """returns the test directory"""

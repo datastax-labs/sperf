@@ -115,7 +115,7 @@ class SlowQueryAnalyzer:
         """ print the report """
         if not self.analyzed:
             self.analyze()
-        print("%s version %s" % (command_name, VERSION))
+        print("%s version: %s" % (command_name, VERSION))
         print('')
         if not self.queries:
             if self.files:

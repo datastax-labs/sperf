@@ -41,7 +41,7 @@ as changes in the codebase occur."""
 ------------------------------
 2020-01-10 16:58:55.839000+00:00  XXXXXXXXXXXXXXXXXXXXXXXX++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-worst period: 2020-10-10 16:58:55.839000+00:00 (930282ms)
+worst period: 2020-01-10 16:58:55.839000+00:00 (930282ms)
 
 3 slow queries, 1 cross-node
 
@@ -68,14 +68,16 @@ as changes in the codebase occur."""
         slowquery.run(args)
     output = steal_output(run)
         #reads better with the extra newline
-    assert output == "sperf core schema version: %s" % (VERSION) + """
+    assert output == "sperf core slowquery version: %s" % (VERSION) + """
 
+. <5073ms + >5073ms ! >5073ms X >5073ms
+------------------------------
+2020-07-22 13:39:05.889000+00:00  X
 
-Schema read     : %s
-Keyspace Count  : 13
-Table Count     : 36
-2i Count        : 0
-MV Count        : 0
-Solr Index Count: 0
-Solr Table Count: 0""" % \
-        os.path.join(current_dir(__file__), "testdata", "dse68", "nodes", "172.17.0.2", "driver", "schema")
+worst period: 2020-07-22 13:39:05.889000+00:00 (5074ms)
+
+1 slow queries, 0 cross-node
+
+Top 3 slow queries:
+------------------------------
+5074ms: <SELECT config FROM dse_insights.insights_config WHERE key = 1>"""
