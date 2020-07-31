@@ -478,4 +478,4 @@ To see each command's available flags, documentation and examples just add the -
 
 ## Developing
 
-Check out the [contributing page](contributing.html)
+Check out the [contributing page](contrib.html)
