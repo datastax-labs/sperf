@@ -6,7 +6,7 @@
 
 # Development
 
-Find the docs on [How to Contribute here](https://datastax-toolkit.github.io/sperf/)
+Find the docs on [How to Contribute here](https://datastax-toolkit.github.io/sperf/contribute.md)
 
 # Contributors to closed source sperf
 
