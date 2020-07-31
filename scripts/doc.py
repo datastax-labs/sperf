@@ -51,7 +51,7 @@ def write_output(cmd, subcommand, target_file, extra=None):
 
 if __name__ == "__main__":
     CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-    DOC_FILE = os.path.join(CURRENT_DIR, "..", "docs", "commands", "index.md")
+    DOC_FILE = os.path.join(CURRENT_DIR, "..", "docs", "commands.md")
     if os.path.isfile(DOC_FILE):
         os.remove(DOC_FILE)
     with open(DOC_FILE, 'w') as f:

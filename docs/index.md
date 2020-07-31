@@ -473,5 +473,9 @@ internode-messaging RemoteMessageServer acceptor 4          0 byte
 
 ### Note
 
-To see each command's available flags, documentation and examples just add the -h flag to each command. For more information see the [generated docs](commands/)
+To see each command's available flags, documentation and examples just add the -h flag to each command. For more information see the [generated docs](commands.html)
 
+
+## Developing
+
+Check out the [contributing page](contributing.html)
