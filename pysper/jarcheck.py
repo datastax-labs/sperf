@@ -37,7 +37,6 @@ class JarCheckParser:
         else:
             self.analyzed = True
             return
-        # pylint: disable=too-many-nested-blocks
         for file in target:
             with diag.FileWithProgress(file) as log:
                 for event in parser.read_output_log(log):
@@ -53,7 +52,6 @@ class JarCheckParser:
                 self.files_analyzed += 1
         self.analyzed = True
 
-    # pylint: disable=too-many-branches
     def print_report(self, diff_only=False):
         """ print the report """
         if not self.analyzed:

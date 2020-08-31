@@ -28,7 +28,7 @@ def run(args):
     """launches 'sperf default command'"""
     try:
         sperf_default.run(args)
-    except Exception as ex:  # pylint: disable=broad-except
+    except Exception as ex:
         if env.DEBUG:
             raise ex
         print(str(ex))

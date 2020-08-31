@@ -23,7 +23,7 @@ CASSANDRA_LOG_FORMAT = "%Y-%m-%d %H:%M:%S,%f"
 class DateTimeJSONEncoder(json.JSONEncoder):
     """date time json encoder that converst datetime to an string in isoformat"""
 
-    def default(self, o):  # pylint: disable=method-hidden
+    def default(self, o):
         if isinstance(o, datetime):
             return o.isoformat()
         return json.JSONEncoder.default(self, o)

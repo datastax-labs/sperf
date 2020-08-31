@@ -30,7 +30,6 @@ class OrderedDefaultDict(OrderedDict):
     Source: http://stackoverflow.com/a/6190500/562769
     """
 
-    # pylint: disable=keyword-arg-before-vararg
     def __init__(self, default_factory=None, *a, **kw):
         if default_factory is not None and not isinstance(default_factory, Callable):
             raise TypeError("first argument must be callable")

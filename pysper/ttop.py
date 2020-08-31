@@ -1,4 +1,5 @@
 # Copyright 2020 DataStax, Inc
+y
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,8 +35,6 @@ class TTopParser:
     HEAP = "heap"
     TINFO = "tinfo"
 
-    # pylint: disable=line-too-long
-
     # 2019-08-29T13:08:03.605+0000 Process summary
     begin_match = re.compile(r"(?P<date>.{10}T.{17}) Process summary")
     # process cpu=602.43%
@@ -66,7 +65,6 @@ class TTopParser:
         if end:
             self.end = date_parse(end)
 
-    # pylint: disable=too-many-statements, too-many-branches
     def parse(self, log):
         """ parse ttop output """
         total = OrderedDict()
@@ -177,7 +175,6 @@ class TTopAnalyzer:
                 ret[name]["thread_count"] += 1
         return ret
 
-    # pylint: disable=too-many-locals, too-many-arguments, too-many-branches
     def print_report(self, top=None, alloc=False, collate=True, start=None, end=None):
         """ analyze and report on ttop files """
         parser = TTopParser(start=start, end=end)

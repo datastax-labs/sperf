@@ -11,8 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# pylint: disable=line-too-long
 """ parser for dse output.log """
 from pysper.parser.rules import switch, rule, convert, default
 from pysper.parser.captures import output_capture_rule

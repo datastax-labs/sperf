@@ -27,7 +27,6 @@ class SlowQueryParser:
     """ parses logs for slow queries """
 
     BEGIN = "begin"
-    # pylint: disable=line-too-long
     begin_match = re.compile(
         r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations were slow in the last (?P<timeslow>\d+) msecs:"
     )
@@ -119,7 +118,6 @@ class SlowQueryAnalyzer:
                     if query["date"] < self.start:
                         self.start = query["date"]
                     if "numslow" in query:
-                        # pylint: disable=unused-variable
                         for x in range(query["numslow"]):
                             self.querytimes[query["date"]].append(query["timeslow"])
                     else:

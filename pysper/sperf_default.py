@@ -115,7 +115,6 @@ def _recs_on_stages(
 
 
 def _recs_on_configs(recommendations, configs):
-    # pylint: disable=too-many-branches
     recs_by_issue = OrderedDict()
     for node, config in configs.items():
         disk_access = format_disk_access_mode(config)

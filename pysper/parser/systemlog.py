@@ -24,7 +24,6 @@ from pysper.parser.cases import (
 )
 from pysper.parser.captures import system_capture_rule
 
-# pylint: disable=too-many-function-args
 capture_message = switch(
     (
         *daemon_rules(),

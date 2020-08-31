@@ -82,7 +82,7 @@ def run():
     if hasattr(args, "func"):
         try:
             args.func(args)
-        except Exception as ex:  # pylint: disable=broad-except
+        except Exception as ex:
             if env.DEBUG:
                 raise ex
             print(str(ex))

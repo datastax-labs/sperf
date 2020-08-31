@@ -20,7 +20,7 @@ import datetime
 from collections import OrderedDict
 from pysper import perc
 
-# pylint: disable=too-many-arguments
+
 def print_percentiles(
     label,
     data_list,
@@ -56,7 +56,6 @@ def print_percentile_headers(
     print("".join(printables))
 
 
-# pylint: disable=too-many-arguments
 def get_percentiles(
     label,
     data_list,
@@ -148,7 +147,6 @@ def textbar(maximum, value, fill="-", length=20):
     percent = value / maximum
     num = int(round(length * percent))
     ret = ""
-    # pylint: disable=unused-variable
     for x in range(num):
         ret += fill
     return ret

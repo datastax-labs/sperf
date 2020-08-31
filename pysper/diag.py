@@ -93,7 +93,7 @@ class UnknownStatusLoggerWriter:
             if event.get(c):
                 event[c] = int(event.get(c))
 
-    def check(self, event):  # pylint: disable=too-many-return-statements
+    def check(self, event):
         """sets the last_event_date if present, otherwise checks
         if pool information is present and adds the proper event type and last event date"""
         # handle cases where there is no last event date yet (skip? leave alone and log?). going with skip it atm
@@ -188,7 +188,6 @@ class UniqEventPerNodeFilter:
 
 def grep_date(log_string):
     """gets just the date from the log"""
-    # pylint: disable=line-too-long
     match = re.search(
         rb" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12})*",
         log_string,

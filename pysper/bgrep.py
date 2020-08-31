@@ -27,7 +27,6 @@ class BucketGrep:
     strayre = r".*"
     basere = r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *.*"
 
-    # pylint: disable=too-many-arguments
     def __init__(
         self, regex, diag_dir=None, files=None, start=None, end=None, ignorecase=True
     ):
@@ -130,7 +129,6 @@ class BucketGrep:
         maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
         for time, matches in buckets:
             pad = ""
-            # pylint: disable=unused-variable
             for x in range(len(str(maxval)) - len(str(len(matches)))):
                 pad += " "
             print(

@@ -150,7 +150,6 @@ class Summary:
 class StatusLogger:
     """ status logger """
 
-    # pylint: disable=too-many-arguments
     def __init__(
         self,
         diag_dir,
@@ -181,13 +180,10 @@ class StatusLogger:
         if end:
             self.end = date_parse(end)
 
-    # pylint: disable=too-many-branches
-    # pylint: disable=too-many-statements
     def analyze(self):
         """ analyze log files """
         if self.analyzed:
             return
-        # pylint: disable=too-many-nested-blocks
         event_filter = UniqEventPerNodeFilter()
         target = None
         if self.files:
@@ -394,7 +390,6 @@ class StatusLogger:
         for rec, reason in recs:
             print("* %s (%s)" % (rec, reason))
 
-    # pylint: disable=too-many-locals
     def print_summary(self):
         """ prints a summary report """
         self.analyze()

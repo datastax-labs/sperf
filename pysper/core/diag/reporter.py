@@ -39,7 +39,7 @@ def append(report, key, value):
     report.append("%s %s" % (key_formatted, value))
 
 
-def write_config(report, config):  # pylint: disable=too-many-statements
+def write_config(report, config):
     """generates the configuration text"""
     append(report, "nodes count", simple_format(config.get("nodes")))
     append(
