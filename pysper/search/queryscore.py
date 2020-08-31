@@ -18,25 +18,29 @@ from collections import namedtuple, OrderedDict
 from operator import attrgetter
 from pysper import diag, util, parser
 
-#QueryParams raw detail for query
-QueryParams = namedtuple('QueryParams', [ \
-        'raw',
-        'query',
-        'rows',
-        'stats_active',
-        'facet_active',
-        'pivot_facets',
-        'field_facet_limits',
-        'global_facet_limit',
-        ])
+# QueryParams raw detail for query
+QueryParams = namedtuple(
+    "QueryParams",
+    [
+        "raw",
+        "query",
+        "rows",
+        "stats_active",
+        "facet_active",
+        "pivot_facets",
+        "field_facet_limits",
+        "global_facet_limit",
+    ],
+)
 
-#SolrQueryScores stores the query scores and their amount
-SolrQueryScores = namedtuple('SolrQueryScores', ['score', 'reasons', 'query'])
+# SolrQueryScores stores the query scores and their amount
+SolrQueryScores = namedtuple("SolrQueryScores", ["score", "reasons", "query"])
 
-Reason = namedtuple('Reason', ['text', 'score'])
+Reason = namedtuple("Reason", ["text", "score"])
 
-#represents the result of parsed
+# represents the result of parsed
 Parsed = namedtuple("Parsed", "queries top_n_worst unique_reasons score_threshold")
+
 
 def parse(args):
     """reads the args used in the command to determine what to parse
@@ -47,20 +51,23 @@ def parse(args):
         with diag.FileWithProgress(filename) as log_file:
             events = parser.read_system_log(log_file)
             for event in events:
-                if event.get('event_type', '') == 'query_logs' and \
-                event.get('event_product', '') == 'solr' and \
-                event.get('event_category', '') == 'query_component':
+                if (
+                    event.get("event_type", "") == "query_logs"
+                    and event.get("event_product", "") == "solr"
+                    and event.get("event_category", "") == "query_component"
+                ):
                     queries.append(parse_event(event))
     return Parsed(
         queries=queries,
         top_n_worst=args.top,
         unique_reasons=args.uniquereasons,
         score_threshold=args.scorethreshold,
-        )
+    )
+
 
 def parse_event(event):
     """parse the query"""
-    query = event.get("query", '')
+    query = event.get("query", "")
     rows = 0
     stats_active = False
     facet_active = False
@@ -80,7 +87,9 @@ def parse_event(event):
             pivot_facets = value.split(",")
         elif arg == "facet.limit":
             global_facet_limit = int(value)
-        elif arg.endswith("facet.limit"): #this is relyingon the previous line to not greedily match the global case too
+        elif arg.endswith(
+            "facet.limit"
+        ):  # this is relyingon the previous line to not greedily match the global case too
             field_facet_limits.append(int(value))
         elif arg == "stats":
             stats_active = value == "true"
@@ -95,17 +104,21 @@ def parse_event(event):
         facet_active=facet_active,
         field_facet_limits=field_facet_limits,
         global_facet_limit=global_facet_limit,
-        )
+    )
+
 
 def get_queries_above_threshold(queries, score_threshold):
     """finds all queries above the configured score threshold"""
     queries_above_threshold = []
     for q in queries:
-        #score queries
+        # score queries
         score, reasons = score_query(q)
         if score >= score_threshold:
-            queries_above_threshold.append(SolrQueryScores(score, reasons, clean(q.raw)))
+            queries_above_threshold.append(
+                SolrQueryScores(score, reasons, clean(q.raw))
+            )
     return queries_above_threshold
+
 
 def get_title(unique_reasons, top_n_worst):
     """generate the report title"""
@@ -118,13 +131,19 @@ def get_title(unique_reasons, top_n_worst):
     underline = util.write_underline(title)
     return "%s\n%s\n" % (title, underline)
 
+
 def get_bad_query_summary(queries_above_threshold, total):
     """generates the bad query summary"""
     total_suspect = len(queries_above_threshold)
     percent = 0.0
     if total_suspect > 0:
         percent = (float(total_suspect) / float(total)) * float(100.0)
-    return "\nsuspect queries totals: %i/%i - %.2f%%\n" % (total_suspect, total, percent)
+    return "\nsuspect queries totals: %i/%i - %.2f%%\n" % (
+        total_suspect,
+        total,
+        percent,
+    )
+
 
 def add_body(queries_above_threshold, unique_reasons, top_n_worst):
     """adds the report body"""
@@ -135,7 +154,7 @@ def add_body(queries_above_threshold, unique_reasons, top_n_worst):
         reasons_array = []
         for reason, score in query_score.reasons.items():
             reasons_array.append(Reason(reason, score))
-        sorted(reasons_array, key=attrgetter('score'))
+        sorted(reasons_array, key=attrgetter("score"))
         reason_string_array = []
         for reason in reasons_array:
             reason_string_array.append("(%i) %s" % (reason.score, reason.text))
@@ -151,34 +170,44 @@ def add_body(queries_above_threshold, unique_reasons, top_n_worst):
             count,
             query_score.score,
             reason_string,
-            )
+        )
         builder.append(query_score_entry)
         for param in query_score.query:
             builder.append("%s,\n" % param)
         builder.append("------------------\n")
     return "".join(builder)
 
+
 def generate_report(parsed):
     """takes a parsed object and converts in into text suitable for console output"""
     builder = []
-    queries_above_threshold = get_queries_above_threshold(parsed.queries, parsed.score_threshold)
+    queries_above_threshold = get_queries_above_threshold(
+        parsed.queries, parsed.score_threshold
+    )
     total = len(parsed.queries)
     if total == 0:
-        return "no queries found in log! Make sure you run the following before collecting a " + \
-                "diag tarball:\n\n\tnodetool setlogginglevel org.apache.solr.handler.component.QueryComponent DEBUG\n\n"
+        return (
+            "no queries found in log! Make sure you run the following before collecting a "
+            + "diag tarball:\n\n\tnodetool setlogginglevel org.apache.solr.handler.component.QueryComponent DEBUG\n\n"
+        )
     builder.append(get_title(parsed.unique_reasons, parsed.top_n_worst))
     sorted(queries_above_threshold, key=attrgetter("score"))
-    builder.append(add_body(queries_above_threshold, parsed.unique_reasons, parsed.top_n_worst))
+    builder.append(
+        add_body(queries_above_threshold, parsed.unique_reasons, parsed.top_n_worst)
+    )
     builder.append(get_bad_query_summary(queries_above_threshold, total))
     return "".join(builder)
 
+
 TOO_MANY_ROWS = 9999
 UNLIMITED = -1
+
 
 def _count_reason(reasons, key, count=1):
     if key not in reasons:
         reasons[key] = 0
     reasons[key] += count
+
 
 def score_query(query):
     """gives the query a score based on the number of bad things going on"""
@@ -205,9 +234,10 @@ def score_query(query):
         _count_reason(reasons, "10k+ rows", modifier)
     return score, reasons
 
+
 def clean(query_params):
     """clean removes all the shard stuff that's not useful for analysis and is usually present"""
-    shard_limited = [\
+    shard_limited = [
         "ids",
         "NOW",
         "cl",
@@ -224,7 +254,7 @@ def clean(query_params):
         "fsv",
         "shards.purpose",
         "wt",
-        ]
+    ]
     cleaned = []
     for t in query_params:
         tokens = t.split("=")
@@ -235,11 +265,13 @@ def clean(query_params):
                 break
 
         if not found and tokens[0].startswith("group.topgroups."):
-            #remove token range partes of queries
+            # remove token range partes of queries
             if tokens[0] == "fq":
-                #clean out token fqs and _parent fqs as they're nonsense
+                # clean out token fqs and _parent fqs as they're nonsense
                 value = tokens[1]
-                if value == "-_parent_:F" or value.startswith("{!caching_lucene}(_token_long"):
+                if value == "-_parent_:F" or value.startswith(
+                    "{!caching_lucene}(_token_long"
+                ):
                     continue
         cleaned.append(t)
     sorted(cleaned)

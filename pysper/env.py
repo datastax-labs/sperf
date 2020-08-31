@@ -17,4 +17,4 @@
 PROGRESS = False
 DEBUG = False
 IS_US_FMT = True
-FILE_ENCODING = 'utf-8'
+FILE_ENCODING = "utf-8"

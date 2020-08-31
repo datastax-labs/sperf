@@ -28,7 +28,7 @@ def test_high_pending_write_remote():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "pending remote writes over 10000"
@@ -36,6 +36,7 @@ def test_high_pending_write_remote():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_high_pending_write_local():
     """verify StageAnalyzer makes recs on high pending local writes"""
@@ -48,7 +49,7 @@ def test_high_pending_write_local():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "pending local writes over 10000"
@@ -56,6 +57,7 @@ def test_high_pending_write_local():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_high_pending_mutations():
     """verify StageAnalyzer makes recs on high pending local writes"""
@@ -68,7 +70,7 @@ def test_high_pending_mutations():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "mutations pending over 10000"
@@ -76,6 +78,7 @@ def test_high_pending_mutations():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_tpc_backpressure():
     """verify StageAnalyzer makes recs on any backpressure"""
@@ -88,16 +91,20 @@ def test_tpc_backpressure():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
-    assert rec == "raise or set tpc_concurrent_requests_limit in " + \
-                            "cassandra.yaml (default is 128), if CPU is underutilized."
+    assert (
+        rec
+        == "raise or set tpc_concurrent_requests_limit in "
+        + "cassandra.yaml (default is 128), if CPU is underutilized."
+    )
     assert reason == "local backpressure is present"
     stage.pending = 0
     stage.local_backpressure = 0
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_full_memtable():
     """verify StageAnalyzer """
@@ -110,7 +117,7 @@ def test_full_memtable():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "full memtable"
@@ -118,6 +125,7 @@ def test_full_memtable():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_full_memtable_completed():
     """verify full memtable historically completed"""
@@ -130,7 +138,7 @@ def test_full_memtable_completed():
         completed=1,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "full memtable stages previously completed is too high"
@@ -138,6 +146,7 @@ def test_full_memtable_completed():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_compactions_behind():
     """verify compactions analysis"""
@@ -150,7 +159,7 @@ def test_compactions_behind():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "raise compaction_throughput_in_mb in cassandra.yaml"
     assert reason == "more than 100 compactions behind"
@@ -158,6 +167,7 @@ def test_compactions_behind():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_memtable_flush_writer_pending():
     """verify flush writer pending"""
@@ -170,7 +180,7 @@ def test_memtable_flush_writer_pending():
         completed=0,
         blocked=0,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "raise memtable_flush_writers in cassandra.yaml"
     assert reason == "memtable flush writers pending over 5"
@@ -178,6 +188,7 @@ def test_memtable_flush_writer_pending():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_memtable_flush_writer_blocked():
     """verify flush writer blocked"""
@@ -190,7 +201,7 @@ def test_memtable_flush_writer_blocked():
         completed=0,
         blocked=1,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
     assert rec == "lower memtable_cleanup_threshold in cassandra.yaml"
     assert reason == "memtable flush writers blocked greater than zero"
@@ -198,6 +209,7 @@ def test_memtable_flush_writer_blocked():
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_ntr_blocked():
     """verify ntr blocked"""
@@ -210,15 +222,19 @@ def test_ntr_blocked():
         completed=0,
         blocked=11,
         all_time_blocked=0,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
-    assert rec == "raise or set -Dcassandra.max_queued_native_transport_requests= " + \
-                            "(valid range is 1024-8192)"
+    assert (
+        rec
+        == "raise or set -Dcassandra.max_queued_native_transport_requests= "
+        + "(valid range is 1024-8192)"
+    )
     assert reason == "blocked NTR over 10"
     stage.blocked = 0
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_ntr_all_time_blocked():
     """verify ntr blocked"""
@@ -231,15 +247,19 @@ def test_ntr_all_time_blocked():
         completed=0,
         blocked=0,
         all_time_blocked=101,
-        )
+    )
     reason, rec = analyzer.analyze_stage(stage)
-    assert rec == "raise or set -Dcassandra.max_queued_native_transport_requests= " + \
-                            "(valid range is 1024-8192)"
+    assert (
+        rec
+        == "raise or set -Dcassandra.max_queued_native_transport_requests= "
+        + "(valid range is 1024-8192)"
+    )
     assert reason == "more than 100 blocked NTR all time"
     stage.all_time_blocked = 0
     reason, rec = analyzer.analyze_stage(stage)
     assert not rec
     assert not reason
+
 
 def test_filter_cache_analysis_frequent_evictions():
     """when filter cache eviction freq is sooner than ever 20 seconds recommend raising limits"""
@@ -250,7 +270,11 @@ def test_filter_cache_analysis_frequent_evictions():
     stats.perc_item_limit = 0.95
     reason, rec = recs.analyze_filter_cache_stats(stats)
     assert reason == "Filter cache evictions are happening too frequently."
-    assert rec == "Raise filter cache item limit from 32000 to 256000 via -Dsolr.solrfiltercache.maxSize."
+    assert (
+        rec
+        == "Raise filter cache item limit from 32000 to 256000 via -Dsolr.solrfiltercache.maxSize."
+    )
+
 
 def test_filter_cache_analysis_long_duration_evictions():
     """when filter cache eviction duration is longer than 1 second recommend raising limits"""
@@ -261,7 +285,11 @@ def test_filter_cache_analysis_long_duration_evictions():
     stats.perc_item_limit = 0.95
     reason, rec = recs.analyze_filter_cache_stats(stats)
     assert reason == "Filter cache eviction duration is too long."
-    assert rec == "Lower filter cache item limit from 256000 to 32000 via -Dsolr.solrfiltercache.maxSize."
+    assert (
+        rec
+        == "Lower filter cache item limit from 256000 to 32000 via -Dsolr.solrfiltercache.maxSize."
+    )
+
 
 def test_filter_cache_analysis_frequent_long_evictions():
     """when filter cache eviction duration is longer than 1 second recommend raising limits"""
@@ -271,9 +299,15 @@ def test_filter_cache_analysis_frequent_long_evictions():
     stats.last_evict_item_limit = 256000
     stats.perc_item_limit = 0.95
     reason, rec = recs.analyze_filter_cache_stats(stats)
-    assert reason == "Filter cache evictions are happening too frequently and too slowly."
-    assert rec == "Make more FQ queries uncached. " + \
-            "Example: change \"fq\":\"status:DELETED\" to \"fq\":\"{!cached=false}status:DELETED\"."
+    assert (
+        reason == "Filter cache evictions are happening too frequently and too slowly."
+    )
+    assert (
+        rec
+        == "Make more FQ queries uncached. "
+        + 'Example: change "fq":"status:DELETED" to "fq":"{!cached=false}status:DELETED".'
+    )
+
 
 def test_limit_eviction_limit_already_reached():
     """already as low as one can go"""
@@ -284,8 +318,12 @@ def test_limit_eviction_limit_already_reached():
     stats.perc_item_limit = 0.95
     reason, rec = recs.analyze_filter_cache_stats(stats)
     assert reason == "Filter cache eviction duration long but limit is already too low."
-    assert rec == "Make more FQ queries uncached. " + \
-            "Example: change \"fq\":\"status:DELETED\" to \"fq\":\"{!cached=false}status:DELETED\"."
+    assert (
+        rec
+        == "Make more FQ queries uncached. "
+        + 'Example: change "fq":"status:DELETED" to "fq":"{!cached=false}status:DELETED".'
+    )
+
 
 def test_filter_cache_analysis_zero_set():
     """when filter cache eviction duration is longer than 1 second recommend raising limits"""
@@ -296,6 +334,7 @@ def test_filter_cache_analysis_zero_set():
     reason, rec = recs.analyze_filter_cache_stats(stats)
     assert not reason
     assert not rec
+
 
 def test_filter_cache_analysis_none_set():
     """when filter cache eviction duration is longer than 1 second recommend raising limits"""

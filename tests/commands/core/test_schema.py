@@ -18,6 +18,7 @@ import os
 from pysper.commands.core import schema
 from tests import current_dir
 
+
 def test_args():
     """verify schema args are wired up correctly"""
     parser = argparse.ArgumentParser(prog="mine", description="entry point")
@@ -26,6 +27,7 @@ def test_args():
     args = parser.parse_args(["schema", "-d", "hello", "-f", "abc"])
     assert hasattr(args, "diag_dir")
     assert hasattr(args, "files")
+
 
 def test_shema_run():
     """validates we don't get a bad exit code"""

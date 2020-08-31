@@ -15,6 +15,7 @@
 """test the read_ahead module"""
 from pysper.core.diag import read_ahead
 
+
 def test_block_dev():
     """test parsing the block dev report"""
     rows = [

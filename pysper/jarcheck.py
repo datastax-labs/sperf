@@ -17,8 +17,10 @@ from pysper import env, diag, parser
 from pysper.humanize import pluralize
 from pysper.core import OrderedDefaultDict
 
+
 class JarCheckParser:
     """ class to parse and analyze the jars in the classpath of an outlog """
+
     def __init__(self, diag_dir=None, files=None):
         self.diag_dir = diag_dir
         self.files = files
@@ -31,7 +33,7 @@ class JarCheckParser:
         if self.files:
             target = self.files
         elif self.diag_dir:
-            target = diag.find_logs(self.diag_dir, 'output.log')
+            target = diag.find_logs(self.diag_dir, "output.log")
         else:
             self.analyzed = True
             return
@@ -39,10 +41,10 @@ class JarCheckParser:
         for file in target:
             with diag.FileWithProgress(file) as log:
                 for event in parser.read_output_log(log):
-                    if event['event_type'] == 'classpath':
+                    if event["event_type"] == "classpath":
                         thisjars = OrderedDefaultDict(int)
-                        for jar in event['classpath'].split(':'):
-                            j = jar.split('/')[-1]
+                        for jar in event["classpath"].split(":"):
+                            j = jar.split("/")[-1]
                             if j.endswith("jar"):
                                 # to eliminate dupes within the same file, because java is crazy town
                                 if j not in thisjars:
@@ -70,7 +72,7 @@ class JarCheckParser:
                     common.append((jar, self.jars[jar]))
         if not diff_only and common:
             print("Common jars")
-            print('-'*30)
+            print("-" * 30)
             for jar in sorted(common):
                 if env.DEBUG:
                     print(jar)
@@ -79,7 +81,7 @@ class JarCheckParser:
         if skewed:
             print()
             print("Inconsistent jars")
-            print('-'*30)
+            print("-" * 30)
             for jar in sorted(skewed):
                 if env.DEBUG:
                     print(jar)

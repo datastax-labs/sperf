@@ -17,19 +17,23 @@ import os
 from pysper.core import schema
 from tests import test_dse_tarball
 
+
 def test_schema_report():
     """test generate report"""
-    report = schema.generate_report({
-        "keyspaces": 16,
-        "tables": 124,
-        "2i": 6,
-        "mvs": 10,
-        "udts": 6,
-        "solr": 31,
-        "solr_table": 11,
-        "parsed_file": "test",
-        })
-    assert repr(report) == repr("""
+    report = schema.generate_report(
+        {
+            "keyspaces": 16,
+            "tables": 124,
+            "2i": 6,
+            "mvs": 10,
+            "udts": 6,
+            "solr": 31,
+            "solr_table": 11,
+            "parsed_file": "test",
+        }
+    )
+    assert repr(report) == repr(
+        """
 Schema read     : test
 Keyspace Count  : 16
 Table Count     : 124
@@ -37,11 +41,15 @@ Table Count     : 124
 MV Count        : 10
 UDT Count       : 6
 Solr Index Count: 31
-Solr Table Count: 11""")
+Solr Table Count: 11"""
+    )
+
 
 def test_read_schema():
     """test the read schema report"""
-    test_file = os.path.join(test_dse_tarball(), "nodes", "10.101.33.205", "driver", "schema")
+    test_file = os.path.join(
+        test_dse_tarball(), "nodes", "10.101.33.205", "driver", "schema"
+    )
     files = [test_file]
     parsed = schema.read(files)
     assert parsed["keyspaces"] == 15

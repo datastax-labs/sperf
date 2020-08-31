@@ -46,21 +46,34 @@ class TestDiagModule(unittest.TestCase):
         config = types.SimpleNamespace()
         test_dir = os.path.join(current_dir(__file__), "testdata", "diag", "findfiles")
         config.diag_dir = ""
-        config.files = os.path.join(test_dir, "nodes", "node1", "my.log") + "," + \
-                        os.path.join(test_dir, "nodes", "node2", "my.log")
+        config.files = (
+            os.path.join(test_dir, "nodes", "node1", "my.log")
+            + ","
+            + os.path.join(test_dir, "nodes", "node2", "my.log")
+        )
         files = find_files(config, "my.log")
         self.assertEqual(len(files), 2)
         self.assertTrue(os.path.join(test_dir, "nodes", "node1", "my.log") in files)
-        self.assertTrue(os.path.join(test_dir, "nodes", "node1", "my.log.1") not in files)
-        self.assertTrue(os.path.join(test_dir, "nodes", "node1", "my.log.2") not in files)
-        self.assertTrue(os.path.join(test_dir, "nodes", "node1", "debug.log") not in files)
+        self.assertTrue(
+            os.path.join(test_dir, "nodes", "node1", "my.log.1") not in files
+        )
+        self.assertTrue(
+            os.path.join(test_dir, "nodes", "node1", "my.log.2") not in files
+        )
+        self.assertTrue(
+            os.path.join(test_dir, "nodes", "node1", "debug.log") not in files
+        )
         self.assertTrue(os.path.join(test_dir, "nodes", "node2", "my.log") in files)
-        self.assertTrue(os.path.join(test_dir, "nodes", "node2", "debug.log") not in files)
+        self.assertTrue(
+            os.path.join(test_dir, "nodes", "node2", "debug.log") not in files
+        )
 
     def test_parse_diag(self):
         """happy path test for parsing a diag tarball"""
         config = types.SimpleNamespace()
-        test_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
+        test_dir = os.path.join(
+            current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+        )
         config.diag_dir = test_dir
         config.node_info_prefix = "node_info.json"
         config.system_log_prefix = "system.log"
@@ -75,12 +88,12 @@ class TestDiagModule(unittest.TestCase):
             env.DEBUG = False
         self.assertFalse(parsed.get("warnings"))
         first = parsed.get("configs")[0]
-        self.assertTrue(first['busiest_table_writes'])
-        self.assertEqual(first['busiest_table_writes'][0], 'my_solr.my_table')
-        self.assertEqual("%.2f" % first['busiest_table_writes'][1], '96.18')
-        self.assertEqual(first['busiest_table_reads'][0], 'my_solr.my_table')
-        self.assertEqual("%.2f" % first['busiest_table_reads'][1], '99.76')
-        self.assertEqual(first['threads_per_core'], 1)
+        self.assertTrue(first["busiest_table_writes"])
+        self.assertEqual(first["busiest_table_writes"][0], "my_solr.my_table")
+        self.assertEqual("%.2f" % first["busiest_table_writes"][1], "96.18")
+        self.assertEqual(first["busiest_table_reads"][0], "my_solr.my_table")
+        self.assertEqual("%.2f" % first["busiest_table_reads"][1], "99.76")
+        self.assertEqual(first["threads_per_core"], 1)
 
     def test_parse_diag_reports_no_files_found(self):
         """should see missing files in the warning list"""
@@ -121,10 +134,15 @@ class TestDiagModule(unittest.TestCase):
     def test_core_diag_integtration(self):
         """integration test with 6.7 tarball"""
         args = make_67_diag_args()
+
         def run():
             diag_cmd.run(args)
+
         output = steal_output(run)
-        self.assertEqual(output, "sperf core diag version: %s" % VERSION + """
+        self.assertEqual(
+            output,
+            "sperf core diag version: %s" % VERSION
+            + """
 
 
 configuration #1
@@ -219,4 +237,5 @@ config diff from common:
 
 parser warnings
 ---------------
-no warnings""")
+no warnings""",
+        )

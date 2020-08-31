@@ -15,6 +15,7 @@
 import unittest
 from pysper import humanize
 
+
 class TestHumanizeTime(unittest.TestCase):
     """tests time humanization"""
 
@@ -48,8 +49,13 @@ class TestHumanizeTime(unittest.TestCase):
 
     def test_format_millis_years_with_separators(self):
         """to years after 999 years"""
-        self.assertEqual(humanize.format_millis(60000 * 60 * 24 * 365 * 1000), "1,000.00 years")
-        self.assertEqual(humanize.format_millis(60000 * 60 * 24 * 365 * 1000 * 1.0005), "1,000.50 years")
+        self.assertEqual(
+            humanize.format_millis(60000 * 60 * 24 * 365 * 1000), "1,000.00 years"
+        )
+        self.assertEqual(
+            humanize.format_millis(60000 * 60 * 24 * 365 * 1000 * 1.0005),
+            "1,000.50 years",
+        )
 
     def test_format_seconds_59(self):
         """leaves seconds unchanged"""
@@ -74,13 +80,18 @@ class TestHumanizeTime(unittest.TestCase):
         """converts to years after 365 days"""
         self.assertEqual(humanize.format_seconds(60 * 60 * 24 * 365), "1.00 year")
         self.assertEqual(humanize.format_seconds(60 * 60 * 24 * 367.7), "1.01 years")
-        #test for signficance
+        # test for signficance
         self.assertEqual(humanize.format_seconds(60 * 60 * 24 * 365.1), "1.00 year")
 
     def test_format_seconds_years_with_separators(self):
         """to years after 999 years"""
-        self.assertEqual(humanize.format_seconds(60 * 60 * 24 * 365 * 1000), "1,000.00 years")
-        self.assertEqual(humanize.format_seconds(60 * 60 * 24 * 365 * 1000.9), "1,000.90 years")
+        self.assertEqual(
+            humanize.format_seconds(60 * 60 * 24 * 365 * 1000), "1,000.00 years"
+        )
+        self.assertEqual(
+            humanize.format_seconds(60 * 60 * 24 * 365 * 1000.9), "1,000.90 years"
+        )
+
 
 class TestHumanizeBytes(unittest.TestCase):
     """tests humanization of data"""
@@ -143,6 +154,7 @@ class TestHumanizeBytes(unittest.TestCase):
         """undefined input"""
         self.assertEqual(humanize.format_bytes(None), "Not available")
 
+
 class TestFormatRawNumbers(unittest.TestCase):
     """validates the number is formatted for the US market"""
 
@@ -169,17 +181,18 @@ class TestFormatRawNumbers(unittest.TestCase):
         data = [["1", "2", "3"]]
         data.append(["2", "2222", "33333"])
         humanize.pad_table(data, min_width=2, extra_pad=1)
-        #first column
+        # first column
         self.assertEqual(data[0][0], "1 ")
         self.assertEqual(data[1][0], "2 ")
 
-        #second column
+        # second column
         self.assertEqual(data[0][1], "2    ")
         self.assertEqual(data[1][1], "2222 ")
 
-        #third column
+        # third column
         self.assertEqual(data[0][2], "3     ")
         self.assertEqual(data[1][2], "33333 ")
+
 
 class TestTablePadding(unittest.TestCase):
     """tests the formatting of tables when padding is used"""
@@ -189,15 +202,15 @@ class TestTablePadding(unittest.TestCase):
         data = [["1", "2", "3"]]
         data.append(["2", "2222", "33333"])
         humanize.pad_table(data)
-        #first column
+        # first column
         self.assertEqual(data[0][0], "1")
         self.assertEqual(data[1][0], "2")
 
-        #second column
+        # second column
         self.assertEqual(data[0][1], "2   ")
         self.assertEqual(data[1][1], "2222")
 
-        #third column
+        # third column
         self.assertEqual(data[0][2], "3    ")
         self.assertEqual(data[1][2], "33333")
 
@@ -207,16 +220,17 @@ class TestTablePadding(unittest.TestCase):
         data.append(["1", "2", "3"])
         data.append(["2", "2222", "33333"])
         humanize.pad_table(data, min_width=2, extra_pad=1)
-        #header
+        # header
         self.assertEqual(data[0][0], "my header")
 
-        #column are unbroken
+        # column are unbroken
         self.assertEqual(data[1][0], "1 ")
         self.assertEqual(data[2][0], "2 ")
         self.assertEqual(data[1][1], "2    ")
         self.assertEqual(data[2][1], "2222 ")
         self.assertEqual(data[1][2], "3     ")
         self.assertEqual(data[2][2], "33333 ")
+
 
 class TestFromHumanToRawBytes(unittest.TestCase):
     """validates the behavior of to_bytes method"""
@@ -235,6 +249,7 @@ class TestFromHumanToRawBytes(unittest.TestCase):
         self.assertEqual(humanize.to_bytes(2, "GB"), 2147483648)
         self.assertEqual(humanize.to_bytes(2, "tB"), 2199023255552)
         self.assertEqual(humanize.to_bytes(2, "Pb"), 2251799813685248)
+
 
 class TestHumanizeFormatList(unittest.TestCase):
     """validates the behavior of the format_list method"""

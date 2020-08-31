@@ -13,6 +13,7 @@
 # limitations under the License.
 """percentile implementations"""
 
+
 class Stats:
     """Stats is an array wrapper that provides min, max and percentiles"""
 
@@ -30,4 +31,4 @@ class Stats:
 
     def percentile(self, percentile):
         """provides a naive implemenation of percentiles"""
-        return self.data[int(len(self.data) * (percentile/100.0))]
+        return self.data[int(len(self.data) * (percentile / 100.0))]

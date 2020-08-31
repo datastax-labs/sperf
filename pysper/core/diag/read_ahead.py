@@ -17,6 +17,7 @@ from collections import OrderedDict
 import json
 from pysper import util, parser, diag
 
+
 def add_block_dev_to_config(cass_drive_ra, node_configs):
     """adds the block dev configuration to the configuration statistics"""
     for node, drive_map in cass_drive_ra.items():
@@ -24,7 +25,8 @@ def add_block_dev_to_config(cass_drive_ra, node_configs):
             values = OrderedDict()
             if len(drive_map.values()) > 0:
                 values = drive_map.values()
-            node_configs[node]['cass_ra'] = values
+            node_configs[node]["cass_ra"] = values
+
 
 def get_cass_drive_read_ahead(node_info_json, block_dev_reports):
     """searches node_info_json for drive mappings and reports on cass drive read ahead settings"""
@@ -34,11 +36,15 @@ def get_cass_drive_read_ahead(node_info_json, block_dev_reports):
         return OrderedDict()
     for node in node_info:
         drives = OrderedDict()
-        drive_data = node_info.get(node, OrderedDict()).get('partitions', OrderedDict()).get('data', OrderedDict())
+        drive_data = (
+            node_info.get(node, OrderedDict())
+            .get("partitions", OrderedDict())
+            .get("data", OrderedDict())
+        )
         if drive_data is None:
             continue
         for drive in drive_data:
-            #rename that reverses opscenter behavior if there is a match present
+            # rename that reverses opscenter behavior if there is a match present
             drive = drive.replace("_", "-")
             drives[drive] = None
             nodes_cass_drives[node] = drives
@@ -53,14 +59,15 @@ def get_cass_drive_read_ahead(node_info_json, block_dev_reports):
                         nodes_cass_drives[node_name][drive] = ra_bytes
     return nodes_cass_drives
 
+
 def extract_block_dev(block_dev_report):
     """pulls device, ssz and ra out of each row to create a map of device and read ahead in bytes"""
     drives = OrderedDict()
     for row in block_dev_report:
-        device = row.get('device')
+        device = row.get("device")
         if not device:
             continue
-        read_ahead = row.get('ra')
-        ssz = row.get('ssz')
+        read_ahead = row.get("ra")
+        ssz = row.get("ssz")
         drives[device] = read_ahead * ssz
     return drives

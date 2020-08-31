@@ -17,6 +17,7 @@ import unittest
 from pysper import dates
 from pysper import env
 
+
 class TestDates(unittest.TestCase):
     """test the dates module"""
 
@@ -27,7 +28,9 @@ class TestDates(unittest.TestCase):
             env.IS_US_FMT = False
             parser = dates.LogDateFormatParser()
             parsed = parser.parse_timestamp("2018-23-10 15:50:01.123")
-            self.assertEqual(parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000"
+            )
         finally:
             env.IS_US_FMT = orig
 
@@ -38,7 +41,9 @@ class TestDates(unittest.TestCase):
             env.IS_US_FMT = True
             parser = dates.LogDateFormatParser()
             parsed = parser.parse_timestamp("2018-10-23 15:50:01.123")
-            self.assertEqual(parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000"
+            )
         finally:
             env.IS_US_FMT = orig
 
@@ -49,7 +54,9 @@ class TestDates(unittest.TestCase):
             env.IS_US_FMT = True
             parser = dates.LogDateFormatParser()
             parsed = parser.parse_timestamp("2018-10-23 15:50:01,123")
-            self.assertEqual(parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000"
+            )
         finally:
             env.IS_US_FMT = orig
 
@@ -60,6 +67,8 @@ class TestDates(unittest.TestCase):
             env.IS_US_FMT = False
             parser = dates.LogDateFormatParser()
             parsed = parser.parse_timestamp("2018-23-10 15:50:01,123")
-            self.assertEqual(parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,123000"
+            )
         finally:
             env.IS_US_FMT = orig

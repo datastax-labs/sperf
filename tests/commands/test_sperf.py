@@ -15,6 +15,7 @@
 """validates the sperf commands are wired up correctly"""
 from pysper.commands import sperf
 
+
 def test_sperf_global_flags():
     """testing global flags are wired up"""
     parser = sperf.build_parser()
@@ -22,12 +23,14 @@ def test_sperf_global_flags():
     assert hasattr(args, "debug")
     assert hasattr(args, "noprogress")
 
+
 def test_sperf_global_short_flags():
     """tests the global short flag"""
     parser = sperf.build_parser()
     args = parser.parse_args(["-v", "-x"])
     assert hasattr(args, "debug")
     assert hasattr(args, "noprogress")
+
 
 def test_sperf_will_break_if_incorrect_comamnd_is_used():
     """this is here so we can rely on the parser tests
@@ -41,11 +44,13 @@ def test_sperf_will_break_if_incorrect_comamnd_is_used():
         assert str(e) == "2"
     assert success
 
+
 def test_core_diag_wired():
     """verify cassread is connected"""
     parser = sperf.build_parser()
     args = parser.parse_args(["core", "diag"])
     assert hasattr(args, "func")
+
 
 def test_search_filtercache_wired():
     """verify filtercache is connected"""
@@ -60,11 +65,13 @@ def test_jarcheck_wired():
     args = parser.parse_args(["core", "jarcheck"])
     assert hasattr(args, "func")
 
+
 def test_schema_wired():
     """verify schema is connected"""
     parser = sperf.build_parser()
     args = parser.parse_args(["core", "schema"])
     assert hasattr(args, "func")
+
 
 def test_slowquery_wired():
     """verify slowquery is connected"""
@@ -72,11 +79,13 @@ def test_slowquery_wired():
     args = parser.parse_args(["core", "slowquery"])
     assert hasattr(args, "func")
 
+
 def test_solrqueryagg_wired():
     """verify solrqueryagg is connected"""
     parser = sperf.build_parser()
     args = parser.parse_args(["search", "queryscore"])
     assert hasattr(args, "func")
+
 
 def test_sysbottle_wired():
     """verify sysbottle is connected"""

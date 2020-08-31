@@ -17,17 +17,20 @@ import os
 from pysper.core.statuslogger import StatusLogger, Summary
 from tests import test_dse_tarball, current_dir
 
+
 def test_should_count_ops():
     """validate ops counting is doing the right thing even when crossing logs"""
-    tarball = os.path.join(current_dir(__file__), '..', 'testdata', 'sample_table_tarball')
+    tarball = os.path.join(
+        current_dir(__file__), "..", "testdata", "sample_table_tarball"
+    )
     sl = StatusLogger(tarball)
     sl.analyze()
     s = Summary(sl.nodes)
-    tables = s.get_busiest_tables('ops')
-    #this proves the extra logs in debug.log and system.log that are duplicate are ignored
-    #and that the extra entry from statuslogger is not causing a double count
+    tables = s.get_busiest_tables("ops")
+    # this proves the extra logs in debug.log and system.log that are duplicate are ignored
+    # and that the extra entry from statuslogger is not causing a double count
     busiest = tables[0]
-    assert busiest[1][0] == 'keyspace1.standard1'
+    assert busiest[1][0] == "keyspace1.standard1"
     assert busiest[1][1].ops == 5931
     assert busiest[1][1].data == 75690238
 
@@ -41,11 +44,21 @@ def test_skip_duplicate_events_diag():
     s = Summary(sl.nodes)
     assert s.lines == 22054
     assert s.skipped_lines == 444
-    assert s.get_busiest_stages()[0] == ['10.101.35.102', 'active', 'CompactionExecutor', 1]
+    assert s.get_busiest_stages()[0] == [
+        "10.101.35.102",
+        "active",
+        "CompactionExecutor",
+        1,
+    ]
+
 
 def test_db2552_debug_log_format():
     """should work with new statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statusloggernew_debug.log')]
+    files = [
+        os.path.join(
+            current_dir(__file__), "..", "testdata", "statusloggernew_debug.log"
+        )
+    ]
     sl = StatusLogger(None, files=files)
     sl.analyze()
     assert sl.analyzed
@@ -56,10 +69,13 @@ def test_db2552_debug_log_format():
     assert stage == "TPC/all/WRITE_REMOTE"
     assert status == "pending"
     assert value == 13094
+
 
 def test_db2552_system_log_format():
     """should work with new statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_new.log')]
+    files = [
+        os.path.join(current_dir(__file__), "..", "testdata", "statuslogger_new.log")
+    ]
     sl = StatusLogger(None, files=files)
     sl.analyze()
     assert sl.analyzed
@@ -70,10 +86,15 @@ def test_db2552_system_log_format():
     assert stage == "TPC/all/WRITE_REMOTE"
     assert status == "pending"
     assert value == 13094
+
 
 def test_68_debug_log_format():
     """should work with DSE 6.8 statuslogger debug files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger68_debug.log')]
+    files = [
+        os.path.join(
+            current_dir(__file__), "..", "testdata", "statuslogger68_debug.log"
+        )
+    ]
     sl = StatusLogger(None, files=files)
     sl.analyze()
     assert sl.analyzed
@@ -85,9 +106,12 @@ def test_68_debug_log_format():
     assert status == "pending"
     assert value == 13094
 
+
 def test_68_system_log_format():
     """should work with DSE 6.8 statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_68.log')]
+    files = [
+        os.path.join(current_dir(__file__), "..", "testdata", "statuslogger_68.log")
+    ]
     sl = StatusLogger(None, files=files)
     sl.analyze()
     assert sl.analyzed

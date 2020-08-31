@@ -20,12 +20,15 @@ from pysper import VERSION
 from pysper.commands.core import statuslogger
 from tests import current_dir, steal_output
 
+
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf():
     """integration test, this is not the best test and only verifies no change in calculations
-as changes in the codebase occur."""
+    as changes in the codebase occur."""
     args = types.SimpleNamespace()
-    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
+    args.diag_dir = os.path.join(
+        current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+    )
     args.files = []
     args.stages = "all"
     args.start = None
@@ -33,11 +36,16 @@ as changes in the codebase occur."""
     args.debug_log_prefix = "debug.log"
     args.reporter = "summary"
     args.system_log_prefix = "system.log"
+
     def run():
         statuslogger.run(args)
+
     output = steal_output(run)
-        #reads better with the extra newline
-    assert output == "sperf core statuslogger version: %s\n" % (VERSION) + """
+    # reads better with the extra newline
+    assert (
+        output
+        == "sperf core statuslogger version: %s\n" % (VERSION)
+        + """
 Summary (22,054 lines)
 Summary (444 skipped lines)
 
@@ -72,11 +80,13 @@ busiest stages in PENDING
 ------------------------------
 10.101.35.102:
        CompactionExecutor:  1"""
+    )
+
 
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf_68():
     """integration test, this is not the best test and only verifies no change in calculations
-as changes in the codebase occur."""
+    as changes in the codebase occur."""
     args = types.SimpleNamespace()
     args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
     args.files = []
@@ -86,11 +96,16 @@ as changes in the codebase occur."""
     args.reporter = "summary"
     args.debug_log_prefix = "debug.log"
     args.system_log_prefix = "system.log"
+
     def run():
         statuslogger.run(args)
+
     output = steal_output(run)
-        #reads better with the extra newline
-    assert output == "sperf core statuslogger version: %s\n" % (VERSION) + """
+    # reads better with the extra newline
+    assert (
+        output
+        == "sperf core statuslogger version: %s\n" % (VERSION)
+        + """
 Summary (20,240 lines)
 Summary (2,196 skipped lines)
 
@@ -132,3 +147,4 @@ busiest stages in PENDING
 ------------------------------
 172.17.0.2:
        MemtablePostFlush:  6"""
+    )

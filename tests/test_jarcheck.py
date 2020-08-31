@@ -18,6 +18,7 @@ import os
 from pysper import jarcheck
 from tests import current_dir, steal_output
 
+
 class TestJarCheck(unittest.TestCase):
     """test the jarcheck module"""
 
@@ -27,20 +28,26 @@ class TestJarCheck(unittest.TestCase):
         parser = jarcheck.JarCheckParser(files=[test_file])
         parser.analyze()
         self.assertEqual(len(parser.jars), 501)
-        self.assertTrue('exp4j-0.4.8.jar' in parser.jars)
+        self.assertTrue("exp4j-0.4.8.jar" in parser.jars)
 
     def test_run_jarcheck_diff_only(self):
         """integration test for the full command with diff_only"""
-        test_file_1 = os.path.join(current_dir(__file__), "testdata", "simple-output.log")
-        test_file_2 = os.path.join(current_dir(__file__), "testdata", "simple-output2.log")
+        test_file_1 = os.path.join(
+            current_dir(__file__), "testdata", "simple-output.log"
+        )
+        test_file_2 = os.path.join(
+            current_dir(__file__), "testdata", "simple-output2.log"
+        )
         parser = jarcheck.JarCheckParser(files=[test_file_1, test_file_2])
         output = steal_output(parser.print_report, diff_only=True)
-        self.assertIn("""Inconsistent jars
+        self.assertIn(
+            """Inconsistent jars
 ------------------------------
 dse-advrep-6.7.1.jar
 
-Analyzed 2 files""", output)
-
+Analyzed 2 files""",
+            output,
+        )
 
     def test_run_jarcheck_found_no_files(self):
         """no files found output"""

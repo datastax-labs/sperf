@@ -17,6 +17,7 @@ import os
 from collections import OrderedDict
 from pysper import diag, parser, util, env, humanize
 
+
 def initialize_node_configs(diag_dir):
     """generates a list of empty configuration for each node directory"""
     matches = OrderedDict()
@@ -32,25 +33,38 @@ def initialize_node_configs(diag_dir):
         matches[filename] = OrderedDict()
     return matches
 
+
 def _find_configuration_events(events):
     config = OrderedDict()
-    keys = ['version', 'cassandra_version', 'spark_version', 'dse_spark_version',
-            'solr_version', 'spark_connector_version', 'cpu_cores', 'threads_per_core',
-            'logged_disk_access_mode', 'logged_index_access_mode',
-            'jvm_args', 'node_configuration',
-            ]
+    keys = [
+        "version",
+        "cassandra_version",
+        "spark_version",
+        "dse_spark_version",
+        "solr_version",
+        "spark_connector_version",
+        "cpu_cores",
+        "threads_per_core",
+        "logged_disk_access_mode",
+        "logged_index_access_mode",
+        "jvm_args",
+        "node_configuration",
+    ]
     for event in events:
         for key in keys:
             if key in event:
                 config[key] = event[key]
-    cassandra_config = read_cassandra_config(config.get('node_configuration', OrderedDict()))
+    cassandra_config = read_cassandra_config(
+        config.get("node_configuration", OrderedDict())
+    )
     for key, value in cassandra_config.items():
         config[key] = value
-        results = read_jvm_based_parameters(config.get('jvm_args', []))
-        config['heap_size'] = results[0]
-        config['gc'] = results[1]
-        config['ram_in_mb'] = results[2]
+        results = read_jvm_based_parameters(config.get("jvm_args", []))
+        config["heap_size"] = results[0]
+        config["gc"] = results[1]
+        config["ram_in_mb"] = results[2]
     return config
+
 
 def find_config_in_logs(node_configs, output_logs, system_logs):
     """read the output logs and extract the configuration from each file"""
@@ -81,18 +95,19 @@ def find_config_in_logs(node_configs, output_logs, system_logs):
                 events = parser.read_output_log(output_log_file)
                 node_configs[node] = _find_configuration_events(events)
                 continue
-            #try the system logs to find the last configuration found
+            # try the system logs to find the last configuration found
             for system_log in system_logs:
                 with diag.FileWithProgress(system_log) as system_log_file:
                     if system_log_file.error:
-                        #skip files we can't read
+                        # skip files we can't read
                         continue
-                    #yes I know this looks like I'm crazy but the output log parser is what I'm interested in
+                    # yes I know this looks like I'm crazy but the output log parser is what I'm interested in
                     events.extend(parser.read_output_log(system_log_file))
-            #I only one the most recent logs in the system log to be used
+            # I only one the most recent logs in the system log to be used
             events = sorted(events, key=lambda e: e["date"], reverse=False)
             node_configs[node] = _find_configuration_events(events)
     return warnings
+
 
 def add_gc_to_configs(configs, system_logs):
     """read the system logs and extract the configuration from each file"""
@@ -105,20 +120,24 @@ def add_gc_to_configs(configs, system_logs):
             events = parser.read_system_log(system_log_file)
             worst_gc = 0
             for event in events:
-                if event.get('event_type') == 'pause' and event.get('event_category') == 'garbage_collection':
-                    worst_gc = max(event.get('duration'), worst_gc)
+                if (
+                    event.get("event_type") == "pause"
+                    and event.get("event_category") == "garbage_collection"
+                ):
+                    worst_gc = max(event.get("duration"), worst_gc)
             node = util.extract_node_name(system_log)
             results[node] = worst_gc
     for config in configs:
         worst_gc_per_config = 0
         worst_node = ""
-        for node in config.get('nodes_list', []):
+        for node in config.get("nodes_list", []):
             node_worst_gc = results.get(node, 0)
             if node_worst_gc > worst_gc_per_config:
                 worst_gc_per_config = node_worst_gc
                 worst_node = node
-        config['worst_gc'] = (worst_gc_per_config, worst_node)
+        config["worst_gc"] = (worst_gc_per_config, worst_node)
     return warnings
+
 
 def read_jvm_based_parameters(jvm_args):
     """finds the max heap, system ram and gc type from the jvm args.
@@ -127,36 +146,37 @@ def read_jvm_based_parameters(jvm_args):
     ram_in_mb = None
     heap_size = None
     for args in jvm_args:
-        if args.startswith('-Ddse.system_memory_in_mb'):
+        if args.startswith("-Ddse.system_memory_in_mb"):
             value = jvm_args[args]
-            #note it's, very very common to have multiple of these in the configuration
+            # note it's, very very common to have multiple of these in the configuration
             # we are only interested in the last one
             # diffs on jvm args will reveal configuration differences between nodes
             if value:
-                ram_in_mb = humanize.format_bytes(int(value[-1])* 1024 ** 2, 0)
-        if args == '-XX:+UseG1GC':
+                ram_in_mb = humanize.format_bytes(int(value[-1]) * 1024 ** 2, 0)
+        if args == "-XX:+UseG1GC":
             if gc_type:
-                #should never see this
+                # should never see this
                 gc_type = "%s/G1Gc" % gc_type
             else:
                 gc_type = "G1GC"
         elif args == "-XX:+UseConcMarkSweepGC":
             if gc_type:
-                #should never see this
+                # should never see this
                 gc_type = "CMS/%s" % gc_type
             else:
                 gc_type = "CMS"
-        elif args.startswith('-Xmx'):
+        elif args.startswith("-Xmx"):
             heap_size = "".join(args[4:])
     return (heap_size, gc_type, ram_in_mb)
+
 
 def read_cassandra_config(cassandra_params):
     """splits out the cassandra parameters"""
     config = OrderedDict()
     for key, value in cassandra_params.items():
         if value and key:
-            if value == 'null':
-                config[key] = 'default'
+            if value == "null":
+                config[key] = "default"
             else:
                 config[key] = value
     return config

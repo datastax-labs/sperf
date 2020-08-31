@@ -21,10 +21,13 @@ import logging
 
 LOGGER = logging.getLogger(__name__)
 
+
 def make_67_diag_args():
     """I use this a couple of places so I make it a common function"""
     args = types.SimpleNamespace()
-    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
+    args.diag_dir = os.path.join(
+        current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+    )
     args.output_log_prefix = "output.log"
     args.debug_log_prefix = "debug.log"
     args.system_log_prefix = "system.log"
@@ -33,21 +36,30 @@ def make_67_diag_args():
     args.cfstats_prefix = "cfstats"
     return args
 
+
 def test_dir():
     """returns the test directory"""
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata")
 
+
 def test_dse_tarball():
     """default dse tarball to use for all tests"""
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "DSE_CLUSTER")
+    return os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "DSE_CLUSTER"
+    )
+
 
 def test_cassandra_tarball():
     """default cassandra tarball of a given version to use for all tests"""
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "cassandra")
+    return os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "cassandra"
+    )
+
 
 def current_dir(current_file):
     """takes the current_file and finds the directory where it is located"""
     return os.path.dirname(os.path.abspath(current_file))
+
 
 def steal_output(func, *args, **kwargs):
     """captures stdout from a function"""
@@ -56,6 +68,7 @@ def steal_output(func, *args, **kwargs):
         func(*args, **kwargs)
     output = temp_stdout.getvalue().strip()
     return output
+
 
 def assert_in_output(expected_text, text):
     """asserts the expected_text is in the text, if not

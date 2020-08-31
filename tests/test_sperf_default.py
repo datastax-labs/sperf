@@ -19,15 +19,20 @@ import pytest
 from pysper import sperf_default
 from tests import current_dir, steal_output, make_67_diag_args
 
+
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf():
     """integration test"""
     args = make_67_diag_args()
+
     def run():
         sperf_default.run(args)
+
     output = steal_output(run)
-        #reads better with the extra newline
-    assert "\n" + output == """
+    # reads better with the extra newline
+    assert (
+        "\n" + output
+        == """
 nodes                               3                                                    
 dse version(s) (startup logs)       { 6.7.7 }                                            
 cassandra version(s) (startup logs) { DSE private fork }                                 
@@ -50,6 +55,8 @@ No parsing errors
 recommendations
 ---------------
 * There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis."""
+    )
+
 
 @pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
 def test_sperf_68():
@@ -62,11 +69,15 @@ def test_sperf_68():
     args.node_info_prefix = "node_info.json"
     args.block_dev_prefix = "blockdev_report"
     args.cfstats_prefix = "cfstats"
+
     def run():
         sperf_default.run(args)
+
     output = steal_output(run)
-        #reads better with the extra newline
-    assert "\n" + output == """
+    # reads better with the extra newline
+    assert (
+        "\n" + output
+        == """
 nodes                               1                                                
 dse version(s) (startup logs)       { 6.8.1 }                                        
 cassandra version(s) (startup logs) { DSE private fork }                             
@@ -90,6 +101,7 @@ errors parsing
 recommendations
 ---------------
 * There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis."""
+    )
 
 
 def test_empty_recommendations():
