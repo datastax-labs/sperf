@@ -15,8 +15,7 @@
 """ bucketgrep module """
 import re
 from pysper.parser.rules import date
-from pysper import VERSION
-from pysper.diag import find_logs
+from pysper import VERSION, diag
 from pysper.util import bucketize, textbar
 from pysper.dates import date_parse
 from pysper.core import OrderedDefaultDict
@@ -60,41 +59,41 @@ class BucketGrep:
         if self.files:
             target = self.files
         elif self.diag_dir:
-            target = find_logs(self.diag_dir)
+            target = diag.find_logs(self.diag_dir)
         else:
             raise Exception("no diag dir and no files specified")
         for file in target:
-            log = open(file, 'r')
-            for line in log:
-                #as long as it's a valid log line we want the date,
-                #even if we don't care about the rest of the line so we can set
-                #the last date for any straregex lines that match
-                current_dt = self.valid_log_regex.match(line)
-                if current_dt:
-                    dt = date()(current_dt.group('date'))
-                    #if the log line is valite we want to set the last_time
-                    self.last_time = dt
-                #we now can validate if our search term matches the log line
-                d = self.timeregex.match(line)
-                if d:
-                    # normal case, well-formatted log line
-                    self.__setdates(dt)
-                    if self.start_time and dt < self.start_time:
-                        continue
-                    if self.end_time and dt > self.end_time:
-                        continue
-                    self.matches[dt].append(line)
-                    self.count += 1
-                else:
-                    m = self.strayregex.match(line)
-                    # check for a match in an unformatted line, like a traceback
-                    if m:
-                        if self.last_time is None:
-                            # match, but no previous timestamp to associate with
-                            self.unknown += 1
+            with diag.FileWithProgress(file) as log:
+                for line in log:
+                    #as long as it's a valid log line we want the date,
+                    #even if we don't care about the rest of the line so we can set
+                    #the last date for any straregex lines that match
+                    current_dt = self.valid_log_regex.match(line)
+                    if current_dt:
+                        dt = date()(current_dt.group('date'))
+                        #if the log line is valite we want to set the last_time
+                        self.last_time = dt
+                    #we now can validate if our search term matches the log line
+                    d = self.timeregex.match(line)
+                    if d:
+                        # normal case, well-formatted log line
+                        self.__setdates(dt)
+                        if self.start_time and dt < self.start_time:
                             continue
-                        self.matches[self.last_time].append(line)
+                        if self.end_time and dt > self.end_time:
+                            continue
+                        self.matches[dt].append(line)
                         self.count += 1
+                    else:
+                        m = self.strayregex.match(line)
+                        # check for a match in an unformatted line, like a traceback
+                        if m:
+                            if self.last_time is None:
+                                # match, but no previous timestamp to associate with
+                                self.unknown += 1
+                                continue
+                            self.matches[self.last_time].append(line)
+                            self.count += 1
         self.analyzed = True
 
     def __setdates(self, dt):
