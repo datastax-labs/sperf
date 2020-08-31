@@ -25,7 +25,7 @@ from pysper.commands.core import diag as diag_cmd
 
 class TestDiagModule(unittest.TestCase):
     """tests the diag module"""
-    
+
     def test_find_files_by_diag_dir(self):
         """find logs by diag dir"""
         config = types.SimpleNamespace()
