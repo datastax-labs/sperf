@@ -13,10 +13,8 @@
 # limitations under the License.
 
 """ parses jars from the classpath and compares them """
-from pysper.diag import find_logs
+from pysper import env, diag, parser
 from pysper.humanize import pluralize
-from pysper import parser
-from pysper import env
 from pysper.core import OrderedDefaultDict
 
 class JarCheckParser:
@@ -33,23 +31,24 @@ class JarCheckParser:
         if self.files:
             target = self.files
         elif self.diag_dir:
-            target = find_logs(self.diag_dir, 'output.log')
+            target = diag.find_logs(self.diag_dir, 'output.log')
         else:
             self.analyzed = True
             return
         # pylint: disable=too-many-nested-blocks
         for file in target:
-            log = open(file, 'r')
-            for event in parser.read_output_log(log):
-                if event['event_type'] == 'classpath':
-                    thisjars = OrderedDefaultDict(int)
-                    for jar in event['classpath'].split(':'):
-                        j = jar.split('/')[-1]
-                        if j.endswith("jar"):
-                            if j not in thisjars: # to eliminate dupes within the same file, because java is crazy town
-                                thisjars[j] += 1
-                                self.jars[j] += 1
-            self.files_analyzed += 1
+            with diag.FileWithProgress(file) as log:
+                for event in parser.read_output_log(log):
+                    if event['event_type'] == 'classpath':
+                        thisjars = OrderedDefaultDict(int)
+                        for jar in event['classpath'].split(':'):
+                            j = jar.split('/')[-1]
+                            if j.endswith("jar"):
+                                # to eliminate dupes within the same file, because java is crazy town
+                                if j not in thisjars:
+                                    thisjars[j] += 1
+                                    self.jars[j] += 1
+                self.files_analyzed += 1
         self.analyzed = True
 
     # pylint: disable=too-many-branches
