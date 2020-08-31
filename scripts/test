@@ -15,4 +15,5 @@
 
 
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-pytest $PARENT_PATH/../tests $*
+coverage run -m unittest discover $PARENT_PATH/../tests $*
+coverage report
