@@ -27,6 +27,9 @@ def _build_sperf_cmd():
     parser.add_argument('-v', '--debug', dest="debug", action='store_true',
                         help='shows debug output. ' + \
                                 'Useful for bug reports and diagnosing issues with sperf')
+    parser.add_argument('-fe', '--file_encoding', type=str, default="utf-8",
+                        help='shows debug output. ' + \
+                                'Useful for bug reports and diagnosing issues with sperf')
     parser.add_argument("-e", "--eu", dest="eu", \
             action="store_true", \
             help="set log format to EU. Is ignored by sysbottle which has it's own logging engine")
@@ -46,6 +49,7 @@ def run():
     """run is the entry point that selects the subcommand to run"""
     parser = build_parser()
     args = parser.parse_args()
+    env.FILE_ENCODING = args.file_encoding
     env.PROGRESS = not args.noprogress
     if args.debug:
         env.DEBUG = args.debug

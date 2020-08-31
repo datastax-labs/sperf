@@ -19,7 +19,7 @@ from datetime import datetime
 from pysper.util import textbar
 from pysper.dates import date_parse
 from pysper.humanize import format_bytes
-from pysper import env, VERSION
+from pysper import env, VERSION, diag
 from pysper.core import OrderedDefaultDict
 
 class TTopParser:
@@ -165,37 +165,40 @@ class TTopAnalyzer:
         print("ttop version %s" % VERSION)
         print()
         for file in self.files:
-            log = open(file, 'r')
-            if env.DEBUG:
-                print("parsing", file)
-            for total, threads in parser.parse(log):
-                if alloc:
-                    print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(total['date'].strftime("%Y-%m-%d %H:%M:%S"),
-                                                                   'Threads', 'Alloc/s',
-                                                                   "Total: " + format_bytes(total['heap_rate'])))
-                else:
-                    print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(total['date'].strftime("%Y-%m-%d %H:%M:%S"),
-                                                                   'Threads', 'CPU%',
-                                                                   "Total: " + str(total['app_cpu']) + '%'))
-                print('='*80)
-                combined = threads
-                if collate:
-                    combined = self.collate_threads(threads)
-                ordered = []
-                if alloc:
-                    ordered = sorted(combined.items(), key=lambda k: k[1]['heap_rate'], reverse=True)
-                else:
-                    ordered = sorted(combined.items(), key=lambda k: k[1]['total_cpu'], reverse=True)
-                if top:
-                    ordered = ordered[0:top]
-                for name, value in ordered:
-                    count = 1
-                    if collate:
-                        count = int(value['thread_count'])
+            with diag.FileWithProgress(file) as log:
+                if env.DEBUG:
+                    print("parsing", file)
+                for total, threads in parser.parse(log):
                     if alloc:
-                        print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(name, count, format_bytes(value['heap_rate']),
-                                                                       textbar(total['heap_rate'], value['heap_rate'])))
+                        print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(total['date'].strftime("%Y-%m-%d %H:%M:%S"),
+                                                                       'Threads', 'Alloc/s',
+                                                                       "Total: " + format_bytes(total['heap_rate'])))
                     else:
-                        print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(name, count, value['total_cpu'],
-                                                                       textbar(total['app_cpu'], value['total_cpu'])))
-                print()
+                        print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(total['date'].strftime("%Y-%m-%d %H:%M:%S"),
+                                                                       'Threads', 'CPU%',
+                                                                       "Total: " + str(total['app_cpu']) + '%'))
+                    print('='*80)
+                    combined = threads
+                    if collate:
+                        combined = self.collate_threads(threads)
+                    ordered = []
+                    if alloc:
+                        ordered = sorted(combined.items(), key=lambda k: k[1]['heap_rate'], reverse=True)
+                    else:
+                        ordered = sorted(combined.items(), key=lambda k: k[1]['total_cpu'], reverse=True)
+                    if top:
+                        ordered = ordered[0:top]
+                    for name, value in ordered:
+                        count = 1
+                        if collate:
+                            count = int(value['thread_count'])
+                        if alloc:
+                            print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(name,
+                                                                           count, format_bytes(value['heap_rate']),
+                                                                           textbar(total['heap_rate'],
+                                                                                   value['heap_rate'])))
+                        else:
+                            print('{0:<40} {1:<10} {2:<10} {3:<10}'.format(name, count, value['total_cpu'],
+                                                                           textbar(total['app_cpu'],
+                                                                                   value['total_cpu'])))
+                    print()

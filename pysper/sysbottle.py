@@ -16,7 +16,7 @@
 from datetime import datetime
 from collections import OrderedDict
 from pysper.core import OrderedDefaultDict
-from pysper import VERSION, env, humanize
+from pysper import VERSION, env, humanize, diag
 from pysper.util import get_percentiles, get_percentile_headers
 
 class IOStatParser:
@@ -92,7 +92,7 @@ class IOStatParser:
 
     def parse(self, infile):
         "parse an iostat file"
-        with open(infile, 'r') as f:
+        with diag.FileWithProgress(infile) as f:
             for line in f:
                 for stat in self._parse(line):
                     yield stat

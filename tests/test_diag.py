@@ -17,7 +17,7 @@ import os
 import types
 import pytest
 from tests import current_dir, steal_output, make_67_diag_args
-from pysper import env
+from pysper import env, VERSION
 from pysper.core.diag import parse_diag
 from pysper.diag import find_files
 from pysper.commands.core import diag as diag_cmd
@@ -122,7 +122,7 @@ def test_core_diag_integtration():
     def run():
         diag_cmd.run(args)
     output = steal_output(run)
-    assert output == """sperf core diag version: 0.6.4
+    assert output == "sperf core diag version: %s" % VERSION + """
 
 
 configuration #1

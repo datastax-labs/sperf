@@ -261,7 +261,7 @@ class FileWithProgress:
         self.filepath = filepath
         self.error = ""
         try:
-            self.file_desc = open(self.filepath, encoding='utf8')
+            self.file_desc = open(self.filepath, encoding=env.FILE_ENCODING)
         except IOError as exception:
             msg = "error opening: %s with %s" % (self.filepath, str(exception))
             if env.PROGRESS:
@@ -288,7 +288,6 @@ class FileWithProgress:
         if env.PROGRESS:
             print(".", end='', flush=True)
         return self
-
     def read(self):
         """wrapper around file read"""
         return self.file_desc.read()
