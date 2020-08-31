@@ -18,6 +18,7 @@ import argparse
 import os
 from pysper.commands.core import gc
 
+
 class TestGCIntegration(unittest.TestCase):
     """integration tests for the gc command"""
 
@@ -33,7 +34,6 @@ class TestGCIntegration(unittest.TestCase):
         self.assertTrue(hasattr(args, "diag_dir"))
         self.assertTrue(hasattr(args, "interval"))
         self.assertTrue(hasattr(args, "reporter"))
-
 
     def test_gc_run(self):
         """validates we don't get a bad exit code"""

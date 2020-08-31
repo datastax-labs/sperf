@@ -30,6 +30,6 @@ class TestCoreGC(unittest.TestCase):
         self.assertEqual(len(g.all_pauses()), 236)
         output = steal_output(g.print_report)
         self.assertIn(
-            "!!++.+.+.!++.+.+...+.+..+.+.+.+..+++....++..+++....+..++.+++.+!+..+.+.+.+!......+++....+"
-            ,output
+            "!!++.+.+.!++.+.+...+.+..+.+.+.+..+++....++..+++....+..++.+++.+!+..+.+.+.+!......+++....+",
+            output,
         )
