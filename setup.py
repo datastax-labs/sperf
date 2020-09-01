@@ -12,6 +12,6 @@ setup(
     description="Diagnostic utility for DSE and Cassandra",
     url="https://www.github.com/DataStax-Toolkit/sperf",
     scripts=["scripts/sperf"],
-    setup_requires=["PyInstaller", "pytest", "tox", "lint"],
+    setup_requires=["PyInstaller"],
     packages=find_packages(include=["pysper", "pysper.*"]),
 )
