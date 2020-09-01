@@ -21,7 +21,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
     - name: Run flake8
-      shell: flake8 pysper tests
+      shell: bash
+      run: |
+        flake8 pysper tests
 
   build:
     runs-on: ${{ matrix.os }}
