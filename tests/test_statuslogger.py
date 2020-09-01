@@ -57,9 +57,9 @@ duration: 1.89 hours
 total stages analyzed: 2
 total nodes analyzed: 3
 
-GC pauses  max        p99        p75        p50        p25        min        
-           ---        ---        ---        ---        ---        ---        
-ms         800        729        358        282        243        201        
+GC pauses  max        p99        p75        p50        p25        min
+           ---        ---        ---        ---        ---        ---
+ms         800        729        358        282        243        201
 total GC events: 236
 
 busiest tables by ops across all nodes
@@ -72,9 +72,9 @@ busiest table by data across all nodes
 
 busiest stages across all nodes
 ------------------------------
-* CompactionExecutor active:   1  (10.101.35.102)  
-* TPC/0/WRITE_REMOTE active:   1  (10.101.35.102)  
-* CompactionExecutor pending:  1  (10.101.35.102)  
+* CompactionExecutor active:   1  (10.101.35.102)
+* TPC/0/WRITE_REMOTE active:   1  (10.101.35.102)
+* CompactionExecutor pending:  1  (10.101.35.102)
 
 busiest stages in PENDING
 ------------------------------
@@ -115,9 +115,9 @@ duration: 2.19 days
 total stages analyzed: 17
 total nodes analyzed: 1
 
-GC pauses  max        p99        p75        p50        p25        min        
-           ---        ---        ---        ---        ---        ---        
-ms         2066       2066       1371       615        436        251        
+GC pauses  max        p99        p75        p50        p25        min
+           ---        ---        ---        ---        ---        ---
+ms         2066       2066       1371       615        436        251
 total GC events: 7
 
 busiest tables by ops across all nodes
@@ -130,16 +130,16 @@ busiest table by data across all nodes
 
 busiest stages across all nodes
 ------------------------------
-* MemtablePostFlush pending:            6  (172.17.0.2)  
-* MemtableFlushWriter active:           3  (172.17.0.2)  
-* PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)  
-* CompactionExecutor active:            1  (172.17.0.2)  
-* MemtablePostFlush active:             1  (172.17.0.2)  
-* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)  
-* LwtStage active:                      1  (172.17.0.2)  
-* TPC/other active:                     1  (172.17.0.2)  
-* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)  
-* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)  
+* MemtablePostFlush pending:            6  (172.17.0.2)
+* MemtableFlushWriter active:           3  (172.17.0.2)
+* PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)
+* CompactionExecutor active:            1  (172.17.0.2)
+* MemtablePostFlush active:             1  (172.17.0.2)
+* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)
+* LwtStage active:                      1  (172.17.0.2)
+* TPC/other active:                     1  (172.17.0.2)
+* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)
+* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)
 
 busiest stages in PENDING
 ------------------------------

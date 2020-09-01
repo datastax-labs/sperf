@@ -370,7 +370,7 @@ class StatusLogger:
                     "blocked",
                     "all_time_blocked",
                 ):
-                    if not sname in rstage[tpname]:
+                    if sname not in rstage[tpname]:
                         rstage[tpname][sname] = 0
                 s = Stage(
                     tpname,

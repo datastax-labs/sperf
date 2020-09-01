@@ -348,11 +348,11 @@ def format_map(m):
     return "{ %s }" % ", ".join(items)
 
 
-def format_list(l):
+def format_list(to_format):
     """pleasing output for dc name and node count"""
-    if not l:
+    if not to_format:
         return "N/A"
-    return "{ %s }" % ", ".join(l)
+    return "{ %s }" % ", ".join(to_format)
 
 
 def run(args):

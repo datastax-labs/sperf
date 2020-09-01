@@ -66,7 +66,7 @@ class JarCheckParser:
                 if jar not in skewed:
                     skewed.append((jar, self.jars[jar]))
             else:
-                if not jar in common:
+                if jar not in common:
                     common.append((jar, self.jars[jar]))
         if not diff_only and common:
             print("Common jars")

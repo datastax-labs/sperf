@@ -18,9 +18,8 @@ import itertools
 import datetime
 from pysper import parser
 from pysper.parser import gc
-from pysper import VERSION
+from pysper import VERSION, diag
 from pysper.core import OrderedDefaultDict
-from pysper.diag import find_logs
 from pysper.util import node_name, bucketize, get_percentiles, get_percentile_headers
 from pysper.dates import date_parse
 from pysper.humanize import pad_table
@@ -52,21 +51,21 @@ class GCInspector:
         if self.files:
             target = self.files
         elif self.diag_dir:
-            target = find_logs(self.diag_dir)
+            target = diag.find_logs(self.diag_dir)
         else:
             raise Exception("no diag dir and no files specified")
         for file in target:
             node = node_name(file)
-            log = open(file, "r")
-            for event in parser.read_log(log, gc.capture_line):
-                if event["event_type"] == "pause":
-                    if self.start_time and event["date"] < self.start_time:
-                        continue
-                    if self.end_time and event["date"] > self.end_time:
-                        continue
-                    self.__setdates(event["date"], node)
-                    self.pauses[node][event["date"]].append(event["duration"])
-                    self.gc_types[event["gc_type"]] += 1
+            with diag.FileWithProgress(file) as log:
+                for event in parser.read_log(log, gc.capture_line):
+                    if event["event_type"] == "pause":
+                        if self.start_time and event["date"] < self.start_time:
+                            continue
+                        if self.end_time and event["date"] > self.end_time:
+                            continue
+                        self.__setdates(event["date"], node)
+                        self.pauses[node][event["date"]].append(event["duration"])
+                        self.gc_types[event["gc_type"]] += 1
         self.analyzed = True
 
     def __setdates(self, date, node):
@@ -80,7 +79,7 @@ class GCInspector:
         if date < self.start:
             self.start = date
         # node specific
-        if not node in self.starts:
+        if node not in self.starts:
             self.starts[node] = date
             self.ends[node] = date
             return

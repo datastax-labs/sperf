@@ -163,7 +163,28 @@ def pad_table(table, min_width=0, extra_pad=0):
                     longest[i] = b
     # pad step
     for ri, row in enumerate(table):
+        last_col = find_last_valid_col(row)
         for i, col in enumerate(row):
+            # do not pad last column in each row as it makes reports format funny
+            if i > last_col:
+                continue
+            if i == last_col:
+                # trim off any space
+                row[i] = col.strip()
+                continue
             pad = longest[i]
             row[i] = "%-*s" % (max(pad + extra_pad, min_width), col)
         table[ri] = row
+
+
+def find_last_valid_col(row):
+    """needs to find the last column or the last empty column in a row"""
+    last_el = len(row) - 1
+    while last_el > 0:
+        col = row[last_el]
+        if col is None or col == "":
+            last_el -= 1
+            continue
+        else:
+            return last_el
+    return last_el

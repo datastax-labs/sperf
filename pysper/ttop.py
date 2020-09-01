@@ -17,7 +17,7 @@ from collections import OrderedDict
 from datetime import datetime
 from pysper.util import textbar
 from pysper.dates import date_parse
-from pysper.humanize import format_bytes
+from pysper.humanize import format_bytes, pad_table
 from pysper import env, VERSION, diag
 from pysper.core import OrderedDefaultDict
 
@@ -178,30 +178,33 @@ class TTopAnalyzer:
         parser = TTopParser(start=start, end=end)
         print("ttop version %s" % VERSION)
         print()
+        table = []
         for file in self.files:
             with diag.FileWithProgress(file) as log:
+                table.append([])
                 if env.DEBUG:
                     print("parsing", file)
                 for total, threads in parser.parse(log):
                     if alloc:
-                        print(
-                            "{0:<40} {1:<10} {2:<10} {3:<10}".format(
+                        table.append(
+                            [
                                 total["date"].strftime("%Y-%m-%d %H:%M:%S"),
                                 "Threads",
                                 "Alloc/s",
                                 "Total: " + format_bytes(total["heap_rate"]),
-                            )
+                            ]
                         )
                     else:
-                        print(
-                            "{0:<40} {1:<10} {2:<10} {3:<10}".format(
+                        table.append(
+                            [
                                 total["date"].strftime("%Y-%m-%d %H:%M:%S"),
                                 "Threads",
                                 "CPU%",
                                 "Total: " + str(total["app_cpu"]) + "%",
-                            )
+                            ]
                         )
-                    print("=" * 80)
+                    header = "=" * 80
+                    table.append([header])
                     combined = threads
                     if collate:
                         combined = self.collate_threads(threads)
@@ -225,21 +228,26 @@ class TTopAnalyzer:
                         if collate:
                             count = int(value["thread_count"])
                         if alloc:
-                            print(
-                                "{0:<40} {1:<10} {2:<10} {3:<10}".format(
+                            table.append(
+                                [
                                     name,
-                                    count,
+                                    str(count),
                                     format_bytes(value["heap_rate"]),
                                     textbar(total["heap_rate"], value["heap_rate"]),
-                                )
+                                ]
                             )
                         else:
-                            print(
-                                "{0:<40} {1:<10} {2:<10} {3:<10}".format(
+                            table.append(
+                                [
                                     name,
-                                    count,
-                                    value["total_cpu"],
+                                    str(count),
+                                    "{:.2f}".format(value["total_cpu"]),
                                     textbar(total["app_cpu"], value["total_cpu"]),
-                                )
+                                ]
                             )
-                    print()
+                    table.append([])
+
+        pad_table(table, extra_pad=1)
+        for row in table:
+            print("".join(row))
+        print()

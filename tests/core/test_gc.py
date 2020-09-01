@@ -14,7 +14,6 @@
 
 """ tests the gcinspector module """
 import unittest
-import os
 from pysper.core.gcinspector import GCInspector
 from tests import steal_output, test_dse_tarball
 

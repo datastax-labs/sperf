@@ -70,11 +70,11 @@ def steal_output(func, *args, **kwargs):
     return output
 
 
-def assert_in_output(expected_text, text):
+def assert_in_output(self, expected_text, text):
     """asserts the expected_text is in the text, if not
     present will provide an output of the text field so it'll be easier to debug"""
     try:
-        assert expected_text in text
+        self.assertTrue(expected_text in text)
     except Exception as ex:
         LOGGER.info(text)
         LOGGER.error(ex)

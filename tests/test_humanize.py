@@ -176,6 +176,34 @@ class TestFormatRawNumbers(unittest.TestCase):
         self.assertEqual(humanize.format_num_float(1000), "1,000.00")
         self.assertEqual(humanize.format_num_float(1000000), "1,000,000.00")
 
+
+class TestTablePadding(unittest.TestCase):
+    """tests the formatting of tables when padding is used"""
+
+    def test_find_last_valid_col(self):
+        """tests finding the last non empty col in a row"""
+        self.assertEqual(humanize.find_last_valid_col(["a", "b", "c"]), 2)
+        self.assertEqual(humanize.find_last_valid_col(["a", "b", ""]), 1)
+        self.assertEqual(humanize.find_last_valid_col([""]), 0)
+        self.assertEqual(humanize.find_last_valid_col([]), -1)
+
+    def test_pad_table_should_always_trim_last_col(self):
+        """verifies when the last col is missing in a row the next column is padded down"""
+        data = [["1", "2", ""]]
+        data.append(["2", "2222", "33333"])
+        humanize.pad_table(data, min_width=2, extra_pad=1)
+        # first column
+        self.assertEqual(data[0][0], "1 ")
+        self.assertEqual(data[1][0], "2 ")
+
+        # second column
+        self.assertEqual(data[0][1], "2")
+        self.assertEqual(data[1][1], "2222 ")
+
+        # last column does not pad
+        self.assertEqual(data[0][2], "")
+        self.assertEqual(data[1][2], "33333")
+
     def test_pad_table_with_min_width_and_padding(self):
         """tests table padding with various paddings and min width"""
         data = [["1", "2", "3"]]
@@ -189,13 +217,9 @@ class TestFormatRawNumbers(unittest.TestCase):
         self.assertEqual(data[0][1], "2    ")
         self.assertEqual(data[1][1], "2222 ")
 
-        # third column
-        self.assertEqual(data[0][2], "3     ")
-        self.assertEqual(data[1][2], "33333 ")
-
-
-class TestTablePadding(unittest.TestCase):
-    """tests the formatting of tables when padding is used"""
+        # last column does not pad
+        self.assertEqual(data[0][2], "3")
+        self.assertEqual(data[1][2], "33333")
 
     def test_pad_table(self):
         """padding defaults"""
@@ -210,8 +234,8 @@ class TestTablePadding(unittest.TestCase):
         self.assertEqual(data[0][1], "2   ")
         self.assertEqual(data[1][1], "2222")
 
-        # third column
-        self.assertEqual(data[0][2], "3    ")
+        # last column does not pad
+        self.assertEqual(data[0][2], "3")
         self.assertEqual(data[1][2], "33333")
 
     def test_pad_table_headers(self):
@@ -228,8 +252,9 @@ class TestTablePadding(unittest.TestCase):
         self.assertEqual(data[2][0], "2 ")
         self.assertEqual(data[1][1], "2    ")
         self.assertEqual(data[2][1], "2222 ")
-        self.assertEqual(data[1][2], "3     ")
-        self.assertEqual(data[2][2], "33333 ")
+        # as always last column does not pad
+        self.assertEqual(data[1][2], "3")
+        self.assertEqual(data[2][2], "33333")
 
 
 class TestFromHumanToRawBytes(unittest.TestCase):

@@ -196,7 +196,10 @@ class SysbottleReport:
         print()
         print("* total records: %s" % self.count)
         if self.count:
-            report_percentage = lambda a: (float(a) / float(self.count)) * 100.0
+
+            def report_percentage(a):
+                return (float(a) / float(self.count)) * 100.0
+
             print(
                 "* total bottleneck time: %.2f%% (cpu bound, io bound, or both)"
                 % report_percentage(self.iowait_exceeded + self.cpu_exceeded)
