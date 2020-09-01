@@ -17,7 +17,6 @@ import unittest
 import os
 from tests import current_dir, steal_output
 from pysper.ttop import TTopAnalyzer
-from pysper import VERSION
 
 
 class TestTTop(unittest.TestCase):
