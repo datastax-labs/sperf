@@ -13,7 +13,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-          python-version: ${{ matrix.python }}
+          python-version: 3.7
     - uses: psf/black@stable
     - name: Install flake8
       shell: bash
@@ -42,7 +42,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
-    - name: Run Tox
+    - name: Run tests
       shell: bash
-      # Run tox using the version of Python in `PATH`
-      run: tox -e py
+      run: ./scripts/test
