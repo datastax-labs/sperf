@@ -1,3 +1,16 @@
+sperf 0.6.5
+-----------
+* formatting improvement for ttop report
+* file not found was being swallowed in schema command when file was being
+passed directly
+* custom encoding support with -fe flag to read files of any encoding in the
+list for your respective python version (example for 3.7 is here
+https://docs.python.org/3.7/library/codecs.html#standard-encodings)
+* removed tox and pylint from ci and dev setup
+* using black and flake8 in ci and dev setup
+* fixed several file leaks in ttop, bgrep, jarcheck
+* lots of formatting changes
+
 sperf 0.6.4
 -----------
 * binary files are now longer matched when reading diags, this should allow all those pesky zips to be skipped
