@@ -36,8 +36,8 @@ class TestParser(unittest.TestCase):
         ) as test_file:
             events = parser.read_log(test_file, capture_line)
             rows = list(events)
-        assert len(rows) == 2
+        self.assertEqual(len(rows), 2)
         line1 = "WARN"
-        assert rows[0]["level"] == line1
+        self.assertEqual(rows[0]["level"], line1)
         line2 = "ERROR"
-        assert rows[1]["level"] == line2
+        self.assertEqual(rows[1]["level"], line2)

@@ -13,33 +13,39 @@
 # limitations under the License.
 
 """validates the jarcheck args are in place"""
+import unittest
 import argparse
 import os
-import pytest
 from pysper.commands.core import jarcheck
 from tests import current_dir
 
 
-def test_args():
-    """verify jarcheck args are wired up correctly"""
-    parser = argparse.ArgumentParser(prog="mine", description="entry point")
-    subparsers = parser.add_subparsers()
-    jarcheck.build(subparsers)
-    args = parser.parse_args(["jarcheck", "-d", "hello", "-f", "abc", "-o"])
-    assert hasattr(args, "diag_dir")
-    assert hasattr(args, "diff_only")
-    assert hasattr(args, "files")
+class TestJarCheckCommand(unittest.TestCase):
+    """test jarcheck command"""
 
+    def test_args(self):
+        """verify jarcheck args are wired up correctly"""
+        parser = argparse.ArgumentParser(prog="mine", description="entry point")
+        subparsers = parser.add_subparsers()
+        jarcheck.build(subparsers)
+        args = parser.parse_args(["jarcheck", "-d", "hello", "-f", "abc", "-o"])
+        self.assertTrue(hasattr(args, "diag_dir"))
+        self.assertTrue(hasattr(args, "diff_only"))
+        self.assertTrue(hasattr(args, "files"))
 
-def test_jarcheck_run():
-    """validates we raise FNFE if nonexistent files are passed"""
-    parser = argparse.ArgumentParser(prog="mine", description="entry point")
-    subparsers = parser.add_subparsers()
-    jarcheck.build(subparsers)
-    test_file_1 = os.path.join(current_dir(__file__), "testdata", "emtpy_file_1.log")
-    test_file_2 = os.path.join(current_dir(__file__), "testdata", "emtpy_file_2.log")
-    args = parser.parse_args(
-        ["jarcheck", "-f", "%s,%s" % (test_file_1, test_file_2), "-o"]
-    )
-    with pytest.raises(FileNotFoundError):
-        jarcheck.run(args)
+    def test_jarcheck_run(self):
+        """validates we raise FNFE if nonexistent files are passed"""
+        parser = argparse.ArgumentParser(prog="mine", description="entry point")
+        subparsers = parser.add_subparsers()
+        jarcheck.build(subparsers)
+        test_file_1 = os.path.join(
+            current_dir(__file__), "testdata", "emtpy_file_1.log"
+        )
+        test_file_2 = os.path.join(
+            current_dir(__file__), "testdata", "emtpy_file_2.log"
+        )
+        args = parser.parse_args(
+            ["jarcheck", "-f", "%s,%s" % (test_file_1, test_file_2), "-o"]
+        )
+        with self.assertRaises(FileNotFoundError):
+            jarcheck.run(args)

@@ -62,10 +62,6 @@ class TestCfStats(unittest.TestCase):
         ]
         for line in lines:
             parser.capture_line(line + "\n")
-        import pprint
-
-        pp = pprint.PrettyPrinter()
-        pp.pprint(parser.parsed)
         self.assertEqual(parser.parsed["abc"]["fancy_name"]["SSTable count"], 10)
 
     def test_parse_cfstats_unable_to_parse_index(self):
@@ -86,10 +82,6 @@ class TestCfStats(unittest.TestCase):
         ]
         for line in lines:
             parser.capture_line(line + "\n")
-        import pprint
-
-        pp = pprint.PrettyPrinter()
-        pp.pprint(parser.parsed)
         self.assertEqual(
             parser.parsed["abc"][
                 "summary.fancy_accountvalue.fancy_accountvalue_summary_class_name_idx"

@@ -29,8 +29,10 @@ class JarCheckParser:
         self.files_analyzed = 0
 
     def analyze(self):
+        error_if_file_not_found = False
         """ analyze log files """
         if self.files:
+            error_if_file_not_found = True
             target = self.files
         elif self.diag_dir:
             target = diag.find_logs(self.diag_dir, "output.log")
@@ -39,6 +41,8 @@ class JarCheckParser:
             return
         for file in target:
             with diag.FileWithProgress(file) as log:
+                if not log.file_desc and error_if_file_not_found:
+                    raise FileNotFoundError(log.error)
                 for event in parser.read_output_log(log):
                     if event["event_type"] == "classpath":
                         thisjars = OrderedDefaultDict(int)
