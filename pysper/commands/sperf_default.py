@@ -18,15 +18,17 @@ from pysper import env
 from pysper import sperf_default
 from pysper.commands.core.diag import add_args
 
+
 def build(diag_parser):
     """build uses the args from the new command"""
     add_args(diag_parser)
+
 
 def run(args):
     """launches 'sperf default command'"""
     try:
         sperf_default.run(args)
-    except Exception as ex:  # pylint: disable=broad-except
+    except Exception as ex:
         if env.DEBUG:
             raise ex
         print(str(ex))

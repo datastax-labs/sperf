@@ -20,9 +20,18 @@ import datetime
 from collections import OrderedDict
 from pysper import perc
 
-#pylint: disable=too-many-arguments
-def print_percentiles(label, data_list, indent=11, width=8, strformat="%.2f", pmin=True, pmax=True,
-                      reverse=False, percentiles=(99, 75, 50, 25)):
+
+def print_percentiles(
+    label,
+    data_list,
+    indent=11,
+    width=8,
+    strformat="%.2f",
+    pmin=True,
+    pmax=True,
+    reverse=False,
+    percentiles=(99, 75, 50, 25),
+):
     """ prints formatted percentiles using numpy from data in a list """
     np_array = perc.Stats(data_list)
     printables = [label.ljust(indent)]
@@ -36,16 +45,26 @@ def print_percentiles(label, data_list, indent=11, width=8, strformat="%.2f", pm
         printables = reversed(printables)
     print("".join(printables))
 
-def print_percentile_headers(label='', names=('max', 'p99', 'p75', 'p50', 'p25', 'min'), indent=11, width=8):
+
+def print_percentile_headers(
+    label="", names=("max", "p99", "p75", "p50", "p25", "min"), indent=11, width=8
+):
     """ prints evenly spaced headers, appropriate for percentiles """
     printables = [label.ljust(indent)]
     for name in names:
         printables.append(name.ljust(width))
     print("".join(printables))
 
-#pylint: disable=too-many-arguments
-def get_percentiles(label, data_list, strformat="%.2f", pmin=True, pmax=True,
-                    reverse=False, percentiles=(99, 75, 50, 25)):
+
+def get_percentiles(
+    label,
+    data_list,
+    strformat="%.2f",
+    pmin=True,
+    pmax=True,
+    reverse=False,
+    percentiles=(99, 75, 50, 25),
+):
     """ gets formatted percentiles using numpy from data in a list """
     np_array = perc.Stats(data_list)
     printables = [label]
@@ -59,20 +78,23 @@ def get_percentiles(label, data_list, strformat="%.2f", pmin=True, pmax=True,
         printables = list(reversed(printables))
     return printables
 
-def get_percentile_headers(label='', names=('max', 'p99', 'p75', 'p50', 'p25', 'min')):
+
+def get_percentile_headers(label="", names=("max", "p99", "p75", "p50", "p25", "min")):
     """ gets evenly spaced headers, appropriate for percentiles """
     printables = [label]
     for name in names:
         printables.append(name)
     return printables
 
+
 def node_name(filepath):
     """ guess the node name from a filepath """
     parts = filepath.split(os.path.sep)
     try:
-        return parts[parts.index('nodes')+1]
+        return parts[parts.index("nodes") + 1]
     except ValueError:
         return filepath
+
 
 def extract_node_name(path, ignore_missing_nodes=False):
     """extracts the token after the 'nodes'"""
@@ -84,17 +106,17 @@ def extract_node_name(path, ignore_missing_nodes=False):
     if last_nodes_index == -1:
         if ignore_missing_nodes:
             return path
-        raise "path '%s' does not contain 'nodes' and " + \
-                "is not a valid diag tarball, so cannot determine the node"  % path
+        raise "path '%s' does not contain 'nodes' and " + "is not a valid diag tarball, so cannot determine the node" % path
     try:
         # we're interested in getting the token after nodes
-        return tokens[last_nodes_index+1]
+        return tokens[last_nodes_index + 1]
     except IndexError:
         raise "there is nothing after the 'nodes' entry of '%s'" % path
 
+
 def bucketize(data, start, end, seconds=3600):
-    """ split the data into time-based buckets determined by seconds.
-    Expects data to be a dict of datetime keys with list values """
+    """split the data into time-based buckets determined by seconds.
+    Expects data to be a dict of datetime keys with list values"""
     if start is None:
         raise ValueError("pysper.util.bucketize cannot work without a start time")
     if end is None:
@@ -102,7 +124,7 @@ def bucketize(data, start, end, seconds=3600):
     interval = datetime.timedelta(seconds=seconds)
     numbuckets = int((end - start).total_seconds() / seconds)
     # a calendar of sorts, made up of the desired intervals
-    grid = [start+n*interval for n in range(numbuckets+1)]
+    grid = [start + n * interval for n in range(numbuckets + 1)]
     if not grid:
         # bucket too big, throw everything in a single
         return {start: list(itertools.chain.from_iterable(data.values()))}
@@ -111,19 +133,20 @@ def bucketize(data, start, end, seconds=3600):
     for time, values in sorted(data.items(), key=lambda t: t[0]):
         # find the closest period in the 'calendar' and put everything there
         idx = bisect.bisect(grid, time)
-        buckets[grid[idx-1]].extend(values)
+        buckets[grid[idx - 1]].extend(values)
     return buckets
+
 
 def write_underline(s):
     """write an underline for the listed string. useful for reports"""
     return "".join(["-" for x in range(len(s))])
 
-def textbar(maximum, value, fill='-', length=20):
+
+def textbar(maximum, value, fill="-", length=20):
     """print a text bar scaled to length with value relative to maximum"""
     percent = value / maximum
     num = int(round(length * percent))
-    ret = ''
-    # pylint: disable=unused-variable
+    ret = ""
     for x in range(num):
         ret += fill
     return ret

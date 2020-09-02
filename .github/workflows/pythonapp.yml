@@ -6,6 +6,25 @@ name: Python application
 on: [push]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+          python-version: 3.7
+    - uses: psf/black@stable
+    - name: Install flake8
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+    - name: Run flake8
+      shell: bash
+      run: |
+        flake8 pysper tests
+
   build:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -23,11 +42,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
-    - name: Lint with pylint
+    - name: Run tests
       shell: bash
-      run: |
-        scripts/lint
-    - name: Run Tox
-      shell: bash
-      # Run tox using the version of Python in `PATH`
-      run: tox -e py
+      run: ./scripts/test

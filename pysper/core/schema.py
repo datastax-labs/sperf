@@ -16,7 +16,8 @@
 from collections import namedtuple, OrderedDict
 from pysper import diag
 
-Config = namedtuple('Config', 'files diag_dir')
+Config = namedtuple("Config", "files diag_dir")
+
 
 def read(files):
     """reads the output of cqlsh schema..atm only
@@ -32,9 +33,9 @@ def read(files):
     report["parsed_file"] = "No Schema File Found"
     if not files:
         return report
-    #we need to sort so we get the same results. Eventually we can start to
-    #retrieve all schema files and check for mismatches but for now doing a sort means
-    #we can at last get the same results
+    # we need to sort so we get the same results. Eventually we can start to
+    # retrieve all schema files and check for mismatches but for now doing a sort means
+    # we can at last get the same results
     schema_file = sorted(files)[0]
     report["parsed_file"] = schema_file
     solr_tables = set()
@@ -59,12 +60,13 @@ def read(files):
             if "CREATE CUSTOM INDEX" in line:
                 tokens = line.split(" ")
                 table = tokens[5]
-                #uses a set to accont for both formats
+                # uses a set to accont for both formats
                 solr_tables.add(table)
                 solr_indexes.append(table)
     report["solr_table"] = len(solr_tables)
     report["solr"] = len(solr_indexes)
     return report
+
 
 def generate_report(parsed_schema):
     """generate_report provides"""

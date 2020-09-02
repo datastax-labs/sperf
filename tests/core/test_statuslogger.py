@@ -13,88 +13,116 @@
 # limitations under the License.
 
 """ tests the statuslogger module """
+import unittest
 import os
 from pysper.core.statuslogger import StatusLogger, Summary
 from tests import test_dse_tarball, current_dir
 
-def test_should_count_ops():
-    """validate ops counting is doing the right thing even when crossing logs"""
-    tarball = os.path.join(current_dir(__file__), '..', 'testdata', 'sample_table_tarball')
-    sl = StatusLogger(tarball)
-    sl.analyze()
-    s = Summary(sl.nodes)
-    tables = s.get_busiest_tables('ops')
-    #this proves the extra logs in debug.log and system.log that are duplicate are ignored
-    #and that the extra entry from statuslogger is not causing a double count
-    busiest = tables[0]
-    assert busiest[1][0] == 'keyspace1.standard1'
-    assert busiest[1][1].ops == 5931
-    assert busiest[1][1].data == 75690238
 
+class TestStatusLogger(unittest.TestCase):
+    """test statuslogger"""
 
-def test_skip_duplicate_events_diag():
-    """should merge events on the same node in different logs"""
-    sl = StatusLogger(test_dse_tarball())
-    sl.analyze()
-    assert sl.analyzed
-    assert len(sl.nodes) == 3
-    s = Summary(sl.nodes)
-    assert s.lines == 22054
-    assert s.skipped_lines == 444
-    assert s.get_busiest_stages()[0] == ['10.101.35.102', 'active', 'CompactionExecutor', 1]
+    def test_should_count_ops(self):
+        """validate ops counting is doing the right thing even when crossing logs"""
+        tarball = os.path.join(
+            current_dir(__file__), "..", "testdata", "sample_table_tarball"
+        )
+        sl = StatusLogger(tarball)
+        sl.analyze()
+        s = Summary(sl.nodes)
+        tables = s.get_busiest_tables("ops")
+        # this proves the extra logs in debug.log and system.log that are duplicate are ignored
+        # and that the extra entry from statuslogger is not causing a double count
+        busiest = tables[0]
+        self.assertEqual(busiest[1][0], "keyspace1.standard1")
+        self.assertEqual(busiest[1][1].ops, 5931)
+        self.assertEqual(busiest[1][1].data, 75690238)
 
-def test_db2552_debug_log_format():
-    """should work with new statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statusloggernew_debug.log')]
-    sl = StatusLogger(None, files=files)
-    sl.analyze()
-    assert sl.analyzed
-    s = Summary(sl.nodes)
-    busiest_stages = s.get_busiest_stages()
-    name, status, stage, value = busiest_stages[0]
-    assert name == files[0]
-    assert stage == "TPC/all/WRITE_REMOTE"
-    assert status == "pending"
-    assert value == 13094
+    def test_skip_duplicate_events_diag(self):
+        """should merge events on the same node in different logs"""
+        sl = StatusLogger(test_dse_tarball())
+        sl.analyze()
+        self.assertTrue(sl.analyzed)
+        self.assertEqual(len(sl.nodes), 3)
+        s = Summary(sl.nodes)
+        self.assertEqual(s.lines, 22054)
+        self.assertEqual(s.skipped_lines, 444)
+        self.assertEqual(
+            s.get_busiest_stages()[0],
+            [
+                "10.101.35.102",
+                "active",
+                "CompactionExecutor",
+                1,
+            ],
+        )
 
-def test_db2552_system_log_format():
-    """should work with new statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_new.log')]
-    sl = StatusLogger(None, files=files)
-    sl.analyze()
-    assert sl.analyzed
-    s = Summary(sl.nodes)
-    busiest_stages = s.get_busiest_stages()
-    name, status, stage, value = busiest_stages[0]
-    assert name == files[0]
-    assert stage == "TPC/all/WRITE_REMOTE"
-    assert status == "pending"
-    assert value == 13094
+    def test_db2552_debug_log_format(self):
+        """should work with new statuslogger files"""
+        files = [
+            os.path.join(
+                current_dir(__file__), "..", "testdata", "statusloggernew_debug.log"
+            )
+        ]
+        sl = StatusLogger(None, files=files)
+        sl.analyze()
+        self.assertTrue(sl.analyzed)
+        s = Summary(sl.nodes)
+        busiest_stages = s.get_busiest_stages()
+        name, status, stage, value = busiest_stages[0]
+        self.assertEqual(name, files[0])
+        self.assertEqual(stage, "TPC/all/WRITE_REMOTE")
+        self.assertEqual(status, "pending")
+        self.assertEqual(value, 13094)
 
-def test_68_debug_log_format():
-    """should work with DSE 6.8 statuslogger debug files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger68_debug.log')]
-    sl = StatusLogger(None, files=files)
-    sl.analyze()
-    assert sl.analyzed
-    s = Summary(sl.nodes)
-    busiest_stages = s.get_busiest_stages()
-    name, status, stage, value = busiest_stages[0]
-    assert name == files[0]
-    assert stage == "TPC/all/WRITE_REMOTE"
-    assert status == "pending"
-    assert value == 13094
+    def test_db2552_system_log_format(self):
+        """should work with new statuslogger files"""
+        files = [
+            os.path.join(
+                current_dir(__file__), "..", "testdata", "statuslogger_new.log"
+            )
+        ]
+        sl = StatusLogger(None, files=files)
+        sl.analyze()
+        self.assertTrue(sl.analyzed)
+        s = Summary(sl.nodes)
+        busiest_stages = s.get_busiest_stages()
+        name, status, stage, value = busiest_stages[0]
+        self.assertEqual(name, files[0])
+        self.assertEqual(stage, "TPC/all/WRITE_REMOTE")
+        self.assertEqual(status, "pending")
+        self.assertEqual(value, 13094)
 
-def test_68_system_log_format():
-    """should work with DSE 6.8 statuslogger files"""
-    files = [os.path.join(current_dir(__file__), '..', 'testdata', 'statuslogger_68.log')]
-    sl = StatusLogger(None, files=files)
-    sl.analyze()
-    assert sl.analyzed
-    s = Summary(sl.nodes)
-    busiest_stages = s.get_busiest_stages()
-    name, status, stage, value = busiest_stages[0]
-    assert name == files[0]
-    assert stage == "TPC/all/WRITE_REMOTE"
-    assert status == "pending"
-    assert value == 13094
+    def test_68_debug_log_format(self):
+        """should work with DSE 6.8 statuslogger debug files"""
+        files = [
+            os.path.join(
+                current_dir(__file__), "..", "testdata", "statuslogger68_debug.log"
+            )
+        ]
+        sl = StatusLogger(None, files=files)
+        sl.analyze()
+        self.assertTrue(sl.analyzed)
+        s = Summary(sl.nodes)
+        busiest_stages = s.get_busiest_stages()
+        name, status, stage, value = busiest_stages[0]
+        self.assertEqual(name, files[0])
+        self.assertEqual(stage, "TPC/all/WRITE_REMOTE")
+        self.assertEqual(status, "pending")
+        self.assertEqual(value, 13094)
+
+    def test_68_system_log_format(self):
+        """should work with DSE 6.8 statuslogger files"""
+        files = [
+            os.path.join(current_dir(__file__), "..", "testdata", "statuslogger_68.log")
+        ]
+        sl = StatusLogger(None, files=files)
+        sl.analyze()
+        self.assertTrue(sl.analyzed)
+        s = Summary(sl.nodes)
+        busiest_stages = s.get_busiest_stages()
+        name, status, stage, value = busiest_stages[0]
+        self.assertEqual(name, files[0])
+        self.assertEqual(stage, "TPC/all/WRITE_REMOTE")
+        self.assertEqual(status, "pending")
+        self.assertEqual(value, 13094)

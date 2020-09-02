@@ -12,5 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-pylint $PARENT_PATH/../pysper $PARENT_PATH/../tests --rcfile=$PARENT_PATH/../.pylintrc
+flake8 $PARENT_PATH/pysper $PARENT_PATH/tests
+black .

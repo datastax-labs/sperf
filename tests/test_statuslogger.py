@@ -13,31 +13,39 @@
 # limitations under the License.
 
 """tests for the base sperf command"""
+import unittest
 import os
 import types
-import pytest
 from pysper import VERSION
 from pysper.commands.core import statuslogger
 from tests import current_dir, steal_output
 
-@pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
-def test_sperf():
-    """integration test, this is not the best test and only verifies no change in calculations
-as changes in the codebase occur."""
-    args = types.SimpleNamespace()
-    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "diag", "DSE_CLUSTER")
-    args.files = []
-    args.stages = "all"
-    args.start = None
-    args.end = None
-    args.debug_log_prefix = "debug.log"
-    args.reporter = "summary"
-    args.system_log_prefix = "system.log"
-    def run():
-        statuslogger.run(args)
-    output = steal_output(run)
-        #reads better with the extra newline
-    assert output == "sperf core statuslogger version: %s\n" % (VERSION) + """
+
+class TestSperf(unittest.TestCase):
+    def test_sperf(self):
+        """integration test, this is not the best test and only verifies no change in calculations
+        as changes in the codebase occur."""
+        args = types.SimpleNamespace()
+        args.diag_dir = os.path.join(
+            current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+        )
+        args.files = []
+        args.stages = "all"
+        args.start = None
+        args.end = None
+        args.debug_log_prefix = "debug.log"
+        args.reporter = "summary"
+        args.system_log_prefix = "system.log"
+
+        def run():
+            statuslogger.run(args)
+
+        output = steal_output(run)
+        # reads better with the extra newline
+        self.assertEqual(
+            output,
+            "sperf core statuslogger version: %s\n" % (VERSION)
+            + """
 Summary (22,054 lines)
 Summary (444 skipped lines)
 
@@ -49,9 +57,9 @@ duration: 1.89 hours
 total stages analyzed: 2
 total nodes analyzed: 3
 
-GC pauses  max        p99        p75        p50        p25        min        
-           ---        ---        ---        ---        ---        ---        
-ms         800        729        358        282        243        201        
+GC pauses  max        p99        p75        p50        p25        min
+           ---        ---        ---        ---        ---        ---
+ms         800        729        358        282        243        201
 total GC events: 236
 
 busiest tables by ops across all nodes
@@ -64,33 +72,38 @@ busiest table by data across all nodes
 
 busiest stages across all nodes
 ------------------------------
-* CompactionExecutor active:   1  (10.101.35.102)  
-* TPC/0/WRITE_REMOTE active:   1  (10.101.35.102)  
-* CompactionExecutor pending:  1  (10.101.35.102)  
+* CompactionExecutor active:   1  (10.101.35.102)
+* TPC/0/WRITE_REMOTE active:   1  (10.101.35.102)
+* CompactionExecutor pending:  1  (10.101.35.102)
 
 busiest stages in PENDING
 ------------------------------
 10.101.35.102:
-       CompactionExecutor:  1"""
+       CompactionExecutor:  1""",
+        )
 
-@pytest.mark.skipif(os.environ.get("TEST_LEVEL") == "fast", reason="fast mode")
-def test_sperf_68():
-    """integration test, this is not the best test and only verifies no change in calculations
-as changes in the codebase occur."""
-    args = types.SimpleNamespace()
-    args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
-    args.files = []
-    args.start = None
-    args.end = None
-    args.stages = "all"
-    args.reporter = "summary"
-    args.debug_log_prefix = "debug.log"
-    args.system_log_prefix = "system.log"
-    def run():
-        statuslogger.run(args)
-    output = steal_output(run)
-        #reads better with the extra newline
-    assert output == "sperf core statuslogger version: %s\n" % (VERSION) + """
+    def test_sperf_68(self):
+        """integration test, this is not the best test and only verifies no change in calculations
+        as changes in the codebase occur."""
+        args = types.SimpleNamespace()
+        args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
+        args.files = []
+        args.start = None
+        args.end = None
+        args.stages = "all"
+        args.reporter = "summary"
+        args.debug_log_prefix = "debug.log"
+        args.system_log_prefix = "system.log"
+
+        def run():
+            statuslogger.run(args)
+
+        output = steal_output(run)
+        # reads better with the extra newline
+        self.assertEqual(
+            output,
+            "sperf core statuslogger version: %s\n" % (VERSION)
+            + """
 Summary (20,240 lines)
 Summary (2,196 skipped lines)
 
@@ -102,9 +115,9 @@ duration: 2.19 days
 total stages analyzed: 17
 total nodes analyzed: 1
 
-GC pauses  max        p99        p75        p50        p25        min        
-           ---        ---        ---        ---        ---        ---        
-ms         2066       2066       1371       615        436        251        
+GC pauses  max        p99        p75        p50        p25        min
+           ---        ---        ---        ---        ---        ---
+ms         2066       2066       1371       615        436        251
 total GC events: 7
 
 busiest tables by ops across all nodes
@@ -117,18 +130,19 @@ busiest table by data across all nodes
 
 busiest stages across all nodes
 ------------------------------
-* MemtablePostFlush pending:            6  (172.17.0.2)  
-* MemtableFlushWriter active:           3  (172.17.0.2)  
-* PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)  
-* CompactionExecutor active:            1  (172.17.0.2)  
-* MemtablePostFlush active:             1  (172.17.0.2)  
-* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)  
-* LwtStage active:                      1  (172.17.0.2)  
-* TPC/other active:                     1  (172.17.0.2)  
-* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)  
-* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)  
+* MemtablePostFlush pending:            6  (172.17.0.2)
+* MemtableFlushWriter active:           3  (172.17.0.2)
+* PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)
+* CompactionExecutor active:            1  (172.17.0.2)
+* MemtablePostFlush active:             1  (172.17.0.2)
+* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)
+* LwtStage active:                      1  (172.17.0.2)
+* TPC/other active:                     1  (172.17.0.2)
+* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)
+* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)
 
 busiest stages in PENDING
 ------------------------------
 172.17.0.2:
-       MemtablePostFlush:  6"""
+       MemtablePostFlush:  6""",
+        )

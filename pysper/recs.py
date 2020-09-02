@@ -17,12 +17,20 @@ from collections import OrderedDict
 from enum import Enum
 import sys
 
+
 class Stage:
     """stage dataclass"""
-    #pylint: disable=too-many-arguments
-    def __init__(self, name="", active=0, pending=0,
-                 local_backpressure=0, completed=0, blocked=0,
-                 all_time_blocked=0):
+
+    def __init__(
+        self,
+        name="",
+        active=0,
+        pending=0,
+        local_backpressure=0,
+        completed=0,
+        blocked=0,
+        all_time_blocked=0,
+    ):
         self.name = name
         self.active = active
         self.pending = pending
@@ -31,17 +39,25 @@ class Stage:
         self.blocked = blocked
         self.all_time_blocked = all_time_blocked
 
+
 class Engine:
     """stage analyzer will make recommendations on stages based on
     the type of stage and it's stats"""
+
     def __init__(self):
         self.memtable_lower_rec = "lower memtable_cleanup_threshold in cassandra.yaml"
         self.flush_writer_raise_rec = "raise memtable_flush_writers in cassandra.yaml"
-        self.compaction_throughput_raise_rec = "raise compaction_throughput_in_mb in cassandra.yaml"
-        self.ntr_queue_raise_rec = "raise or set -Dcassandra.max_queued_native_transport_requests= " + \
-                "(valid range is 1024-8192)"
-        self.tpc_cores_raise_rec = "raise or set tpc_concurrent_requests_limit in " + \
-                "cassandra.yaml (default is 128), if CPU is underutilized."
+        self.compaction_throughput_raise_rec = (
+            "raise compaction_throughput_in_mb in cassandra.yaml"
+        )
+        self.ntr_queue_raise_rec = (
+            "raise or set -Dcassandra.max_queued_native_transport_requests= "
+            + "(valid range is 1024-8192)"
+        )
+        self.tpc_cores_raise_rec = (
+            "raise or set tpc_concurrent_requests_limit in "
+            + "cassandra.yaml (default is 128), if CPU is underutilized."
+        )
         self.engine = OrderedDict()
         self.engine["TPC/all/WRITE_REMOTE"] = self._write_remote
         self.engine["TPC/all/WRITE_LOCAL"] = self._write_local
@@ -66,7 +82,7 @@ class Engine:
             return "full memtable", self.memtable_lower_rec
         if stage.completed > 0:
             reason = "full memtable stages previously completed is too high"
-            return  reason, self.memtable_lower_rec
+            return reason, self.memtable_lower_rec
         return None, None
 
     def _compaction(self, stage):
@@ -110,6 +126,7 @@ class Engine:
             reason, rec = rule(stage)
         return reason, rec
 
+
 def _calculate_eviction_state(node):
     """pick the ideal recommendation for a given node"""
     freq = getattr(node, "avg_evict_freq", sys.float_info.max)
@@ -118,7 +135,7 @@ def _calculate_eviction_state(node):
     too_frequent = 0.01 < freq < 20.00
     too_slow = dur > 1000
     reason = None
-    if dur == 0: # duration guards againt all the case of no evictions
+    if dur == 0:  # duration guards againt all the case of no evictions
         reason = EvictionReason.NONE
     elif ratio < 0.10:
         reason = EvictionReason.BYTE
@@ -128,12 +145,15 @@ def _calculate_eviction_state(node):
         reason = EvictionReason.MIXED
     return too_frequent, too_slow, reason
 
+
 class EvictionReason(Enum):
     """eviction reason for filter cache statistics"""
+
     NONE = 1
     MIXED = 2
     ITEM = 3
     BYTE = 4
+
 
 def analyze_filter_cache_stats(node):
     """look at filter cache statistics and generate recommendations"""
@@ -143,44 +163,60 @@ def analyze_filter_cache_stats(node):
     too_low = last_evict_item_limit <= min_limit
     too_frequent, too_slow, eviction_reason = _calculate_eviction_state(node)
     if eviction_reason == EvictionReason.NONE:
-        #means no evictions
+        # means no evictions
         return None, None
     if too_frequent and too_slow:
         reason = "Filter cache evictions are happening too frequently and too slowly."
-        rec = "Make more FQ queries uncached. " + \
-            "Example: change \"fq\":\"status:DELETED\" to \"fq\":\"{!cached=false}status:DELETED\"."
+        rec = (
+            "Make more FQ queries uncached. "
+            + 'Example: change "fq":"status:DELETED" to "fq":"{!cached=false}status:DELETED".'
+        )
         return reason, rec
     if too_frequent:
         reason = "Filter cache evictions are happening too frequently."
         if eviction_reason == EvictionReason.ITEM:
-            rec = "Raise filter cache item limit from %i to %i via -Dsolr.solrfiltercache.maxSize." \
+            rec = (
+                "Raise filter cache item limit from %i to %i via -Dsolr.solrfiltercache.maxSize."
                 % (last_evict_item_limit, min(256000, last_evict_item_limit * step))
+            )
         elif eviction_reason == EvictionReason.BYTE:
-            rec = "Raise filtercache lowWaterMarkMB and highWaterMarkMB on solr cores. " + \
-                  "Consult documentation for your DSE version."
+            rec = (
+                "Raise filtercache lowWaterMarkMB and highWaterMarkMB on solr cores. "
+                + "Consult documentation for your DSE version."
+            )
         else:
-            rec = "Raise filter cache byte limit from %i to %i via -Dsolr.solrfiltercache.maxSize "  \
-                % (last_evict_item_limit, min(256000, last_evict_item_limit * step)) + \
-                    "AND raise filtercache lowWaterMarkMB and highWaterMarkMB " + \
-                    "on solr cores. Consult documentation for your DSE version."
+            rec = (
+                "Raise filter cache byte limit from %i to %i via -Dsolr.solrfiltercache.maxSize "
+                % (last_evict_item_limit, min(256000, last_evict_item_limit * step))
+                + "AND raise filtercache lowWaterMarkMB and highWaterMarkMB "
+                + "on solr cores. Consult documentation for your DSE version."
+            )
         return reason, rec
     if too_slow and too_low:
         reason = "Filter cache eviction duration long but limit is already too low."
-        rec = "Make more FQ queries uncached. " + \
-            "Example: change \"fq\":\"status:DELETED\" to \"fq\":\"{!cached=false}status:DELETED\"."
+        rec = (
+            "Make more FQ queries uncached. "
+            + 'Example: change "fq":"status:DELETED" to "fq":"{!cached=false}status:DELETED".'
+        )
         return reason, rec
     if too_slow:
         reason = "Filter cache eviction duration is too long."
         if eviction_reason == EvictionReason.ITEM:
-            rec = "Lower filter cache item limit from %i to %i via -Dsolr.solrfiltercache.maxSize." \
+            rec = (
+                "Lower filter cache item limit from %i to %i via -Dsolr.solrfiltercache.maxSize."
                 % (last_evict_item_limit, max(min_limit, last_evict_item_limit / step))
+            )
         elif eviction_reason == EvictionReason.BYTE:
-            rec = "Lower filtercache lowWaterMarkMB and highWaterMarkMB on solr cores. " + \
-                  "Consult documentation for your DSE version."
+            rec = (
+                "Lower filtercache lowWaterMarkMB and highWaterMarkMB on solr cores. "
+                + "Consult documentation for your DSE version."
+            )
         else:
-            rec = "Lower filter cache byte limit from %i to %i via -Dsolr.solrfiltercache.maxSize "  \
-                % (last_evict_item_limit, max(min_limit, last_evict_item_limit / step)) + \
-                   "AND lower filtercache lowWaterMarkMB and highWaterMarkMB on " + \
-                   "solr cores. Consult documentation for your DSE version."
+            rec = (
+                "Lower filter cache byte limit from %i to %i via -Dsolr.solrfiltercache.maxSize "
+                % (last_evict_item_limit, max(min_limit, last_evict_item_limit / step))
+                + "AND lower filtercache lowWaterMarkMB and highWaterMarkMB on "
+                + "solr cores. Consult documentation for your DSE version."
+            )
         return reason, rec
     return None, None

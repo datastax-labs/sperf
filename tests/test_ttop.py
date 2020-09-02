@@ -13,56 +13,70 @@
 # limitations under the License.
 
 """ ttop test module """
+import unittest
 import os
-from tests import current_dir, steal_output, assert_in_output
+from tests import current_dir, steal_output
 from pysper.ttop import TTopAnalyzer
 
-def test_ttop_report():
-    """ttop parser test"""
-    test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
-    ttop = TTopAnalyzer([test_file])
-    output = steal_output(ttop.print_report)
-    assert_in_output("""2020-01-09 16:08:06                      Threads    CPU%       Total: 28.06%
-================================================================================
-ParkedThreadsMonitor                     4          23.52      -----------------
-RMI TCP Connection(2)                    4          2.9        --        
-CoreThread                               20         1.2        -         
-DseGossipStateUpdater                    4          0.1                  
-ScheduledTasks                           4          0.08                 
-NodeHealthPlugin-Scheduler-thread        4          0.06                 
-OptionalTasks                            4          0.05                 
-JMX server connection timeout 425        4          0.04                 
-ContainerBackgroundProcessor[StandardEngine[Solr]] 4          0.02                 
-PO-thread                                4          0.02                 
-GossipTasks                              4          0.01                 
-AsyncAppender-Worker-ASYNCDEBUGLOG       4          0.01                 
-LeasePlugin                              4          0.01                 
-NonPeriodicTasks                         4          0.01                 
-RxSchedulerPurge                         4          0.01                 
-internode-messaging RemoteMessageServer acceptor 4          0.0""", output)
 
-def test_ttop_allocation_report():
-    """ttop parser allocation test"""
-    test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
-    ttop = TTopAnalyzer([test_file])
-    def run():
-        ttop.print_report(alloc=True)
-    output = steal_output(run)
-    assert_in_output("""2020-01-09 16:08:06                      Threads    Alloc/s    Total: 3.38 mb
+class TestTTop(unittest.TestCase):
+    """tttop tests"""
+
+    def test_ttop_report(self):
+        """ttop parser test"""
+        test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
+        ttop = TTopAnalyzer([test_file])
+        output = steal_output(ttop.print_report)
+        self.maxDiff = None
+        self.assertIn(
+            """2020-01-09 16:08:06                                Threads CPU%  Total: 28.06%
 ================================================================================
-CoreThread                               20         2.14 mb    -------------
-RMI TCP Connection(2)                    4          1.14 mb    -------   
-DseGossipStateUpdater                    4          38.00 kb             
-ScheduledTasks                           4          24.00 kb             
-NodeHealthPlugin-Scheduler-thread        4          19.00 kb             
-ContainerBackgroundProcessor[StandardEngine[Solr]] 4          6.01 kb              
-JMX server connection timeout 425        4          4.18 kb              
-PO-thread                                4          2.47 kb              
-AsyncAppender-Worker-ASYNCDEBUGLOG       4          1.90 kb              
-LeasePlugin                              4          1.38 kb              
-NonPeriodicTasks                         4          1.07 kb              
-GossipTasks                              4          841 bytes            
-RxSchedulerPurge                         4          710 bytes            
-OptionalTasks                            4          323 bytes            
-ParkedThreadsMonitor                     4          317 bytes            
-internode-messaging RemoteMessageServer acceptor 4          0 byte""", output)
+ParkedThreadsMonitor                               4       23.52 -----------------
+RMI TCP Connection(2)                              4       2.90  --
+CoreThread                                         20      1.20  -
+DseGossipStateUpdater                              4       0.10
+ScheduledTasks                                     4       0.08
+NodeHealthPlugin-Scheduler-thread                  4       0.06
+OptionalTasks                                      4       0.05
+JMX server connection timeout 425                  4       0.04
+ContainerBackgroundProcessor[StandardEngine[Solr]] 4       0.02
+PO-thread                                          4       0.02
+GossipTasks                                        4       0.01
+AsyncAppender-Worker-ASYNCDEBUGLOG                 4       0.01
+LeasePlugin                                        4       0.01
+NonPeriodicTasks                                   4       0.01
+RxSchedulerPurge                                   4       0.01
+internode-messaging RemoteMessageServer acceptor   4       0.00""",
+            output,
+        )
+
+    def test_ttop_allocation_report(self):
+        """ttop parser allocation test"""
+        test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
+        ttop = TTopAnalyzer([test_file])
+
+        def run():
+            ttop.print_report(alloc=True)
+
+        self.maxDiff = None
+        output = steal_output(run)
+        self.assertIn(
+            """================================================================================
+CoreThread                                         20      2.14 mb   -------------
+RMI TCP Connection(2)                              4       1.14 mb   -------
+DseGossipStateUpdater                              4       38.00 kb
+ScheduledTasks                                     4       24.00 kb
+NodeHealthPlugin-Scheduler-thread                  4       19.00 kb
+ContainerBackgroundProcessor[StandardEngine[Solr]] 4       6.01 kb
+JMX server connection timeout 425                  4       4.18 kb
+PO-thread                                          4       2.47 kb
+AsyncAppender-Worker-ASYNCDEBUGLOG                 4       1.90 kb
+LeasePlugin                                        4       1.38 kb
+NonPeriodicTasks                                   4       1.07 kb
+GossipTasks                                        4       841 bytes
+RxSchedulerPurge                                   4       710 bytes
+OptionalTasks                                      4       323 bytes
+ParkedThreadsMonitor                               4       317 bytes
+internode-messaging RemoteMessageServer acceptor   4       0 byte""",
+            output,
+        )
