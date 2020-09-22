@@ -72,3 +72,53 @@ class TestDates(unittest.TestCase):
             )
         finally:
             env.IS_US_FMT = orig
+
+    def test_us_dates_with_incomplete_timestamp(self):
+        """allow users to supply partial timestamps"""
+        orig = env.IS_US_FMT
+        try:
+            env.IS_US_FMT = True
+            parser = dates.LogDateFormatParser()
+            parsed = parser.parse_timestamp("2018-10-23")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 00:00:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-10-23 15:")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:00:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-10-23 15:50")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-10-23 15:50:01")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,000000"
+            )
+        finally:
+            env.IS_US_FMT = orig
+
+    def test_european_dates_with_incomplete_timestamp(self):
+        """allow users to supply partial timestamps"""
+        orig = env.IS_US_FMT
+        try:
+            env.IS_US_FMT = False
+            parser = dates.LogDateFormatParser()
+            parsed = parser.parse_timestamp("2018-23-10")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 00:00:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-23-10 15:")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:00:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-23-10 15:50")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:00,000000"
+            )
+            parsed = parser.parse_timestamp("2018-23-10 15:50:01")
+            self.assertEqual(
+                parsed.strftime("%Y-%m-%d %H:%M:%S,%f"), "2018-10-23 15:50:01,000000"
+            )
+        finally:
+            env.IS_US_FMT = orig

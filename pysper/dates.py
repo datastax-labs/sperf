@@ -64,15 +64,26 @@ class LogDateFormatParser:
         """ParseTimestamp creates a LogTimestamp based on the
         CASSANDRA_LOG_FORMAT and assumes UTC timezone always"""
         parsed = None
+        parsed_hour = 0
+        parsed_minute = 0
+        parsed_second = 0
+        parsed_microsecond = 0
+        try:
+            parsed_hour = int(time_str[11:13])
+            parsed_minute = int(time_str[14:16])
+            parsed_second = int(time_str[17:19])
+            parsed_microsecond = int(time_str[20:23]) * 1000
+        except ValueError:
+            pass
         try:
             parsed = datetime(
-                int(time_str[:4]),
-                int(time_str[self.mp : self.mp + 2]),
-                int(time_str[self.dp : self.dp + 2]),
-                int(time_str[11:13]),
-                int(time_str[14:16]),
-                int(time_str[17:19]),
-                int(time_str[20:23]) * 1000,
+                year=int(time_str[:4]),
+                month=int(time_str[self.mp : self.mp + 2]),
+                day=int(time_str[self.dp : self.dp + 2]),
+                hour=parsed_hour,
+                minute=parsed_minute,
+                second=parsed_second,
+                microsecond=parsed_microsecond,
             )
         except ValueError as e:
             fmt = "eu"
