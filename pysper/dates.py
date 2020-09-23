@@ -72,8 +72,8 @@ class LogDateFormatParser:
             parsed_year = int(time_str[:4])
             parsed_month = int(time_str[self.mp : self.mp + 2])
             parsed_day = int(time_str[self.dp : self.dp + 2])
-        except:
-            msg = "unable to parse date in '%s'" % (time_str)
+        except ValueError as e:
+            msg = "unable to parse date in '%s'. " % (time_str) + "Error was %s" % (e)
             raise Exception(msg)
         try:
             parsed_hour = int(time_str[11:13])
