@@ -55,6 +55,12 @@ def _build_sperf_cmd():
         action="store_true",
         help="set log format to EU. Is ignored by sysbottle which has it's own logging engine",
     )
+    parser.add_argument(
+        "-pt" "--permissive-time",
+        dest="permissive_time",
+        action="store_true",
+        help="allow partial timestamps for commandline arguments",
+    )
     sperf_default.build(parser)
     return parser, parser.add_subparsers(title="Commands")
 
@@ -79,6 +85,8 @@ def run():
         env.DEBUG = args.debug
     if args.eu:
         env.IS_US_FMT = False
+    if args.permissive_time:
+        env.PERMISSIVE_TIME = True
     if hasattr(args, "func"):
         try:
             args.func(args)
