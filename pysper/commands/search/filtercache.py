@@ -43,13 +43,15 @@ def add_flags(subparsers, run_func, is_deprecated=False):
         "-a",
         "--after",
         default="0001-01-01 00:00:00,000000",
-        help="optional filter for log times to only look at " + "logs after this time",
+        help="optional filter for log times to only look at logs after this time "
+        + "(format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
     filtercache_parser.add_argument(
         "-b",
         "--before",
         default="9999-12-31 23:59:59,999999",
-        help="optional filter for log times to only look at " + "logs before this time",
+        help="optional filter for log times to only look at logs before this time "
+        + "(format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
     filtercache_parser.set_defaults(func=run_func)
 
