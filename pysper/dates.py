@@ -64,15 +64,40 @@ class LogDateFormatParser:
         """ParseTimestamp creates a LogTimestamp based on the
         CASSANDRA_LOG_FORMAT and assumes UTC timezone always"""
         parsed = None
+        parsed_hour = 0
+        parsed_minute = 0
+        parsed_second = 0
+        parsed_microsecond = 0
+        try:
+            parsed_year = int(time_str[:4])
+            parsed_month = int(time_str[self.mp : self.mp + 2])
+            parsed_day = int(time_str[self.dp : self.dp + 2])
+        except ValueError as e:
+            msg = "unable to parse date in '%s'. " % (time_str) + "Error was %s" % (e)
+            raise Exception(msg)
+        try:
+            parsed_hour = int(time_str[11:13])
+            parsed_minute = int(time_str[14:16])
+            parsed_second = int(time_str[17:19])
+            parsed_microsecond = int(time_str[20:23]) * 1000
+        except ValueError as e:
+            if not env.PERMISSIVE_TIME:
+                msg = (
+                    "unable to parse timestamp in '%s'. " % (time_str)
+                    + "If this is a desired partial timestamp, you can rerun with "
+                    + "'sperf --permissive-time <subcommand>' to ignore. "
+                    + "Error was %s" % (e)
+                )
+                raise Exception(msg)
         try:
             parsed = datetime(
-                int(time_str[:4]),
-                int(time_str[self.mp : self.mp + 2]),
-                int(time_str[self.dp : self.dp + 2]),
-                int(time_str[11:13]),
-                int(time_str[14:16]),
-                int(time_str[17:19]),
-                int(time_str[20:23]) * 1000,
+                year=parsed_year,
+                month=parsed_month,
+                day=parsed_day,
+                hour=parsed_hour,
+                minute=parsed_minute,
+                second=parsed_second,
+                microsecond=parsed_microsecond,
             )
         except ValueError as e:
             fmt = "eu"
@@ -81,7 +106,7 @@ class LogDateFormatParser:
                 fmt = "us"
                 fix = "-e "
             msg = (
-                "invalid date, current mode log format "
+                "invalid datetime, current mode log format "
                 + "is %s. Try to rerun with sperf %s<subcommand> error was %s"
                 % (fmt, fix, e)
             )
