@@ -59,7 +59,8 @@ def _build_sperf_cmd():
         "-pt" "--permissive-time",
         dest="permissive_time",
         action="store_true",
-        help="allow partial timestamps for commandline arguments",
+        help="allow partial timestamps for commandline arguments "
+        + "(time format: YYYY-MM-DD [hh[:mm[:ss[,SSS]]]])",
     )
     sperf_default.build(parser)
     return parser, parser.add_subparsers(title="Commands")

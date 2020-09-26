@@ -51,7 +51,7 @@ def add_flags(subparsers, run_default_func, is_deprecated=False):
         nargs="?",
         const=None,
         default=None,
-        help="start date/time to begin parsing",
+        help="start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
     statuslogger_parser.add_argument(
         "-et",
@@ -60,7 +60,7 @@ def add_flags(subparsers, run_default_func, is_deprecated=False):
         nargs="?",
         const=None,
         default=None,
-        help="end date/time to stop parsing",
+        help="end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
 
     statuslogger_parser.add_argument(
