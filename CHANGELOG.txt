@@ -1,3 +1,8 @@
+sperf 0.6.6
+-----------
+* Add timeformat help messages
+* Allow for more permissive date parsing
+
 sperf 0.6.5
 -----------
 * formatting improvement for ttop report
