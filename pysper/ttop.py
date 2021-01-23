@@ -47,7 +47,7 @@ class TTopParser:
     thread_match = re.compile(r" +thread count: (?P<thread_count>[0-9]+)")
     #  heap allocation rate 435mb/s
     heap_match = re.compile(
-        r" +heap allocation rate (?P<heap_rate>[0-9]+)(?P<heap_unit>[m|k]?b)/s"
+        r" +heap allocation rate (?P<heap_rate>[0-9]+)(?P<heap_unit>[m|k|g]?b)/s"
     )
     # [001900] user= 4.87% sys= 5.52% alloc= 2172kb/s - RMI TCP Connection(184)-127.0.0.1
     tinfo_match = re.compile(
@@ -144,6 +144,8 @@ class TTopParser:
 
     def convert(self, rate, unit):
         """ converts rate to bytes """
+        if unit == "gb":
+            return int(rate) * 1024 * 1024 * 1024
         if unit == "mb":
             return int(rate) * 1024 * 1024
         if unit == "kb":
