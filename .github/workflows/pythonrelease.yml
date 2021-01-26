@@ -65,7 +65,7 @@ jobs:
       id: release_info
       run: |
         release_upload_url="$(cat artifacts/release-upload-url)"
-        echo "::set-env name=RELEASE_UPLOAD_URL::$release_upload_url"
+        echo "name=RELEASE_UPLOAD_URL::$release_upload_url" >> $GITHUB_ENV
         echo "release upload url: $release_upload_url"
     - name: Build binary
       shell: bash
