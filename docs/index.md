@@ -156,7 +156,7 @@ recommendations
 * tune for less IO
 ```
 
-[back to table of contents](#What-can-it-do)
+[back to table of contents](#what-can-it-do)
 
 ### High CPU Usage
 
@@ -253,7 +253,7 @@ AsyncFileHandlerWriter                   4          0.0
 internode-messaging RemoteMessageServer acceptor 4          0.0                  
 http-bio                                 4          0.0              
 ```
-[back to table of contents](#What-can-it-do)
+[back to table of contents](#what-can-it-do)
 
 ### Configuration Differences Between Nodes
 
@@ -360,7 +360,7 @@ parser warnings
 no warnings
 ```
 
-[back to table of contents](#What-can-it-do)
+[back to table of contents](#what-can-it-do)
 
 ### Diagnose High GC
 
@@ -463,7 +463,7 @@ AsyncFileHandlerWriter                   4          32 bytes
 internode-messaging RemoteMessageServer acceptor 4          0 byte   
 ```
 
-[back to table of contents](#What-can-it-do)
+[back to table of contents](#what-can-it-do)
 
 ### Identify those pesky SOLR queries that cause problems
 
@@ -473,7 +473,7 @@ internode-messaging RemoteMessageServer acceptor 4          0 byte
 * `sperf search filtercache`
 * turn on query logging for Solr and run `sperf search queryscore`
 
-[back to table of contents](#What-can-it-do)
+[back to table of contents](#what-can-it-do)
 
 ## All the tools
 
@@ -487,8 +487,8 @@ internode-messaging RemoteMessageServer acceptor 4          0 byte
 * sperf [core statuslogger](commands#sperf-core-statuslogger) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
 * sperf [search filtercache](commands#sperf-search-filtercache) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
 * sperf [search queryscore](commands#sperf-core-queryscore) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
-* sperf [sysbottle](commands#sperf-sysbottle.md) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
-* sperf [ttop](commands#sperf-ttop.md) - Analyze ttop files
+* sperf [sysbottle](commands#sperf-sysbottle) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
+* sperf [ttop](commands#sperf-ttop) - Analyze ttop files
 
 ### Note
 
