@@ -84,12 +84,12 @@ optional arguments:
   -k [TOP_K], --top_k [TOP_K]
                         number of top threads to show (default all)
   -st [START], --start [START]
-                        start date/time to begin parsing
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -et [END], --end [END]
-                        end date/time to stop parsing
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
 ```
 
-## sperf bgrep
+## sperf core bgrep
 
 ```
 usage: sperf core bgrep [-h] [-i [INTERVAL]] [-st [START]] [-et [END]] [-c]
@@ -104,9 +104,9 @@ optional arguments:
   -i [INTERVAL], --interval [INTERVAL]
                         interval to report on in seconds (default 3600)
   -st [START], --start [START]
-                        start date/time to begin parsing
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -et [END], --end [END]
-                        end date/time to stop parsing
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -c, --case            case-sensitive search
   -d DIAG_DIR, --diagdir DIAG_DIR
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
@@ -114,7 +114,7 @@ optional arguments:
                         comma separated file list to compare. Alternative to --diagdir
 ```
 
-## sperf diag
+## sperf core diag
 
 ```
 usage: sperf core diag [-h] [-d DIAG_DIR] [-s SYSTEM_LOG_PREFIX]
@@ -142,7 +142,7 @@ optional arguments:
                         "blockdev_report")
 ```
 
-## sperf gc
+## sperf core gc
 
 ```
 usage: sperf core gc [-h] [-r [REPORTER]] [-i [INTERVAL]] [-k [TOP_K]]
@@ -157,16 +157,16 @@ optional arguments:
   -k [TOP_K], --top-k [TOP_K]
                         top K worst GC events to show (default 3)
   -st [START], --start [START]
-                        start date/time to begin parsing
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -et [END], --end [END]
-                        end date/time to stop parsing
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -d DIAG_DIR, --diagdir DIAG_DIR
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
   -f FILES, --files FILES
                         comma separated file list to compare. Alternative to --diagdir
 ```
 
-## sperf jarcheck
+## sperf core jarcheck
 
 ```
 usage: sperf core jarcheck [-h] [-f FILES] [-d DIAG_DIR] [-o]
@@ -180,7 +180,7 @@ optional arguments:
   -o, --diffonly        only report on the jars that are different
 ```
 
-## sperf schema
+## sperf core schema
 
 ```
 usage: sperf core schema [-h] [-f FILES] [-d DIAG_DIR]
@@ -193,7 +193,7 @@ optional arguments:
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
 ```
 
-## sperf slowquery
+## sperf core slowquery
 
 ```
 usage: sperf core slowquery [-h] [-f FILES] [-d DIAG_DIR] [-i [INTERVAL]]
@@ -210,12 +210,12 @@ optional arguments:
   -t [TOP], --top [TOP]
                         number of top queries to show (default 3)
   -st [START], --start [START]
-                        start date/time to begin parsing
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -et [END], --end [END]
-                        end date/time to stop parsing
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
 ```
 
-## sperf statuslogger
+## sperf core statuslogger
 
 ```
 usage: sperf core statuslogger [-h] [-r [REPORTER]] [-s [STAGES]]
@@ -230,9 +230,9 @@ optional arguments:
   -s [STAGES], --stages [STAGES]
                         csv list of stage prefixes to collect, or 'all' (default: all)
   -st [START], --start [START]
-                        start date/time to begin parsing
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -et [END], --end [END]
-                        end date/time to stop parsing
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -dl DEBUG_LOG_PREFIX, --debug_log_prefix DEBUG_LOG_PREFIX
                         if debug.log in the diag tarball has an oddball name, can still look based on this prefix (default "debug.log")
   -sl SYSTEM_LOG_PREFIX, --system_log_prefix SYSTEM_LOG_PREFIX
@@ -243,7 +243,7 @@ optional arguments:
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
 ```
 
-## sperf filtercache
+## sperf search filtercache
 
 ```
 usage: sperf search filtercache [-h] [-f FILES] [-d DIAG_DIR]
@@ -259,12 +259,12 @@ optional arguments:
                         if system.log in the diag tarball has a different, name, sperf can still look based on this prefix (default
                         "system.log")
   -a AFTER, --after AFTER
-                        optional filter for log times to only look at logs after this time
+                        optional filter for log times to only look at logs after this time (format: YYYY-MM-DD hh:mm:ss,SSS)
   -b BEFORE, --before BEFORE
-                        optional filter for log times to only look at logs before this time
+                        optional filter for log times to only look at logs before this time (format: YYYY-MM-DD hh:mm:ss,SSS)
 ```
 
-## sperf queryscore
+## sperf search queryscore
 
 ```
 usage: sperf search queryscore [-h] [-s SCORETHRESHOLD] [-t TOP] [-u]

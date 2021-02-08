@@ -8,13 +8,13 @@
 
 Lots of things, you can run it as a high level tool to find the basic problems and get some easy recommendations or you can use it in a targeted fashion to find specific problems.
 
-* [General Recommendations](#General-Recommendations)
-* [High CPU Usage](#High-CPU-Usage)
-* [Configuration Differences Between Nodes](#Configuration-Differences-Between-Nodes)
-* [Diagnose High GC](#Diagnose-High-GC)
-* [Identify those pesky SOLR queries that cause problems in DSE Search](#Identify-those-pesky-SOLR-queries-that-cause-problems)
+* [General Recommendations](#general-recommendations)
+* [High CPU Usage](#high-cpu-usage)
+* [Configuration Differences Between Nodes](#configuration-differences-between-nodes)
+* [Diagnose High GC](#diagnose-gigh-gc)
+* [Identify those pesky SOLR queries that cause problems in DSE Search](#identify-those-pesky-solr-queries-that-cause-problems)
 
-[All the tools and their functions are listed below](All-the-tools)
+[All the tools and their functions are listed below](#all-the-tools)
 
 ### General Recommendations
 

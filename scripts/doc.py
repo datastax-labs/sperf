@@ -52,7 +52,10 @@ def write_output(cmd, subcommand, target_file, extra=None):
             [cmd, subcommand, "-h"], stdout=subprocess.PIPE
         ).stdout.decode("utf-8")
     with open(target_file, "a") as file_desc:
-        file_desc.write("## sperf %s" % os.path.basename(subcommand))
+        if extra:
+            file_desc.write("## sperf %s %s" % (extra, os.path.basename(subcommand)))
+        else:
+            file_desc.write("## sperf %s" % os.path.basename(subcommand))
         file_desc.write("\n\n")
         file_desc.write("```\n")
         file_desc.write(output)
