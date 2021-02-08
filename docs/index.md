@@ -486,7 +486,7 @@ internode-messaging RemoteMessageServer acceptor 4          0 byte
 * sperf [core slowquery](commands#sperf-core-slowquery) - Generates a report of slow queries in debug log. DSE 6.0-6.7
 * sperf [core statuslogger](commands#sperf-core-statuslogger) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
 * sperf [search filtercache](commands#sperf-search-filtercache) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
-* sperf [search queryscore](commands#sperf-core-queryscore) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
+* sperf [search queryscore](commands#sperf-search-queryscore) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
 * sperf [sysbottle](commands#sperf-sysbottle) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
 * sperf [ttop](commands#sperf-ttop) - Analyze ttop files
 
