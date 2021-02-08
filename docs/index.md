@@ -8,7 +8,15 @@
 
 Lots of things, you can run it as a high level tool to find the basic problems and get some easy recommendations or you can use it in a targeted fashion to find specific problems.
 
-### Give you recommendations on how to fix your problems
+* [General Recommendations](#General-Recommendations)
+* [High CPU Usage](#High-CPU-Usage)
+* [Configuration Differences Between Nodes](#Configuration-Differences-Between-Nodes)
+* [Diagnose High GC](#Diagnose-High-GC)
+* [Identify those pesky SOLR queries that cause problems in DSE Search](#Identify-those-pesky-SOLR-queries-that-cause-problems)
+
+[All the tools and their functions are listed below](All-the-tools)
+
+### General Recommendations
 
 * [download diagnostic tarball from cluster](https://github.com/DataStax-Toolkit/diagnostic-collection) and extract it
 * navigate into tarball folder `cd my_extracted_tarball`
@@ -41,6 +49,8 @@ recommendations
 ---------------
 * There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
 ```
+
+[back to table of contents](#What-can-it-do)
 
 ### For Apache Cassandra™ or DSE Core latency issues
 
@@ -146,7 +156,9 @@ recommendations
 * tune for less IO
 ```
 
-### What's eating my CPU?
+[back to table of contents](#What-can-it-do)
+
+### High CPU Usage
 
 * capture a ttop: `nodetool sjk ttop -ri 1s > my_test.ttop` ctrl+c when done (at least a minute of data during a high CPU event)
 * run `sperf ttop my_test.ttop` to analyze CPU behavior
@@ -241,7 +253,9 @@ AsyncFileHandlerWriter                   4          0.0
 internode-messaging RemoteMessageServer acceptor 4          0.0                  
 http-bio                                 4          0.0              
 ```
-### Find configuration and performance differences between nodes
+[back to table of contents](#What-can-it-do)
+
+### Configuration Differences Between Nodes
 
 * [download diagnostic tarball from cluster](https://github.com/DataStax-Toolkit/diagnostic-collection) and extract it
 * navigate into tarball folder `cd my_extracted_tarball`
@@ -346,6 +360,8 @@ parser warnings
 no warnings
 ```
 
+[back to table of contents](#What-can-it-do)
+
 ### Diagnose High GC
 
 * [download diagnostic tarball from cluster](https://github.com/DataStax-Toolkit/diagnostic-collection) and extract it
@@ -447,7 +463,9 @@ AsyncFileHandlerWriter                   4          32 bytes
 internode-messaging RemoteMessageServer acceptor 4          0 byte   
 ```
 
-### Identify those pesky SOLR queries cause problems
+[back to table of contents](#What-can-it-do)
+
+### Identify those pesky SOLR queries that cause problems
 
 * [download diagnostic tarball from cluster](https://github.com/DataStax-Toolkit/diagnostic-collection) and extract it
 * navigate into tarball folder `cd my_extracted_tarball`
@@ -455,21 +473,22 @@ internode-messaging RemoteMessageServer acceptor 4          0 byte
 * `sperf search filtercache`
 * turn on query logging for Solr and run `sperf search queryscore`
 
+[back to table of contents](#What-can-it-do)
 
 ## All the tools
 
 * sperf  - Default command that generates a simple tarball summary and recommendations for next step.
-* sperf [core bgrep](commands/core/bgrep.md) - search for custom regex and bucketize results
-* sperf [core diag](commands/core/diag.md) - Generates a diagtarball report. DSE 5.0-6.7 and Cassandra 2.1-3.11.x
-* sperf [core gc](commands/core/gc.md) - Show gc info DSE 5.0-6.7 and Cassandra 2.1-3.11.x
-* sperf [core jarcheck](commands/core/jarcheck.md) - Checks jar versions in output.logs. Supports tarballs and files. DSE 5.0-6.7
-* sperf [core schema](commands/core/schema.md) - Analyze schema for summary. DSE 5.0-6.8
-* sperf [core slowquery](commands/core/slowquery.md) - Generates a report of slow queries in debug log. DSE 6.0-6.7
-* sperf [core statuslogger](commands/core/statuslogger.md) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
-* sperf [search filtercache](commands/search/filtercache.md) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
-* sperf [search queryscore](commands/search/queryscore.md) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
-* sperf [sysbottle](commands/sysbottle.md) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
-* sperf [ttop](commands/ttop.md) - Analyze ttop files
+* sperf [core bgrep](commands#sperf-core-bgrep) - search for custom regex and bucketize results
+* sperf [core diag](commands#sperf-core-diag) - Generates a diagtarball report. DSE 5.0-6.7 and Cassandra 2.1-3.11.x
+* sperf [core gc](commands#sperf-core-gc) - Show gc info DSE 5.0-6.7 and Cassandra 2.1-3.11.x
+* sperf [core jarcheck](commands#sperf-core-jarcheck) - Checks jar versions in output.logs. Supports tarballs and files. DSE 5.0-6.7
+* sperf [core schema](commands#sperf-core-schema) - Analyze schema for summary. DSE 5.0-6.8
+* sperf [core slowquery](commands#sperf-core-slowquery) - Generates a report of slow queries in debug log. DSE 6.0-6.7
+* sperf [core statuslogger](commands#sperf-core-statuslogger) - Provides analysis of StatusLogger log lines. DSE 5.0-6.8 Cassandra 2.1-3.11.x
+* sperf [search filtercache](commands#sperf-search-filtercache) - Generates a report of filter cache evictions. DSE Search 5.1-6.7
+* sperf [search queryscore](commands#sperf-core-queryscore) - Tries to summarize queries in the debug log based on score that attempts to estimate the relative potential cost of queries. DSE Search 5.1-6.7
+* sperf [sysbottle](commands#sperf-sysbottle.md) - sysbottle provides analysis of an iostat file. Supports iostat files generated via `iostat -x -c -d -t`
+* sperf [ttop](commands#sperf-ttop.md) - Analyze ttop files
 
 ### Note
 
