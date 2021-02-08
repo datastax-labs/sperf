@@ -15,5 +15,5 @@
 
 
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-flake8 $PARENT_PATH/pysper $PARENT_PATH/tests
+flake8 $PARENT_PATH/../pysper $PARENT_PATH/../tests
 black .
