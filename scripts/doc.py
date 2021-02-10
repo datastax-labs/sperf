@@ -64,6 +64,7 @@ def write_output(cmd, subcommand, target_file, extra=None):
 
 if __name__ == "__main__":
     CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+    BIN_DR = os.path.join(CURRENT_DIR, "..", "bin")
     DOC_FILE = os.path.join(CURRENT_DIR, "..", "docs", "commands.md")
     if os.path.isfile(DOC_FILE):
         os.remove(DOC_FILE)
@@ -71,12 +72,13 @@ if __name__ == "__main__":
         f.write("#sperf subcommands\n\n")
         f.write("documentation and options for each command\n\n")
     print("removed existing docs")
-    for command in get_subcommands(os.path.join(CURRENT_DIR, "sperf")):
-        write_output(os.path.join(CURRENT_DIR, "sperf"), command, DOC_FILE)
+    SPERF = os.path.join(BIN_DIR, "sperf")
+    for command in get_subcommands(SPERF):
+        write_output(SPERF, command, DOC_FILE)
         print("doc for %s generated" % command)
-    for command in get_subcommands(os.path.join(CURRENT_DIR, "sperf"), "core"):
-        write_output(os.path.join(CURRENT_DIR, "sperf"), command, DOC_FILE, "core")
+    for command in get_subcommands(SPERF, "core"):
+        write_output(SPERF, command, DOC_FILE, "core")
         print("doc for core %s generated" % command)
-    for command in get_subcommands(os.path.join(CURRENT_DIR, "sperf"), "search"):
-        write_output(os.path.join(CURRENT_DIR, "sperf"), command, DOC_FILE, "search")
+    for command in get_subcommands(SPERF, "search"):
+        write_output(SPERF, command, DOC_FILE, "search")
         print("doc for search %s generated" % command)

@@ -1,3 +1,11 @@
+sperf 0.7.0
+-----------
+* back to go. All of the code has been converted to go, this has not changed the structure of the code and so it is
+not yet optimized for go or multithreaded but this was the first step to starting to make sperf multithreaded.
+* because of the use of go the build process has been greatly simplified.
+* added support for for reading logs via kubectl. One needs to have kubectl installed and a Kubernetes cluster configured
+then just pass in a `cassandradatacenter/<name>` if using the [cassandra operator](https://github.com/datastax/cass-operator) or `statefulset/<name>` for non operator setups
+
 sperf 0.6.7
 -----------
 * ttop can not handle gb rate allocations
