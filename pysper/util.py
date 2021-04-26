@@ -32,7 +32,7 @@ def print_percentiles(
     reverse=False,
     percentiles=(99, 75, 50, 25),
 ):
-    """ prints formatted percentiles using numpy from data in a list """
+    """prints formatted percentiles using numpy from data in a list"""
     np_array = perc.Stats(data_list)
     printables = [label.ljust(indent)]
     if pmax:
@@ -49,7 +49,7 @@ def print_percentiles(
 def print_percentile_headers(
     label="", names=("max", "p99", "p75", "p50", "p25", "min"), indent=11, width=8
 ):
-    """ prints evenly spaced headers, appropriate for percentiles """
+    """prints evenly spaced headers, appropriate for percentiles"""
     printables = [label.ljust(indent)]
     for name in names:
         printables.append(name.ljust(width))
@@ -65,7 +65,7 @@ def get_percentiles(
     reverse=False,
     percentiles=(99, 75, 50, 25),
 ):
-    """ gets formatted percentiles using numpy from data in a list """
+    """gets formatted percentiles using numpy from data in a list"""
     np_array = perc.Stats(data_list)
     printables = [label]
     if pmax:
@@ -80,7 +80,7 @@ def get_percentiles(
 
 
 def get_percentile_headers(label="", names=("max", "p99", "p75", "p50", "p25", "min")):
-    """ gets evenly spaced headers, appropriate for percentiles """
+    """gets evenly spaced headers, appropriate for percentiles"""
     printables = [label]
     for name in names:
         printables.append(name)
@@ -88,7 +88,7 @@ def get_percentile_headers(label="", names=("max", "p99", "p75", "p50", "p25", "
 
 
 def node_name(filepath):
-    """ guess the node name from a filepath """
+    """guess the node name from a filepath"""
     parts = filepath.split(os.path.sep)
     try:
         return parts[parts.index("nodes") + 1]

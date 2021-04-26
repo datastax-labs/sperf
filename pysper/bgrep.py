@@ -109,7 +109,7 @@ class BucketGrep:
             self.start = dt
 
     def print_report(self, interval=3600):
-        """ print bucketized result counts """
+        """print bucketized result counts"""
         print("bucketgrep version %s" % VERSION)
         print("search: '%s'" % self.supplied_regex)
         print()

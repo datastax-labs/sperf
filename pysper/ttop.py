@@ -23,7 +23,7 @@ from pysper.core import OrderedDefaultDict
 
 
 class TTopParser:
-    """ parses ttop output files """
+    """parses ttop output files"""
 
     BEGIN = "begin"
     PROCESS = "process"
@@ -64,7 +64,7 @@ class TTopParser:
             self.end = date_parse(end)
 
     def parse(self, log):
-        """ parse ttop output """
+        """parse ttop output"""
         total = OrderedDict()
         threads = OrderedDefaultDict(dict)
         for line in log:
@@ -143,7 +143,7 @@ class TTopParser:
                     continue
 
     def convert(self, rate, unit):
-        """ converts rate to bytes """
+        """converts rate to bytes"""
         if unit == "gb":
             return int(rate) * 1024 * 1024 * 1024
         if unit == "mb":
@@ -154,13 +154,13 @@ class TTopParser:
 
 
 class TTopAnalyzer:
-    """ analyzes ttop info """
+    """analyzes ttop info"""
 
     def __init__(self, files):
         self.files = files
 
     def collate_threads(self, threads):
-        """ combines similar threads """
+        """combines similar threads"""
         ret = OrderedDefaultDict(lambda: OrderedDefaultDict(float))
         exprs = []
         exprs.append(r":.*")
@@ -176,7 +176,7 @@ class TTopAnalyzer:
         return ret
 
     def print_report(self, top=None, alloc=False, collate=True, start=None, end=None):
-        """ analyze and report on ttop files """
+        """analyze and report on ttop files"""
         parser = TTopParser(start=start, end=end)
         print("ttop version %s" % VERSION)
         print()

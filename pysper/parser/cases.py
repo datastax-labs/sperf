@@ -25,7 +25,7 @@ from pysper.parser.rules import (
 
 
 def gc_rules():
-    """ rules to capture gc """
+    """rules to capture gc"""
     return (
         case("GCInspector"),
         rule(
@@ -106,7 +106,7 @@ def gc_rules():
 
 
 def solr_rules():
-    """ rules to capture solr """
+    """rules to capture solr"""
     return (
         case("SolrFilterCache"),
         rule(
@@ -166,7 +166,7 @@ def solr_rules():
 
 
 def daemon_rules():
-    """ rules to capture from daemon """
+    """rules to capture from daemon"""
     return (
         case("StorageService"),
         rule(
@@ -249,7 +249,7 @@ def daemon_rules():
 
 
 def cfs_rules():
-    """ rules to capture from ColumnFamilyStore """
+    """rules to capture from ColumnFamilyStore"""
     return (
         case("ColumnFamilyStore"),
         rule(
@@ -310,7 +310,7 @@ def cfs_rules():
 
 
 def memtable_rules():
-    """ rules to capture from memtable/cfs """
+    """rules to capture from memtable/cfs"""
     return (
         case("Memtable", "ColumnFamilyStore"),
         rule(
@@ -374,7 +374,7 @@ def memtable_rules():
 
 
 def status_rules():
-    """ rules to capture from statuslogger """
+    """rules to capture from statuslogger"""
     return (
         case("StatusLogger"),
         rule(
@@ -528,7 +528,7 @@ def status_rules():
 
 
 def config_rules():
-    """ rules to capture configs """
+    """rules to capture configs"""
     return (
         case("Config"),
         # "Node configuration:[aggregated_request_timeout_in_ms=120000; allocate_tokens_for_keyspace=null; allocate_tokens_for_local_replication_factor=3; write_request_timeout_in_ms=2000]
@@ -571,7 +571,7 @@ def config_rules():
 
 
 def dd_rules():
-    """ rules to capture from database descriptor """
+    """rules to capture from database descriptor"""
     return (
         case("DatabaseDescriptor"),
         # 6.x disk access mode

@@ -79,7 +79,7 @@ def build(subparsers):
 
 
 def run(args):
-    """ run the gcinspector """
+    """run the gcinspector"""
     files = None
     if args.files:
         files = args.files.split(",")

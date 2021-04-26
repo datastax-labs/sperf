@@ -19,7 +19,7 @@ from pysper.core import OrderedDefaultDict
 
 
 class JarCheckParser:
-    """ class to parse and analyze the jars in the classpath of an outlog """
+    """class to parse and analyze the jars in the classpath of an outlog"""
 
     def __init__(self, diag_dir=None, files=None):
         self.diag_dir = diag_dir
@@ -57,7 +57,7 @@ class JarCheckParser:
         self.analyzed = True
 
     def print_report(self, diff_only=False):
-        """ print the report """
+        """print the report"""
         if not self.analyzed:
             self.analyze()
         if not self.files_analyzed:
