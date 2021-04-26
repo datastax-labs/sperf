@@ -11,7 +11,7 @@ Lots of things, you can run it as a high level tool to find the basic problems a
 * [General Recommendations](#general-recommendations)
 * [High CPU Usage](#high-cpu-usage)
 * [Configuration Differences Between Nodes](#configuration-differences-between-nodes)
-* [Diagnose High GC](#diagnose-gigh-gc)
+* [Diagnose High GC](#diagnose-high-gc)
 * [Identify those pesky SOLR queries that cause problems in DSE Search](#identify-those-pesky-solr-queries-that-cause-problems)
 
 [All the tools and their functions are listed below](#all-the-tools)
