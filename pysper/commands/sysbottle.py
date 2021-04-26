@@ -78,7 +78,7 @@ def build(subparsers):
 
 
 def run(args):
-    """"sysbottle subcommand"""
+    """ "sysbottle subcommand"""
     conf = OrderedDict()
     conf["iowait_threshold"] = args.iowait
     conf["cpu_threshold"] = args.cpu

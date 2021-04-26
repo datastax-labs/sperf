@@ -35,7 +35,7 @@ class TestUtil(unittest.TestCase):
         self.assertEqual(my_node, "my_node")
 
     def test_bucketize(self):
-        """ test bucketize """
+        """test bucketize"""
         junk = defaultdict(list)
         data = [1, 1, 1, 1, 1, 1, 1, 1]
         junk[datetime.datetime(2019, 5, 11, 0, 0, 0, 0)] = data

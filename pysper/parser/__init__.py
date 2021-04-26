@@ -39,7 +39,7 @@ def _default_capture(line):
 
 
 def read_log(lines, capture_line_func=_default_capture, **extras):
-    """ parses an iterable set of lines yielding events """
+    """parses an iterable set of lines yielding events"""
     fields = None
     for line in lines:
         next_fields = capture_line_func(line)

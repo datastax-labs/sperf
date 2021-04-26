@@ -23,7 +23,7 @@ class TestSysBottle(unittest.TestCase):
     """sysbottle tests"""
 
     def test_sysbottle_analyze(self):
-        """ test sysbottle report """
+        """test sysbottle report"""
         iostat = os.path.join(
             os.path.dirname(os.path.abspath(__file__)), "testdata", "iostat"
         )

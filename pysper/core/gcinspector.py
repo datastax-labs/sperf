@@ -26,7 +26,7 @@ from pysper.humanize import pad_table
 
 
 class GCInspector:
-    """ GCInspector class """
+    """GCInspector class"""
 
     def __init__(self, diag_dir=None, files=None, start=None, end=None):
         self.diag_dir = diag_dir
@@ -46,7 +46,7 @@ class GCInspector:
             self.end_time = date_parse(end)
 
     def analyze(self):
-        """ analyze files """
+        """analyze files"""
         target = None
         if self.files:
             target = self.files
@@ -69,7 +69,7 @@ class GCInspector:
         self.analyzed = True
 
     def __setdates(self, date, node):
-        """ track start/end times """
+        """track start/end times"""
         # global
         if not self.start:
             self.start = date
@@ -89,7 +89,7 @@ class GCInspector:
             self.starts[node] = date
 
     def all_pauses(self):
-        """ get pauses for all nodes """
+        """get pauses for all nodes"""
         pauses = OrderedDefaultDict(list)
         for pausedata in self.pauses.values():
             for time, pause in pausedata.items():
@@ -97,7 +97,7 @@ class GCInspector:
         return pauses
 
     def print_report(self, interval=3600, by_node=False, top=3):
-        """ print gc report """
+        """print gc report"""
         print("gcinspector version %s" % VERSION)
         print("")
         if not self.analyzed:
@@ -151,7 +151,7 @@ class GCInspector:
         print("")
 
     def __print_gc(self, data):
-        """ print data to the user, expecting datetime keys and list(int) values """
+        """print data to the user, expecting datetime keys and list(int) values"""
         print(". <300ms + 301-500ms ! >500ms")
         print("-" * 30)
         busiest = None

@@ -31,7 +31,7 @@ from pysper.core import OrderedDefaultDict
 
 
 class Table:
-    """ represents a dse table """
+    """represents a dse table"""
 
     def __init__(self, ops=0, data=0):
         self.ops = ops
@@ -42,7 +42,7 @@ class Table:
 
 
 class Node:
-    """ represents a cassandra/dse node """
+    """represents a cassandra/dse node"""
 
     def __init__(self):
         self.start = None
@@ -57,7 +57,7 @@ class Node:
         self.dumps_analyzed = 0
 
     def get_busiest_tables(self, by_prop):
-        """ return busiest tables by_prop (data or ops) """
+        """return busiest tables by_prop (data or ops)"""
         return sorted(
             self.tables.items(),
             key=lambda table: getattr(table[1], by_prop),
@@ -65,7 +65,7 @@ class Node:
         )
 
     def longest_tp_name_length(self):
-        """ find the length of the thread pool with the longest name """
+        """find the length of the thread pool with the longest name"""
         longest = 0
         for stage in self.stages.values():
             slen = len(max(stage, key=len))
@@ -74,7 +74,7 @@ class Node:
         return longest
 
     def longest_tp_value_length(self):
-        """ find the length of the longest value in any threadpool """
+        """find the length of the longest value in any threadpool"""
         longest = 0
         for stage in self.stages.values():
             for vals in stage.values():
@@ -84,12 +84,12 @@ class Node:
         return longest
 
     def duration(self):
-        """ duration this node was analyzed """
+        """duration this node was analyzed"""
         return self.end - self.start
 
 
 class Summary:
-    """ summarizes a group of nodes """
+    """summarizes a group of nodes"""
 
     def __init__(self, nodes):
         if env.DEBUG:
@@ -109,7 +109,7 @@ class Summary:
         ]
 
     def get_busiest_tables(self, by_op):
-        """ get busiest tables by_op """
+        """get busiest tables by_op"""
         busiest = []
         for name, node in self.nodes.items():
             table = next(iter(node.get_busiest_tables(by_op)), None)
@@ -120,7 +120,7 @@ class Summary:
         )
 
     def get_busiest_stages(self):
-        """ get all stages sorted by highest value """
+        """get all stages sorted by highest value"""
         allstages = []
         for name, node in self.nodes.items():
             for status, stage in node.stages.items():
@@ -131,7 +131,7 @@ class Summary:
         return sorted(allstages, key=lambda x: x[3], reverse=True)
 
     def get_stages_in(self, status):
-        """ return all stages in a given status """
+        """return all stages in a given status"""
         ret = OrderedDict()
         for name, node in self.nodes.items():
             for stage in node.stages:
@@ -140,7 +140,7 @@ class Summary:
         return ret
 
     def get_pauses(self):
-        """ get all gc pauses """
+        """get all gc pauses"""
         pauses = []
         for node in self.nodes.values():
             pauses += node.pauses
@@ -148,7 +148,7 @@ class Summary:
 
 
 class StatusLogger:
-    """ status logger """
+    """status logger"""
 
     def __init__(
         self,
@@ -181,7 +181,7 @@ class StatusLogger:
             self.end = date_parse(end)
 
     def analyze(self):
-        """ analyze log files """
+        """analyze log files"""
         if self.analyzed:
             return
         event_filter = UniqEventPerNodeFilter()
@@ -282,7 +282,7 @@ class StatusLogger:
             node.start = date
 
     def print_histogram(self):
-        """ print histogram report, analyzing if necessary """
+        """print histogram report, analyzing if necessary"""
         self.analyze()
         print("%s version: %s" % (self.command_name, VERSION))
         print("")
@@ -391,7 +391,7 @@ class StatusLogger:
             print("* %s (%s)" % (rec, reason))
 
     def print_summary(self):
-        """ prints a summary report """
+        """prints a summary report"""
         self.analyze()
         summary = Summary(self.nodes)
         print("%s version: %s" % (self.command_name, VERSION))

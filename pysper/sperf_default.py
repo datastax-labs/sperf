@@ -134,6 +134,10 @@ def _recs_on_configs(recommendations, configs):
                     + "performance on version %s of Cassandra. (SUPPORT-753)"
                     % cassandra_version
                 )
+                issue = (
+                    issue
+                    + " https://support.datastax.com/hc/en-us/articles/360027838911"
+                )
                 if issue not in recs_by_issue:
                     recs_by_issue[issue] = {
                         "issue": issue,
@@ -151,8 +155,12 @@ def _recs_on_configs(recommendations, configs):
             if dse_major_version > 5:
                 issue = (
                     "Disk acess mode %s causes problems " % disk_access
-                    + "with performance on version %s of DSE. (SUPPORT-754)"
+                    + "with performance on version %s of DSE. (SUPPORT-752)"
                     % dse_version
+                )
+                issue = (
+                    issue
+                    + " https://support.datastax.com/hc/en-us/articles/360028294671"
                 )
                 if issue not in recs_by_issue:
                     recs_by_issue[issue] = {

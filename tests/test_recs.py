@@ -107,7 +107,7 @@ class TestRecs(unittest.TestCase):
         self.assertIsNone(reason)
 
     def test_full_memtable(self):
-        """verify StageAnalyzer """
+        """verify StageAnalyzer"""
         analyzer = recs.Engine()
         stage = recs.Stage(
             name="TPC/all/WRITE_MEMTABLE_FULL",

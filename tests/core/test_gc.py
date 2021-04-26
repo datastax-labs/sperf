@@ -22,7 +22,7 @@ class TestCoreGC(unittest.TestCase):
     """testing the core gc submodule"""
 
     def test_gcinspector(self):
-        """ test gcinspector analysis """
+        """test gcinspector analysis"""
         g = GCInspector(test_dse_tarball())
         g.analyze()
         self.assertEqual(len(g.pauses), 3)

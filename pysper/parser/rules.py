@@ -203,7 +203,7 @@ class update_message:
         self.capture_message = capture_message
 
     def __call__(self, fields):
-        """ updates message fields """
+        """updates message fields"""
         if "source_file" not in fields or "message" not in fields:
             return
         subfields = self.capture_message(fields["source_file"][:-5], fields["message"])
@@ -212,7 +212,7 @@ class update_message:
 
 
 def mkcapture(cap_rule, update_func, with_date=True):
-    """ build a top-level capture function """
+    """build a top-level capture function"""
     if with_date:
         return rule(
             cap_rule,
@@ -244,7 +244,7 @@ def int_with_commas(value):
 
 
 def nodeconfig(nodeconfig_line):
-    """ converts to nodeconfig """
+    """converts to nodeconfig"""
     config = OrderedDict()
     tokens = nodeconfig_line.split("; ")
     for token in tokens:
@@ -255,7 +255,7 @@ def nodeconfig(nodeconfig_line):
 
 
 def jvm_args(args_line):
-    """ converts jvm args to k/v pairs """
+    """converts jvm args to k/v pairs"""
     args = OrderedDict()
     tokens = args_line.split(",")
     for token in tokens:

@@ -65,7 +65,7 @@ def build(subparsers):
 
 
 def run(args):
-    """ run bgrep """
+    """run bgrep"""
     files = None
     if args.files:
         files = args.files.split(",")

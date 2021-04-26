@@ -26,7 +26,7 @@ capture_message = switch(
 
 
 def update_message(fields):
-    """ updates message fields """
+    """updates message fields"""
     subfields = None
     if "source_file" in fields:
         subfields = capture_message(fields["source_file"][:-5], fields["message"])

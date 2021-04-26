@@ -24,7 +24,7 @@ from pysper.core import OrderedDefaultDict
 
 
 class SlowQueryParser:
-    """ parses logs for slow queries """
+    """parses logs for slow queries"""
 
     BEGIN = "begin"
     begin_match = re.compile(
@@ -47,7 +47,7 @@ class SlowQueryParser:
         self.state = None
 
     def parse(self, logfile):
-        """ parses a debug log for slow queries """
+        """parses a debug log for slow queries"""
         ret = OrderedDict()
         for line in logfile:
             if self.state is None:
@@ -78,7 +78,7 @@ class SlowQueryParser:
 
 
 class SlowQueryAnalyzer:
-    """ analyzes results from parsing slow queries """
+    """analyzes results from parsing slow queries"""
 
     def __init__(self, diag_dir, files=None, start=None, end=None):
         self.diag_dir = diag_dir
@@ -98,7 +98,7 @@ class SlowQueryAnalyzer:
             self.end_time = date_parse(end)
 
     def analyze(self):
-        """ analyze slow queries """
+        """analyze slow queries"""
         parser = SlowQueryParser()
         target = find_logs(self.diag_dir, "debug.log")
         if self.files:
@@ -128,7 +128,7 @@ class SlowQueryAnalyzer:
         self.analyzed = True
 
     def print_report(self, command_name, interval=3600, top=3):
-        """ print the report """
+        """print the report"""
         if not self.analyzed:
             self.analyze()
         print("%s version: %s" % (command_name, VERSION))
@@ -160,7 +160,7 @@ class SlowQueryAnalyzer:
             print("")
 
     def __print_query_times(self, data):
-        """ print data to the user, expecting datetime keys and list(int) values """
+        """print data to the user, expecting datetime keys and list(int) values"""
         timings = perc.Stats([q[1] for q in self.queries])
         window = timings.percentile(25) - 1
         window2 = timings.percentile(50) - 1
