@@ -12,6 +12,8 @@ pycodestyle==2.6.0
 pyflakes==2.2.0
 pyinstaller==4.2
 pyinstaller-hooks-contrib==2020.11
+pytest==6.2.3
+pytest-cov==2.11.1
 regex==2020.11.13
 toml==0.10.2
 typed-ast==1.4.2

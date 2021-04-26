@@ -1,3 +1,7 @@
+sperf 0.6.8
+-----------
+* sperf now links to public support topics for mmap recommendation
+
 sperf 0.6.7
 -----------
 * ttop can not handle gb rate allocations
