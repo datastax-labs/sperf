@@ -151,7 +151,7 @@ def _recs_on_configs(recommendations, configs):
             if dse_major_version > 5:
                 issue = (
                     "Disk acess mode %s causes problems " % disk_access
-                    + "with performance on version %s of DSE. (SUPPORT-754)"
+                    + "with performance on version %s of DSE. (SUPPORT-752)"
                     % dse_version
                 )
                 if issue not in recs_by_issue:
