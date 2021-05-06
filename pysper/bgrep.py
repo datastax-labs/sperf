@@ -16,7 +16,7 @@
 import re
 from pysper.parser.rules import date
 from pysper import VERSION, diag
-from pysper.util import bucketize, textbar
+from pysper.util import bucketize, textbar, extract_node_name
 from pysper.dates import date_parse
 from pysper.core import OrderedDefaultDict
 
@@ -28,7 +28,7 @@ class BucketGrep:
     basere = r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *.*"
 
     def __init__(
-        self, regex, diag_dir=None, files=None, start=None, end=None, ignorecase=True
+        self, regex, diag_dir=None, files=None, start=None, end=None, ignorecase=True, report="summary"
     ):
         self.diag_dir = diag_dir
         self.files = files
@@ -36,7 +36,8 @@ class BucketGrep:
         self.end = None
         self.start_time = None
         self.end_time = None
-        self.last_time = None
+        self.last_time =  None
+        self.report = report
         if start:
             self.start_time = date_parse(start)
         if end:
@@ -50,6 +51,7 @@ class BucketGrep:
             self.timeregex = re.compile(self.basere + regex + ".*")
             self.supplied_regex = regex
         self.valid_log_regex = re.compile(self.basere)
+        self.node_matches = OrderedDefaultDict()
         self.matches = OrderedDefaultDict(list)
         self.count = 0
         self.unknown = 0
@@ -66,6 +68,8 @@ class BucketGrep:
             raise Exception("no diag dir and no files specified")
         for file in target:
             with diag.FileWithProgress(file) as log:
+                node_name = extract_node_name(file)
+                self.node_matches[node_name] = OrderedDefaultDict(list)
                 for line in log:
                     # as long as it's a valid log line we want the date,
                     # even if we don't care about the rest of the line so we can set
@@ -85,6 +89,7 @@ class BucketGrep:
                         if self.end_time and dt > self.end_time:
                             continue
                         self.matches[dt].append(line)
+                        self.node_matches[node_name][dt].append(line)
                         self.count += 1
                     else:
                         m = self.strayregex.match(line)
@@ -95,6 +100,7 @@ class BucketGrep:
                                 self.unknown += 1
                                 continue
                             self.matches[self.last_time].append(line)
+                            self.node_matches[node_name][self.last_time].append(line)
                             self.count += 1
         self.analyzed = True
 
@@ -120,21 +126,53 @@ class BucketGrep:
             if self.unknown:
                 print(self.unknown, "matches without timestamp")
             return
-        buckets = sorted(
-            bucketize(
-                self.matches, start=self.start, end=self.end, seconds=interval
-            ).items(),
-            key=lambda t: t[0],
-        )
-        maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
-        for time, matches in buckets:
-            pad = ""
-            for x in range(len(str(maxval)) - len(str(len(matches)))):
-                pad += " "
-            print(
-                time.strftime("%Y-%m-%d %H:%M:%S") + pad,
-                len(matches),
-                textbar(maxval, len(matches)),
+        if self.report == "summary":
+            print()
+            print("cluster wide")
+            print("------------")
+            buckets = sorted(
+                bucketize(
+                    self.matches, start=self.start, end=self.end, seconds=interval
+                ).items(),
+                key=lambda t: t[0],
             )
+            maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
+            for time, matches in buckets:
+                pad = ""
+                for x in range(len(str(maxval)) - len(str(len(matches)))):
+                    pad += " "
+                print(
+                    time.strftime("%Y-%m-%d %H:%M:%S") + pad,
+                    len(matches),
+                    textbar(maxval, len(matches)),
+                )
+        else:
+            print()
+            print()
+            print("per node numbers")
+            print("----------------")
+            for node in sorted(self.node_matches.keys()):
+                print()
+                print("node: %s" % node)
+                print("--------")
+                if not len(self.node_matches[node]):
+                    print("No matches for %s found" % node)
+                    continue
+                buckets = sorted(
+                bucketize(
+                    self.node_matches[node], start=self.start, end=self.end, seconds=interval
+                ).items(),
+                key=lambda t: t[0],
+                )
+                maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
+                for time, matches in buckets:
+                    pad = ""
+                    for x in range(len(str(maxval)) - len(str(len(matches)))):
+                        pad += " "
+                    print(
+                        time.strftime("%Y-%m-%d %H:%M:%S") + pad,
+                        len(matches),
+                        textbar(maxval, len(matches)),
+                    )
         if self.unknown:
             print(self.unknown, "matches without timestamp")

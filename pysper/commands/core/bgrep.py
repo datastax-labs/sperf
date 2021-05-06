@@ -54,6 +54,13 @@ def add_flags(subparsers, run_func):
     bgrep_parser.add_argument(
         "-c", "--case", dest="case", action="store_true", help="case-sensitive search"
     )
+    bgrep_parser.add_argument(
+        "-r",
+        "--report",
+        type=str,
+        default="summary",
+        help="change report ('summary' whole cluster, 'perNode')",
+    )
     flags.add_diagdir(bgrep_parser)
     flags.add_files(bgrep_parser)
     bgrep_parser.set_defaults(func=run_func)
@@ -76,5 +83,7 @@ def run(args):
         start=args.start,
         end=args.end,
         ignorecase=not args.case,
+        report=args.report
     )
     b.print_report(interval=args.interval)
+    
