@@ -87,15 +87,6 @@ def get_percentile_headers(label="", names=("max", "p99", "p75", "p50", "p25", "
     return printables
 
 
-def node_name(filepath):
-    """guess the node name from a filepath"""
-    parts = filepath.split(os.path.sep)
-    try:
-        return parts[parts.index("nodes") + 1]
-    except ValueError:
-        return filepath
-
-
 def extract_node_name(path, ignore_missing_nodes=False):
     """extracts the token after the 'nodes'"""
     tokens = path.split(os.sep)

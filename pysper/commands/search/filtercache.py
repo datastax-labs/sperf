@@ -53,6 +53,12 @@ def add_flags(subparsers, run_func, is_deprecated=False):
         help="optional filter for log times to only look at logs before this time "
         + "(format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
+    filtercache_parser.add_argument(
+        "-r",
+        "--report",
+        default="summary",
+        help="type of report to display (summary, time_series)",
+    )
     filtercache_parser.set_defaults(func=run_func)
 
 
@@ -65,4 +71,7 @@ def run(args):
     """entrypoint for filtercache command"""
     print("sperf filtercache: %s\n" % VERSION)
     parsed = filtercache.parse(args)
-    print(filtercache.generate_report(parsed))
+    reporter = filtercache.Summary()
+    if args.report == "timeseries":
+        reporter = filtercache.TimeSeries()
+    print(reporter.generate(parsed))

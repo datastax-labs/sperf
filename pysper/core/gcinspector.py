@@ -20,7 +20,12 @@ from pysper import parser
 from pysper.parser import gc
 from pysper import VERSION, diag
 from pysper.core import OrderedDefaultDict
-from pysper.util import node_name, bucketize, get_percentiles, get_percentile_headers
+from pysper.util import (
+    extract_node_name,
+    bucketize,
+    get_percentiles,
+    get_percentile_headers,
+)
 from pysper.dates import date_parse
 from pysper.humanize import pad_table
 
@@ -55,7 +60,7 @@ class GCInspector:
         else:
             raise Exception("no diag dir and no files specified")
         for file in target:
-            node = node_name(file)
+            node = extract_node_name(file)
             with diag.FileWithProgress(file) as log:
                 for event in parser.read_log(log, gc.capture_line):
                     if event["event_type"] == "pause":
