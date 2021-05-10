@@ -14,6 +14,7 @@
 
 """ bucketgrep module """
 import re
+import os
 from pysper.parser.rules import date
 from pysper import VERSION, diag
 from pysper.util import bucketize, textbar, extract_node_name
@@ -66,10 +67,17 @@ class BucketGrep:
 
     def analyze(self):
         """parses logs for results"""
+        print("bucketgrep version %s" % VERSION)
+        print("search: '%s'" % self.supplied_regex)
         target = None
         if self.files:
             target = self.files
         elif self.diag_dir:
+            if self.diag_dir == ".":
+                directory_path = os.getcwd()
+                print("from directory '%s':" % directory_path)
+            else:
+                print("from directory '%s':" % self.diag_dir)
             target = diag.find_logs(self.diag_dir)
         else:
             raise Exception("no diag dir and no files specified")
@@ -123,8 +131,7 @@ class BucketGrep:
 
     def print_report(self, interval=3600):
         """print bucketized result counts"""
-        print("bucketgrep version %s" % VERSION)
-        print("search: '%s'" % self.supplied_regex)
+        
         print()
         if not self.analyzed:
             self.analyze()

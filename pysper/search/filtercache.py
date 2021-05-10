@@ -13,6 +13,7 @@
 # limitations under the License.
 """module for the filtercache report"""
 import functools
+import os
 import sys
 from collections import OrderedDict
 from operator import attrgetter, itemgetter
@@ -158,7 +159,11 @@ def parse(args):
     """parse entry point, generates a report object
     from a tarball or series of files"""
     logs = diag.find_files(args, args.system_log_prefix)
-    print("from directory '%s':" % args.diag_dir)
+    if args.diag_dir == ".":
+        directory_path = os.getcwd()
+        print("from directory '%s':" % directory_path)
+    else:
+        print("from directory '%s':" % args.diag_dir)
     node_stats = OrderedDict()
     after_time = dates.date_parse(args.after)
     before_time = dates.date_parse(args.before)
