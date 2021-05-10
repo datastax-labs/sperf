@@ -131,7 +131,7 @@ class BucketGrep:
 
     def print_report(self, interval=3600):
         """print bucketized result counts"""
-        
+
         print()
         if not self.analyzed:
             self.analyze()
