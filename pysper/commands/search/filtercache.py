@@ -57,7 +57,7 @@ def add_flags(subparsers, run_func, is_deprecated=False):
         "-r",
         "--report",
         default="summary",
-        help="type of report to display (summary, time_series)"
+        help="type of report to display (summary, time_series)",
     )
     filtercache_parser.set_defaults(func=run_func)
 

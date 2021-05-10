@@ -83,7 +83,6 @@ def run(args):
         start=args.start,
         end=args.end,
         ignorecase=not args.case,
-        report=args.report
+        report=args.report,
     )
     b.print_report(interval=args.interval)
-    

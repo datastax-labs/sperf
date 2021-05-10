@@ -28,7 +28,14 @@ class BucketGrep:
     basere = r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *.*"
 
     def __init__(
-        self, regex, diag_dir=None, files=None, start=None, end=None, ignorecase=True, report="summary"
+        self,
+        regex,
+        diag_dir=None,
+        files=None,
+        start=None,
+        end=None,
+        ignorecase=True,
+        report="summary",
     ):
         self.diag_dir = diag_dir
         self.files = files
@@ -36,7 +43,7 @@ class BucketGrep:
         self.end = None
         self.start_time = None
         self.end_time = None
-        self.last_time =  None
+        self.last_time = None
         self.report = report
         if start:
             self.start_time = date_parse(start)
@@ -68,7 +75,7 @@ class BucketGrep:
             raise Exception("no diag dir and no files specified")
         for file in target:
             with diag.FileWithProgress(file) as log:
-                node_name = extract_node_name(file)
+                node_name = extract_node_name(file, ignore_missing_nodes=True)
                 self.node_matches[node_name] = OrderedDefaultDict(list)
                 for line in log:
                     # as long as it's a valid log line we want the date,
@@ -159,10 +166,13 @@ class BucketGrep:
                     print("No matches for %s found" % node)
                     continue
                 buckets = sorted(
-                bucketize(
-                    self.node_matches[node], start=self.start, end=self.end, seconds=interval
-                ).items(),
-                key=lambda t: t[0],
+                    bucketize(
+                        self.node_matches[node],
+                        start=self.start,
+                        end=self.end,
+                        seconds=interval,
+                    ).items(),
+                    key=lambda t: t[0],
                 )
                 maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
                 for time, matches in buckets:

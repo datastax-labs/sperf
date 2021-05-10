@@ -23,7 +23,7 @@ from pysper.diag import (
     UnknownStatusLoggerWriter,
     FileWithProgress,
 )
-from pysper.util import get_percentiles, get_percentile_headers, node_name
+from pysper.util import get_percentiles, get_percentile_headers, extract_node_name
 from pysper.humanize import format_seconds, format_bytes, format_num, pad_table
 from pysper.recs import Engine, Stage
 from pysper.dates import date_parse
@@ -195,7 +195,7 @@ class StatusLogger:
         else:
             raise Exception("no diag dir and no files specified")
         for f in target:
-            nodename = node_name(f)
+            nodename = extract_node_name(f, ignore_missing_nodes=True)
             event_filter.set_node(nodename)
             node = self.nodes[nodename]
             if env.DEBUG:
