@@ -17,6 +17,7 @@ import sys
 from collections import OrderedDict
 from operator import attrgetter, itemgetter
 from pysper import dates, diag, parser, util, humanize, recs
+from pysper.core import OrderedDefaultDict
 
 
 def sort_evict_freq(first_block, second_block):
@@ -232,55 +233,6 @@ def create_report_block(first_evict, last_evict, events, log_duration, name):
     return report_block
 
 
-def calculate_report(parsed):
-    """generates calculations"""
-    start_log = dates.max_utc_time()
-    last_log = dates.min_utc_time()
-    # make this it's own method
-    node_info_agg = []
-    for node, events in parsed["nodes"].items():
-        node_end_time = events.get("end")
-        before_time = parsed["before_time"]
-        if before_time != dates.max_utc_time() and node_end_time > before_time:
-            node_end_time = before_time
-        if node_end_time > last_log:
-            last_log = node_end_time
-        node_start_time = events.get("start")
-        after_time = parsed["after_time"]
-        if after_time != dates.min_utc_time() and node_start_time < after_time:
-            node_start_time = after_time
-        if node_start_time < start_log:
-            start_log = node_start_time
-        log_duration = (node_end_time - node_start_time).total_seconds() * 1000
-        first_node_evict = dates.max_utc_time()
-        last_node_evict = dates.min_utc_time()
-        for info in events.get("evictions"):
-            for value in info.values():
-                if value.time_stamp > last_node_evict:
-                    last_node_evict = value.time_stamp
-                if value.time_stamp < first_node_evict:
-                    first_node_evict = value.time_stamp
-        if log_duration < 0:
-            log_duration = 0
-        node_info_agg.append(
-            create_report_block(
-                first_node_evict,
-                last_node_evict,
-                events.get("evictions"),
-                log_duration,
-                node,
-            )
-        )
-    node_info_agg = sorted(node_info_agg, key=attrgetter("name"))
-    node_info_agg = sorted(
-        node_info_agg, key=attrgetter("avg_evict_duration"), reverse=True
-    )
-    node_info_agg = sorted(node_info_agg, key=functools.cmp_to_key(sort_evict_freq))
-    return OrderedDict(
-        [("start_log", start_log), ("last_log", last_log), ("node_info", node_info_agg)]
-    )
-
-
 def generate_recommendations(report, node_info):
     """generate recommendations and add them to report"""
     report.append("recommendations")
@@ -314,74 +266,166 @@ def generate_recommendations(report, node_info):
     report.append("")
 
 
-def generate_report(parsed):
-    """generates a report from the result of parsing a
-    tarball or series of files"""
-    calculated = calculate_report(parsed)
-    report = []
-    report.append("")
-    report.append(
-        "NOTE: as of version 0.3.13 all evictions with duration of 0 ms are deducted from the item eviction count and are not part of the eviction freq or duration calculations"
-    )
-    report.append("")
-    if not calculated.get("start_log"):
-        report.append("start log: 'None'")
-    else:
-        report.append(
-            "start log: '%s'"
-            % calculated.get("start_log").strftime(dates.CASSANDRA_LOG_FORMAT)
+class TimeSeries:
+    def generate(self, parsed):
+        """generates a time series report for a tarball"""
+        table = []
+        table.append("")
+        table.append("filter cache evictions by hour")
+        table.append("------------------------------")
+        events_by_datetime = OrderedDefaultDict(list)
+        start = dates.max_utc_time()
+        end = dates.min_utc_time()
+        for node, events in parsed["nodes"].items():
+            for info in events.get("evictions"):
+                # put into structure we can use for bucketize
+                for value in info.values():
+                    if value.time_stamp > end:
+                        end = value.time_stamp
+                    if value.time_stamp < start:
+                        start = value.time_stamp
+                    events_by_datetime[value.time_stamp].append(value)
+        buckets = sorted(
+            util.bucketize(events_by_datetime, start, end, 3600).items(),
+            key=lambda t: t[0],
         )
-    if not calculated.get("last_log"):
-        report.append("end log: 'None'")
-    else:
+        maxval = len(max(buckets, key=lambda t: len(t[1]))[1])
+        for time, matches in buckets:
+            pad = ""
+            for x in range(len(str(maxval)) - len(str(len(matches)))):
+                pad += " "
+            table.append(
+                "%s %s %s"
+                % (
+                    time.strftime("%Y-%m-%d %H:%M:%S") + pad,
+                    len(matches),
+                    util.textbar(maxval, len(matches)),
+                )
+            )
+        return "\n".join(table)
+
+
+class Summary:
+    def generate(self, parsed):
+        """generates a report from the result of parsing a
+        tarball or series of files"""
+        calculated = self.calculate_report(parsed)
+        report = []
+        report.append("")
         report.append(
-            "end log:   '%s'"
-            % calculated.get("last_log").strftime(dates.CASSANDRA_LOG_FORMAT)
+            "NOTE: as of version 0.3.13 all evictions with duration of 0 ms are deducted from the item eviction count and are not part of the eviction freq or duration calculations"
         )
-    report.append("")
-    node_info = calculated.get("node_info", [])
-    generate_recommendations(report, node_info)
-    if not node_info:
-        return "\nNo Logs Found For Processing\n"
-    table = []
-    table.append(
-        [
-            "node",
-            "Avg time between evictions",
-            "Avg eviction duration",
-            "Times (byte/item) limit reached",
-            "Most recent limit (byte/item)",
-            "Log duration",
-        ]
-    )
-    table.append(
-        [
-            "----",
-            "--------------------------",
-            "---------------------",
-            "-------------------------------",
-            "-----------------------------",
-            "------------",
-        ]
-    )
-    for node in node_info:
-        limits = "%i/%i" % (node.byte_limit, node.item_limit)
-        recent_limit = "%s/%i" % (
-            humanize.format_bytes(node.last_byte_limit),
-            node.last_item_limit,
+        report.append("")
+        if not calculated.get("start_log"):
+            report.append("start log: 'None'")
+        else:
+            report.append(
+                "start log: '%s'"
+                % calculated.get("start_log").strftime(dates.CASSANDRA_LOG_FORMAT)
+            )
+        if not calculated.get("last_log"):
+            report.append("end log: 'None'")
+        else:
+            report.append(
+                "end log:   '%s'"
+                % calculated.get("last_log").strftime(dates.CASSANDRA_LOG_FORMAT)
+            )
+        report.append("")
+        node_info = calculated.get("node_info", [])
+        generate_recommendations(report, node_info)
+        if not node_info:
+            return "\nNo Logs Found For Processing\n"
+        table = []
+        table.append(
+            [
+                "node",
+                "Avg time between evictions",
+                "Avg eviction duration",
+                "Times (byte/item) limit reached",
+                "Most recent limit (byte/item)",
+                "Log duration",
+            ]
         )
         table.append(
             [
-                node.name,
-                humanize.format_millis(node.avg_evict_freq),
-                humanize.format_millis(node.avg_evict_duration),
-                limits,
-                recent_limit,
-                humanize.format_millis(node.log_duration),
+                "----",
+                "--------------------------",
+                "---------------------",
+                "-------------------------------",
+                "-----------------------------",
+                "------------",
             ]
         )
-    humanize.pad_table(table)
-    for row in table:
-        report.append("  ".join(row))
-    report.append("")  # provides empty line after last line
-    return "\n".join(report)
+        for node in node_info:
+            limits = "%i/%i" % (node.byte_limit, node.item_limit)
+            recent_limit = "%s/%i" % (
+                humanize.format_bytes(node.last_byte_limit),
+                node.last_item_limit,
+            )
+            table.append(
+                [
+                    node.name,
+                    humanize.format_millis(node.avg_evict_freq),
+                    humanize.format_millis(node.avg_evict_duration),
+                    limits,
+                    recent_limit,
+                    humanize.format_millis(node.log_duration),
+                ]
+            )
+        humanize.pad_table(table)
+        for row in table:
+            report.append("  ".join(row))
+        report.append("")  # provides empty line after last line
+        return "\n".join(report)
+
+    def calculate_report(self, parsed):
+        """generates calculations"""
+        start_log = dates.max_utc_time()
+        last_log = dates.min_utc_time()
+        # make this it's own method
+        node_info_agg = []
+        for node, events in parsed["nodes"].items():
+            node_end_time = events.get("end")
+            before_time = parsed["before_time"]
+            if before_time != dates.max_utc_time() and node_end_time > before_time:
+                node_end_time = before_time
+            if node_end_time > last_log:
+                last_log = node_end_time
+            node_start_time = events.get("start")
+            after_time = parsed["after_time"]
+            if after_time != dates.min_utc_time() and node_start_time < after_time:
+                node_start_time = after_time
+            if node_start_time < start_log:
+                start_log = node_start_time
+            log_duration = (node_end_time - node_start_time).total_seconds() * 1000
+            first_node_evict = dates.max_utc_time()
+            last_node_evict = dates.min_utc_time()
+            for info in events.get("evictions"):
+                for value in info.values():
+                    if value.time_stamp > last_node_evict:
+                        last_node_evict = value.time_stamp
+                    if value.time_stamp < first_node_evict:
+                        first_node_evict = value.time_stamp
+            if log_duration < 0:
+                log_duration = 0
+            node_info_agg.append(
+                create_report_block(
+                    first_node_evict,
+                    last_node_evict,
+                    events.get("evictions"),
+                    log_duration,
+                    node,
+                )
+            )
+        node_info_agg = sorted(node_info_agg, key=attrgetter("name"))
+        node_info_agg = sorted(
+            node_info_agg, key=attrgetter("avg_evict_duration"), reverse=True
+        )
+        node_info_agg = sorted(node_info_agg, key=functools.cmp_to_key(sort_evict_freq))
+        return OrderedDict(
+            [
+                ("start_log", start_log),
+                ("last_log", last_log),
+                ("node_info", node_info_agg),
+            ]
+        )

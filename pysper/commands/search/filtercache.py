@@ -71,7 +71,7 @@ def run(args):
     """entrypoint for filtercache command"""
     print("sperf filtercache: %s\n" % VERSION)
     parsed = filtercache.parse(args)
-    reporter = filtercache.Summary
-    if args.report == "time_series":
-        reporter = filtercache.TimeSeries
+    reporter = filtercache.Summary()
+    if args.report == "timeseries":
+        reporter = filtercache.TimeSeries()
     print(reporter.generate(parsed))
