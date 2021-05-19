@@ -51,7 +51,7 @@ class TTopParser:
     )
     # [001900] user= 4.87% sys= 5.52% alloc= 2172kb/s - RMI TCP Connection(184)-127.0.0.1
     tinfo_match = re.compile(
-        r" *\[(?P<thread_id>[0-9]+)\] user= *(?P<user_cpu>-?[0-9]+\.[0-9]+)% sys= *(?P<sys_cpu>-?[0-9]+\.[0-9]+)% alloc= *(?P<heap_rate>[0-9]+)(?P<heap_unit>[m|k]?b)/s - (?P<thread_name>.+)"
+        r" *\[(?P<thread_id>[0-9]+)\] user=\s*(?P<user_cpu>-?[0-9]+\.[0-9]+)% sys=\s*(?P<sys_cpu>-?[0-9]+\.[0-9]+)% alloc=\s*(?P<heap_rate>-?[0-9]+)(?P<heap_unit>(mb|kb|b|gb))/s - (?P<thread_name>.*)"
     )
 
     def __init__(self, start=None, end=None):
@@ -127,6 +127,7 @@ class TTopParser:
                 else:
                     m = self.tinfo_match.match(line)
                     if not m:
+
                         raise ValueError("thread info not found in '" + line + "'")
                     threads[m.group("thread_name")]["user_cpu"] = float(
                         m.group("user_cpu")
@@ -165,6 +166,7 @@ class TTopAnalyzer:
         exprs = []
         exprs.append(r":.*")
         exprs.append(r"-\d+.*")
+        exprs.append(r"- \d+.*")
         exprs.append(r"-\/.*")
         for thread in threads:
             name = thread
