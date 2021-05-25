@@ -96,9 +96,14 @@ class Summary:
             print(nodes)
         self.nodes = nodes
         if nodes:
-            self.start = min([n.start for n in nodes.values() if n.start])
-            self.end = max([n.end for n in nodes.values() if n.end])
-            self.duration = self.end - self.start
+            start_times = [n.start for n in nodes.values() if n.start]
+            if len(start_times) > 0:
+                self.start = min(start_times)
+            end_times = [n.end for n in nodes.values() if n.end]
+            if len(end_times) > 0:
+                self.end = max(end_times)
+            if self.end and self.start:
+                self.duration = self.end - self.start
         else:
             self.start, self.end, self.duration = 0, 0, 0
         self.lines = sum([n.lines for n in nodes.values()])
