@@ -102,8 +102,10 @@ class Summary:
             end_times = [n.end for n in nodes.values() if n.end]
             if len(end_times) > 0:
                 self.end = max(end_times)
-            if self.end and self.start:
+            if hasattr(self, 'end') and hasattr(self, 'start'):
                 self.duration = self.end - self.start
+            else:
+                self.start, self.end, self.duration = 0, 0, 0
         else:
             self.start, self.end, self.duration = 0, 0, 0
         self.lines = sum([n.lines for n in nodes.values()])
