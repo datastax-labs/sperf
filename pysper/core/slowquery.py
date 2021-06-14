@@ -28,19 +28,19 @@ class SlowQueryParser:
 
     BEGIN = "begin"
     begin_match = re.compile(
-        r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations were slow in the last (?P<timeslow>\d+) msecs:"
+        r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations were slow in the last (?P<threshold>\d+) msecs:"
     )
     slow_match = re.compile(
-        r"(?P<query>.*), was slow (?P<count>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<max>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>/cross-node)?"
+        r"(?P<query>.*), was slow (?P<count>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     slow_match_single = re.compile(
-        r"(?P<query>.*), time (?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>/cross-node)?"
+        r"(?P<query>.*), time (?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match = re.compile(
-        r"(?P<query>.*), timed out (?P<count>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<max>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>/cross-node)?"
+        r"(?P<query>.*), timed out (?P<numslow>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match_single = re.compile(
-        r"(?P<query>.*), total time (?P<time>\d+) msec - timeout (?P<threshold>\d+) msec(?P<cross>/cross-node)?"
+        r"(?P<query>.*), total time (?P<time>\d+) msec - timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
 
     def __init__(self):
@@ -55,7 +55,6 @@ class SlowQueryParser:
                 if m:
                     self.state = self.BEGIN
                     ret["numslow"] = int(m.group("numslow"))
-                    ret["timeslow"] = int(m.group("timeslow"))
                     ret["date"] = date()(m.group("date"))
                 continue
             if self.state == self.BEGIN:
@@ -117,12 +116,12 @@ class SlowQueryAnalyzer:
                         self.end = query["date"]
                     if query["date"] < self.start:
                         self.start = query["date"]
-                    if "numslow" in query:
+                    if "avg" in query:
                         for x in range(query["numslow"]):
-                            self.querytimes[query["date"]].append(query["timeslow"])
+                            self.querytimes[query["date"]].append(int(query["time"]))
                     else:
-                        self.querytimes[query["date"]].append(query["timeslow"])
-                    self.queries.append((query["query"], int(query["timeslow"])))
+                        self.querytimes[query["date"]].append(int(query["time"]))
+                    self.queries.append((query["query"], int(query["numslow"])))
                     if query["cross"] is not None:
                         self.cross += 1
         self.analyzed = True

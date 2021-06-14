@@ -13,6 +13,7 @@
 # limitations under the License.
 """sperf default command run when you type `sperf`"""
 from collections import OrderedDict
+from dataclasses import dataclass
 
 from pysper import humanize
 from pysper.core.diag import parse_diag
@@ -29,6 +30,13 @@ from pysper.core.diag.reporter import (
     format_table_loc,
     format_disk_access_mode,
 )
+
+
+@dataclass
+class StatusLoggerCounter:
+    delayed: int = 0
+    pending: int = 0
+    blocked: int = 0
 
 
 def parse(args):
@@ -75,11 +83,9 @@ def calculate(node_config):
 
 
 def _recs_on_stages(
-    recommendations,
-    gc_over_500,
-    delayed_counter,
-    signficant_pending_counter,
-    signficant_blocked_counter,
+    recommendations: list,
+    gc_over_500: int,
+    counter: StatusLoggerCounter,
 ):
     if gc_over_500 > 0:
         recommendations.append(
@@ -88,27 +94,27 @@ def _recs_on_stages(
                 "rec": "Run `sperf core gc` for more analysis",
             }
         )
-    if delayed_counter > 0:
+    if counter.delayed > 0:
         recommendations.append(
             {
                 "issue": "There were %i incidents of local backpressure"
-                % delayed_counter,
+                % counter.delayed,
                 "rec": "Run `sperf core statuslogger` for more analysis",
             }
         )
-    if signficant_blocked_counter > 0:
+    if counter.blocked > 0:
         recommendations.append(
             {
                 "issue": "There were %i incidents of signficantly blocked stages"
-                % signficant_blocked_counter,
+                % counter.blocked,
                 "rec": "Run `sperf core statuslogger` for more analysis",
             }
         )
-    if signficant_pending_counter > 0:
+    if counter.pending > 0:
         recommendations.append(
             {
                 "issue": "There were %i incidents of signficantly pending stages"
-                % signficant_pending_counter,
+                % counter.pending,
                 "rec": "Run `sperf core statuslogger` for more analysis",
             }
         )
@@ -177,27 +183,25 @@ def _recs_on_configs(recommendations, configs):
         recommendations.append(rec)
 
 
-def _status_logger_counter(event, delayed, pending, blocked):
+def _status_logger_counter(event, counter):
     if "delayed" in event and event["delayed"]:
         val = event["delayed"]
         if val > 0:
-            delayed += 1
+            counter.delayed += 1
     if "pending" in event and event["pending"]:
         val = event["pending"]
         if val > 100:
-            pending += 1
+            counter.pending += 1
     if "blocked" in event and event["blocked"]:
         val = event["blocked"]
         if val > 10:
-            blocked += 1
+            counter.blocked += 1
 
 
 def generate_recommendations(parsed):
     """generate recommendations off the parsed data"""
     gc_over_500 = 0
-    delayed_counter = 0
-    pending_counter = 0
-    blocked_counter = 0
+    counter = StatusLoggerCounter()
     event_filter = diag.UniqEventPerNodeFilter()
     for rec_log in parsed["rec_logs"]:
         node = util.extract_node_name(rec_log)
@@ -220,13 +224,9 @@ def generate_recommendations(parsed):
                     ):
                         if event.get("duration") > 500:
                             gc_over_500 += 1
-                    _status_logger_counter(
-                        event, delayed_counter, pending_counter, blocked_counter
-                    )
+                    _status_logger_counter(event, counter)
     recommendations = []
-    _recs_on_stages(
-        recommendations, gc_over_500, delayed_counter, pending_counter, blocked_counter
-    )
+    _recs_on_stages(recommendations, gc_over_500, counter)
     _recs_on_configs(recommendations, parsed["configs"])
     return recommendations
 
