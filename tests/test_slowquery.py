@@ -27,6 +27,7 @@ class TestSperfDefault(unittest.TestCase):
     def test_sperf(self):
         """integration test, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
+        self.maxDiff = None
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(
             current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
@@ -47,21 +48,23 @@ class TestSperfDefault(unittest.TestCase):
             "sperf core slowquery version: %s" % (VERSION)
             + """
 
-. <5000ms + >5000ms ! >5004ms X >5004ms
+. <505ms + >557ms ! >1489ms X >1489ms
 ------------------------------
-2020-01-10 16:58:55.839000+00:00  XXXXXXXXXXXXXXXXXXXXXXXX++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-10 16:58:55.839000+00:00  .X+
 
-worst period: 2020-01-10 16:58:55.839000+00:00 (930282ms)
+worst period: 2020-01-10 16:58:55.839000+00:00 (2554ms)
 
-3 slow queries, 1 cross-node
+slow query breakdown
+--------------------
+3 total, 1 cross-node, 0 timeouts
 
 Top 3 slow queries:
 ------------------------------
-5005ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0057-1aa2-0000-0000002c726f LIMIT 5000>
+1490ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000>
+558ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>""",
+506ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0057-1aa2-0000-0000002c726f LIMIT 5000""",
         )
 
     def test_sperf_68(self):
@@ -85,15 +88,21 @@ Top 3 slow queries:
             "sperf core slowquery version: %s" % (VERSION)
             + """
 
-. <5073ms + >5073ms ! >5073ms X >5073ms
+. <10000ms + >10003ms ! >10005ms X >10057ms
 ------------------------------
-2020-07-22 13:39:05.889000+00:00  X
+2020-07-22 13:39:05.889000+00:00  .X.+.!!.
 
-worst period: 2020-07-22 13:39:05.889000+00:00 (5074ms)
+worst period: 2020-07-22 13:39:05.889000+00:00 (72158ms)
 
-1 slow queries, 0 cross-node
+slow query breakdown
+--------------------
+8 total, 0 cross-node, 7 timeouts
 
 Top 3 slow queries:
 ------------------------------
-5074ms: <SELECT config FROM dse_insights.insights_config WHERE key = 1>""",
+10058ms: SELECT * FROM keyspace1.standard1 WHERE key= 1
+
+10006ms: SELECT * FROM keyspace1.standard1 WHERE C3 = 30783739393164656164636535346463653436633764343738393962313463616366396262623565643135366538613864386630396562336233343235623662373464386563 AND  LIMIT 1
+
+10006ms: SELECT * FROM keyspace1.standard1 WHERE C2 = 307836313933373336353935666436333031643163 AND  LIMIT 1""",
         )

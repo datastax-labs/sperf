@@ -31,17 +31,21 @@ class SlowQueryParser:
         r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations were slow in the last (?P<threshold>\d+) msecs:"
     )
     slow_match = re.compile(
-        r"(?P<query>.*), was slow (?P<count>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+        r"\<((?P<query>.*))\>, was slow (?P<count>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     slow_match_single = re.compile(
-        r"(?P<query>.*), time (?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+        r"\<((?P<query>.*))\>, time (?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match = re.compile(
-        r"(?P<query>.*), timed out (?P<numslow>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+        r"\<((?P<query>.*))\>, timed out (?P<numslow>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match_single = re.compile(
-        r"(?P<query>.*), total time (?P<time>\d+) msec - timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+        r"\<((?P<query>.*))\>, total time (?P<time>\d+) msec - timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+
     )
+
+    begin_timed_out = re.compile(r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations timed out in the last (?P<threshold>\d+) msecs:")
+    timed_out_match = re.compile(r"\<(?P<query>.*)\>, total time (?P<time>\d+) msec, timeout (?P<threshold>\d+) msec")
 
     def __init__(self):
         self.state = None
@@ -56,9 +60,16 @@ class SlowQueryParser:
                     self.state = self.BEGIN
                     ret["numslow"] = int(m.group("numslow"))
                     ret["date"] = date()(m.group("date"))
-                continue
+                    continue
+                t = self.begin_timed_out.match(line)
+                if t: 
+                    self.state = self.BEGIN
+                    ret["numslow"] = int(t.group("numslow"))
+                    ret["date"] = date()(t.group("date"))
+                    continue
             if self.state == self.BEGIN:
                 for match in [
+                    self.timed_out_match,
                     self.slow_match,
                     self.fail_match,
                     self.slow_match_single,
@@ -69,6 +80,8 @@ class SlowQueryParser:
                         ret.update(m.groupdict())
                         if match in [self.fail_match, self.fail_match_single]:
                             ret["type"] = "fail"
+                        elif match == self.timed_out_match:
+                            ret["type"] = "timed_out"
                         else:
                             ret["type"] = "slow"
                         self.state = None
@@ -89,6 +102,7 @@ class SlowQueryAnalyzer:
         self.start = None
         self.end = None
         self.cross = 0
+        self.timedout = 0
         self.start_time = None
         self.end_time = None
         if start:
@@ -121,7 +135,9 @@ class SlowQueryAnalyzer:
                             self.querytimes[query["date"]].append(int(query["time"]))
                     else:
                         self.querytimes[query["date"]].append(int(query["time"]))
-                    self.queries.append((query["query"], int(query["numslow"])))
+                    self.queries.append((query["query"], int(query["time"])))
+                    if "type" in query and query["type"] == "timed_out":
+                        self.timedout += 1 * int(query["numslow"])
                     if query["cross"] is not None:
                         self.cross += 1
         self.analyzed = True
@@ -148,7 +164,9 @@ class SlowQueryAnalyzer:
                 key=lambda t: t[0],
             )
         )
-        print(len(self.queries), "slow queries, %s cross-node" % self.cross)
+        print("slow query breakdown")
+        print("--------------------")
+        print(len(self.queries), "total, %s cross-node, %s timeouts" % (self.cross, self.timedout))
         print()
         print("Top %s slow queries:" % top)
         print("-" * 30)
