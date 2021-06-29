@@ -37,60 +37,51 @@ class SlowQueryParser:
         r"\<((?P<query>.*))\>, time (?P<time>\d+) msec - slow timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match_multiple = re.compile(
-        r"\<((?P<query>.*))\>, timed out (?P<numslow>\d+) times: avg/min/max (?P<avg>\d+)/(?P<min>\d+)/(?P<time>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
+        r"\<((?P<query>.*))\>, timed out (?P<numslow>\d+) times: avg\/min\/max (?P<avg>\d+)/(?P<min>\d+)\/(?P<time>\d+) msec -timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
     )
     fail_match = re.compile(
         r"\<((?P<query>.*))\>, total time (?P<time>\d+) msec - timeout (?P<threshold>\d+) msec(?P<cross>\/cross-node)?"
-
     )
 
-    begin_timed_out = re.compile(r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations timed out in the last (?P<threshold>\d+) msecs:")
-    timed_out_match = re.compile(r"\<(?P<query>.*)\>, total time (?P<time>\d+) msec, timeout (?P<threshold>\d+) msec")
-
-    def __init__(self):
-        self.state = None
-
-    def parse_line(self, line: str, ret):
-        """parse the line"""
-        print("starting", self.state, line)
-        if self.state is None:
-            m = self.begin_match.match(line)
-            if m:
-                self.state = self.BEGIN
-                ret["numslow"] = int(m.group("numslow"))
-                ret["date"] = date()(m.group("date"))
-                return
-            t = self.begin_timed_out.match(line)
-            if t: 
-                self.state = self.BEGIN
-                ret["numslow"] = int(t.group("numslow"))
-                ret["date"] = date()(t.group("date"))
-                return
-        elif self.state == self.BEGIN:
-            for match in [
-                self.timed_out_match,
-                self.slow_match,
-                self.fail_match,
-                self.slow_match_multiple,
-                self.fail_match_multiple,
-            ]:
-                m = match.match(line)
-                if m:
-                    ret.update(m.groupdict())
-                    if match in [self.fail_match, self.fail_match_multiple]:
-                        ret["type"] = "fail"
-                    elif match == self.timed_out_match:
-                        ret["type"] = "timed_out"
-                    else:
-                        ret["type"] = "slow"
-                    self.state = None
-                    return
+    begin_timed_out = re.compile(
+        r" *(?P<level>[A-Z]*) *\[(?P<thread_name>[^\]]*?)[:_-]?(?P<thread_id>[0-9]*)\] (?P<date>.{10} .{12}) *(?P<source_file>[^:]*):(?P<source_line>[0-9]*) - (?P<numslow>\d+) operations timed out in the last (?P<threshold>\d+) msecs:"
+    )
+    timed_out_match = re.compile(
+        r"\<(?P<query>.*)\>, total time (?P<time>\d+) msec, timeout (?P<threshold>\d+) msec"
+    )
 
     def parse(self, logfile):
         """parses a debug log for slow queries"""
         ret = OrderedDict()
         for line in logfile:
-            self.parse_line(line, ret)
+            m = self.begin_match.match(line)
+            time_match = self.begin_timed_out.match(line)
+            if m:
+                ret["numslow"] = int(m.group("numslow"))
+                ret["date"] = date()(m.group("date"))
+            elif time_match:
+                ret["numslow"] = int(time_match.group("numslow"))
+                ret["date"] = date()(time_match.group("date"))
+            else:
+                for match in [
+                    self.slow_match,
+                    self.fail_match,
+                    self.slow_match_multiple,
+                    self.fail_match_multiple,
+                    self.timed_out_match,
+                ]:
+                    m = match.match(line)
+                    if m:
+                        ret.update(m.groupdict())
+                        if match in [self.fail_match, self.fail_match_multiple]:
+                            ret["type"] = "fail"
+                        elif match == self.timed_out_match:
+                            ret["type"] = "timed_out"
+                        else:
+                            ret["type"] = "slow"
+                        yield ret
+                        break
+
 
 class SlowQueryAnalyzer:
     """analyzes results from parsing slow queries"""
@@ -151,6 +142,11 @@ class SlowQueryAnalyzer:
             self.analyze()
         print("%s version: %s" % (command_name, VERSION))
         print("")
+        print(
+            "this is not a very accurate report, use it to discover basics, but I suggest analyzing the logs by hand for any outliers"
+        )
+        print("")
+
         if not self.queries:
             if self.files:
                 print("no queries found the files provided")
@@ -169,7 +165,10 @@ class SlowQueryAnalyzer:
         )
         print("slow query breakdown")
         print("--------------------")
-        print(len(self.queries), "total, %s cross-node, %s timeouts" % (self.cross, self.timedout))
+        print(
+            len(self.queries),
+            "total, %s cross-node, %s timeouts" % (self.cross, self.timedout),
+        )
         print()
         print("Top %s slow queries:" % top)
         print("-" * 30)

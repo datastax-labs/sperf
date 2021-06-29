@@ -46,29 +46,30 @@ class TestSperfDefault(unittest.TestCase):
         self.assertEqual(
             output,
             "sperf core slowquery version: %s" % (VERSION)
-            + """
+            + "\n\n"
+            + """this is not a very accurate report, use it to discover basics, but I suggest analyzing the logs by hand for any outliers
 
-. <505ms + >557ms ! >1489ms X >1489ms
+. <574ms + >661ms ! >1285ms X >1687ms
 ------------------------------
-2020-01-10 16:58:55.839000+00:00  .X+
+2020-01-10 16:58:55.839000+00:00  ........................!!.!!++++!+!.!!.++!+!+..+..X.++!+!!.+!.!+!++!!.+.+.
 
-worst period: 2020-01-10 16:58:55.839000+00:00 (2554ms)
+worst period: 2020-01-10 16:58:55.839000+00:00 (65342ms)
 
 slow query breakdown
 --------------------
-3 total, 1 cross-node, 0 timeouts
+75 total, 48 cross-node, 0 timeouts
 
 Top 3 slow queries:
 ------------------------------
-1490ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000
+1688ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0041-d584-0000-0000004956fd LIMIT 5000
 
-558ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000
+1535ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0047-87cc-0000-0000004e94af LIMIT 5000
 
-506ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0057-1aa2-0000-0000002c726f LIMIT 5000""",
+1522ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0008-b249-0000-00000044c1f3 LIMIT 5000""",
         )
 
     def test_sperf_68(self):
-        """integration test, this is not the best test and only verifies no change in calculations
+        """integration test for DSE 6.8 format, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
@@ -86,7 +87,8 @@ Top 3 slow queries:
         self.assertEqual(
             output,
             "sperf core slowquery version: %s" % (VERSION)
-            + """
+            + "\n\n"
+            + """this is not a very accurate report, use it to discover basics, but I suggest analyzing the logs by hand for any outliers
 
 . <10000ms + >10003ms ! >10005ms X >10057ms
 ------------------------------

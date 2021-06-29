@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 import re
 from pysper.core import slowquery
 
+
 class TestSlowQueryRegex(unittest.TestCase):
     """test sperf regex against various slowquery logs"""
 
@@ -35,7 +36,9 @@ class TestSlowQueryRegex(unittest.TestCase):
         p = slowquery.SlowQueryParser()
         m = p.timed_out_match.match(log1)
         self.assertTrue(m)
-        self.assertEqual(m.group("query"), "SELECT * FROM keyspace1.standard1 WHERE key= 1")
+        self.assertEqual(
+            m.group("query"), "SELECT * FROM keyspace1.standard1 WHERE key= 1"
+        )
         self.assertEqual(m.group("time"), "10058")
         self.assertEqual(m.group("threshold"), "10000")
 
@@ -44,8 +47,12 @@ class TestSlowQueryRegex(unittest.TestCase):
         p = slowquery.SlowQueryParser()
         m = p.slow_match.match(log1)
         self.assertTrue(m)
-        self.assertEqual(m.group("query"), "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000")
+        self.assertEqual(
+            m.group("query"),
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000",
+        )
         self.assertEqual(m.group("time"), "1490")
+
 
 class TestSlowQueryLineParse(unittest.TestCase):
     """test sperf line parsing logic"""
@@ -54,33 +61,40 @@ class TestSlowQueryLineParse(unittest.TestCase):
         start = "DEBUG [ScheduledTasks:1] 2020-01-10 17:01:56,039  MonitoringTask.java:172 - 161 operations were slow in the last 5001 msecs:"
         log1 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>, time 1490 msec - slow timeout 500 msec/cross-node"
         log2 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-0000003cb986 LIMIT 5000>, time 1431 msec - slow timeout 500 msec/cross-node"
-        ret = {}
+
         p = slowquery.SlowQueryParser()
-        p.parse_line(start, ret)
-        self.assertEqual(p.state, p.BEGIN)
-        self.assertEqual(ret["date"], datetime(2020, 1, 10, 17, 1, 56, 39000,  tzinfo=timezone.utc))
+        g = p.parse([start, log1, log2])
+        ret = next(g)
+        self.assertEqual(
+            ret["date"], datetime(2020, 1, 10, 17, 1, 56, 39000, tzinfo=timezone.utc)
+        )
         self.assertEqual(ret["numslow"], 161)
-        p.parse_line(log1, ret)
         self.assertEqual(ret["type"], "slow")
-        self.assertEqual(ret["query"], "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000",
+        )
         self.assertEqual(ret["time"], "1490")
-        p.parse_line(log2, ret)
+        ret = next(g)
         self.assertEqual(ret["type"], "slow")
-        self.assertEqual(ret["query"], "SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-0000003cb986 LIMIT 5000")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-0000003cb986 LIMIT 5000",
+        )
         self.assertEqual(ret["time"], "1431")
 
     def test_timeout(self):
-        ret = {}
         start = "DEBUG [ScheduledTasks:1] 2020-07-22 13:39:05,889  MonitoringTask.java:152 - 1 operations timed out in the last 5074 msecs:"
         log1 = "<SELECT * FROM keyspace1.standard1 WHERE key= 1>, total time 10058 msec, timeout 10000 msec"
 
         p = slowquery.SlowQueryParser()
-        p.parse_line(start, ret)
+        g = p.parse([start, log1])
+        ret = next(g)
         self.assertEqual(ret["numslow"], 1)
-        self.assertEqual(ret["date"], datetime(2020, 7, 22, 13, 39, 5, 889000,  tzinfo=timezone.utc))
-        self.assertEqual(p.state, p.BEGIN)
-        p.parse_line(log1, ret)
+        self.assertEqual(
+            ret["date"], datetime(2020, 7, 22, 13, 39, 5, 889000, tzinfo=timezone.utc)
+        )
         self.assertEqual(ret["type"], "timed_out")
         self.assertEqual(ret["query"], "SELECT * FROM keyspace1.standard1 WHERE key= 1")
-        self.assertEqual(ret["time"], '10058')
-        self.assertEqual(ret["threshold"], '10000')
+        self.assertEqual(ret["time"], "10058")
+        self.assertEqual(ret["threshold"], "10000")
