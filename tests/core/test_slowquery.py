@@ -82,6 +82,53 @@ class TestSlowQueryLineParse(unittest.TestCase):
         )
         self.assertEqual(ret["time"], "1431")
 
+    def test_slow_back_back(self):
+        start = "DEBUG [ScheduledTasks:1] 2020-01-10 17:01:56,039  MonitoringTask.java:172 - 161 operations were slow in the last 5001 msecs:"
+        log1 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>, time 1490 msec - slow timeout 500 msec/cross-node"
+        log2 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-0000003cb986 LIMIT 5000>, time 1431 msec - slow timeout 500 msec/cross-node"
+        start2 = "DEBUG [ScheduledTasks:1] 2020-01-10 17:02:56,039  MonitoringTask.java:172 - 2 operations were slow in the last 5001 msecs:"
+        log3 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-000000124424 LIMIT 5000>, time 490 msec - slow timeout 500 msec/cross-node"
+        log4 = "<SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-000000334245 LIMIT 5000>, time 431 msec - slow timeout 500 msec/cross-node"
+
+        p = slowquery.SlowQueryParser()
+        g = p.parse([start, log1, log2, start2, log3, log4])
+        ret = next(g)
+        self.assertEqual(
+            ret["date"], datetime(2020, 1, 10, 17, 1, 56, 39000, tzinfo=timezone.utc)
+        )
+        self.assertEqual(ret["numslow"], 161)
+        self.assertEqual(ret["type"], "slow")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000",
+        )
+        self.assertEqual(ret["time"], "1490")
+        ret = next(g)
+        self.assertEqual(ret["type"], "slow")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-0000003cb986 LIMIT 5000",
+        )
+        self.assertEqual(ret["time"], "1431")
+
+        ret = next(g)
+        self.assertEqual(
+            ret["date"], datetime(2020, 1, 10, 17, 2, 56, 39000, tzinfo=timezone.utc)
+        )
+        self.assertEqual(ret["type"], "slow")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-000000124424 LIMIT 5000",
+        )
+        self.assertEqual(ret["time"], "490")
+        ret = next(g)
+        self.assertEqual(ret["type"], "slow")
+        self.assertEqual(
+            ret["query"],
+            "SELECT * FROM my_solr.my_table WHERE id = 00000000-004c-6471-0000-000000334245 LIMIT 5000",
+        )
+        self.assertEqual(ret["time"], "431")
+
     def test_timeout(self):
         start = "DEBUG [ScheduledTasks:1] 2020-07-22 13:39:05,889  MonitoringTask.java:152 - 1 operations timed out in the last 5074 msecs:"
         log1 = "<SELECT * FROM keyspace1.standard1 WHERE key= 1>, total time 10058 msec, timeout 10000 msec"
