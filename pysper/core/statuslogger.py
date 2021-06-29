@@ -255,7 +255,6 @@ class StatusLogger:
                             if not node.version:
                                 node.version = "6.x"
                             if "delayed" in event and event["delayed"]:
-                                print(event)
                                 val = event["delayed"]
                                 node.stages["local backpressure"][
                                     event["pool_name"]

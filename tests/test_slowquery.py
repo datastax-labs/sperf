@@ -27,6 +27,7 @@ class TestSperfDefault(unittest.TestCase):
     def test_sperf(self):
         """integration test, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
+        self.maxDiff = None
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(
             current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
@@ -45,27 +46,30 @@ class TestSperfDefault(unittest.TestCase):
         self.assertEqual(
             output,
             "sperf core slowquery version: %s" % (VERSION)
-            + """
+            + "\n\n"
+            + """this is not a very accurate report, use it to discover basics, but I suggest analyzing the logs by hand for any outliers
 
-. <5000ms + >5000ms ! >5004ms X >5004ms
+. <574ms + >661ms ! >1285ms X >1687ms
 ------------------------------
-2020-01-10 16:58:55.839000+00:00  XXXXXXXXXXXXXXXXXXXXXXXX++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2020-01-10 16:58:55.839000+00:00  ........................!!.!!++++!+!.!!.++!+!+..+..X.++!+!!.+!.!+!++!!.+.+.
 
-worst period: 2020-01-10 16:58:55.839000+00:00 (930282ms)
+worst period: 2020-01-10 16:58:55.839000+00:00 (65342ms)
 
-3 slow queries, 1 cross-node
+slow query breakdown
+--------------------
+75 total, 48 cross-node, 0 timeouts
 
 Top 3 slow queries:
 ------------------------------
-5005ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0057-1aa2-0000-0000002c726f LIMIT 5000>
+1688ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0041-d584-0000-0000004956fd LIMIT 5000
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-004f-c914-0000-0000004d6abe LIMIT 5000>
+1535ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0047-87cc-0000-0000004e94af LIMIT 5000
 
-5001ms: <SELECT * FROM my_solr.my_table WHERE id = 00000000-0040-c812-0000-0000002016a4 LIMIT 5000>""",
+1522ms: SELECT * FROM my_solr.my_table WHERE id = 00000000-0008-b249-0000-00000044c1f3 LIMIT 5000""",
         )
 
     def test_sperf_68(self):
-        """integration test, this is not the best test and only verifies no change in calculations
+        """integration test for DSE 6.8 format, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
@@ -83,17 +87,24 @@ Top 3 slow queries:
         self.assertEqual(
             output,
             "sperf core slowquery version: %s" % (VERSION)
-            + """
+            + "\n\n"
+            + """this is not a very accurate report, use it to discover basics, but I suggest analyzing the logs by hand for any outliers
 
-. <5073ms + >5073ms ! >5073ms X >5073ms
+. <10000ms + >10003ms ! >10005ms X >10057ms
 ------------------------------
-2020-07-22 13:39:05.889000+00:00  X
+2020-07-22 13:39:05.889000+00:00  .X.+.!!.
 
-worst period: 2020-07-22 13:39:05.889000+00:00 (5074ms)
+worst period: 2020-07-22 13:39:05.889000+00:00 (72158ms)
 
-1 slow queries, 0 cross-node
+slow query breakdown
+--------------------
+8 total, 0 cross-node, 7 timeouts
 
 Top 3 slow queries:
 ------------------------------
-5074ms: <SELECT config FROM dse_insights.insights_config WHERE key = 1>""",
+10058ms: SELECT * FROM keyspace1.standard1 WHERE key= 1
+
+10006ms: SELECT * FROM keyspace1.standard1 WHERE C3 = 30783739393164656164636535346463653436633764343738393962313463616366396262623565643135366538613864386630396562336233343235623662373464386563 AND  LIMIT 1
+
+10006ms: SELECT * FROM keyspace1.standard1 WHERE C2 = 307836313933373336353935666436333031643163 AND  LIMIT 1""",
         )

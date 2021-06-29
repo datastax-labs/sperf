@@ -14526,7 +14526,7 @@ DEBUG [ScheduledTasks:1] 2020-07-22 13:39:05,889  MonitoringTask.java:173 - 1 op
 <SELECT config FROM dse_insights.insights_config WHERE key = 1>, time 2080 msec - slow timeout 500 msec
 WARN  [ScheduledTasks:1] 2020-07-22 13:39:05,889  NoSpamLogger.java:98 - Some operations timed out, details available at debug level (debug.log)
 DEBUG [ScheduledTasks:1] 2020-07-22 13:39:05,889  MonitoringTask.java:152 - 1 operations timed out in the last 5074 msecs:
-<SELECT * FROM keyspace1.standard1 WHERE >, total time 10058 msec, timeout 10000 msec
+<SELECT * FROM keyspace1.standard1 WHERE key= 1>, total time 10058 msec, timeout 10000 msec
 DEBUG [HintsWriteExecutor:1] 2020-07-22 13:39:14,898  HintsStore.java:253 - Closed hints writer for HintsDescriptor{hostId=5f07e400-cfa8-4afd-a6a0-6935ad90e9dd, version=DSE_68, timestamp=1595425147938, parameters={}}
 INFO  [HintsDispatcher:3] 2020-07-22 13:39:24,930  HintsStore.java:169 - Deleted hint file 5f07e400-cfa8-4afd-a6a0-6935ad90e9dd-1595425147938-v1.hints
 INFO  [HintsDispatcher:3] 2020-07-22 13:39:24,931  HintsDispatchExecutor.java:295 - Finished hinted handoff of file 5f07e400-cfa8-4afd-a6a0-6935ad90e9dd-1595425147938-v1.hints to endpoint /172.17.0.2: 5f07e400-cfa8-4afd-a6a0-6935ad90e9dd, completed
