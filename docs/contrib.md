@@ -10,8 +10,8 @@
 
 ## Testing and validation
 
-1. run `scripts/test`
-2. run `scripts/lint`
+1. run `make test`
+2. run `make lint`
 
 ## CI Server
 
@@ -22,7 +22,7 @@ tests on python 3.6-3.9 on Windows, Mac and Linux
 
 ### Manually
 
-If you want to test the project or create a binary just out of your local work run the script `./scripts/build` which
+If you want to test the project or create a binary just out of your local work run the script `make build` which
 will generate a binary ready for use on your platform. However, be aware
 of limitations with this method detailed [here for Linux](https://github.com/pyinstaller/pyinstaller/wiki/FAQ#gnulinux) and [for Mac](https://github.com/pyinstaller/pyinstaller/wiki/FAQ#mac-os-x) and
 it may not be able to share it with your very old OS X or old Debian server.

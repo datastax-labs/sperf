@@ -17,8 +17,8 @@
 import sys
 import os
 import platform
-if platform.python_version() < '3.5':
-    raise Exception("sperf requires at least Python 3.5, consider a packaged release")
+if platform.python_version() < '3.6':
+    raise Exception("sperf requires at least Python 3.6, consider a packaged release")
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from pysper.commands import sperf
 

@@ -2,7 +2,7 @@
 
 ## Install
 
-[Binaries here](https://github.com/DataStax-Toolkit/sperf/releases) or if you use [Hombrew](https://brew.sh) `brew tap rsds143/sperf && brew install sperf`
+[Binaries here](https://github.com/DataStax-Toolkit/sperf/releases) or if you use [Hombrew](https://brew.sh) `brew tap rsds143/rsds && brew install sperf`
 
 ## What can it do
 

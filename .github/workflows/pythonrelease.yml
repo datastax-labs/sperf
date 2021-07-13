@@ -40,16 +40,19 @@ jobs:
         include:
           - build: linux
             os: ubuntu-16.04
+            zipname: Linux
           - build: windows
             os: windows-2016
+            zipname: Windows
           - build: mac
             os: macos-latest
+            zipname: Darwin
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.6
+        python-version: 3.9
     - name: Install dependencies
       shell: bash
       run: |
@@ -70,9 +73,7 @@ jobs:
     - name: Build binary
       shell: bash
       run: |
-        ./scripts/build
-      env:
-        TRAVIS_OS_NAME: ${{ matrix.build }}
+        make build
     - name: Upload Release Asset
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
@@ -80,8 +81,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ env.RELEASE_UPLOAD_URL }} 
-        asset_path: ./dist/build/sperf-${{ matrix.build }}.zip
-        asset_name: sperf-${{ matrix.build }}.zip
+        asset_path: ./dist/build/sperf-${{ matrix.zipname }}.zip
+        asset_name: sperf-${{ matrix.zipname }}.zip
         asset_content_type: application/zip
 
 
