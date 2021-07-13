@@ -1,6 +1,6 @@
 # Contributing
 
-1. Make sure you have Python 3.6.x or greater. If not then look at [PyEnv](https://github.com/pyenv/pyenv)
+1. Make sure you have Python 3.7.x or greater. If not then look at [PyEnv](https://github.com/pyenv/pyenv)
 2. run `git clone git@github.com:DataStax-Toolkit/sperf.git`
 3. run `cd sperf`
 4. run `python3 -m venv ./venv`
@@ -16,7 +16,7 @@
 ## CI Server
 
 This is done using GitHub actions are are located [here](https://github.com/DataStax-Toolkit/sperf/tree/master/.github/workflows) and automatically run
-tests on python 3.6-3.9 on Windows, Mac and Linux
+tests on python 3.7-3.9 on Windows, Mac and Linux
 
 ## Creating a binary
 
