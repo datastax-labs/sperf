@@ -61,7 +61,7 @@ class TestSystemParser(unittest.TestCase):
             # old version of logs, before DSP-18693
             "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,950  SolrFilterCache.java:328 - ...eviction completed in 9 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$6@5af917a4 usage is now 114781220 across 159 entries.",
             # new version of logs, after DSP-18693
-            "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,950  SolrFilterCache.java:328 - ...eviction completed in 8 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$6@5af917a4 usage is now 114781220 bytes across 159 entries.",
+            "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,950  SolrFilterCache.java:328 - ...eviction completed in 8 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$6@5af917b6 usage is now 114781220 bytes across 159 entries.",
         ]
         events = []
         for line in lines:
@@ -97,4 +97,4 @@ class TestSystemParser(unittest.TestCase):
         self.assertEqual(events[7]["duration"], 8)
         self.assertEqual(events[7]["usage"], 114781220)
         self.assertEqual(events[7]["entries"], 159)
-        self.assertEqual(events[7]["id"], "6@5af917a4")
+        self.assertEqual(events[7]["id"], "6@5af917b6")
