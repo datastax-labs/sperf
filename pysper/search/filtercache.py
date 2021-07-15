@@ -66,7 +66,7 @@ class NodeReportBlock:
             self.avg_evict_duration,
             self.byte_limit,
             self.item_limit,
-            self.evict_range,
+            int(self.evict_range),
         )
 
 
@@ -129,6 +129,7 @@ class ItemFCStats:
 
 def _get_stats(events, ctor, key_name):
     """adds the corresponding duration event.
+
     Note the the get_id hack is error prone when spanning logs as half an event could not finish
     """
     eviction_stats = {
@@ -143,7 +144,7 @@ def _get_stats(events, ctor, key_name):
             [
                 event
                 for event in events
-                if event.get("event_type", "") == (key_name + "_duration")
+                if event.get("event_type", "") == "eviction_duration"
             ]
         )
     }

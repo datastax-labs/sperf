@@ -128,7 +128,7 @@ def solr_rules():
             update(
                 event_product="solr",
                 event_category="filter_cache",
-                event_type="eviction_items_duration",
+                event_type="eviction_duration",
             ),
         ),
         rule(
@@ -140,17 +140,6 @@ def solr_rules():
                 event_product="solr",
                 event_category="filter_cache",
                 event_type="eviction_bytes",
-            ),
-        ),
-        rule(
-            capture(
-                r"...eviction completed in (?P<duration>[0-9]+) milliseconds. Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) usage is now (?P<usage>[0-9]+) across (?P<entries>[0-9]+) entries."
-            ),
-            convert(int, "duration", "entries", "usage"),
-            update(
-                event_product="solr",
-                event_category="filter_cache",
-                event_type="eviction_bytes_duration",
             ),
         ),
         case("QueryComponent"),
