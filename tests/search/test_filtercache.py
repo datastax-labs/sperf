@@ -116,9 +116,10 @@ NOTE: Do top recommendation first.
         raw_events = parser.read_system_log(lines)
         after_time = dates.date_parse("2020-01-21 00:00:00,000")
         before_time = dates.date_parse("2020-02-21 00:00:00,000")
-        item_ev_stats, bytes_ev_stats = calculate_eviction_stats(raw_events, after_time, before_time)
+        item_ev_stats, bytes_ev_stats = calculate_eviction_stats(
+            raw_events, after_time, before_time
+        )
         assert len(item_ev_stats.values()) == 2
         assert sum([s.duration for s in item_ev_stats.values()]) == 1304 + 1
         assert len(bytes_ev_stats.values()) == 3
         assert sum([s.duration for s in bytes_ev_stats.values()]) == 9 + 8 + 0
-

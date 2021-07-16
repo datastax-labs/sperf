@@ -162,12 +162,10 @@ def calculate_eviction_stats(raw_events, after_time, before_time):
         event
         for event in raw_events
         if event.get("event_category", "") == "filter_cache"
-           and "date" in event
-           and after_time < event["date"] < before_time
+        and "date" in event
+        and after_time < event["date"] < before_time
     ]
-    item_eviction_stats = _get_stats(
-        filter_cache_events, ItemFCStats, "eviction_items"
-    )
+    item_eviction_stats = _get_stats(filter_cache_events, ItemFCStats, "eviction_items")
     bytes_eviction_stats = _get_stats(
         filter_cache_events, BytesFCStats, "eviction_bytes"
     )
@@ -190,7 +188,9 @@ def parse(args):
         start_log_time, last_log_time = diag.log_range(log)
         with diag.FileWithProgress(log) as log_file:
             raw_events = parser.read_system_log(log_file)
-            item_ev_stats, bytes_ev_stats = calculate_eviction_stats(raw_events, after_time, before_time)
+            item_ev_stats, bytes_ev_stats = calculate_eviction_stats(
+                raw_events, after_time, before_time
+            )
             node = util.extract_node_name(log, True)
             node_stats[node] = OrderedDict(
                 [
