@@ -122,16 +122,16 @@ def solr_rules():
         ),
         rule(
             capture(
-                r"...eviction completed in (?P<duration>[0-9]+) milliseconds. Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) usage is now (?P<usage>[0-9]+) (?P<usage_unit>\w+) across (?P<entries>[0-9]+) entries."
+                r"Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) has reached (?P<usage>[0-9]+) (?P<usage_unit>\w+) bytes of off-heap memory usage, the maximum is (?P<maximum>[0-9]+) (?P<maximum_unit>\w+). Evicting oldest entries..."
             ),
-            convert(int, "duration", "entries", "usage"),
+            convert(int, "maximum", "usage"),
             update(
                 event_product="solr",
                 event_category="filter_cache",
-                event_type="eviction_duration",
+                event_type="eviction_bytes",
             ),
         ),
-        # log pattern for DSE before DSP-18693
+        # eviction duration log pattern for DSE before DSP-18693
         rule(
             capture(
                 r"...eviction completed in (?P<duration>[0-9]+) milliseconds. Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) usage is now (?P<usage>[0-9]+) across (?P<entries>[0-9]+) entries."
@@ -143,15 +143,16 @@ def solr_rules():
                 event_type="eviction_duration",
             ),
         ),
+        # new eviction duration log pattern after DSP-18693
         rule(
             capture(
-                r"Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) has reached (?P<usage>[0-9]+) (?P<usage_unit>\w+) bytes of off-heap memory usage, the maximum is (?P<maximum>[0-9]+) (?P<maximum_unit>\w+). Evicting oldest entries..."
+                r"...eviction completed in (?P<duration>[0-9]+) milliseconds. Filter cache org.apache.solr.search.SolrFilterCache\$(?P<id>\S+) usage is now (?P<usage>[0-9]+) (?P<usage_unit>\w+) across (?P<entries>[0-9]+) entries."
             ),
-            convert(int, "maximum", "usage"),
+            convert(int, "duration", "entries", "usage"),
             update(
                 event_product="solr",
                 event_category="filter_cache",
-                event_type="eviction_bytes",
+                event_type="eviction_duration",
             ),
         ),
         case("QueryComponent"),
