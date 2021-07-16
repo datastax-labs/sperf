@@ -56,15 +56,18 @@ class TestSystemParser(unittest.TestCase):
             "ERROR [RemoteMessageServer query worker - 18] 2020-01-21 11:34:34,475  MessageServer.java:277 - Failed to process request:",
             "INFO  [RemoteMessageServer query worker - 81] 2020-01-21 11:34:35,448  SolrFilterCache.java:356 - ...eviction completed in 1304 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$1@7c723229 usage is now 32441266 bytes across 4000000 entries.",
             "INFO  [LocalMessageServer query worker - 77] 2020-01-21 12:24:23,912  SolrFilterCache.java:340 - Filter cache org.apache.solr.search.SolrFilterCache$1@324b2c16 has reached 3999974 entries of a maximum of 8000000. Evicting oldest entries...",
-            "INFO  [LocalMessageServer query worker - 77] 2020-01-21 12:24:23,912  SolrFilterCache.java:356 - ...eviction completed in 0 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$1@324b2c16 usage is now 32005744 bytes across 3999962 entries.",
+            "INFO  [LocalMessageServer query worker - 77] 2020-01-21 12:24:23,912  SolrFilterCache.java:356 - ...eviction completed in 1 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$1@324b2c16 usage is now 32005744 bytes across 3999962 entries.",
             "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,942  SolrFilterCache.java:311 - Filter cache org.apache.solr.search.SolrFilterCache$6@5af917a4 has reached 16 GB bytes of off-heap memory usage, the maximum is 16 GB. Evicting oldest entries...",
+            # old version of logs, before DSP-18693
             "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,950  SolrFilterCache.java:328 - ...eviction completed in 9 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$6@5af917a4 usage is now 114781220 across 159 entries.",
+            # new version of logs, after DSP-18693
+            "INFO  [RemoteMessageServer query worker - 41] 2020-01-21 12:47:26,950  SolrFilterCache.java:328 - ...eviction completed in 8 milliseconds. Filter cache org.apache.solr.search.SolrFilterCache$6@5af917b6 usage is now 114781220 bytes across 159 entries.",
         ]
         events = []
         for line in lines:
             event = systemlog.capture_line(line)
             events.append(event)
-        self.assertEqual(len(events), 7)
+        self.assertEqual(len(events), len(lines))
         self.assertEqual(events[0]["maximum"], 8000000)
         self.assertEqual(events[0]["entries"], 8000000)
         self.assertEqual(events[0]["id"], "1@7c723229")
@@ -78,7 +81,7 @@ class TestSystemParser(unittest.TestCase):
         self.assertEqual(events[3]["maximum"], 8000000)
         self.assertEqual(events[3]["id"], "1@324b2c16")
         self.assertEqual(events[4]["entries"], 3999962)
-        self.assertEqual(events[4]["duration"], 0)
+        self.assertEqual(events[4]["duration"], 1)
         self.assertEqual(events[4]["usage"], 32005744)
         self.assertEqual(events[4]["usage_unit"], "bytes")
         self.assertEqual(events[4]["id"], "1@324b2c16")
@@ -91,3 +94,7 @@ class TestSystemParser(unittest.TestCase):
         self.assertEqual(events[6]["usage"], 114781220)
         self.assertEqual(events[6]["entries"], 159)
         self.assertEqual(events[6]["id"], "6@5af917a4")
+        self.assertEqual(events[7]["duration"], 8)
+        self.assertEqual(events[7]["usage"], 114781220)
+        self.assertEqual(events[7]["entries"], 159)
+        self.assertEqual(events[7]["id"], "6@5af917b6")

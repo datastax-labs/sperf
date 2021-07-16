@@ -63,7 +63,6 @@ class LogDateFormatParser:
     def parse_timestamp(self, time_str):
         """ParseTimestamp creates a LogTimestamp based on the
         CASSANDRA_LOG_FORMAT and assumes UTC timezone always"""
-        parsed = None
         parsed_hour = 0
         parsed_minute = 0
         parsed_second = 0
@@ -99,6 +98,7 @@ class LogDateFormatParser:
                 second=parsed_second,
                 microsecond=parsed_microsecond,
             )
+            return parsed.replace(tzinfo=timezone.utc)
         except ValueError as e:
             fmt = "eu"
             fix = ""
@@ -111,4 +111,3 @@ class LogDateFormatParser:
                 % (fmt, fix, e)
             )
             raise Exception(msg)
-        return parsed.replace(tzinfo=timezone.utc)

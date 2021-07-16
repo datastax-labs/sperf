@@ -66,7 +66,7 @@ class NodeReportBlock:
             self.avg_evict_duration,
             self.byte_limit,
             self.item_limit,
-            self.evict_range,
+            int(self.evict_range),
         )
 
 
@@ -129,6 +129,7 @@ class ItemFCStats:
 
 def _get_stats(events, ctor, key_name):
     """adds the corresponding duration event.
+
     Note the the get_id hack is error prone when spanning logs as half an event could not finish
     """
     eviction_stats = {
@@ -143,7 +144,7 @@ def _get_stats(events, ctor, key_name):
             [
                 event
                 for event in events
-                if event.get("event_type", "") == (key_name + "_duration")
+                if event.get("event_type", "") == "eviction_duration"
             ]
         )
     }
@@ -153,6 +154,22 @@ def _get_stats(events, ctor, key_name):
             duration_event = OrderedDict()
         stats.add_duration_event(duration_event)
     return eviction_stats
+
+
+def calculate_eviction_stats(raw_events, after_time, before_time):
+    assert after_time < before_time
+    filter_cache_events = [
+        event
+        for event in raw_events
+        if event.get("event_category", "") == "filter_cache"
+        and "date" in event
+        and after_time < event["date"] < before_time
+    ]
+    item_eviction_stats = _get_stats(filter_cache_events, ItemFCStats, "eviction_items")
+    bytes_eviction_stats = _get_stats(
+        filter_cache_events, BytesFCStats, "eviction_bytes"
+    )
+    return (item_eviction_stats, bytes_eviction_stats)
 
 
 def parse(args):
@@ -171,28 +188,13 @@ def parse(args):
         start_log_time, last_log_time = diag.log_range(log)
         with diag.FileWithProgress(log) as log_file:
             raw_events = parser.read_system_log(log_file)
-            filter_cache_events_all = [
-                event
-                for event in raw_events
-                if event.get("event_category", "") == "filter_cache"
-            ]
-            filter_cache_events = [
-                event
-                for event in filter_cache_events_all
-                if "date" in event
-                and event["date"] > after_time
-                and event["date"] < before_time
-            ]
-            item_eviction_stats = _get_stats(
-                filter_cache_events, ItemFCStats, "eviction_items"
-            )
-            bytes_eviction_stats = _get_stats(
-                filter_cache_events, BytesFCStats, "eviction_bytes"
+            item_ev_stats, bytes_ev_stats = calculate_eviction_stats(
+                raw_events, after_time, before_time
             )
             node = util.extract_node_name(log, True)
             node_stats[node] = OrderedDict(
                 [
-                    ("evictions", (bytes_eviction_stats, item_eviction_stats)),
+                    ("evictions", (bytes_ev_stats, item_ev_stats)),
                     ("start", start_log_time),
                     ("end", last_log_time),
                 ]
