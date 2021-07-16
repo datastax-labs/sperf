@@ -14,6 +14,7 @@
 """sperf default command run when you type `sperf`"""
 from collections import OrderedDict
 from dataclasses import dataclass
+import multiprocessing as mp
 
 from pysper import humanize
 from pysper.core.diag import parse_diag
@@ -183,48 +184,79 @@ def _recs_on_configs(recommendations, configs):
         recommendations.append(rec)
 
 
-def _status_logger_counter(event, counter):
-    if "delayed" in event and event["delayed"]:
-        val = event["delayed"]
-        if val > 0:
-            counter.delayed += 1
-    if "pending" in event and event["pending"]:
-        val = event["pending"]
-        if val > 100:
-            counter.pending += 1
-    if "blocked" in event and event["blocked"]:
-        val = event["blocked"]
-        if val > 10:
-            counter.blocked += 1
+def run_file(rec_log):
+    """parse file and return values"""
+    gcs = []
+    delayed = []
+    pending = []
+    blocked = []
+    warnings = []
+    node = util.extract_node_name(rec_log)
+    with diag.FileWithProgress(rec_log) as rec_log_file:
+        if rec_log_file.error:
+            warnings.append("%s failed with error %s" % (rec_log, rec_log_file.error))
+        else:
+            statuslogger_fixer = diag.UnknownStatusLoggerWriter()
+            events = parser.read_system_log(rec_log_file)
+            for event in [e for e in events]:
+                statuslogger_fixer.check(event)
+                if event.get("event_type") == "unknown":
+                    continue
+                if (
+                    event.get("event_type") == "pause"
+                    and event.get("event_category") == "garbage_collection"
+                ):
+                    if event.get("duration") > 500:
+                        # move out to per file accumulator
+                        gcs.append(event)
+                # move out to call after all
+                delayed_val = event.get("delayed", 0)
+                if delayed_val and delayed_val > 0:
+                    delayed.append(event)
+                pending_val = event.get("pending", 0)
+                if pending_val and pending_val > 100:
+                    pending.append(event)
+                blocked_val = event.get("blocked", 0)
+                if blocked_val and blocked_val > 10:
+                    blocked.append(event)
+        return {
+            "node": node,
+            "gcs": gcs,
+            "delayed": delayed,
+            "blocked": blocked,
+            "warnings": warnings,
+            "pending": pending,
+        }
 
 
 def generate_recommendations(parsed):
     """generate recommendations off the parsed data"""
     gc_over_500 = 0
     counter = StatusLoggerCounter()
-    event_filter = diag.UniqEventPerNodeFilter()
-    for rec_log in parsed["rec_logs"]:
-        node = util.extract_node_name(rec_log)
-        event_filter.set_node(node)
-        with diag.FileWithProgress(rec_log) as rec_log_file:
-            if rec_log_file.error:
-                parsed["warnings"].append(
-                    "%s failed with error %s" % (rec_log, rec_log_file.error)
-                )
-            else:
-                statuslogger_fixer = diag.UnknownStatusLoggerWriter()
-                events = parser.read_system_log(rec_log_file)
-                for event in [e for e in events if not event_filter.is_duplicate(e)]:
-                    statuslogger_fixer.check(event)
-                    if event.get("event_type") == "unknown":
-                        continue
-                    if (
-                        event.get("event_type") == "pause"
-                        and event.get("event_category") == "garbage_collection"
-                    ):
-                        if event.get("duration") > 500:
-                            gc_over_500 += 1
-                    _status_logger_counter(event, counter)
+    responses = []
+    with mp.Pool(processes=mp.cpu_count()) as pool:
+        for rec_log in parsed["rec_logs"]:
+            res = pool.apply_async(run_file, (rec_log,))
+            responses.append(res)
+        event_filter = diag.UniqEventPerNodeFilter()
+        for res in responses:
+            data = res.get()
+            node = data["node"]
+            event_filter.set_node(node)
+            # filter events down after
+            for e in data["gcs"]:
+                if not event_filter.is_duplicate(e):
+                    gc_over_500 += 1
+            for e in data["delayed"]:
+                if not event_filter.is_duplicate(e):
+                    counter.delayed += 1
+            for e in data["blocked"]:
+                if not event_filter.is_duplicate(e):
+                    counter.blocked += 1
+            parsed["warnings"].extend(data["warnings"])
+            for e in data["pending"]:
+                if not event_filter.is_duplicate(e):
+                    counter.pending += 1
     recommendations = []
     _recs_on_stages(recommendations, gc_over_500, counter)
     _recs_on_configs(recommendations, parsed["configs"])

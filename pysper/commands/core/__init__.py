@@ -18,6 +18,7 @@ cassandra/DSE core specific subcommands
 from pysper.commands.core import (
     bgrep,
     diag,
+    drops,
     gc,
     jarcheck,
     schema,
@@ -46,3 +47,4 @@ def build(subparsers):
     schema.build(cass_sub)
     slowquery.build(cass_sub)
     statuslogger.build(cass_sub)
+    drops.build(cass_sub)
