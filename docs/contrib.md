@@ -1,6 +1,6 @@
 # Contributing
 
-1. Make sure you have Python 3.6.x or greater. If not then look at [PyEnv](https://github.com/pyenv/pyenv)
+1. Make sure you have Python 3.7.x or greater. If not then look at [PyEnv](https://github.com/pyenv/pyenv)
 2. run `git clone git@github.com:DataStax-Toolkit/sperf.git`
 3. run `cd sperf`
 4. run `python3 -m venv ./venv`
@@ -10,19 +10,21 @@
 
 ## Testing and validation
 
-1. run `scripts/test`
-2. run `scripts/lint`
+make sure you have Make installed
+
+1. run `make test`
+2. run `make lint`
 
 ## CI Server
 
 This is done using GitHub actions are are located [here](https://github.com/DataStax-Toolkit/sperf/tree/master/.github/workflows) and automatically run
-tests on python 3.6-3.9 on Windows, Mac and Linux
+tests on python 3.7-3.9 on Windows, Mac and Linux
 
 ## Creating a binary
 
 ### Manually
 
-If you want to test the project or create a binary just out of your local work run the script `./scripts/build` which
+If you want to test the project or create a binary just out of your local work run the script `make build` which
 will generate a binary ready for use on your platform. However, be aware
 of limitations with this method detailed [here for Linux](https://github.com/pyinstaller/pyinstaller/wiki/FAQ#gnulinux) and [for Mac](https://github.com/pyinstaller/pyinstaller/wiki/FAQ#mac-os-x) and
 it may not be able to share it with your very old OS X or old Debian server.
