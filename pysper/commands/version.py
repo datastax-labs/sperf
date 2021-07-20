@@ -15,6 +15,7 @@
 """simple version output"""
 import sys
 from pysper import VERSION
+from pysper.changelog import CHANGES
 from pysper.commands import flags
 
 
@@ -26,5 +27,7 @@ def build(subparsers):
         formatter_class=flags.LineWrapRawTextHelpFormatter,
     )
     version_parser.set_defaults(
-        func=lambda _: print("sperf %s-%s", VERSION, sys.version)
+        func=lambda _: print(
+            "sperf %s-%s\n\nchangelog:\n%s" % (VERSION, sys.version, CHANGES)
+        )
     )
