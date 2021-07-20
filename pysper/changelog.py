@@ -6,6 +6,8 @@ of DSE 5.1.17, 6.0.10, 6.7.5 and 6.8.0
 * new makefile for build dependencies
 * updated changelog to be accurate
 * sperf version outputs changelog and version
+* removed support and testing for Python 3.6
+* sperf script will now bomb if python 3.7 or greater is not installed
 
 sperf 0.6.13
 ------------
