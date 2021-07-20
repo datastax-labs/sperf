@@ -1,3 +1,4 @@
+CHANGES = """
 sperf 0.6.14
 ------------
 * sperf was not parsing new byte eviction format as of in sperf filtercache as
@@ -5,8 +6,6 @@ of DSE 5.1.17, 6.0.10, 6.7.5 and 6.8.0
 * new makefile for build dependencies
 * updated changelog to be accurate
 * sperf version outputs changelog and version
-* removed support and testing for Python 3.6
-* sperf script will now bomb if python 3.7 or greater is not installed
 
 sperf 0.6.13
 ------------
@@ -32,7 +31,7 @@ sperf 0.6.9
 * removed stale node_name util
 * filter cache time series
 * get full directory instead of .
-* ttop handles more files now 
+* ttop handles more files now
 
 sperf 0.6.8
 -----------
@@ -67,7 +66,7 @@ sperf 0.6.4
 default. Added additional testing to validate there is no double counting.
 * DSE 6.8 `sperf core statuslogger` support
 * DSE 6.8 additional testing for `sperf core diag`, `sperf core schema`,
-`sperf core slowquery` and the default `sperf` command 
+`sperf core slowquery` and the default `sperf` command
 * `sperf core statuslogger` now defaults to showing all stages to give a more
 full explanation of what is going on by default. Most people didn't know the 'all stages' flag existed
 and this is largely to force people to narrow their search intentionally. The initial experience maybe overwhelming, but this will make it more likely people will catch outliers
@@ -104,3 +103,4 @@ sperf 0.6.1
 sperf 0.6.0
 -----------
 * initial open source release
+"""

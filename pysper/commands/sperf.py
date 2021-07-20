@@ -15,7 +15,7 @@
 """main sperf parent command"""
 import argparse
 from pysper import env, VERSION
-from pysper.commands import core, search, sysbottle, flags, ttop, sperf_default
+from pysper.commands import core, search, sysbottle, flags, ttop, sperf_default, version
 
 
 def _build_sperf_cmd():
@@ -73,6 +73,7 @@ def build_parser():
     search.build(subparsers)
     sysbottle.build(subparsers)
     ttop.build(subparsers)
+    version.build(subparsers)
     return parser
 
 

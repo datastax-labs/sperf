@@ -1,7 +1,7 @@
 
 
-.PHONY: all build lint cov
-all: clean lint cov build
+.PHONY: all
+all: clean update_change lint cov build
 	#do it all
 
 ifeq ($(OS),Windows_NT) 
@@ -12,6 +12,7 @@ pysper_dir := .\\pysper
 perf_script := .\\scripts\\sperf
 sperf_zip := .\\dist\\sperf-Windows
 sperf_exe := .\\dist\\sperf.exe
+update_change := .\\scripts\update_change.py
 else
 del_exec := rm -fr 
 test_dir := ./tests
@@ -19,7 +20,12 @@ pysper_dir := ./pysper
 sperf_script := ./scripts/sperf
 sperf_zip := ./dist/sperf-$(shell sh -c 'uname 2>/dev/null || echo Unknown')
 sperf_exe := ./dist/sperf
+update_change := ./scripts/update_change.py
 endif
+
+.PHONY: update_change
+update_change:
+	$(update_change)
 
 .PHONY: clean
 clean:
@@ -27,7 +33,7 @@ clean:
 	$(del_exec) dist
 
 .PHONY: build
-build:
+build: update_change
 	pyinstaller -F $(sperf_script)
 	7z a -tzip $(sperf_zip) $(sperf_exe) -mx0
 
