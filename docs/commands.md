@@ -93,7 +93,7 @@ optional arguments:
 
 ```
 usage: sperf core bgrep [-h] [-i [INTERVAL]] [-st [START]] [-et [END]] [-c]
-                        [-d DIAG_DIR] [-f FILES]
+                        [-r REPORT] [-d DIAG_DIR] [-f FILES]
                         regex
 
 positional arguments:
@@ -108,6 +108,8 @@ optional arguments:
   -et [END], --end [END]
                         end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
   -c, --case            case-sensitive search
+  -r REPORT, --report REPORT
+                        change report ('summary' whole cluster, 'perNode')
   -d DIAG_DIR, --diagdir DIAG_DIR
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
   -f FILES, --files FILES
@@ -248,6 +250,7 @@ optional arguments:
 ```
 usage: sperf search filtercache [-h] [-f FILES] [-d DIAG_DIR]
                                 [-s SYSTEM_LOG_PREFIX] [-a AFTER] [-b BEFORE]
+                                [-r REPORT]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -262,6 +265,8 @@ optional arguments:
                         optional filter for log times to only look at logs after this time (format: YYYY-MM-DD hh:mm:ss,SSS)
   -b BEFORE, --before BEFORE
                         optional filter for log times to only look at logs before this time (format: YYYY-MM-DD hh:mm:ss,SSS)
+  -r REPORT, --report REPORT
+                        type of report to display (summary, time_series)
 ```
 
 ## sperf search queryscore
