@@ -18,7 +18,7 @@ import pprint
 import os
 import re
 from datetime import datetime
-from pysper import env
+from pysper import env, diag
 from pysper.commands import flags
 import multiprocessing as mp
 
@@ -95,6 +95,7 @@ class ReadDrops:
 
 def run(args):
     """run drops"""
+    env.PROGRESS = True
     if env.DEBUG:
         print(args)
     data = mp.Manager().dict()
@@ -110,20 +111,20 @@ def run(args):
         verbose=env.DEBUG,
     )
     for k, v in data.items():
-        pprint.pprint(k.strftime("%Y-%m-%d %H:%M:%S,%f"))
-        pprint.pprint(v)
+        if env.DEBUG:
+            pprint.pprint(k.strftime("%Y-%m-%d %H:%M:%S,%f"))
+            pprint.pprint(v)
 
 
-def read_file(f, parsers, start_time_filter, end_time_filter):
+def read_file(f, parsers, start_time_filter, end_time_filter, verbose):
     """allows mp"""
-    print("opening file " + f)
-    with open(f) as fd:
+    with diag.FileWithProgress(f) as fd:
         for line in fd:
             for p in parsers:
                 p.read_line(line, start_time_filter, end_time_filter)
 
 
-def parse_files(system_files, parsers, workers, start_time_filter, end_time_filter):
+def parse_files(system_files, parsers, workers, start_time_filter, end_time_filter, verbose):
     with mp.Pool(processes=workers) as pool:
         responses = []
         for f in system_files:
@@ -134,6 +135,7 @@ def parse_files(system_files, parsers, workers, start_time_filter, end_time_filt
                     parsers,
                     start_time_filter,
                     end_time_filter,
+                    verbose,
                 ),
             )
             responses.append(res)
@@ -169,4 +171,4 @@ def parse_locations(
                         files.append(file_name)
         else:
             print("warning file %s is neither file or directory skipping" % loc)
-    parse_files(files, parsers, workers, start_time_filter, end_time_filter)
+    parse_files(files, parsers, workers, start_time_filter, end_time_filter, verbose)
