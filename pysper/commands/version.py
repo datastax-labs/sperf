@@ -27,5 +27,7 @@ def build(subparsers):
         formatter_class=flags.LineWrapRawTextHelpFormatter,
     )
     version_parser.set_defaults(
-            func=lambda _: print("sperf %s-%s\n\nchangelog:\n%s" % (VERSION, sys.version, CHANGES))
+        func=lambda _: print(
+            "sperf %s-%s\n\nchangelog:\n%s" % (VERSION, sys.version, CHANGES)
+        )
     )
