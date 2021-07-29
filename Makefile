@@ -33,7 +33,7 @@ clean:
 	$(del_exec) dist
 
 .PHONY: build
-build: update_change
+build:
 	pyinstaller -F $(sperf_script)
 	7z a -tzip $(sperf_zip) $(sperf_exe) -mx0
 
