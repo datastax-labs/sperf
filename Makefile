@@ -7,12 +7,12 @@ all: clean update_change lint cov build
 ifeq ($(OS),Windows_NT) 
 exec_name := sperf.exe
 del_exec := rmdir /Q /S
-test_dir := .\\tests
-pysper_dir := .\\pysper
+test_dir := ./tests
+pysper_dir := ./pysper
 perf_script := ./scripts/sperf
-sperf_zip := .\\dist\\sperf-Windows
-sperf_exe := .\\dist\\sperf.exe
-update_change := .\\scripts\update_change.py
+sperf_zip := ./dist/sperf-Windows
+sperf_exe := ./dist/sperf.exe
+update_change := ./scripts/update_change.py
 else
 del_exec := rm -fr 
 test_dir := ./tests
