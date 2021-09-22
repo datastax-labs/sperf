@@ -2666,3 +2666,5 @@ keyspace1.counter1                        0,0
 keyspace1.standard1             2390,26526384
 
 WARN  [ScheduledTasks:1] 2020-07-22 13:44:16,408  NoSpamLogger.java:98 - Some operations timed out, details available at debug level (debug.log)
+WARN [SSTableBatchOpen:9] 2020-07-22 13:45:16,408 SSTableReader.java:775 - Could not recreate or deserialize existing bloom filter, continuing with a pass-through bloom filter but this will significantly impact reads performance
+WARN  [CoreThread-5] 2020-07-22 13:46:16,408  NoSpamLogger.java:98 - Rejecting droppable message on connection SMALL_MESSAGE with id 13 from /172.17.0.2 to /172.17.0.3 via (/10.1.1.99,/172.17.0.3:7000)

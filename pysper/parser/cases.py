@@ -163,7 +163,7 @@ def solr_rules():
                 event_category="query_component",
                 event_type="query_logs",
             ),
-        ),
+        )
     )
 
 
@@ -614,4 +614,89 @@ def dd_rules():
                 event_type="disk_access",
             ),
         ),
+    )
+
+def tpc_rules():
+    """rules to capture backpressure and core balance problems"""
+    return (
+        case("NoSpamLogger.java"),
+        rule(
+            capture(r"TPC backpressure is active on core (?P<core_num>\d+) with global local/remote pending tasks at (?P<global_pending>\d+)/(?P<remote_pending>\d+)"),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="core_backpressure",
+            ),
+        ),
+        rule(
+            case("NoSpamLogger.java"),
+            capture(r"Rejecting droppable message on connection (?P<message_type>.+) with id (?P<id>\d+) from \/(?P<source_ip>.+) to \/(?P<dest_ip>.+) via \((?P<via_ips>.+)\), total dropped: (?P<total_dropped>.\d+), total pending: (?P<total_pending>.\d+), total completed: (?P<total_completed>.\d+)\."),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="network_backpressure",
+            ),
+        )
+    )
+
+def zc_rules():
+    """catch issues with zero copy streaming"""
+    return (
+        case("SSTableReader.java"),
+        rule(
+            capture(r"Could not recreate or deserialize existing bloom filter, continuing with a pass-through bloom filter but this will significantly impact reads performance"),
+            update(
+                event_product="zc",
+                event_category="streaming",
+                event_type="bloom_filter",
+            ),
+        )
+    )
+
+def tombstone_rules():
+    """catch tombstone problems"""
+    return (
+        case("MessageDeliveryTask"),
+        rule(r"Scanned over (?P<tombstones>[0-9]*) tombstones during query '(?P<query>.*)' \(last scanned row partion key was \((?P<pk>.*)\)\); query aborted"),
+        update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="scan_error",
+            ),
+        case(""),
+        rule(r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]"),
+        update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="tpc_scan_warn",
+            ),
+        case(""),
+        rule(r"Read (?P<live>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"),
+        update(
+            event_product="tombstone",
+                event_category="reading",
+                event_type="seda_scan_warn",
+        )
+    )
+
+def drop_rules():
+    """drop rules"""
+    return (
+        case("DroppedMessages.java"),
+        rule(r"(?P<messageType>\S*) messages were dropped in the last 5 s: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"),
+        convert(
+                int,
+                "localCount", 
+                "remoteCount"
+            ),
+        convert(
+                float,
+                "localLatency",
+                "remoteLatency",
+            ),
+        update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="scan_error",
+            )
     )
