@@ -278,7 +278,7 @@ def _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums):
                     {
                     "issue": "There were %i incidents of remote only drops indicating issues with other nodes, the network or TPC balance"
                     % drops_remote_only,
-                    "rec": "If this is DSE 6.0.x-6.8.4 upgrade to 6.8.latest https://datastax.jira.com/browse/DB-4683 (DSE 6.0.x-6.8.4 affected). Otherwise check for network issues or offline nodes",
+                    "rec": "If this is DSE 6.0.x-6.8.4, then upgrade to 6.8.latest - https://datastax.jira.com/browse/DB-4683. Otherwise check for network issues or offline nodes",
                     }
                 )
     if drop_sums > 0:
