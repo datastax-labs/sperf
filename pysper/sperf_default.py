@@ -276,15 +276,15 @@ def _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums):
     if drops_remote_only > 0:
         recommendations.append(
                     {
-                    "issue": "There were %i remote only drops where no local drops occurred and remote only occured"
+                    "issue": "There were %i incidents of remote only drops indicating issues with other nodes, the network or TPC balance"
                     % drops_remote_only,
-                    "rec": "Make sure this version is not affected by https://datastax.jira.com/browse/DB-4683 DSE 6.0.x-6.8.4 affected. If not, then investigate if some nodes are unresponsive or look for network issues",
+                    "rec": "If this is DSE 6.0.x-6.8.4 upgrade to 6.8.latest https://datastax.jira.com/browse/DB-4683 (DSE 6.0.x-6.8.4 affected). Otherwise check for network issues or offline nodes",
                     }
                 )
     if drop_sums > 0:
         recommendations.append(
                     {
-                    "issue": "There where dropped mutations present on the following types: %s for a total of %i drops"
+                    "issue": "There were dropped mutations present of the following types: %s for a total of %i drops"
                     % (", ".join(drop_types), drop_sums),
                     "rec": "Run sperf core statuslogger and look for high pending stages for those messages types",
                     }
