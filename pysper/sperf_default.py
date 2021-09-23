@@ -202,6 +202,11 @@ def generate_recommendations(parsed):
     """generate recommendations off the parsed data"""
     gc_over_500 = 0
     counter = StatusLoggerCounter()
+    solr_index_backoff = OrderedDict()
+    solr_index_restore = OrderedDict()
+    drops_remote_only = 0
+    drop_sums = 0
+    drop_types = set()
     event_filter = diag.UniqEventPerNodeFilter()
     for rec_log in parsed["rec_logs"]:
         node = util.extract_node_name(rec_log)
@@ -224,12 +229,90 @@ def generate_recommendations(parsed):
                     ):
                         if event.get("duration") > 500:
                             gc_over_500 += 1
+                    elif event.get("event_category") == "indexing":
+                        core_name = event.get("core_name")
+                        d = event.get("date")
+                        if event.get("event_type") == "increase_soft_commit":
+                            if core_name in solr_index_backoff:
+                                solr_index_backoff[core_name]["count"] += 1
+                                solr_index_backoff[core_name]["dates"].append(d)
+                            else:
+                                solr_index_backoff[core_name] = {
+                                    "count": 1,
+                                    "dates": [event.get("date")],
+                                }
+                        elif event.get("event_type") == "restore_soft_commit":
+                            if core_name in solr_index_restore:
+                                solr_index_restore[core_name]["count"] += 1
+                                solr_index_restore[core_name]["dates"].append(d)
+                            else:
+                                solr_index_restore[core_name] = {
+                                    "count": 1,
+                                    "dates": [event.get("date")],
+                                }
+                    if event.get("event_type") == "drops":
+                        local = event.get("localCount")
+                        remote = event.get("remoteCount")
+                        drop_type = event.get("messageType")
+                        drop_types.add(drop_type)
+                        drop_sums += (local + remote)
+                        if remote > 0 and local == 0:
+                            drops_remote_only += 1
+                        
                     _status_logger_counter(event, counter)
     recommendations = []
     _recs_on_stages(recommendations, gc_over_500, counter)
     _recs_on_configs(recommendations, parsed["configs"])
+    _recs_on_solr(recommendations, solr_index_backoff, solr_index_restore)
+    _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums)
+    #_recs_on_zero_copy(recommendations, zero_copy_errors)
+    #_recs_on_rejects(recommendations, rejected)
+    #_recs_on_bp(recommendations, bp)
+    #_recs_on_core_balance(recommendations, core_balance)
     return recommendations
 
+def _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums):
+    """sums up the drops"""
+    if drops_remote_only > 0:
+        recommendations.append(
+                    {
+                    "issue": "There were %i remote only drops where no local drops occurred and remote only occured"
+                    % drops_remote_only,
+                    "rec": "Make sure this version is not affected by https://datastax.jira.com/browse/DB-4683 DSE 6.0.x-6.8.4 affected. If not, then investigate if some nodes are unresponsive or look for network issues",
+                    }
+                )
+    if drop_sums > 0:
+        recommendations.append(
+                    {
+                    "issue": "There where dropped mutations present on the following types: %s for a total of %i drops"
+                    % (", ".join(drop_types), drop_sums),
+                    "rec": "Run sperf core statuslogger and look for high pending stages for those messages types",
+                    }
+                )
+def _recs_on_solr(recommendations, solr_index_backoff, solr_index_restore):
+    """sees if we have auto soft commit increases and restores and makes recommendations accordingly"""
+    if len(solr_index_backoff) > 0 :
+        for core in solr_index_backoff.keys():
+            data = solr_index_backoff[core]
+            dates_str = ", ".join(list(map(lambda a:a.strftime("%Y-%m-%d %H:%M:%S"), data["dates"])))
+            if core in solr_index_restore:
+                recommendations.append(
+                    {
+                    "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s"
+                    % (data["count"], core, dates_str),
+                    "rec": "Consider raising auto soft commit to 60000 for core '%s' to avoid dropped mutations and timeouts"
+                    % core,
+                    }
+                )
+            else:
+                recommendations.append(
+                    {
+                    "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s. There is nothing in the log indicating restore to the configured auto soft commit."
+                    % (data["count"], dates_str, core),
+                    "rec": "Strongly consider raising auto soft commit for core '%s' to avoid dropped mutations and timeouts. This core never restores to the configured value, so there is no benefit to keeping it where it is at"
+                    % core,
+                    }
+                )
 
 def generate_report(parsed, recommendations):
     """generates report from calculated data"""

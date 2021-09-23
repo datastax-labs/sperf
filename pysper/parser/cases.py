@@ -163,7 +163,26 @@ def solr_rules():
                 event_category="query_component",
                 event_type="query_logs",
             ),
+        ),
+        case("AbstractSolrSecondaryIndex"),
+        rule(
+            capture(r"\[(?P<core_name>.+)\]: Increasing soft commit max time to (?P<commit_time>[0-9]+)"),
+            update(
+                event_product="solr",
+                event_category="indexing",
+                event_type="increase_soft_commit",
+            )
+        ),
+        case("AbstractSolrSecondaryIndex"),
+        rule(
+            capture(r"\[(?P<core_name>.+)\]: Restoring soft commit max time back to (?P<commit_time>[0-9]+)"),
+            update(
+                event_product="solr",
+                event_category="indexing",
+                event_type="restore_soft_commit",
+            )
         )
+
     )
 
 
@@ -657,33 +676,40 @@ def tombstone_rules():
     """catch tombstone problems"""
     return (
         case("MessageDeliveryTask"),
-        rule(r"Scanned over (?P<tombstones>[0-9]*) tombstones during query '(?P<query>.*)' \(last scanned row partion key was \((?P<pk>.*)\)\); query aborted"),
-        update(
+        rule(
+            capture(r"Scanned over (?P<tombstones>[0-9]*) tombstones during query '(?P<query>.*)' \(last scanned row partion key was \((?P<pk>.*)\)\); query aborted"),
+     update(
                 event_product="tombstone",
                 event_category="reading",
                 event_type="scan_error",
             ),
+        ),
         case(""),
-        rule(r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]"),
+        rule(capture(r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]"),
         update(
                 event_product="tombstone",
                 event_category="reading",
                 event_type="tpc_scan_warn",
             ),
+        ),
         case(""),
-        rule(r"Read (?P<live>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"),
-        update(
+        rule(
+            capture(r"Read (?P<live>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"),
+            update(
             event_product="tombstone",
                 event_category="reading",
                 event_type="seda_scan_warn",
-        )
+        ),
+        ),
     )
 
 def drop_rules():
     """drop rules"""
     return (
-        case("DroppedMessages.java"),
-        rule(r"(?P<messageType>\S*) messages were dropped in the last 5 s: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"),
+        #tpc era
+        case("DroppedMessages"),
+        rule(
+            capture(r"(?P<messageType>\S*) messages were dropped in the last 5 s: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node\. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"),
         convert(
                 int,
                 "localCount", 
@@ -695,8 +721,29 @@ def drop_rules():
                 "remoteLatency",
             ),
         update(
-                event_product="tombstone",
-                event_category="reading",
-                event_type="scan_error",
-            )
+                event_product="cassandra",
+                event_category="pools",
+                event_type="drops",
+            ),
+        ),
+        #seda era
+        case("MessagingService"),
+        rule(
+            capture(r"(?P<messageType>\S*) messages were dropped in last 5000 ms: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node\. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"),
+        convert(
+                int,
+                "localCount", 
+                "remoteCount"
+            ),
+        convert(
+                float,
+                "localLatency",
+                "remoteLatency",
+            ),
+        update(
+                event_product="cassandra",
+                event_category="pools",
+                event_type="drops",
+            ),
+        ),
     )
