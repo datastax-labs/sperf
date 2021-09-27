@@ -255,64 +255,70 @@ def generate_recommendations(parsed):
                         remote = event.get("remoteCount")
                         drop_type = event.get("messageType")
                         drop_types.add(drop_type)
-                        drop_sums += (local + remote)
+                        drop_sums += local + remote
                         if remote > 0 and local == 0:
                             drops_remote_only += 1
-                        
+
                     _status_logger_counter(event, counter)
     recommendations = []
     _recs_on_stages(recommendations, gc_over_500, counter)
     _recs_on_configs(recommendations, parsed["configs"])
     _recs_on_solr(recommendations, solr_index_backoff, solr_index_restore)
     _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums)
-    #_recs_on_zero_copy(recommendations, zero_copy_errors)
-    #_recs_on_rejects(recommendations, rejected)
-    #_recs_on_bp(recommendations, bp)
-    #_recs_on_core_balance(recommendations, core_balance)
+    # _recs_on_zero_copy(recommendations, zero_copy_errors)
+    # _recs_on_rejects(recommendations, rejected)
+    # _recs_on_bp(recommendations, bp)
+    # _recs_on_core_balance(recommendations, core_balance)
     return recommendations
+
 
 def _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums):
     """sums up the drops"""
     if drops_remote_only > 0:
         recommendations.append(
-                    {
-                    "issue": "There were %i incidents of remote only drops indicating issues with other nodes, the network or TPC balance"
-                    % drops_remote_only,
-                    "rec": "If this is DSE 6.0.x-6.8.4, then upgrade to 6.8.latest - https://datastax.jira.com/browse/DB-4683. Otherwise check for network issues or offline nodes",
-                    }
-                )
+            {
+                "issue": "There were %i incidents of remote only drops indicating issues with other nodes, the network or TPC balance"
+                % drops_remote_only,
+                "rec": "If this is DSE 6.0.x-6.8.4, then upgrade to 6.8.latest - https://datastax.jira.com/browse/DB-4683. Otherwise check for network issues or offline nodes",
+            }
+        )
     if drop_sums > 0:
         recommendations.append(
-                    {
-                    "issue": "There were dropped mutations present of the following types: %s for a total of %i drops"
-                    % (", ".join(drop_types), drop_sums),
-                    "rec": "Run sperf core statuslogger and look for high pending stages for those messages types",
-                    }
-                )
+            {
+                "issue": "There were dropped mutations present of the following types: %s for a total of %i drops"
+                % (", ".join(drop_types), drop_sums),
+                "rec": "Run sperf core statuslogger and look for high pending stages for those messages types",
+            }
+        )
+
+
 def _recs_on_solr(recommendations, solr_index_backoff, solr_index_restore):
     """sees if we have auto soft commit increases and restores and makes recommendations accordingly"""
-    if len(solr_index_backoff) > 0 :
+    if len(solr_index_backoff) > 0:
         for core in solr_index_backoff.keys():
             data = solr_index_backoff[core]
-            dates_str = ", ".join(list(map(lambda a:a.strftime("%Y-%m-%d %H:%M:%S"), data["dates"])))
+            dates_str = ", ".join(
+                list(map(lambda a: a.strftime("%Y-%m-%d %H:%M:%S"), data["dates"]))
+            )
             if core in solr_index_restore:
                 recommendations.append(
                     {
-                    "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s"
-                    % (data["count"], core, dates_str),
-                    "rec": "Consider raising auto soft commit to 60000 for core '%s' to avoid dropped mutations and timeouts"
-                    % core,
+                        "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s"
+                        % (data["count"], core, dates_str),
+                        "rec": "Consider raising auto soft commit to 60000 for core '%s' to avoid dropped mutations and timeouts"
+                        % core,
                     }
                 )
             else:
                 recommendations.append(
                     {
-                    "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s. There is nothing in the log indicating restore to the configured auto soft commit."
-                    % (data["count"], dates_str, core),
-                    "rec": "Strongly consider raising auto soft commit for core '%s' to avoid dropped mutations and timeouts. This core never restores to the configured value, so there is no benefit to keeping it where it is at"
-                    % core,
+                        "issue": "There were %i incidents of indexing not be able to keep up for core %s at the following times: %s. There is nothing in the log indicating restore to the configured auto soft commit."
+                        % (data["count"], dates_str, core),
+                        "rec": "Strongly consider raising auto soft commit for core '%s' to avoid dropped mutations and timeouts. This core never restores to the configured value, so there is no benefit to keeping it where it is at"
+                        % core,
                     }
                 )
+
 
 def generate_report(parsed, recommendations):
     """generates report from calculated data"""

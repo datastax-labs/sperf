@@ -23,7 +23,7 @@ from pysper.parser.cases import (
     drop_rules,
     status_rules,
     tpc_rules,
-    zc_rules
+    zc_rules,
 )
 from pysper.parser.captures import system_capture_rule
 
