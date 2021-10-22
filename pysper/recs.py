@@ -44,16 +44,41 @@ class Engine:
     """stage analyzer will make recommendations on stages based on
     the type of stage and it's stats"""
 
-    def __init__(self):
+    def __init__(self, dse_version, cass_version):
         self.memtable_lower_rec = "lower memtable_cleanup_threshold in cassandra.yaml"
         self.flush_writer_raise_rec = "raise memtable_flush_writers in cassandra.yaml"
         self.compaction_throughput_raise_rec = (
             "raise compaction_throughput_in_mb in cassandra.yaml"
         )
-        self.ntr_queue_raise_rec = (
-            "raise or set -Dcassandra.max_queued_native_transport_requests= "
-            + "(valid range is 1024-8192)"
-        )
+        if dse_version is None and cass_version is None:
+            self.ntr_queue_raise_rec = (
+                "Undetected Cassandra/DSE version. For Cassandra versions 3.0.19 and up, 3.11.5 and up, and Cassandra 4.0 -"
+                + "raise native_transport_max_concurrent_requests_in_bytes_per_ip and native_transport_max_concurrent_requests_in_bytes (see CASSANDRA-15013 and https://cassandra.apache.org/blog/Improving-Apache-Cassandras-Front-Door-and-Backpressure.html)."
+                + "If is DSE or Cassandra versions 2.x, 3.0.18 or lower, 3.11.4 or lower then raise or set -Dcassandra.max_queued_native_transport_requests= "
+                + "(valid range is 1024-8192)"
+            )
+        else:
+            is_new_dynamic_bp_model = False
+            if dse_version is None and cass_version is not None:
+                version_tokens = cass_version.split(".")
+                if len(version_tokens) == 1 and version_tokens[0] == "DSE Private Fork":
+                    is_new_dynamic_bp_model = True
+                else:
+                    major = int(version_tokens[0])
+                    minor = int(version_tokens[1])
+                    patch = int(version_tokens[2])
+                    is_new_dynamic_bp_model = (
+                        major == 4
+                        or (major == 3 and minor == 0 and patch > 18)
+                        or (major == 3 and minor == 11 and patch > 4)
+                    )
+            if is_new_dynamic_bp_model:
+                self.ntr_queue_raise_rec = "double native_transport_max_concurrent_requests_in_bytes and native_transport_max_concurrent_requests_in_bytes_per_ip."
+            else:
+                self.ntr_queue_raise_rec = (
+                    "raise or set -Dcassandra.max_queued_native_transport_requests= "
+                    + "(valid range is 1024-8192)"
+                )
         self.tpc_cores_raise_rec = (
             "raise or set tpc_concurrent_requests_limit in "
             + "cassandra.yaml (default is 128), if CPU is underutilized."
@@ -92,6 +117,8 @@ class Engine:
         return None, None
 
     def _ntr(self, stage):
+        if stage.pending > 1000:
+            return "more than 1000 pending NTR", self.ntr_queue_raise_rec
         if stage.blocked > 10:
             return "blocked NTR over 10", self.ntr_queue_raise_rec
         if stage.all_time_blocked > 100:

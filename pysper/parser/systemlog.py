@@ -20,18 +20,26 @@ from pysper.parser.cases import (
     solr_rules,
     cfs_rules,
     daemon_rules,
+    drop_rules,
     status_rules,
+    tpc_rules,
+    tombstone_rules,
+    zc_rules,
 )
 from pysper.parser.captures import system_capture_rule
 
 capture_message = switch(
     (
         *daemon_rules(),
+        *drop_rules(),
         *status_rules(),
         *gc_rules(),
         *memtable_rules(),
         *cfs_rules(),
         *solr_rules(),
+        *tpc_rules(),
+        *tombstone_rules(),
+        *zc_rules(),
     )
 )
 

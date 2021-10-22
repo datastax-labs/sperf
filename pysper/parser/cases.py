@@ -164,6 +164,28 @@ def solr_rules():
                 event_type="query_logs",
             ),
         ),
+        case("AbstractSolrSecondaryIndex"),
+        rule(
+            capture(
+                r"\[(?P<core_name>.+)\]: Increasing soft commit max time to (?P<commit_time>[0-9]+)"
+            ),
+            update(
+                event_product="solr",
+                event_category="indexing",
+                event_type="increase_soft_commit",
+            ),
+        ),
+        case("AbstractSolrSecondaryIndex"),
+        rule(
+            capture(
+                r"\[(?P<core_name>.+)\]: Restoring soft commit max time back to (?P<commit_time>[0-9]+)"
+            ),
+            update(
+                event_product="solr",
+                event_category="indexing",
+                event_type="restore_soft_commit",
+            ),
+        ),
     )
 
 
@@ -612,6 +634,147 @@ def dd_rules():
                 event_product="cassandra",
                 event_category="node_config",
                 event_type="disk_access",
+            ),
+        ),
+    )
+
+
+def tpc_rules():
+    """rules to capture backpressure and core balance problems"""
+    return (
+        case("NoSpamLogger"),
+        rule(
+            capture(
+                r"TPC backpressure is active on core (?P<core_num>\d+) with global local/remote pending tasks at (?P<global_pending>\d+)/(?P<remote_pending>\d+)"
+            ),
+            convert(int, "core_num", "global_pending", "remote_pending"),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="core_backpressure",
+            ),
+        ),
+        rule(
+            capture(
+                r"Local TPC backpressure is active with count (?P<local_count>\d+)"
+            ),
+            convert(int, "local_count"),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="core_backpressure_local",
+            ),
+        ),
+        rule(
+            capture(
+                r"Rejecting droppable message on connection (?P<message_type>.+) with id (?P<id>\d+) from \/(?P<source_ip>.+) to \/(?P<dest_ip>.+) via \((?P<via_ips>.+)\), total dropped: (?P<total_dropped>.\d+), total pending: (?P<total_pending>.\d+), total completed: (?P<total_completed>.\d+)\."
+            ),
+            convert(int, "total_dropped"),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="network_backpressure",
+            ),
+        ),
+    )
+
+
+def zc_rules():
+    """catch issues with zero copy streaming"""
+    return (
+        case("SSTableReader"),
+        rule(
+            capture(
+                r"Could not recreate or deserialize existing bloom filter, continuing with a pass-through bloom filter but this will significantly impact reads performance"
+            ),
+            update(
+                event_product="zcs",
+                event_category="streaming",
+                event_type="bloom_filter",
+            ),
+        ),
+    )
+
+
+def tombstone_rules():
+    """catch tombstone problems"""
+    return (
+        case("MessageDeliveryTask"),
+        rule(
+            capture(
+                r"Scanned over (?P<tombstones>[0-9]*) tombstones during query '(?P<query>.*)' \(last scanned row partion key was \((?P<pk>.*)\)\); query aborted"
+            ),
+            convert(int, "tombstones"),
+            update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="scan_error",
+            ),
+        ),
+        case("NoSpamLogger"),
+        rule(
+            capture(
+                r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]+"
+            ),
+            convert(int, "tombstones"),
+            update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="tpc_scan_warn",
+            ),
+        ),
+        case("MessageDeliveryTask"),
+        rule(
+            capture(
+                r"Read (?P<live>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"
+            ),
+            convert(int, "tombstones"),
+            update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="seda_scan_warn",
+            ),
+        ),
+    )
+
+
+def drop_rules():
+    """drop rules"""
+    return (
+        # tpc era
+        case("DroppedMessages"),
+        rule(
+            capture(
+                r"(?P<messageType>\S*) messages were dropped in the last 5 s: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node\. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"
+            ),
+            convert(int, "localCount", "remoteCount"),
+            convert(
+                float,
+                "localLatency",
+                "remoteLatency",
+            ),
+            update(
+                event_product="cassandra",
+                event_category="pools",
+                event_type="drops",
+            ),
+        ),
+        # seda era
+        case("MessagingService"),
+        rule(
+            capture(
+                r"(?P<messageType>\S*) messages were dropped in last 5000 ms: (?P<localCount>\d*) internal and (?P<remoteCount>\d*) cross node\. Mean internal dropped latency: (?P<localLatency>\d*) ms and Mean cross-node dropped latency: (?P<remoteLatency>\d*) ms"
+            ),
+            convert(int, "localCount", "remoteCount"),
+            convert(
+                float,
+                "localLatency",
+                "remoteLatency",
+            ),
+            update(
+                event_product="cassandra",
+                event_category="pools",
+                event_type="drops",
             ),
         ),
     )

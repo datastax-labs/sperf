@@ -1,3 +1,14 @@
+sperf 0.6.15
+------------
+* added detection for indexing backoff with auto soft commit
+* added detection for tombstone scan warnings and errors
+* added detection for drops and making recommendations around them
+* added detection for zero copy bloom filter warnings
+* added detection for tpc core imbalance
+* added detection for network backpressure rejections
+* added detection for tpc backpressure being enabled
+* deprecated all commands except sperf command moving all functionality into the primary sperf command
+
 sperf 0.6.14
 ------------
 * sperf was not parsing new byte eviction format as of in sperf filtercache as
