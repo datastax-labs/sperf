@@ -541,7 +541,7 @@ def _recs_on_drops(recommendations, drops_remote_only, drop_types, drop_sums):
     if drop_sums > 0:
         recommendations.append(
             {
-                "issue": "There were dropped mutations present of the following types: %s for a total of %i drops"
+                "issue": "There were drops of the following request types: %s for a total of %i drops"
                 % (", ".join(drop_types), drop_sums),
                 "rec": "Run sperf core statuslogger and look for high pending stages for those messages types",
             }

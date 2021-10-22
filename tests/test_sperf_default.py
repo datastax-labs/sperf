@@ -58,7 +58,7 @@ No parsing errors
 recommendations
 ---------------
 * There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
-* There were dropped mutations present of the following types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.""",
+* There were drops of the following request types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.""",
         )
 
     def test_sperf_68(self):
@@ -106,7 +106,7 @@ errors parsing
 recommendations
 ---------------
 * There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
-* There were dropped mutations present of the following types: RANGE_SLICE, LWT for a total of 8 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
+* There were drops of the following request types: RANGE_SLICE, LWT for a total of 8 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
 * TPC core imbalance detected on nodes: 172.17.0.2 (1 times). The data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model.""",
         )
 
