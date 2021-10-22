@@ -36,6 +36,7 @@ class TestSperf(unittest.TestCase):
         args.debug_log_prefix = "debug.log"
         args.reporter = "summary"
         args.system_log_prefix = "system.log"
+        self.maxDiff = None
 
         def run():
             statuslogger.run(args)
@@ -47,7 +48,7 @@ class TestSperf(unittest.TestCase):
             "sperf core statuslogger version: %s\n" % (VERSION)
             + """
 Summary (22,054 lines)
-Summary (444 skipped lines)
+Summary (445 skipped lines)
 
 dse versions: {'6.7.7'}
 cassandra versions: {'DSE Private Fork'}
@@ -79,7 +80,9 @@ busiest stages across all nodes
 busiest stages in PENDING
 ------------------------------
 10.101.35.102:
-       CompactionExecutor:  1""",
+       CompactionExecutor:  1
+
+WARNING more than one version present assuming no version with recommendations""",
         )
 
     def test_sperf_68(self):
@@ -94,6 +97,7 @@ busiest stages in PENDING
         args.reporter = "summary"
         args.debug_log_prefix = "debug.log"
         args.system_log_prefix = "system.log"
+        self.maxDiff = None
 
         def run():
             statuslogger.run(args)
@@ -104,8 +108,8 @@ busiest stages in PENDING
             output,
             "sperf core statuslogger version: %s\n" % (VERSION)
             + """
-Summary (20,240 lines)
-Summary (2,196 skipped lines)
+Summary (20,242 lines)
+Summary (2,204 skipped lines)
 
 dse versions: {'6.8.1'}
 cassandra versions: {'DSE Private Fork'}

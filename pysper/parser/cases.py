@@ -647,6 +647,7 @@ def tpc_rules():
             capture(
                 r"TPC backpressure is active on core (?P<core_num>\d+) with global local/remote pending tasks at (?P<global_pending>\d+)/(?P<remote_pending>\d+)"
             ),
+            convert(int, "core_num", "global_pending", "remote_pending"),
             update(
                 event_product="tpc",
                 event_category="backpressure",
@@ -656,8 +657,21 @@ def tpc_rules():
         rule(
             case("NoSpamLogger.java"),
             capture(
+                r"Local TPC backpressure is active with count (?P<local_count>\d+)"
+            ),
+            convert(int, "local_count"),
+            update(
+                event_product="tpc",
+                event_category="backpressure",
+                event_type="core_backpressure_local",
+            ),
+        ),
+        rule(
+            case("NoSpamLogger.java"),
+            capture(
                 r"Rejecting droppable message on connection (?P<message_type>.+) with id (?P<id>\d+) from \/(?P<source_ip>.+) to \/(?P<dest_ip>.+) via \((?P<via_ips>.+)\), total dropped: (?P<total_dropped>.\d+), total pending: (?P<total_pending>.\d+), total completed: (?P<total_completed>.\d+)\."
             ),
+            convert(int, "total_dropped"),
             update(
                 event_product="tpc",
                 event_category="backpressure",

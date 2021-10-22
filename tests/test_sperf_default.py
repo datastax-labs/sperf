@@ -32,6 +32,7 @@ class TestSperfDefaultIntegration(unittest.TestCase):
 
         output = steal_output(run)
         # reads better with the extra newline
+        self.maxDiff = None
         self.assertEqual(
             "\n" + output,
             """
@@ -56,7 +57,8 @@ No parsing errors
 
 recommendations
 ---------------
-* There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.""",
+* There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
+* There were dropped mutations present of the following types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.""",
         )
 
     def test_sperf_68(self):
@@ -69,6 +71,7 @@ recommendations
         args.node_info_prefix = "node_info.json"
         args.block_dev_prefix = "blockdev_report"
         args.cfstats_prefix = "cfstats"
+        self.maxDiff = None
 
         def run():
             sperf_default.run(args)
@@ -78,6 +81,8 @@ recommendations
         self.assertEqual(
             "\n" + output,
             """
+WARN cannot find -XX:MaxGCPauseMillis in the logs setting common default of 500ms
+
 nodes                               1
 dse version(s) (startup logs)       { 6.8.1 }
 cassandra version(s) (startup logs) { DSE private fork }
@@ -100,11 +105,13 @@ errors parsing
 
 recommendations
 ---------------
-* There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis.""",
+* There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
+* There were dropped mutations present of the following types: RANGE_SLICE, LWT for a total of 8 drops. Run sperf core statuslogger and look for high pending stages for those messages types.""",
         )
 
     def test_empty_recommendations(self):
         """pass cthrough recommendations engine"""
+        self.maxDiff = None
         parsed = {"warnings": [], "rec_logs": [], "configs": {}}
         recommendations = sperf_default.generate_recommendations(parsed)
         self.assertEqual(len(recommendations), 0)

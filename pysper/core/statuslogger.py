@@ -297,8 +297,11 @@ class StatusLogger:
         if not self.nodes:
             print("Nothing found!")
             return
-
+        cassandra_versions = set()
+        dse_versions = set()
         for name, node in self.nodes.items():
+            cassandra_versions.add(node.cassandra_version)
+            dse_versions.add(node.dse_versions)
             print(name)
             print("-" * 60)
             print("%s lines" % format_num(node.lines))
@@ -357,10 +360,20 @@ class StatusLogger:
                 for line in percentiles:
                     print("".join(line))
         print("")
-        self.__print_recs()
+        self.__print_recs(dse_versions, cassandra_versions)
 
-    def __print_recs(self):
-        engine = Engine()
+    def __print_recs(self, versions, cassandra_versions):
+        version = None
+        cassandra_version = None
+        if len(cassandra_versions) > 1:
+            print(
+                "WARNING more than one version present assuming no version with recommendations"
+            )
+        elif len(cassandra_versions) == 1:
+            cassandra_version = cassandra_versions[0]
+        elif len(versions) == 1:
+            version = versions[0]
+        engine = Engine(version, cassandra_version)
         recs = set()
         for node in self.nodes.values():
             rstage = OrderedDefaultDict(dict)
@@ -460,7 +473,7 @@ class StatusLogger:
         pad_table(data, extra_pad=2)
         for line in data:
             print("".join(line))
-        self.__print_recs()
+        self.__print_recs(summary.versions, summary.cassandra_versions)
 
     def __print_backpressure(self, stages, data):
         nodes = OrderedDict()

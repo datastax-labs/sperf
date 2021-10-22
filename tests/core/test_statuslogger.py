@@ -46,7 +46,7 @@ class TestStatusLogger(unittest.TestCase):
         self.assertEqual(len(sl.nodes), 3)
         s = Summary(sl.nodes)
         self.assertEqual(s.lines, 22054)
-        self.assertEqual(s.skipped_lines, 444)
+        self.assertEqual(s.skipped_lines, 445)
         self.assertEqual(
             s.get_busiest_stages()[0],
             [

@@ -23,7 +23,7 @@ class TestRecs(unittest.TestCase):
 
     def test_high_pending_write_remote(self):
         """verify StageAnalyzer makes recs on high pending writes"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="TPC/all/WRITE_REMOTE",
             pending=10001,
@@ -43,7 +43,7 @@ class TestRecs(unittest.TestCase):
 
     def test_high_pending_write_local(self):
         """verify StageAnalyzer makes recs on high pending local writes"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="TPC/all/WRITE_LOCAL",
             pending=10001,
@@ -63,7 +63,7 @@ class TestRecs(unittest.TestCase):
 
     def test_high_pending_mutations(self):
         """verify StageAnalyzer makes recs on high pending local writes"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="MutationStage",
             pending=10001,
@@ -83,7 +83,7 @@ class TestRecs(unittest.TestCase):
 
     def test_tpc_backpressure(self):
         """verify StageAnalyzer makes recs on any backpressure"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="TPC/2",
             pending=1,
@@ -108,7 +108,7 @@ class TestRecs(unittest.TestCase):
 
     def test_full_memtable(self):
         """verify StageAnalyzer"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="TPC/all/WRITE_MEMTABLE_FULL",
             pending=0,
@@ -128,7 +128,7 @@ class TestRecs(unittest.TestCase):
 
     def test_full_memtable_completed(self):
         """verify full memtable historically completed"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="TPC/all/WRITE_MEMTABLE_FULL",
             pending=0,
@@ -150,7 +150,7 @@ class TestRecs(unittest.TestCase):
 
     def test_compactions_behind(self):
         """verify compactions analysis"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="CompactionManger",
             pending=101,
@@ -170,7 +170,7 @@ class TestRecs(unittest.TestCase):
 
     def test_memtable_flush_writer_pending(self):
         """verify flush writer pending"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="MemtableFlushWriter",
             pending=6,
@@ -190,7 +190,7 @@ class TestRecs(unittest.TestCase):
 
     def test_memtable_flush_writer_blocked(self):
         """verify flush writer blocked"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, None)
         stage = recs.Stage(
             name="MemtableFlushWriter",
             pending=0,
@@ -210,7 +210,7 @@ class TestRecs(unittest.TestCase):
 
     def test_ntr_blocked(self):
         """verify ntr blocked"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, "3.11.3")
         stage = recs.Stage(
             name="Native-Transport-Requests",
             pending=0,
@@ -234,7 +234,7 @@ class TestRecs(unittest.TestCase):
 
     def test_ntr_all_time_blocked(self):
         """verify ntr blocked"""
-        analyzer = recs.Engine()
+        analyzer = recs.Engine(None, "3.11.3")
         stage = recs.Stage(
             name="Native-Transport-Requests",
             pending=0,
