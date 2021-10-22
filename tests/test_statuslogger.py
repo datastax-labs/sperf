@@ -134,19 +134,22 @@ busiest table by data across all nodes
 
 busiest stages across all nodes
 ------------------------------
-* MemtablePostFlush pending:            6  (172.17.0.2)
-* MemtableFlushWriter active:           3  (172.17.0.2)
-* PerDiskMemtableFlushWriter_0 active:  2  (172.17.0.2)
-* CompactionExecutor active:            1  (172.17.0.2)
-* MemtablePostFlush active:             1  (172.17.0.2)
-* TPC/all/EXECUTE_STATEMENT active:     1  (172.17.0.2)
-* LwtStage active:                      1  (172.17.0.2)
-* TPC/other active:                     1  (172.17.0.2)
-* TPC/other/EXECUTE_STATEMENT active:   1  (172.17.0.2)
-* TPC/0/TIMED_TIMEOUT active:           1  (172.17.0.2)
+* TPC/1/READ_LOCAL pending:             100  (172.17.0.2)
+* TPC/1/READ_LOCAL active:              32   (172.17.0.2)
+* MemtablePostFlush pending:            6    (172.17.0.2)
+* MemtableFlushWriter active:           3    (172.17.0.2)
+* PerDiskMemtableFlushWriter_0 active:  2    (172.17.0.2)
+* CompactionExecutor active:            1    (172.17.0.2)
+* MemtablePostFlush active:             1    (172.17.0.2)
+* TPC/all/EXECUTE_STATEMENT active:     1    (172.17.0.2)
+* LwtStage active:                      1    (172.17.0.2)
+* TPC/other active:                     1    (172.17.0.2)
+* TPC/other/EXECUTE_STATEMENT active:   1    (172.17.0.2)
+* TPC/0/TIMED_TIMEOUT active:           1    (172.17.0.2)
 
 busiest stages in PENDING
 ------------------------------
 172.17.0.2:
+       TPC/1/READ_LOCAL:   100
        MemtablePostFlush:  6""",
         )

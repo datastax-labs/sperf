@@ -15,10 +15,11 @@
 from collections import OrderedDict
 from dataclasses import dataclass
 from typing import List, Dict
+import re
 
 from pysper import humanize
 from pysper.core.diag import parse_diag
-from pysper import diag
+from pysper import diag, env
 from pysper import parser, util
 from pysper.core.diag.reporter import (
     format_gc,
@@ -55,7 +56,7 @@ class BackpressureStats:
 @dataclass
 class PendingCoreMeasurement:
     core: int
-    pending: float
+    pending: int
 
 
 def parse(args):
@@ -128,7 +129,7 @@ def calculate(node_config):
 
 
 def _recs_on_stages(
-    recommendations: list,
+    recommendations: List[Dict[str, str]],
     gc_over_target: int,
     gc_target: int,
     counter: StatusLoggerCounter,
@@ -287,6 +288,8 @@ def generate_recommendations(parsed):
     event_filter = diag.UniqEventPerNodeFilter()
     bp = BackpressureStats(local_backpressure_active={}, per_core_bp={})
     core_balance = {}
+    tpc_event_types = ["6.8", "new"]
+    pool_name_pattern = re.compile(r"TPC\/(?P<core>[0-9]+)$")
     for rec_log in parsed["rec_logs"]:
         node = util.extract_node_name(rec_log)
         event_filter.set_node(node)
@@ -297,17 +300,42 @@ def generate_recommendations(parsed):
                 )
             else:
                 statuslogger_fixer = diag.UnknownStatusLoggerWriter()
+                if env.DEBUG:
+                    print("parsing", rec_log_file.filepath)
                 events = parser.read_system_log(rec_log_file)
                 for event in [e for e in events if not event_filter.is_duplicate(e)]:
+                    # statuslogger_fixer.check(event) HAS to run first before any code below or statuslogger events will get tossed.
+                    statuslogger_fixer.check(event)
                     event_type = event.get("event_type")
                     event_category = event.get("event_category")
                     event_product = event.get("event_product")
-                    statuslogger_fixer.check(event)
+                    rule_type = event.get("rule_type")
                     if event_type == "unknown":
                         continue
                     if event_type == "pause" and event_category == "garbage_collection":
                         if event.get("duration") > gc_target:
                             gc_over_target += 1
+                    elif (
+                        event_type == "threadpool_status"
+                        and rule_type in tpc_event_types
+                    ):
+                        pool_name = event.get("pool_name")
+                        if env.DEBUG:
+                            print("detected pool name is %s" % pool_name)
+                        match = pool_name_pattern.match(pool_name)
+                        if match:
+                            core = int(match.group(1))
+                            if env.DEBUG:
+                                print("detected core is %i" % core)
+                            pending = event.get("pending")
+                            if node in core_balance:
+                                core_balance[node].append(
+                                    PendingCoreMeasurement(core, pending)
+                                )
+                            else:
+                                core_balance[node] = [
+                                    PendingCoreMeasurement(core, pending)
+                                ]
                     elif (
                         event_category == "streaming"
                         and event_product == "zc"
@@ -358,7 +386,6 @@ def generate_recommendations(parsed):
                         drop_sums += local + remote
                         if remote > 0 and local == 0:
                             drops_remote_only += 1
-
                     _status_logger_counter(event, counter)
     recommendations = []
     _recs_on_stages(recommendations, gc_over_target, gc_target, counter)
@@ -391,35 +418,55 @@ def _recs_on_rejects(recommendations, rejected):
 def _recs_on_core_balance(recommendations, core_balance):
     """shares that there may be a problems with data model where too many tasks are on one core"""
     imbalanced_core_count = {}
-    last_core = -1
-    pending_measures = []
-    total_pending = 0
-    for node, measurement in core_balance.items():
-        pending_measures.append(measurement.pending)
-        total_pending += measurement.pending
-        core_diff = measurement.core - last_core
-        if core_diff != 1:  # we are assuming we are down now
-            expected_balance = 1.0 / float(len(total_pending))
-            imbalanced_treshold = expected_balance * 2.0
-            for pending in pending_measures:
-                perc_pending = float(pending) / float(total_pending)
-                if perc_pending > imbalanced_treshold:
-                    if node in imbalanced_core_count:
-                        imbalanced_core_count[node] += 1
-                    else:
-                        imbalanced_core_count[node] = 0
-            pending_measures = []
-            total_pending = 0
-        last_core = measurement.core
+    for node, measurements in core_balance.items():
+        pending_measures = []
+        last_core = -1
+        total_pending = 0
+        for measurement in measurements:
+            pending_measures.append(measurement.pending)
+            total_pending += measurement.pending
+            core_diff = measurement.core - last_core
+            if core_diff != 1:  # we are assuming we are done now
+                # add a minimum number for pending tasks to cut out noise
+                if total_pending > 99:
+                    expected_balance = 0.0
+                    if total_pending != 0:
+                        expected_balance = 1.0 / float(len(pending_measures))
+                    imbalanced_treshold = expected_balance * 2.0
+                    if env.DEBUG:
+                        print("%.2f is the imbalance threshold" % imbalanced_treshold)
+                    for pending in pending_measures:
+                        perc_pending = 0.0
+                        if total_pending != 0:
+                            perc_pending = float(pending) / float(total_pending)
+                        if env.DEBUG:
+                            print(
+                                "%.2f is the percent pending for %i"
+                                % (perc_pending, measurement.core)
+                            )
+                        if perc_pending > imbalanced_treshold:
+                            if node in imbalanced_core_count:
+                                imbalanced_core_count[node] += 1
+                            else:
+                                imbalanced_core_count[node] = 1
+                else:
+                    if env.DEBUG:
+                        print(
+                            "total pending tasks was only %i so we are skipping since it is below the threshold of 100 pending tasks to measure core balance"
+                            % total_pending
+                        )
+                pending_measures = []
+                total_pending = 0
+            last_core = measurement.core
     if len(imbalanced_core_count.keys()) > 0:
         nodes_with_imbalance = []
         for node, value in imbalanced_core_count.items():
-            nodes_with_imbalance.append("%s (%i times)", node, value)
+            nodes_with_imbalance.append("%s (%i times)" % (node, value))
         recommendations.append(
             {
-                "issue": "TPC core imbalance detected on nodes: %s "
+                "issue": "TPC core imbalance detected on nodes: %s"
                 % ",".join(nodes_with_imbalance),
-                "rec": "the data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model",
+                "rec": "The data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model",
             }
         )
 
