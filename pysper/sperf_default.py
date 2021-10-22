@@ -14,6 +14,7 @@
 """sperf default command run when you type `sperf`"""
 from collections import OrderedDict
 from dataclasses import dataclass
+from typing import List, Dict
 
 from pysper import humanize
 from pysper.core.diag import parse_diag
@@ -41,14 +42,14 @@ class StatusLoggerCounter:
 
 @dataclass
 class CoreBackpressureStats:
-    cores: list[int]
+    cores: List[int]
     total_bp_events: int
 
 
 @dataclass
 class BackpressureStats:
-    local_backpressure_active: dict[str, int]
-    per_core_bp: dict[str, CoreBackpressureStats]
+    local_backpressure_active: Dict[str, int]
+    per_core_bp: Dict[str, CoreBackpressureStats]
 
 
 @dataclass
