@@ -108,7 +108,7 @@ WARNING more than one version present assuming no version with recommendations""
             output,
             "sperf core statuslogger version: %s\n" % (VERSION)
             + """
-Summary (20,243 lines)
+Summary (20,245 lines)
 Summary (2,204 skipped lines)
 
 dse versions: {'6.8.1'}

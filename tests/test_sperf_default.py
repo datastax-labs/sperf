@@ -58,7 +58,8 @@ No parsing errors
 recommendations
 ---------------
 * There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
-* There were drops of the following request types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.""",
+* There were drops of the following request types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
+* Global local backpressure was active on the following nodes: 10.101.35.102 (1 times). GC was over target %s times however despire TPC backpressure being active it may be dangerous to raise TPC limits, run sperf core statuslogger for further analysis on the type of requests that are pending.""",
         )
 
     def test_sperf_68(self):
@@ -107,6 +108,8 @@ recommendations
 ---------------
 * There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
 * There were drops of the following request types: RANGE_SLICE, LWT for a total of 8 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
+* There were 2 incidents of zero copy errors related to bloom filter generation. This COULD be an explaination for increased read latencies, however, this error can be only due to the sstables being so small they are immediately deleted and therefore there is no bloom filter generated. In that case there is no issue with this warning. Keep an eye on this. If there are no other good explainations for increased latencies run `nodetool upgradesstables -s` on each node then restart to regenerate and load new bloom filters.
+* Local core backpressure was active on the following nodes: 172.17.0.2 (320 times - 3 different cores). GC was over target %s times however despire TPC backpressure being active it may be dangerous to raise TPC limits, run sperf core statuslogger for further analysis on the type of requests that are pending.
 * TPC core imbalance detected on nodes: 172.17.0.2 (1 times). The data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model.
 * Tombstone warnings found, there were 1001 total tombstones scanned. The data model has a problem.""",
         )

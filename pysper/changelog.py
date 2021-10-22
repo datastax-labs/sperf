@@ -1,5 +1,5 @@
 CHANGES = """
-sperf 0.7.0
+sperf 0.6.15
 ------------
 * added detection for indexing backoff with auto soft commit
 * added detection for tombstone scan warnings and errors
@@ -8,7 +8,6 @@ sperf 0.7.0
 * added detection for tpc core imbalance
 * added detection for network backpressure rejections
 * added detection for tpc backpressure being enabled
-* now put time of events on statuslogger
 * deprecated all commands except sperf command moving all functionality into the primary sperf command
 
 sperf 0.6.14

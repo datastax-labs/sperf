@@ -348,23 +348,23 @@ def generate_recommendations(parsed):
                                 ]
                     elif (
                         event_category == "streaming"
-                        and event_product == "zc"
+                        and event_product == "zcs"
                         and event_type == "bloom_filter"
                     ):
                         zero_copy_errors += 1
                     elif event_type == "core_backpressure":
-                        if node in bp.per_core_bp:
-                            bp.per_core_bp.cores.append(event.get("core_num"))
-                            bp.per_core.bp.total_bp_events += 1
+                        if node in bp.per_core_bp.keys():
+                            bp.per_core_bp[node].cores.append(event.get("core_num"))
+                            bp.per_core_bp[node].total_bp_events += 1
                         else:
-                            bp.per_core_bp = CoreBackpressureStats(
+                            bp.per_core_bp[node] = CoreBackpressureStats(
                                 cores=[event.get("core_num")], total_bp_events=1
                             )
                     elif event_type == "core_backpressure_local":
                         if node in bp.local_backpressure_active:
                             bp.local_backpressure_active[node] += 1
                         else:
-                            bp.local_backpressure_active[node] = 0
+                            bp.local_backpressure_active[node] = 1
                     elif event_category == "indexing":
                         core_name = event.get("core_name")
                         d = event.get("date")
@@ -513,10 +513,10 @@ def _recs_on_bp(recommendations, bp, gc_over_target):
     if len(local_backpressure_active.keys()) > 0:
         nodes_with_local = []
         for key, value in local_backpressure_active.items():
-            nodes_with_local.append("%s (%i times)", key, value)
+            nodes_with_local.append("%s (%i times)" % (key, value))
         recommendations.append(
             {
-                "issue": "global local backpressure was active on the following nodes: %s"
+                "issue": "Global local backpressure was active on the following nodes: %s"
                 % ",".join(nodes_with_local),
                 "rec": rec,
             }
@@ -527,16 +527,18 @@ def _recs_on_bp(recommendations, bp, gc_over_target):
         for key, value in per_core_bp.items():
             unique_cores = set()
             for core in value.cores:
-                unique_cores.append(core)
+                unique_cores.add(core)
             nodes_with_per_core_bp.append(
-                "%s (%i times - %i different cores)",
-                key,
-                value.total_bp_events,
-                unique_cores,
+                "%s (%i times - %i different cores)"
+                % (
+                    key,
+                    value.total_bp_events,
+                    len(unique_cores),
+                )
             )
         recommendations.append(
             {
-                "issue": "local core backpressure was active on the following nodes: %s"
+                "issue": "Local core backpressure was active on the following nodes: %s"
                 % ",".join(nodes_with_per_core_bp),
                 "rec": rec,
             }
@@ -554,7 +556,7 @@ def _recs_on_zero_copy(recommendations, zero_copy_errors):
                     % zero_copy_errors
                 )
                 + "can be only due to the sstables being so small they are immediately deleted and therefore there is no bloom filter generated. In that case there is no issue with this warning",
-                "rec": "Keep an eye on this. If there are no other good explainations for increased latencies run `nodetool upgradesstables -s` on each node then restart to regenerate and load new bloom filters.",
+                "rec": "Keep an eye on this. If there are no other good explainations for increased latencies run `nodetool upgradesstables -s` on each node then restart to regenerate and load new bloom filters",
             }
         )
 
