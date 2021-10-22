@@ -23,6 +23,7 @@ from pysper.parser.cases import (
     drop_rules,
     status_rules,
     tpc_rules,
+    tombstone_rules,
     zc_rules,
 )
 from pysper.parser.captures import system_capture_rule
@@ -37,6 +38,7 @@ capture_message = switch(
         *cfs_rules(),
         *solr_rules(),
         *tpc_rules(),
+        *tombstone_rules(),
         *zc_rules(),
     )
 )

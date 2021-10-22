@@ -706,28 +706,31 @@ def tombstone_rules():
             capture(
                 r"Scanned over (?P<tombstones>[0-9]*) tombstones during query '(?P<query>.*)' \(last scanned row partion key was \((?P<pk>.*)\)\); query aborted"
             ),
+            convert(int, "tombstones"),
             update(
                 event_product="tombstone",
                 event_category="reading",
                 event_type="scan_error",
             ),
         ),
-        case(""),
+        case("NoSpamLogger"),
         rule(
             capture(
-                r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]"
+                r"Scanned over (?P<tombstones>[0-9]*) tombstone rows for query (?P<query>.*) - more than the warning threshold [\d+]+"
             ),
+            convert(int, "tombstones"),
             update(
                 event_product="tombstone",
                 event_category="reading",
                 event_type="tpc_scan_warn",
             ),
         ),
-        case(""),
+        case("MessageDeliveryTask"),
         rule(
             capture(
                 r"Read (?P<live>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"
             ),
+            convert(int, "tombstones"),
             update(
                 event_product="tombstone",
                 event_category="reading",

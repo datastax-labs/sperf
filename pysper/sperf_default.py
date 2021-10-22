@@ -276,6 +276,8 @@ def generate_recommendations(parsed):
             "WARN cannot find -XX:MaxGCPauseMillis in the logs setting common default of 500ms"
         )
         gc_target = 500
+    tombstone_errors = 0
+    tombstone_warns = 0
     gc_over_target = 0
     counter = StatusLoggerCounter()
     solr_index_backoff = OrderedDict()
@@ -315,6 +317,14 @@ def generate_recommendations(parsed):
                     if event_type == "pause" and event_category == "garbage_collection":
                         if event.get("duration") > gc_target:
                             gc_over_target += 1
+                    elif event_product == "tombstone":
+                        if event_type == "scan_error":
+                            tombstone_errors += event.get("tombstones")
+                        elif (
+                            event_type == "tpc_scan_warn"
+                            or event_type == "seda_scan_warn"
+                        ):
+                            tombstone_warns += event.get("tombstones")
                     elif (
                         event_type == "threadpool_status"
                         and rule_type in tpc_event_types
@@ -401,7 +411,28 @@ def generate_recommendations(parsed):
     _recs_on_rejects(recommendations, rejected)
     _recs_on_bp(recommendations, bp, gc_over_target)
     _recs_on_core_balance(recommendations, core_balance)
+    _recs_on_tombstones(recommendations, tombstone_errors, tombstone_warns)
     return recommendations
+
+
+def _recs_on_tombstones(recommendations, tombstone_errors, tombstone_warns):
+    """provides warnings on tombstone warnings and overflow"""
+    if tombstone_errors > 0:
+        recommendations.append(
+            {
+                "issue": "Tombstone overflowing exceptions found, there were %i total tombstones scanned"
+                % tombstone_errors,
+                "rec": "The data model has a problem",
+            }
+        )
+    if tombstone_warns > 0:
+        recommendations.append(
+            {
+                "issue": "Tombstone warnings found, there were %i total tombstones scanned"
+                % tombstone_warns,
+                "rec": "The data model has a problem",
+            }
+        )
 
 
 def _recs_on_rejects(recommendations, rejected):

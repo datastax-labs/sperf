@@ -107,7 +107,8 @@ recommendations
 ---------------
 * There were 5 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
 * There were drops of the following request types: RANGE_SLICE, LWT for a total of 8 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
-* TPC core imbalance detected on nodes: 172.17.0.2 (1 times). The data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model.""",
+* TPC core imbalance detected on nodes: 172.17.0.2 (1 times). The data model is likely broken. Look for time series with large buckets and little randomization of writes, large IN queries, and hot partitions on writes. On DSE versions before 6.8.5 consider upgrading first before changing the data model.
+* Tombstone warnings found, there were 1001 total tombstones scanned. The data model has a problem.""",
         )
 
     def test_empty_recommendations(self):
