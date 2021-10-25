@@ -699,6 +699,18 @@ def zc_rules():
 def tombstone_rules():
     """catch tombstone problems"""
     return (
+        case("ReadCommand"),
+        rule(
+            capture(
+                r"Read (?P<live_rows>[0-9]*) live rows and (?P<tombstones>[0-9]*) tombstone cells for query (?P<query>.*) \(see tombstone_warn_threshold\)"
+            ),
+            convert(int, "tombstones"),
+            update(
+                event_product="tombstone",
+                event_category="reading",
+                event_type="tpc_scan_warn",
+            ),
+        ),
         case("MessageDeliveryTask"),
         rule(
             capture(

@@ -59,7 +59,8 @@ recommendations
 ---------------
 * There were 16 incidents of GC over 500ms. Run `sperf core gc` for more analysis.
 * There were drops of the following request types: MUTATION for a total of 1096 drops. Run sperf core statuslogger and look for high pending stages for those messages types.
-* Global local backpressure was active on the following nodes: 10.101.35.102 (1 times). GC was over target %s times however despire TPC backpressure being active it may be dangerous to raise TPC limits, run sperf core statuslogger for further analysis on the type of requests that are pending.""",
+* Global local backpressure was active on the following nodes: 10.101.35.102 (1 times). GC was over target %s times however despire TPC backpressure being active it may be dangerous to raise TPC limits, run sperf core statuslogger for further analysis on the type of requests that are pending.
+* Tombstone warnings found, there were 1951 total tombstones scanned. The data model has a problem.""",
         )
 
     def test_sperf_68(self):

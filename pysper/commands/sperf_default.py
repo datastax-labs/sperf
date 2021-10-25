@@ -33,4 +33,6 @@ def run(args):
             raise ex
         print(str(ex))
         print("")
-        print("To show strack trace use the -v flag. For example: 'sperf -v cassread'")
+        print(
+            "To show strack trace use the -v flag. For example: 'sperf -v core statuslogger'"
+        )

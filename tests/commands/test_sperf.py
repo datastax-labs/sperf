@@ -47,7 +47,7 @@ class TestSperfCommands(unittest.TestCase):
         self.assertTrue(success)
 
     def test_core_diag_wired(self):
-        """verify cassread is connected"""
+        """verify sperf core diag is connected"""
         parser = sperf.build_parser()
         args = parser.parse_args(["core", "diag"])
         self.assertTrue(hasattr(args, "func"))

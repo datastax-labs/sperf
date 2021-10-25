@@ -1,3 +1,7 @@
+sperf 0.6.16
+------------
+* tombstone warnings for 6.0.x are not parsed correctly
+
 sperf 0.6.15
 ------------
 * added detection for indexing backoff with auto soft commit

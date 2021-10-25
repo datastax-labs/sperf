@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""formats the output of the cassread parsed data"""
+"""formats the output of the sperf core diag parsed data"""
 from pysper import humanize, env
 
 # used for report formatting

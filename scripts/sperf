@@ -17,9 +17,10 @@
 import sys
 import os
 import platform
-if platform.python_version() < '3.7':
+
+if platform.python_version() < "3.7":
     raise Exception("sperf requires at least Python 3.7, consider a packaged release")
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from pysper.commands import sperf
 
 if __name__ == "__main__":

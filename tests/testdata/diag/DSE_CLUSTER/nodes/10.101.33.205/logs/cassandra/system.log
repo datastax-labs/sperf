@@ -2462,3 +2462,4 @@ INFO  [GCInspector:1] 2020-01-10 17:19:08,323  GCInspector.java:313 - G1 Young G
 INFO  [commitScheduler-6-thread-1] 2020-01-10 17:19:14,043  DocumentsWriter.java:785 - Waited 16 milliseconds for 7 flushing segments.
 INFO  [commitScheduler-6-thread-1] 2020-01-10 17:19:24,124  DocumentsWriter.java:785 - Waited 0 milliseconds for 0 flushing segments.
 INFO  [NodeSyncMaintenanceTasks:1] 2020-01-10 17:19:43,531  NodeSyncMaintenanceTasks.java:172 - In last 10m: validated 0B (0B/s), 0% was inconsistent.
+WARN  [CoreThread-3] 2020-01-10 17:19:47,591  ReadCommand.java:535 - Read 1 live rows and 1951 tombstone cells for query SELECT * FROM keyspace1.standard1 WHERE id = 894e165d-beba-433d-ab52-055c570fcb9b LIMIT 2000 (see tombstone_warn_threshold)

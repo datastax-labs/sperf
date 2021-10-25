@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""cassread command wiring"""
+"""sperf core diag command wiring"""
 from pysper.commands import flags
 from pysper import VERSION
 from pysper.core.diag import parse_diag, generate_report
@@ -72,7 +72,7 @@ def add_args(diag_parser):
 
 
 def add_flags(subparsers, name, run_func, is_deprecated=False):
-    """so we can share the parser with the legacy sperf cassread command"""
+    """so we can share the parser with the legacy 'sperf core diag' command"""
     help_text = "Generates a diagtarball report. DSE 5.0-6.8"
     if is_deprecated:
         help_text = help_text + ". DEPRECATED: use 'sperf core diag' instead"
@@ -84,7 +84,7 @@ def add_flags(subparsers, name, run_func, is_deprecated=False):
 
 
 def build(subparsers):
-    """builds the cassread command up, assumes argparser api"""
+    """builds the sperf core diag command up, assumes argparser api"""
     add_flags(subparsers, "diag", run)
 
 

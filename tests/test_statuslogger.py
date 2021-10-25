@@ -47,7 +47,7 @@ class TestSperf(unittest.TestCase):
             output,
             "sperf core statuslogger version: %s\n" % (VERSION)
             + """
-Summary (22,054 lines)
+Summary (22,055 lines)
 Summary (445 skipped lines)
 
 dse versions: {'6.7.7'}
