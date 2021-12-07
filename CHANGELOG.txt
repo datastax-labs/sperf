@@ -1,3 +1,7 @@
+sperf 0.6.17
+------------
+* ttop was aggregating threads entirely incorrectly and double counting
+
 sperf 0.6.16
 ------------
 * tombstone warnings for 6.0.x are not parsed correctly
