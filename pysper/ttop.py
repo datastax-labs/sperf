@@ -127,7 +127,6 @@ class TTopParser:
                 else:
                     m = self.tinfo_match.match(line)
                     if not m:
-
                         raise ValueError("thread info not found in '" + line + "'")
                     threads[m.group("thread_name")]["user_cpu"] = float(
                         m.group("user_cpu")
@@ -174,7 +173,7 @@ class TTopAnalyzer:
                 name = re.sub(e, "", name)
             for t, v in threads[thread].items():
                 ret[name][t] = round(ret[name][t] + v, 2)
-                ret[name]["thread_count"] += 1
+            ret[name]["thread_count"] += 1
         return ret
 
     def print_report(self, top=None, alloc=False, collate=True, start=None, end=None):

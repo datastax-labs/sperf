@@ -48,8 +48,8 @@ test:
 
 .PHONY: lint
 lint:
-	flake8 $(pysper_dir) $(tests_dir)
 	black .
+	flake8 $(pysper_dir) $(tests_dir)
 
 .PHONY: setup
 setuppy:
