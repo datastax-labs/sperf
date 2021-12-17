@@ -1,14 +1,14 @@
 # sperf diagnostic tooling
 
-[User documentation](https://datastax-toolkit.github.io/sperf/)
+[User documentation](https://datastax-labs.github.io/sperf/)
 
-![Python application](https://github.com/DataStax-Toolkit/sperf/workflows/Python%20application/badge.svg)
+![Python application](https://github.com/datastax-labs/sperf/workflows/Python%20application/badge.svg)
 
 `sperf` is a command line tool that can analyze clusters and hardware performance to help diagnose performance problems with [DataStax Enterprise](https://www.datastax.com/products/datastax-enterprise) and [Apache Cassandra™](http://cassandra.apache.org/). Originally an internal only project is has been opened sourced under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html) and a new public repository was created.
 
 # Development
 
-Find the docs on [How to Contribute here](https://datastax-toolkit.github.io/sperf/contrib.html)
+Find the docs on [How to Contribute here](https://datastax-labs.github.io/sperf/contrib.html)
 
 # Contributors to closed source sperf
 
