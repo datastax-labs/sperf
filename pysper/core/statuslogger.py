@@ -295,13 +295,13 @@ class StatusLogger:
         print("Histogram")
         print("")
         if not self.nodes:
-            print("Nothing found!")
+            print("nodes: Nothing found!\n")
             return
         cassandra_versions = set()
         dse_versions = set()
         for name, node in self.nodes.items():
             cassandra_versions.add(node.cassandra_version)
-            dse_versions.add(node.dse_versions)
+            dse_versions.add(node.version)
             print(name)
             print("-" * 60)
             print("%s lines" % format_num(node.lines))
@@ -311,7 +311,7 @@ class StatusLogger:
             print("log start time: %s" % node.start)
             print("log end time: %s" % node.end)
             if not node.dumps_analyzed:
-                print("Nothing found!")
+                print("node.dumps_analyzed: Nothing found!\n")
                 continue
             print("duration: %s" % format_seconds(int(node.duration().total_seconds())))
             print("stages analyzed: %s" % node.dumps_analyzed)
@@ -423,7 +423,7 @@ class StatusLogger:
         print("first log time: %s" % summary.start)
         print("last log time: %s" % summary.end)
         if not self.dumps_analyzed:
-            print("Nothing found!")
+            print("self.dumps_analyzed: Nothing found!\n")
             return
         print("duration: %s" % format_seconds(int(summary.duration.total_seconds())))
         print("total stages analyzed: %s" % self.dumps_analyzed)
