@@ -10,7 +10,7 @@ mypy-extensions==0.4.3
 pathspec==0.8.1
 pycodestyle==2.6.0
 pyflakes==2.2.0
-pyinstaller==4.2
+pyinstaller==5.13.1
 pyinstaller-hooks-contrib==2020.11
 pytest==6.2.3
 pytest-cov==2.11.1
