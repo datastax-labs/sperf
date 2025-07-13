@@ -17,7 +17,7 @@ import unittest
 import os
 from pysper.parser.block_dev import capture_line
 from pysper.parser import read_block_dev
-from tests import test_dse_tarball
+from tests import get_test_dse_tarball
 
 
 class TestBlockDev(unittest.TestCase):
@@ -28,7 +28,7 @@ class TestBlockDev(unittest.TestCase):
         events = None
         with open(
             os.path.join(
-                test_dse_tarball(), "nodes", "10.101.33.205", "blockdev_report"
+                get_test_dse_tarball(), "nodes", "10.101.33.205", "blockdev_report"
             )
         ) as blockdev_file:
             events = list(read_block_dev(blockdev_file))

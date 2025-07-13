@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper.core.diag import node_env
-from tests import test_dse_tarball
+from tests import get_test_dse_tarball
 
 
 class TestNodeEnv(unittest.TestCase):
@@ -53,12 +53,12 @@ class TestNodeEnv(unittest.TestCase):
         node1 = "10.101.33.205"
         output_logs = [
             os.path.join(
-                test_dse_tarball(), "nodes", node1, "logs", "cassandra", "output.log"
+                get_test_dse_tarball(), "nodes", node1, "logs", "cassandra", "output.log"
             )
         ]
         system_logs = [
             os.path.join(
-                test_dse_tarball(), "nodes", node1, "logs", "cassandra", "system.log"
+                get_test_dse_tarball(), "nodes", node1, "logs", "cassandra", "system.log"
             )
         ]
         node_env.find_config_in_logs(configs, output_logs, system_logs)
@@ -69,7 +69,7 @@ class TestNodeEnv(unittest.TestCase):
         configs = {"node1": {}}
         output_logs = [
             os.path.join(
-                test_dse_tarball(),
+                get_test_dse_tarball(),
                 "nodes",
                 "10.101.33.205",
                 "logs",
@@ -79,7 +79,7 @@ class TestNodeEnv(unittest.TestCase):
         ]
         system_logs = [
             os.path.join(
-                test_dse_tarball(),
+                get_test_dse_tarball(),
                 "nodes",
                 "10.101.33.205",
                 "logs",
@@ -87,7 +87,7 @@ class TestNodeEnv(unittest.TestCase):
                 "system.log",
             ),
             os.path.join(
-                test_dse_tarball(),
+                get_test_dse_tarball(),
                 "nodes",
                 "10.101.33.205",
                 "logs",

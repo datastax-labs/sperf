@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper.core.statuslogger import StatusLogger, Summary
-from tests import test_dse_tarball, current_dir
+from tests import get_test_dse_tarball, get_current_dir
 
 
 class TestStatusLogger(unittest.TestCase):
@@ -25,7 +25,7 @@ class TestStatusLogger(unittest.TestCase):
     def test_should_count_ops(self):
         """validate ops counting is doing the right thing even when crossing logs"""
         tarball = os.path.join(
-            current_dir(__file__), "..", "testdata", "sample_table_tarball"
+            get_current_dir(__file__), "..", "testdata", "sample_table_tarball"
         )
         sl = StatusLogger(tarball)
         sl.analyze()
@@ -40,7 +40,7 @@ class TestStatusLogger(unittest.TestCase):
 
     def test_skip_duplicate_events_diag(self):
         """should merge events on the same node in different logs"""
-        sl = StatusLogger(test_dse_tarball())
+        sl = StatusLogger(get_test_dse_tarball())
         sl.analyze()
         self.assertTrue(sl.analyzed)
         self.assertEqual(len(sl.nodes), 3)
@@ -61,7 +61,7 @@ class TestStatusLogger(unittest.TestCase):
         """should work with new statuslogger files"""
         files = [
             os.path.join(
-                current_dir(__file__), "..", "testdata", "statusloggernew_debug.log"
+                get_current_dir(__file__), "..", "testdata", "statusloggernew_debug.log"
             )
         ]
         sl = StatusLogger(None, files=files)
@@ -79,7 +79,7 @@ class TestStatusLogger(unittest.TestCase):
         """should work with new statuslogger files"""
         files = [
             os.path.join(
-                current_dir(__file__), "..", "testdata", "statuslogger_new.log"
+                get_current_dir(__file__), "..", "testdata", "statuslogger_new.log"
             )
         ]
         sl = StatusLogger(None, files=files)
@@ -97,7 +97,7 @@ class TestStatusLogger(unittest.TestCase):
         """should work with DSE 6.8 statuslogger debug files"""
         files = [
             os.path.join(
-                current_dir(__file__), "..", "testdata", "statuslogger68_debug.log"
+                get_current_dir(__file__), "..", "testdata", "statuslogger68_debug.log"
             )
         ]
         sl = StatusLogger(None, files=files)
@@ -114,7 +114,7 @@ class TestStatusLogger(unittest.TestCase):
     def test_68_system_log_format(self):
         """should work with DSE 6.8 statuslogger files"""
         files = [
-            os.path.join(current_dir(__file__), "..", "testdata", "statuslogger_68.log")
+            os.path.join(get_current_dir(__file__), "..", "testdata", "statuslogger_68.log")
         ]
         sl = StatusLogger(None, files=files)
         sl.analyze()

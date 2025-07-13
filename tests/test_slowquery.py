@@ -18,7 +18,7 @@ import os
 import types
 from pysper import VERSION
 from pysper.commands.core import slowquery
-from tests import current_dir, steal_output
+from tests import get_current_dir, steal_output
 
 
 class TestSperfDefault(unittest.TestCase):
@@ -30,7 +30,7 @@ class TestSperfDefault(unittest.TestCase):
         self.maxDiff = None
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(
-            current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+            get_current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
         )
         args.files = []
         args.top = 3
@@ -72,7 +72,7 @@ Top 3 slow queries:
         """integration test for DSE 6.8 format, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
-        args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
+        args.diag_dir = os.path.join(get_current_dir(__file__), "testdata", "dse68")
         args.files = []
         args.top = 3
         args.interval = 3600

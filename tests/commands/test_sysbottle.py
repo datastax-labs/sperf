@@ -17,7 +17,7 @@ import unittest
 import argparse
 import os
 from pysper.commands import sysbottle
-from tests import current_dir
+from tests import get_current_dir
 
 
 class TestSysBottleCommand(unittest.TestCase):
@@ -60,7 +60,7 @@ class TestSysBottleCommand(unittest.TestCase):
         )
         subparsers = parser.add_subparsers()
         sysbottle.build(subparsers)
-        test_file_1 = os.path.join(current_dir(__file__), "..", "testdata", "iostat")
+        test_file_1 = os.path.join(get_current_dir(__file__), "..", "testdata", "iostat")
         args = parser.parse_args(
             [
                 "sysbottle",

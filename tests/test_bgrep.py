@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper.bgrep import BucketGrep
-from tests import current_dir
+from tests import get_current_dir
 
 
 class TestBgrep(unittest.TestCase):
@@ -26,7 +26,7 @@ class TestBgrep(unittest.TestCase):
         """validates bgrep matches every line"""
         b = BucketGrep(
             "main",
-            files=[os.path.join(current_dir(__file__), "testdata", "simple.log")],
+            files=[os.path.join(get_current_dir(__file__), "testdata", "simple.log")],
         )
         b.analyze()
         self.assertEqual(len(b.matches), 2)
@@ -37,7 +37,7 @@ class TestBgrep(unittest.TestCase):
             "RANGE_SLICE messages were dropped",
             files=[
                 os.path.join(
-                    current_dir(__file__), "testdata", "statusloggernew_debug.log"
+                    get_current_dir(__file__), "testdata", "statusloggernew_debug.log"
                 )
             ],
         )
@@ -50,7 +50,7 @@ class TestBgrep(unittest.TestCase):
             "this should never match anything",
             files=[
                 os.path.join(
-                    current_dir(__file__), "testdata", "statusloggernew_debug.log"
+                    get_current_dir(__file__), "testdata", "statusloggernew_debug.log"
                 )
             ],
         )
@@ -61,7 +61,7 @@ class TestBgrep(unittest.TestCase):
         """validates bgrep matches lines without a date"""
         b = BucketGrep(
             ".*No such file or directory.*",
-            files=[os.path.join(current_dir(__file__), "testdata", "traceback.log")],
+            files=[os.path.join(get_current_dir(__file__), "testdata", "traceback.log")],
         )
         b.analyze()
         self.assertEqual(len(b.matches), 1)

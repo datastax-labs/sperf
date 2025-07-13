@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper import jarcheck
-from tests import current_dir, steal_output
+from tests import get_current_dir, steal_output
 
 
 class TestJarCheck(unittest.TestCase):
@@ -24,7 +24,7 @@ class TestJarCheck(unittest.TestCase):
 
     def test_read_line_output(self):
         """jar check parser test"""
-        test_file = os.path.join(current_dir(__file__), "testdata", "simple-output.log")
+        test_file = os.path.join(get_current_dir(__file__), "testdata", "simple-output.log")
         parser = jarcheck.JarCheckParser(files=[test_file])
         parser.analyze()
         self.assertEqual(len(parser.jars), 501)
@@ -33,10 +33,10 @@ class TestJarCheck(unittest.TestCase):
     def test_run_jarcheck_diff_only(self):
         """integration test for the full command with diff_only"""
         test_file_1 = os.path.join(
-            current_dir(__file__), "testdata", "simple-output.log"
+            get_current_dir(__file__), "testdata", "simple-output.log"
         )
         test_file_2 = os.path.join(
-            current_dir(__file__), "testdata", "simple-output2.log"
+            get_current_dir(__file__), "testdata", "simple-output2.log"
         )
         parser = jarcheck.JarCheckParser(files=[test_file_1, test_file_2])
         output = steal_output(parser.print_report, diff_only=True)
@@ -57,7 +57,7 @@ Analyzed 2 files""",
 
     def test_run_jarcheck_with_empty_file(self):
         """integration test for a single file with no jar data in it"""
-        test_file_1 = os.path.join(current_dir(__file__), "testdata", "empty.log")
+        test_file_1 = os.path.join(get_current_dir(__file__), "testdata", "empty.log")
         parser = jarcheck.JarCheckParser(files=[test_file_1])
         output = steal_output(parser.print_report)
         self.assertEqual(output, "Analyzed 1 file")

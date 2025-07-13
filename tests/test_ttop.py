@@ -15,7 +15,7 @@
 """ ttop test module """
 import unittest
 import os
-from tests import current_dir, steal_output
+from tests import get_current_dir, steal_output
 from pysper.ttop import TTopAnalyzer
 import pprint
 
@@ -25,7 +25,7 @@ class TestTTop(unittest.TestCase):
 
     def test_ttop_report(self):
         """ttop parser test"""
-        test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
+        test_file = os.path.join(get_current_dir(__file__), "testdata", "ttop-cpu.out")
         ttop = TTopAnalyzer([test_file])
         output = steal_output(ttop.print_report)
         self.maxDiff = None
@@ -54,7 +54,7 @@ internode-messaging RemoteMessageServer acceptor   1       0.00""",
 
     def test_ttop_allocation_report(self):
         """ttop parser allocation test"""
-        test_file = os.path.join(current_dir(__file__), "testdata", "ttop-cpu.out")
+        test_file = os.path.join(get_current_dir(__file__), "testdata", "ttop-cpu.out")
         ttop = TTopAnalyzer([test_file])
 
         def run():
