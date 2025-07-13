@@ -34,7 +34,7 @@ clean:
 
 .PHONY: build
 build:
-	pyinstaller -F $(sperf_script)
+	pyinstaller -F $(sperf_script) --paths .
 	7z a -tzip $(sperf_zip) $(sperf_exe) -mx0
 
 .PHONY: cov
