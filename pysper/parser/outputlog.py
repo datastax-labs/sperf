@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" parser for dse output.log """
+"""parser for dse output.log"""
 from pysper.parser.rules import switch, rule, convert, default
 from pysper.parser.captures import output_capture_rule
 from pysper.parser.cases import config_rules, dd_rules, daemon_rules

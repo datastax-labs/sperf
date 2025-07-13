@@ -32,7 +32,8 @@ PB = 1125899906842624
 
 def format_millis(num_ms):
     """converts milliseconds to a human readable string.
-    NOTE when returning years this pretends leap seconds don't exist and that a year is consistently 365 days exactly"""
+    NOTE when returning years this pretends leap seconds don't exist and that a year is consistently 365 days exactly
+    """
     if num_ms < SECOND:
         return "%s ms" % format_num_float(num_ms)
     if num_ms < MINUTE:
@@ -53,7 +54,8 @@ def format_millis(num_ms):
 
 def format_seconds(num_sec):
     """converts seconds to a human readable string
-    NOTE when returning years this pretends leap seconds don't exist and that a year is consistently 365 days exactly"""
+    NOTE when returning years this pretends leap seconds don't exist and that a year is consistently 365 days exactly
+    """
     if num_sec < 60:
         return "%s %s" % (format_num(num_sec), pluralize(num_sec, "second"))
     return format_millis(num_sec * 1000)

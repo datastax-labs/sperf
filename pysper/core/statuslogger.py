@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" pysper statuslogger module """
+"""pysper statuslogger module"""
 import re
 from collections import OrderedDict
 from pysper import VERSION
@@ -455,7 +455,7 @@ class StatusLogger:
         print("busiest stages across all nodes")
         print("-" * 30)
         data = []
-        for (name, status, stage, value) in summary.get_busiest_stages():
+        for name, status, stage, value in summary.get_busiest_stages():
             data.append(["* %s %s:" % (stage, status), str(value), "(%s)" % name])
         pad_table(data, extra_pad=2)
         for line in data:

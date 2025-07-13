@@ -117,38 +117,38 @@ class TestHumanizeBytes(unittest.TestCase):
 
     def test_format_bytes_mb(self):
         """convert to mb"""
-        self.assertEqual(humanize.format_bytes(1024 ** 2), "1.00 mb")
-        self.assertEqual(humanize.format_bytes(1024.4 ** 2), "1.00 mb")
+        self.assertEqual(humanize.format_bytes(1024**2), "1.00 mb")
+        self.assertEqual(humanize.format_bytes(1024.4**2), "1.00 mb")
 
     def test_format_bytes_1000_mb(self):
         """convert to mb and add separator"""
-        self.assertEqual(humanize.format_bytes((1024 ** 2) * 1000), "1,000.00 mb")
-        self.assertEqual(humanize.format_bytes((1024 ** 2) * 1000.4), "1,000.40 mb")
+        self.assertEqual(humanize.format_bytes((1024**2) * 1000), "1,000.00 mb")
+        self.assertEqual(humanize.format_bytes((1024**2) * 1000.4), "1,000.40 mb")
 
     def test_format_bytes_gb(self):
         """convert to gb"""
-        self.assertEqual(humanize.format_bytes(1024 ** 3), "1.00 gb")
-        self.assertEqual(humanize.format_bytes((1024 ** 3) * 1.04), "1.04 gb")
+        self.assertEqual(humanize.format_bytes(1024**3), "1.00 gb")
+        self.assertEqual(humanize.format_bytes((1024**3) * 1.04), "1.04 gb")
 
     def test_format_bytes_1000_gb(self):
         """convert to gb and add separtor"""
-        self.assertEqual(humanize.format_bytes((1024 ** 3) * 1000), "1,000.00 gb")
-        self.assertEqual(humanize.format_bytes((1024 ** 3) * 1000.4), "1,000.40 gb")
+        self.assertEqual(humanize.format_bytes((1024**3) * 1000), "1,000.00 gb")
+        self.assertEqual(humanize.format_bytes((1024**3) * 1000.4), "1,000.40 gb")
 
     def test_format_bytes_tb(self):
         """convert to tb"""
-        self.assertEqual(humanize.format_bytes(1024 ** 4), "1.00 tb")
-        self.assertEqual(humanize.format_bytes((1024 ** 4) * 1.04), "1.04 tb")
+        self.assertEqual(humanize.format_bytes(1024**4), "1.00 tb")
+        self.assertEqual(humanize.format_bytes((1024**4) * 1.04), "1.04 tb")
 
     def test_format_bytes_1000_tb(self):
         """convert to tb and add separator"""
-        self.assertEqual(humanize.format_bytes((1024 ** 4) * 1000), "1,000.00 tb")
-        self.assertEqual(humanize.format_bytes((1024 ** 4) * 1000.04), "1,000.04 tb")
+        self.assertEqual(humanize.format_bytes((1024**4) * 1000), "1,000.00 tb")
+        self.assertEqual(humanize.format_bytes((1024**4) * 1000.04), "1,000.04 tb")
 
     def test_format_bytes_1000_pb(self):
         """convert to tb and add separator"""
-        self.assertEqual(humanize.format_bytes((1024 ** 5) * 1000), "1,000.00 pb")
-        self.assertEqual(humanize.format_bytes((1024 ** 5) * 1000.04), "1,000.04 pb")
+        self.assertEqual(humanize.format_bytes((1024**5) * 1000), "1,000.00 pb")
+        self.assertEqual(humanize.format_bytes((1024**5) * 1000.04), "1,000.04 pb")
 
     def test_format_bytes_none(self):
         """undefined input"""

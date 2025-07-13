@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" ttop test module """
+"""ttop test module"""
 import unittest
 import os
 from tests import get_current_dir, steal_output

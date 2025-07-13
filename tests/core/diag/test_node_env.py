@@ -53,12 +53,22 @@ class TestNodeEnv(unittest.TestCase):
         node1 = "10.101.33.205"
         output_logs = [
             os.path.join(
-                get_test_dse_tarball(), "nodes", node1, "logs", "cassandra", "output.log"
+                get_test_dse_tarball(),
+                "nodes",
+                node1,
+                "logs",
+                "cassandra",
+                "output.log",
             )
         ]
         system_logs = [
             os.path.join(
-                get_test_dse_tarball(), "nodes", node1, "logs", "cassandra", "system.log"
+                get_test_dse_tarball(),
+                "nodes",
+                node1,
+                "logs",
+                "cassandra",
+                "system.log",
             )
         ]
         node_env.find_config_in_logs(configs, output_logs, system_logs)

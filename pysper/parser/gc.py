@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" parser for systemlog returning gc messages only """
+"""parser for systemlog returning gc messages only"""
 from pysper.parser.rules import switch, update_message, mkcapture
 from pysper.parser.captures import system_capture_rule
 from pysper.parser.cases import gc_rules

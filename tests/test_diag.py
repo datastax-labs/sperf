@@ -29,7 +29,9 @@ class TestDiagModule(unittest.TestCase):
     def test_find_files_by_diag_dir(self):
         """find logs by diag dir"""
         config = types.SimpleNamespace()
-        test_dir = os.path.join(get_current_dir(__file__), "testdata", "diag", "findfiles")
+        test_dir = os.path.join(
+            get_current_dir(__file__), "testdata", "diag", "findfiles"
+        )
         config.diag_dir = test_dir
         config.files = ""
         files = find_files(config, "my.log")
@@ -44,7 +46,9 @@ class TestDiagModule(unittest.TestCase):
     def test_find_files_by_files_param(self):
         """find logs by file name and not just looking in a diag for all matches"""
         config = types.SimpleNamespace()
-        test_dir = os.path.join(get_current_dir(__file__), "testdata", "diag", "findfiles")
+        test_dir = os.path.join(
+            get_current_dir(__file__), "testdata", "diag", "findfiles"
+        )
         config.diag_dir = ""
         config.files = (
             os.path.join(test_dir, "nodes", "node1", "my.log")
@@ -116,7 +120,9 @@ class TestDiagModule(unittest.TestCase):
     def test_parse_diag_reports_missing_files(self):
         """should see missing files in the warning list"""
         config = types.SimpleNamespace()
-        test_dir = os.path.join(get_current_dir(__file__), "testdata", "diag", "missing")
+        test_dir = os.path.join(
+            get_current_dir(__file__), "testdata", "diag", "missing"
+        )
         config.diag_dir = test_dir
         config.node_info_prefix = "node_info.json"
         config.system_log_prefix = "system.log"

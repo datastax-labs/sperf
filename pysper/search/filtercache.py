@@ -99,7 +99,6 @@ class BytesFCStats:
 
 
 class ItemFCStats:
-
     """represents a single item based filter cache eviction"""
 
     def __init__(self, event):

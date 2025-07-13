@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" tests the statuslogger module """
+"""tests the statuslogger module"""
 import unittest
 import os
 from pysper.core.statuslogger import StatusLogger, Summary
@@ -114,7 +114,9 @@ class TestStatusLogger(unittest.TestCase):
     def test_68_system_log_format(self):
         """should work with DSE 6.8 statuslogger files"""
         files = [
-            os.path.join(get_current_dir(__file__), "..", "testdata", "statuslogger_68.log")
+            os.path.join(
+                get_current_dir(__file__), "..", "testdata", "statuslogger_68.log"
+            )
         ]
         sl = StatusLogger(None, files=files)
         sl.analyze()

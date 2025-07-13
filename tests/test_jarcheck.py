@@ -24,7 +24,9 @@ class TestJarCheck(unittest.TestCase):
 
     def test_read_line_output(self):
         """jar check parser test"""
-        test_file = os.path.join(get_current_dir(__file__), "testdata", "simple-output.log")
+        test_file = os.path.join(
+            get_current_dir(__file__), "testdata", "simple-output.log"
+        )
         parser = jarcheck.JarCheckParser(files=[test_file])
         parser.analyze()
         self.assertEqual(len(parser.jars), 501)

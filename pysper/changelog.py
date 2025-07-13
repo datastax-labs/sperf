@@ -1,4 +1,8 @@
 CHANGES = """
+sperf 0.6.18
+------------
+* node histogram statuslogger was fixed (broken in 0.6.15) as part of cassandra version detection added
+
 sperf 0.6.17
 ------------
 * ttop was aggregating threads entirely incorrectly and double counting

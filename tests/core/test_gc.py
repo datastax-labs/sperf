@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" tests the gcinspector module """
+"""tests the gcinspector module"""
 import unittest
 from pysper.core.gcinspector import GCInspector
 from tests import steal_output, get_test_dse_tarball

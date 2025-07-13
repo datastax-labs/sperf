@@ -61,7 +61,9 @@ class TestBgrep(unittest.TestCase):
         """validates bgrep matches lines without a date"""
         b = BucketGrep(
             ".*No such file or directory.*",
-            files=[os.path.join(get_current_dir(__file__), "testdata", "traceback.log")],
+            files=[
+                os.path.join(get_current_dir(__file__), "testdata", "traceback.log")
+            ],
         )
         b.analyze()
         self.assertEqual(len(b.matches), 1)

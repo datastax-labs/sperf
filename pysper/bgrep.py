@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" bucketgrep module """
+"""bucketgrep module"""
 import re
 import os
 from pysper.parser.rules import date

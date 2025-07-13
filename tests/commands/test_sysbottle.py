@@ -60,7 +60,9 @@ class TestSysBottleCommand(unittest.TestCase):
         )
         subparsers = parser.add_subparsers()
         sysbottle.build(subparsers)
-        test_file_1 = os.path.join(get_current_dir(__file__), "..", "testdata", "iostat")
+        test_file_1 = os.path.join(
+            get_current_dir(__file__), "..", "testdata", "iostat"
+        )
         args = parser.parse_args(
             [
                 "sysbottle",
