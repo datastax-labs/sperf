@@ -1,4 +1,13 @@
 CHANGES = """
+sperf 0.6.19
+------------
+* Update python version detection to work correctly with Python >= 3.10
+* Bump dependencies in requirements_dev.txt to latest versions
+* Rename utility functions in tests/__init__.py to prevent suprious warnings from pytest
+* Commit formatting changes made by current version of black
+* Add pyproject.toml to prevent warning when current pip version installs from repo
+* Update python versions and runner images used in github actions
+
 sperf 0.6.18
 ------------
 * node histogram statuslogger was fixed (broken in 0.6.15) as part of cassandra version detection added
