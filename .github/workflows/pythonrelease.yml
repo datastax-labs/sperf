@@ -4,6 +4,28 @@ on:
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
+  create-release:
+    name: Upload Github Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create artifacts directory
+      run: mkdir artifacts
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: true
+    - name: Save release upload URL to artifact
+      run: echo "${{ steps.create_release.outputs.upload_url }}" > artifacts/release-upload-url
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts
+        path: artifacts
   build-release:
     name: Build Release
     needs: ["create-release"]
@@ -26,9 +48,9 @@ jobs:
             os: macos-latest
             zip: "Darwin"
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v2
       with:
         python-version: "3.11"
     - name: Install dependencies
@@ -36,17 +58,29 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
+    - name: Get release download URL
+      uses: actions/download-artifact@v4
+      with:
+        name: artifacts
+        path: artifacts
+    - name: Set release upload URL
+      shell: bash
+      id: release_info
+      run: |
+        release_upload_url="$(cat artifacts/release-upload-url)"
+        echo "RELEASE_UPLOAD_URL=$release_upload_url" >> $GITHUB_ENV
+        echo "release upload url: $release_upload_url"
     - name: Build binary
       shell: bash
       run: |
         make build
-    - name: Create release
-      id: create_release
-      uses: softprops/action-gh-release@v2
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ env.PACKAGE_VERSION }}
-        name: Release ${{ env.PACKAGE_VERSION }}
-        generate_release_notes: true
-        draft: false
-        prerelease: false
-        files: "dist/sperf-*.zip"
+        upload_url: ${{ env.RELEASE_UPLOAD_URL }} 
+        asset_path: ./dist/sperf-${{ matrix.zip }}.zip
+        asset_name: sperf-${{ matrix.build }}.zip
+        asset_content_type: application/zip
