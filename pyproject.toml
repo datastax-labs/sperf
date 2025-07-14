@@ -1,0 +1,6 @@
+# Added to address warning when installing from repo via pip: https://github.com/pypa/pip/issues/6334
+# pyproject.toml
+[build-system]
+# XXX: If your project needs other packages to build properly, add them to this list.
+requires = ["setuptools >= 42.0.0"]
+build-backend = "setuptools.build_meta"

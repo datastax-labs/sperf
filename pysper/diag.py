@@ -95,7 +95,8 @@ class UnknownStatusLoggerWriter:
 
     def check(self, event):
         """sets the last_event_date if present, otherwise checks
-        if pool information is present and adds the proper event type and last event date"""
+        if pool information is present and adds the proper event type and last event date
+        """
         # handle cases where there is no last event date yet (skip? leave alone and log?). going with skip it atm
         if not event.get("date"):
             if env.DEBUG:
@@ -246,7 +247,7 @@ def find_files(config, file_to_find, exact_filename=False):
 def find_logs(diag_dir, file_to_find="system.log", use_as_prefix=True):
     """will find all logs that match the prefix under diag_dir"""
     matches = []
-    for (dirpath, _, files) in os.walk(diag_dir):
+    for dirpath, _, files in os.walk(diag_dir):
         for filename in files:
             if use_as_prefix and filename.startswith(file_to_find):
                 fullpath = os.path.join(dirpath, filename)

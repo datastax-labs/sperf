@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" pysper gc inspector module """
+"""pysper gc inspector module"""
 import heapq
 import itertools
 import datetime

@@ -8,7 +8,7 @@ import setuptools
 
 setup(
     name="sperf",
-    version="0.6.17",
+    version="0.6.19",
     description="Diagnostic utility for DSE and Cassandra",
     url="https://www.github.com/datastax-labs/sperf",
     scripts=["scripts/sperf"],

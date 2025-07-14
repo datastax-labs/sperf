@@ -17,7 +17,7 @@ import unittest
 import argparse
 import os
 from pysper.commands.core import statuslogger
-from tests import current_dir
+from tests import get_current_dir
 
 
 class TestStatusLoggerCommand(unittest.TestCase):
@@ -42,7 +42,7 @@ class TestStatusLoggerCommand(unittest.TestCase):
         subparsers = parser.add_subparsers()
         statuslogger.build(subparsers)
         test_dir_1 = os.path.join(
-            current_dir(__file__), "..", "testdata", "diag", "statuslogger"
+            get_current_dir(__file__), "..", "testdata", "diag", "statuslogger"
         )
         args = parser.parse_args(["statuslogger", "-d", test_dir_1, "-r", "histogram"])
         statuslogger.run(args)

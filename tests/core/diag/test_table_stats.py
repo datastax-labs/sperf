@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper.core.diag import table_stats
-from tests import test_dse_tarball
+from tests import get_test_dse_tarball
 
 
 class TestTableStats(unittest.TestCase):
@@ -28,7 +28,7 @@ class TestTableStats(unittest.TestCase):
         cfstats_files = []
         for node_name in ["10.101.33.205", "10.101.35.102", "10.101.35.71"]:
             cfstat_file = os.path.join(
-                test_dse_tarball(), "nodes", node_name, "nodetool", "cfstats"
+                get_test_dse_tarball(), "nodes", node_name, "nodetool", "cfstats"
             )
             cfstats_files.append(cfstat_file)
         table_stats.add_stats_to_config(configs, cfstats_files)

@@ -16,7 +16,7 @@
 import unittest
 import os
 from pysper.core import schema
-from tests import test_dse_tarball
+from tests import get_test_dse_tarball
 
 
 class TestSchema(unittest.TestCase):
@@ -54,7 +54,7 @@ Solr Table Count: 11"""
     def test_read_schema(self):
         """test the read schema report"""
         test_file = os.path.join(
-            test_dse_tarball(), "nodes", "10.101.33.205", "driver", "schema"
+            get_test_dse_tarball(), "nodes", "10.101.33.205", "driver", "schema"
         )
         files = [test_file]
         parsed = schema.read(files)

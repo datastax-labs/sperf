@@ -17,7 +17,7 @@ import unittest
 import os
 import types
 from pysper import sperf_default
-from tests import current_dir, steal_output, make_67_diag_args
+from tests import get_current_dir, steal_output, make_67_diag_args
 
 
 class TestSperfDefaultIntegration(unittest.TestCase):
@@ -66,7 +66,7 @@ recommendations
     def test_sperf_68(self):
         """integration test"""
         args = types.SimpleNamespace()
-        args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
+        args.diag_dir = os.path.join(get_current_dir(__file__), "testdata", "dse68")
         args.output_log_prefix = "output.log"
         args.debug_log_prefix = "debug.log"
         args.system_log_prefix = "system.log"

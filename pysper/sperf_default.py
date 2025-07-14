@@ -547,7 +547,8 @@ def _recs_on_bp(recommendations, bp, gc_over_target):
 
 def _recs_on_zero_copy(recommendations, zero_copy_errors):
     """this is a tricky feature, when we see these in the logs we want to report on them, but sometimes they are because the file is too tiny, we will recommend a potential course of
-    action but caution that it may not help, later on the log message should change and these errors should become more useful"""
+    action but caution that it may not help, later on the log message should change and these errors should become more useful
+    """
     if zero_copy_errors > 0:
         recommendations.append(
             {

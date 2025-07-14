@@ -18,7 +18,7 @@ import os
 import types
 from pysper import VERSION
 from pysper.commands.core import statuslogger
-from tests import current_dir, steal_output
+from tests import get_current_dir, steal_output
 
 
 class TestSperf(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestSperf(unittest.TestCase):
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(
-            current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+            get_current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
         )
         args.files = []
         args.stages = "all"
@@ -89,7 +89,7 @@ WARNING more than one version present assuming no version with recommendations""
         """integration test, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
-        args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
+        args.diag_dir = os.path.join(get_current_dir(__file__), "testdata", "dse68")
         args.files = []
         args.start = None
         args.end = None

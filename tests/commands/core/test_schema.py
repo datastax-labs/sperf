@@ -17,7 +17,7 @@ import unittest
 import argparse
 import os
 from pysper.commands.core import schema
-from tests import current_dir
+from tests import get_current_dir
 
 
 class TestSchemaCommands(unittest.TestCase):
@@ -38,10 +38,10 @@ class TestSchemaCommands(unittest.TestCase):
         subparsers = parser.add_subparsers()
         schema.build(subparsers)
         test_file_1 = os.path.join(
-            current_dir(__file__), "testdata", "emtpy_file_1.log"
+            get_current_dir(__file__), "testdata", "emtpy_file_1.log"
         )
         test_file_2 = os.path.join(
-            current_dir(__file__), "testdata", "emtpy_file_2.log"
+            get_current_dir(__file__), "testdata", "emtpy_file_2.log"
         )
         args = parser.parse_args(["schema", "-f", "%s,%s" % (test_file_1, test_file_2)])
         schema.run(args)

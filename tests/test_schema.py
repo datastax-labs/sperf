@@ -18,7 +18,7 @@ import os
 import types
 from pysper import VERSION
 from pysper.commands.core import schema
-from tests import current_dir, steal_output
+from tests import get_current_dir, steal_output
 
 
 class TestSchema(unittest.TestCase):
@@ -29,7 +29,7 @@ class TestSchema(unittest.TestCase):
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
         args.diag_dir = os.path.join(
-            current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+            get_current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
         )
         args.files = []
 
@@ -54,7 +54,7 @@ UDT Count       : 6
 Solr Index Count: 1
 Solr Table Count: 1"""
             % os.path.join(
-                current_dir(__file__),
+                get_current_dir(__file__),
                 "testdata",
                 "diag",
                 "DSE_CLUSTER",
@@ -69,7 +69,7 @@ Solr Table Count: 1"""
         """integration test, this is not the best test and only verifies no change in calculations
         as changes in the codebase occur."""
         args = types.SimpleNamespace()
-        args.diag_dir = os.path.join(current_dir(__file__), "testdata", "dse68")
+        args.diag_dir = os.path.join(get_current_dir(__file__), "testdata", "dse68")
         args.files = []
 
         def run():
@@ -93,7 +93,7 @@ UDT Count       : 6
 Solr Index Count: 0
 Solr Table Count: 0"""
             % os.path.join(
-                current_dir(__file__),
+                get_current_dir(__file__),
                 "testdata",
                 "dse68",
                 "nodes",

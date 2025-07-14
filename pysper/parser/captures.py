@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" capture rules """
+"""capture rules"""
 from pysper.parser.rules import capture
 
 system_capture_rule = capture(

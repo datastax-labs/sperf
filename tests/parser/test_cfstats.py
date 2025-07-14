@@ -16,7 +16,7 @@ import unittest
 import os
 import math
 from pysper.parser import cfstats
-from tests import test_dse_tarball
+from tests import get_test_dse_tarball
 
 
 class TestCfStats(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestCfStats(unittest.TestCase):
         int parsing with and without ms suffix"""
         parsed = cfstats.read_file(
             os.path.join(
-                test_dse_tarball(), "nodes", "10.101.33.205", "nodetool", "cfstats"
+                get_test_dse_tarball(), "nodes", "10.101.33.205", "nodetool", "cfstats"
             )
         )
         self.assertTrue(parsed)

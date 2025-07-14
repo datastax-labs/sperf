@@ -26,7 +26,7 @@ def make_67_diag_args():
     """I use this a couple of places so I make it a common function"""
     args = types.SimpleNamespace()
     args.diag_dir = os.path.join(
-        current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
+        get_current_dir(__file__), "testdata", "diag", "DSE_CLUSTER"
     )
     args.output_log_prefix = "output.log"
     args.debug_log_prefix = "debug.log"
@@ -37,26 +37,26 @@ def make_67_diag_args():
     return args
 
 
-def test_dir():
+def get_test_dir():
     """returns the test directory"""
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata")
 
 
-def test_dse_tarball():
+def get_test_dse_tarball():
     """default dse tarball to use for all tests"""
     return os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "DSE_CLUSTER"
     )
 
 
-def test_cassandra_tarball():
+def get_test_cassandra_tarball():
     """default cassandra tarball of a given version to use for all tests"""
     return os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "testdata", "diag", "cassandra"
     )
 
 
-def current_dir(current_file):
+def get_current_dir(current_file):
     """takes the current_file and finds the directory where it is located"""
     return os.path.dirname(os.path.abspath(current_file))
 
