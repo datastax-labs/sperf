@@ -22,6 +22,7 @@ from pysper.util import get_percentiles, get_percentile_headers
 
 class IOStatParser:
     "Parses iostat"
+
     # states
     CPU = "cpu"
     DATE = "date"

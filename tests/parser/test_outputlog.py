@@ -17,7 +17,7 @@ import unittest
 import os
 from pysper.parser import outputlog
 from pysper import parser
-from tests import test_dir
+from tests import get_test_dir
 
 
 class TestOutputLog(unittest.TestCase):
@@ -25,7 +25,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_versions_from_output_log(self):
         """retrieve server versions present"""
-        output_log_path = os.path.join(test_dir(), "output.log")
+        output_log_path = os.path.join(get_test_dir(), "output.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             solr_version = None
@@ -47,7 +47,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_versions_cassandra_21(self):
         """retrieve server versions present"""
-        output_log_path = os.path.join(test_dir(), "cassandra21", "system.log")
+        output_log_path = os.path.join(get_test_dir(), "cassandra21", "system.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             cassandra_version = None
@@ -58,7 +58,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_versions_cassandra_22(self):
         """retrieve server versions present"""
-        output_log_path = os.path.join(test_dir(), "cassandra22", "system.log")
+        output_log_path = os.path.join(get_test_dir(), "cassandra22", "system.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             cassandra_version = None
@@ -69,7 +69,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_versions_cassandra_30(self):
         """retrieve server versions present"""
-        output_log_path = os.path.join(test_dir(), "cassandra30", "system.log")
+        output_log_path = os.path.join(get_test_dir(), "cassandra30", "system.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             cassandra_version = None
@@ -80,7 +80,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_versions_cassandra_311(self):
         """retrieve server versions present"""
-        output_log_path = os.path.join(test_dir(), "cassandra311", "system.log")
+        output_log_path = os.path.join(get_test_dir(), "cassandra311", "system.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             cassandra_version = None
@@ -91,7 +91,7 @@ class TestOutputLog(unittest.TestCase):
 
     def test_parser_output_log(self):
         """make sure the parse_log gets the configuration from the log"""
-        output_log_path = os.path.join(test_dir(), "output.log")
+        output_log_path = os.path.join(get_test_dir(), "output.log")
         with open(output_log_path, "r") as log:
             events = list(parser.read_output_log(log))
             cpu_cores, threads_per_core, ram_in_mb, heap_size, gc_type = (

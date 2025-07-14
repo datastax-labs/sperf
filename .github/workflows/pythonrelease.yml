@@ -39,10 +39,10 @@ jobs:
           - mac
         include:
           - build: linux
-            os: ubuntu-18.04
+            os: ubuntu-22.04
             zip: "Linux"
           - build: windows
-            os: windows-2016
+            os: windows-latest
             zip: "Windows"
           - build: mac
             os: macos-latest
@@ -52,7 +52,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: "3.11"
     - name: Install dependencies
       shell: bash
       run: |

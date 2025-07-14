@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" tests the queryscore module """
+"""tests the queryscore module"""
 import unittest
 from pysper.search.queryscore import (
     get_title,

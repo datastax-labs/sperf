@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""sperf bare command that is aimed at new users and provides a general summary
-"""
+"""sperf bare command that is aimed at new users and provides a general summary"""
 from pysper import env
 from pysper import sperf_default
 from pysper.commands.core.diag import add_args

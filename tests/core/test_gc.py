@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" tests the gcinspector module """
+"""tests the gcinspector module"""
 import unittest
 from pysper.core.gcinspector import GCInspector
-from tests import steal_output, test_dse_tarball
+from tests import steal_output, get_test_dse_tarball
 
 
 class TestCoreGC(unittest.TestCase):
@@ -23,7 +23,7 @@ class TestCoreGC(unittest.TestCase):
 
     def test_gcinspector(self):
         """test gcinspector analysis"""
-        g = GCInspector(test_dse_tarball())
+        g = GCInspector(get_test_dse_tarball())
         g.analyze()
         self.assertEqual(len(g.pauses), 3)
         self.assertEqual(len(g.all_pauses()), 236)

@@ -152,7 +152,7 @@ def read_jvm_based_parameters(jvm_args):
             # we are only interested in the last one
             # diffs on jvm args will reveal configuration differences between nodes
             if value:
-                ram_in_mb = humanize.format_bytes(int(value[-1]) * 1024 ** 2, 0)
+                ram_in_mb = humanize.format_bytes(int(value[-1]) * 1024**2, 0)
         if args == "-XX:+UseG1GC":
             if gc_type:
                 # should never see this
