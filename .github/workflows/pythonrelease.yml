@@ -22,7 +22,7 @@ jobs:
     - name: Save release upload URL to artifact
       run: echo "${{ steps.create_release.outputs.upload_url }}" > artifacts/release-upload-url
     - name: Upload artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: artifacts
         path: artifacts
@@ -59,7 +59,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
     - name: Get release download URL
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v4
       with:
         name: artifacts
         path: artifacts
