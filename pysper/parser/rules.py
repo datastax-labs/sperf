@@ -16,6 +16,7 @@
 A set of functions defining a domain-specific language that specifies a set of rules for
 parsing the lines in a log fil
 """
+
 import re
 from collections import OrderedDict
 from datetime import timezone

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """formats the output of the sperf core diag parsed data"""
+
 from pysper import humanize, env
 
 # used for report formatting

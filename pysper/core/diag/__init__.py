@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """information collection and report writing for the sperf core diag command"""
+
 from pysper.core.diag import reporter, node_env, table_stats, config_diff, read_ahead
 from pysper import diag, util
 

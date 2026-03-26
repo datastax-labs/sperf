@@ -14,6 +14,7 @@
 # limitations under the License.
 """doc.py runs each sperf subcommand with the
 -h flag and then writes the result out to markdown files"""
+
 import os
 import re
 import glob

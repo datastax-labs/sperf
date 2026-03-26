@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """'cass diag' parsing and report writing tests"""
+
 import os
 import types
 import unittest
@@ -147,8 +148,7 @@ class TestDiagModule(unittest.TestCase):
         output = steal_output(run)
         self.assertEqual(
             output,
-            "sperf core diag version: %s" % VERSION
-            + """
+            "sperf core diag version: %s" % VERSION + """
 
 
 configuration #1

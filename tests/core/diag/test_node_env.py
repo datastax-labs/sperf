@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests the node_env.py module"""
+
 import unittest
 import os
 from pysper.core.diag import node_env

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """validates the sysbottle args are in place"""
+
 import unittest
 import argparse
 import os

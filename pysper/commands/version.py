@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """simple version output"""
+
 import sys
 from pysper import VERSION
 from pysper.changelog import CHANGES

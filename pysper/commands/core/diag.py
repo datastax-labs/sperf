@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """sperf core diag command wiring"""
+
 from pysper.commands import flags
 from pysper import VERSION
 from pysper.core.diag import parse_diag, generate_report

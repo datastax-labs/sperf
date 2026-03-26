@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """solr query agg command wiring"""
+
 from pysper.commands import flags
 from pysper import VERSION
 from pysper.search import queryscore as qs

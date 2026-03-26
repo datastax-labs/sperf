@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """schema subcommand builder"""
+
 from pysper import diag, env, VERSION
 from pysper.core import schema
 from pysper.commands import flags

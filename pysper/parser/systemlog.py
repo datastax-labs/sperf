@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """parser for dse system.log"""
+
 from pysper.parser.rules import switch, mkcapture, update_message
 from pysper.parser.cases import (
     gc_rules,

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests for the base sperf command"""
+
 import unittest
 import os
 import types
@@ -45,8 +46,7 @@ class TestSperf(unittest.TestCase):
         # reads better with the extra newline
         self.assertEqual(
             output,
-            "sperf core statuslogger version: %s\n" % (VERSION)
-            + """
+            "sperf core statuslogger version: %s\n" % (VERSION) + """
 Summary (22,055 lines)
 Summary (445 skipped lines)
 
@@ -106,8 +106,7 @@ WARNING more than one version present assuming no version with recommendations""
         # reads better with the extra newline
         self.assertEqual(
             output,
-            "sperf core statuslogger version: %s\n" % (VERSION)
-            + """
+            "sperf core statuslogger version: %s\n" % (VERSION) + """
 Summary (20,245 lines)
 Summary (2,204 skipped lines)
 

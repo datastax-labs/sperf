@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """the recommendation engine for sperf"""
+
 from collections import OrderedDict
 from enum import Enum
 import sys

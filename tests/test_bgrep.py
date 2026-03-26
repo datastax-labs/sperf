@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """validates the basic logline function works correctly"""
+
 import unittest
 import os
 from pysper.bgrep import BucketGrep

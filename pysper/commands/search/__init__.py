@@ -15,6 +15,7 @@
 """the search subcommand package. It also includes a search parent command,
 which provides an entry point to the solr specific subcommands.
 """
+
 from pysper.commands.search import filtercache, queryscore
 from pysper import env
 

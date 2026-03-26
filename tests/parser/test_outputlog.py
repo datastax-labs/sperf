@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """paresr test for outputlog"""
+
 import unittest
 import os
 from pysper.parser import outputlog

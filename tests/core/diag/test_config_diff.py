@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """validate the config_diff module"""
+
 import unittest
 from collections import OrderedDict
 from pysper.core.diag import config_diff
