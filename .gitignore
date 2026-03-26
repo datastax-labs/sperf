@@ -34,3 +34,4 @@ sperf.spec
 sperf.build
 
 .vagrant
+.venv/
