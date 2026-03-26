@@ -57,7 +57,7 @@ jobs:
       if: matrix.build == 'linux'
       shell: bash
       run: |
-        microdnf install -y make p7zip p7zip-plugins
+        dnf install -y make p7zip p7zip-plugins
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
     - name: Set up Python (Windows/Mac)
