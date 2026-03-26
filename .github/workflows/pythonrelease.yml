@@ -30,7 +30,9 @@ jobs:
     name: Build Release
     needs: ["create-release"]
     runs-on: ${{ matrix.os }}
-    container: ${{ matrix.container }}
+    container:
+      image: ${{ matrix.container }}
+      options: --user root
     strategy:
       fail-fast: false
       matrix:
@@ -41,15 +43,15 @@ jobs:
         include:
           - build: linux
             os: ubuntu-latest
-            container: registry.access.redhat.com/ubi8/python-312:latest
+            container: "registry.access.redhat.com/ubi8/python-312:latest"
             zip: "Linux"
           - build: windows
             os: windows-latest
-            container: null
+            container: ""
             zip: "Windows"
           - build: mac
             os: macos-latest
-            container: null
+            container: ""
             zip: "Darwin"
     steps:
     - uses: actions/checkout@v2
