@@ -59,7 +59,6 @@ jobs:
       if: matrix.build == 'linux'
       shell: bash
       run: |
-        dnf install -y make p7zip p7zip-plugins
         python -m pip install --upgrade pip
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
     - name: Set up Python (Windows/Mac)
@@ -90,7 +89,7 @@ jobs:
       shell: bash
       run: |
         python -m PyInstaller -F ./scripts/sperf --paths .
-        7za a -tzip ./dist/sperf-Linux ./dist/sperf -mx0
+        cd ./dist && zip -0 sperf-Linux.zip sperf
     - name: Build binary (Windows/Mac)
       if: matrix.build != 'linux'
       shell: bash
