@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """test the recs module"""
+
 import unittest
 import types
 from pysper import recs

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """parses jars from the classpath and compares them"""
+
 from pysper import env, diag, parser
 from pysper.humanize import pluralize
 from pysper.core import OrderedDefaultDict

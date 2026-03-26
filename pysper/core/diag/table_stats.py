@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """processing of the table/cf stats files"""
+
 from collections import OrderedDict
 from pysper.parser import cfstats
 from pysper import util, env

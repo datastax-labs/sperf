@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """bucketgrep module"""
+
 import re
 import os
 from pysper.parser.rules import date

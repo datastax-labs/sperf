@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """validates the low level parsing of systemlog"""
+
 import unittest
 from pysper.parser import systemlog
 

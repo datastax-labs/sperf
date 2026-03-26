@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests jarcheck"""
+
 import unittest
 import os
 from pysper import jarcheck

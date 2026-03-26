@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests the statuslogger module"""
+
 import unittest
 import os
 from pysper.core.statuslogger import StatusLogger, Summary

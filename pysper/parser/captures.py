@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """capture rules"""
+
 from pysper.parser.rules import capture
 
 system_capture_rule = capture(

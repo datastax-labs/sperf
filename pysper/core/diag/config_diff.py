@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """formats the output of the diag parsed data"""
+
 import json
 import operator
 from collections import OrderedDict

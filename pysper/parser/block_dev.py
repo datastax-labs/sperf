@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """parses block dev reports"""
+
 from pysper.parser.rules import capture, convert, default, rule
 
 capture_line = rule(

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests the queryscore module"""
+
 import unittest
 from pysper.search.queryscore import (
     get_title,

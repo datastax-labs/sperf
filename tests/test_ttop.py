@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """ttop test module"""
+
 import unittest
 import os
 from tests import get_current_dir, steal_output

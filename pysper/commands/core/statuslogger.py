@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """statuslogger command flag wiring"""
+
 from pysper.commands import flags
 from pysper.core.statuslogger import StatusLogger
 

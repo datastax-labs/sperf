@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """schema subcommand does a lightweight reporting of the clusters schema"""
+
 from collections import namedtuple, OrderedDict
 from pysper import diag
 

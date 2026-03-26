@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """test the various numbers and their output when using humanize"""
+
 import unittest
 from pysper import humanize
 

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests the filter cache file parsing and report generation"""
+
 import unittest
 import types
 

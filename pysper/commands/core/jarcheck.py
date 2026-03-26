@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """jarcheck wiring"""
+
 from pysper import jarcheck, VERSION
 from pysper.commands import flags
 

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """gets the node environment from the output log"""
+
 import os
 from collections import OrderedDict
 from pysper import diag, parser, util, env, humanize

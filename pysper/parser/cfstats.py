@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """cfstats table stat parser"""
+
 import re
 from collections import OrderedDict
 from pysper import diag

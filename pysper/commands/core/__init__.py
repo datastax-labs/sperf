@@ -15,6 +15,7 @@
 """core subcommands package. Includes also the parent core command which provides an entry point to the
 cassandra/DSE core specific subcommands
 """
+
 from pysper.commands.core import (
     bgrep,
     diag,

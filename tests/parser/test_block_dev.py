@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """block dev report parsing"""
+
 import unittest
 import os
 from pysper.parser.block_dev import capture_line

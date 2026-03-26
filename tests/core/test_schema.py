@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests the schema module"""
+
 import unittest
 import os
 from pysper.core import schema
@@ -38,8 +39,7 @@ class TestSchema(unittest.TestCase):
         )
         self.assertEqual(
             repr(report),
-            repr(
-                """
+            repr("""
 Schema read     : test
 Keyspace Count  : 16
 Table Count     : 124
@@ -47,8 +47,7 @@ Table Count     : 124
 MV Count        : 10
 UDT Count       : 6
 Solr Index Count: 31
-Solr Table Count: 11"""
-            ),
+Solr Table Count: 11"""),
         )
 
     def test_read_schema(self):

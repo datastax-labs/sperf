@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """tests table_stats module"""
+
 import unittest
 import os
 from pysper.core.diag import table_stats

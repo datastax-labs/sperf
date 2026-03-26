@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """ttop command wiring"""
+
 from pysper.commands import flags
 from pysper.ttop import TTopAnalyzer
 

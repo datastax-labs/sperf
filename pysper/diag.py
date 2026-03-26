@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """diag provides functions to quickly process a diag tarball"""
+
 import os
 import re
 import io

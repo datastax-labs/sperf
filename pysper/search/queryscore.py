@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """the solrqueryagg library"""
+
 import math
 from collections import namedtuple, OrderedDict
 from operator import attrgetter

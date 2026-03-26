@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """validates the sperf commands are wired up correctly"""
+
 import unittest
 from pysper.commands import sperf
 

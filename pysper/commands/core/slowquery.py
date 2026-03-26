@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """slow query command wiring"""
+
 from pysper.commands import flags
 from pysper.core.slowquery import SlowQueryAnalyzer
 

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """analyzes debug.logs for slow queries"""
+
 import re
 from collections import OrderedDict
 from pysper.diag import find_logs, FileWithProgress

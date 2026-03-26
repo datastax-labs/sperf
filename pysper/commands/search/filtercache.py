@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """feltercache command wiring"""
+
 from pysper import VERSION
 from pysper.commands import flags
 from pysper.search import filtercache
