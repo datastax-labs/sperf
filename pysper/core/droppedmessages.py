@@ -15,6 +15,7 @@
 """pysper droppedmessages module"""
 
 import re
+import os
 from collections import defaultdict
 from datetime import timedelta
 
@@ -125,10 +126,7 @@ EVIDENCE_PATTERNS = {
 }
 
 
-WRITE_TYPES = {
-    "MUTATION",
-    "COUNTER_MUTATION",
-}
+WRITE_TYPES = {"MUTATION", "COUNTER_MUTATION", "LWT"}
 
 
 READ_TYPES = {
@@ -227,6 +225,28 @@ class DroppedMessages:
 
         return common
 
+    @staticmethod
+    def _evidence_excerpt(event, patterns):
+        """
+        Return concise evidence text while retaining full event text for matching.
+        """
+        line = event["line"]
+        lines = line.splitlines()
+
+        if len(lines) <= 1:
+            return line
+
+        base_line = lines[0]
+
+        for continuation in lines[1:]:
+            if any(pattern.search(continuation) for pattern in patterns):
+                return "%s\n%s" % (
+                    base_line,
+                    continuation,
+                )
+
+        return base_line
+
     def _find_evidence(self, incident):
         """Find possible symptoms around an incident."""
 
@@ -262,7 +282,12 @@ class DroppedMessages:
                     continue
 
                 if any(pattern.search(line) for pattern in patterns):
-                    evidence[name].append(event)
+                    evidence_event = event.copy()
+                    evidence_event["line"] = self._evidence_excerpt(
+                        event,
+                        patterns,
+                    )
+                    evidence[name].append(evidence_event)
 
         return evidence
 
@@ -351,6 +376,23 @@ class DroppedMessages:
             event["continuation_lines"] = continuation_lines
             yield event
 
+    @staticmethod
+    def _node_name(filename, explicit_file=False):
+        """
+        Derive a stable node identity for log correlation.
+
+        Diagnostic bundles use the node name under nodes/. Explicit log files
+        outside that structure use their parent directory so rotated logs from
+        the same location share one node identity.
+        """
+        if explicit_file and "nodes%s" % os.sep not in filename:
+            return os.path.dirname(os.path.abspath(filename))
+
+        return extract_node_name(
+            filename,
+            ignore_missing_nodes=True,
+        )
+
     def analyze(self):
         """Analyze system.log files."""
 
@@ -371,9 +413,9 @@ class DroppedMessages:
 
         for filename in target:
 
-            nodename = extract_node_name(
+            nodename = self._node_name(
                 filename,
-                ignore_missing_nodes=True,
+                explicit_file=bool(self.files),
             )
 
             if env.DEBUG:

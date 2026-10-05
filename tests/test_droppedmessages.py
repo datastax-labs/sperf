@@ -700,6 +700,8 @@ def test_continuation_line_is_used_for_evidence(
                     "org.apache.cassandra.exceptions."
                     "WriteTimeoutException: CAS timed out due to contention"
                 ),
+                "    at org.apache.cassandra.service.StorageProxy.mutate(StorageProxy.java:123)",
+                "    at org.apache.cassandra.transport.Message.execute(Message.java:456)",
                 (
                     "INFO [ScheduledTasks:1] "
                     "2026-08-04 08:05:00,000 "
@@ -725,3 +727,110 @@ def test_continuation_line_is_used_for_evidence(
 
     assert "Dropped messages   : 100" in output
     assert "Request timeout/overload: 1 event(s)" in output
+    assert "WriteTimeoutException: CAS timed out due to contention" in output
+    assert "StorageProxy.mutate" not in output
+    assert "Message.execute" not in output
+
+
+def test_explicit_rotated_logs_share_node_identity(
+    tmp_path,
+    capsys,
+):
+    """Explicit rotated logs from one directory should correlate as one node."""
+
+    log_dir = tmp_path / "node1"
+    log_dir.mkdir()
+
+    current_log = log_dir / "system.log"
+    rotated_log = log_dir / "system.log.1"
+
+    rotated_log.write_text(
+        "\n".join(
+            [
+                (
+                    "WARN [PO-thread-3] "
+                    "2026-08-04 08:04:00,000 "
+                    "NoSpamLogger.java:98 - "
+                    "Lease LWT query failed"
+                ),
+                (
+                    "org.apache.cassandra.exceptions."
+                    "WriteTimeoutException: CAS timed out due to contention"
+                ),
+            ]
+        )
+        + "\n"
+    )
+
+    current_log.write_text(
+        (
+            "INFO [ScheduledTasks:1] "
+            "2026-08-04 08:05:00,000 "
+            "DroppedMessages.java:157 - "
+            "MUTATION messages were dropped "
+            "in the last 5 s: "
+            "0 internal and 100 cross node\n"
+        )
+    )
+
+    droppedmessages.run(
+        make_args(
+            None,
+            files="%s,%s"
+            % (
+                current_log,
+                rotated_log,
+            ),
+            type="MUTATION",
+            window=20,
+        )
+    )
+
+    output = capsys.readouterr().out
+
+    assert "Dropped messages   : 100" in output
+    assert "Request timeout/overload: 1 event(s)" in output
+    assert "WriteTimeoutException" in output
+
+
+def test_lwt_uses_write_evidence(tmp_path, capsys):
+    """LWT dropped messages should correlate with write-path evidence."""
+
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
+    node_dir.mkdir(parents=True)
+
+    (node_dir / "system.log").write_text(
+        "\n".join(
+            [
+                (
+                    "WARN [MutationStage-1] "
+                    "2026-08-04 08:04:00,000 "
+                    "MutationStage.java:100 - "
+                    "MutationStage backlog queue detected"
+                ),
+                (
+                    "INFO [ScheduledTasks:1] "
+                    "2026-08-04 08:05:00,000 "
+                    "DroppedMessages.java:157 - "
+                    "LWT messages were dropped "
+                    "in the last 5 s: "
+                    "0 internal and 100 cross node"
+                ),
+            ]
+        )
+        + "\n"
+    )
+
+    droppedmessages.run(
+        make_args(
+            str(tmp_path),
+            type="LWT",
+            window=20,
+        )
+    )
+
+    output = capsys.readouterr().out
+
+    assert "Message type       : LWT" in output
+    assert "Dropped messages   : 100" in output
+    assert "Mutation/write backlog: 1 event(s)" in output
