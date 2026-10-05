@@ -1,4 +1,3 @@
-
 # Copyright 2020 DataStax, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,13 +25,7 @@ from pysper.commands.core import droppedmessages
 def diag_dir(tmp_path):
     """Create a minimal Cassandra diagnostic directory."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     system_log = node_dir / "system.log"
@@ -93,9 +86,7 @@ def make_args(diag_dir, **kwargs):
 def test_all_message_types(diag_dir, capsys):
     """Default behavior should report all dropped-message types."""
 
-    droppedmessages.run(
-        make_args(diag_dir)
-    )
+    droppedmessages.run(make_args(diag_dir))
 
     output = capsys.readouterr().out
 
@@ -220,13 +211,7 @@ def test_end_time_filter(diag_dir, capsys):
 def test_unknown_message_type_is_allowed(tmp_path, capsys):
     """Analyzer should not hard-code Cassandra message types."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -261,13 +246,7 @@ def test_no_false_positive_from_configuration(
 ):
     """Configuration strings must not be runtime evidence."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -309,21 +288,14 @@ def test_no_false_positive_from_configuration(
     assert "Commitlog pressure:" not in output
 
     assert (
-        "No relevant runtime symptom was found "
-        "in the provided analysis window."
+        "No relevant runtime symptom was found " "in the provided analysis window."
     ) in output
 
 
 def test_no_symptom_found(tmp_path, capsys):
     """Report should be clean when no related runtime symptom exists."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -349,21 +321,14 @@ def test_no_symptom_found(tmp_path, capsys):
     assert "Dropped messages   : 500" in output
 
     assert (
-        "No relevant runtime symptom was found "
-        "in the provided analysis window."
+        "No relevant runtime symptom was found " "in the provided analysis window."
     ) in output
 
 
 def test_top_five_incidents(tmp_path, capsys):
     """Show the five incidents with the largest drop counts."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     counts = [
@@ -400,9 +365,7 @@ def test_top_five_incidents(tmp_path, capsys):
             )
         )
 
-    (node_dir / "system.log").write_text(
-        "\n".join(lines) + "\n"
-    )
+    (node_dir / "system.log").write_text("\n".join(lines) + "\n")
 
     droppedmessages.run(
         make_args(
@@ -415,10 +378,7 @@ def test_top_five_incidents(tmp_path, capsys):
 
     assert "Incidents found    : 7" in output
 
-    assert (
-        "Incidents shown    : Top 5 by "
-        "dropped-message count"
-    ) in output
+    assert ("Incidents shown    : Top 5 by " "dropped-message count") in output
 
     # The five largest incidents are:
     #
@@ -438,15 +398,9 @@ def test_top_five_incidents(tmp_path, capsys):
         "Dropped messages   : 300",
     ]
 
-    positions = [
-        output.find(value)
-        for value in expected
-    ]
+    positions = [output.find(value) for value in expected]
 
-    assert all(
-        position != -1
-        for position in positions
-    )
+    assert all(position != -1 for position in positions)
 
     assert positions == sorted(positions)
 
@@ -466,13 +420,7 @@ def test_five_or_fewer_incidents_show_all(
 ):
     """When <=5 incidents exist, all incidents should be displayed."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     counts = [
@@ -500,9 +448,7 @@ def test_five_or_fewer_incidents_show_all(
             )
         )
 
-    (node_dir / "system.log").write_text(
-        "\n".join(lines) + "\n"
-    )
+    (node_dir / "system.log").write_text("\n".join(lines) + "\n")
 
     droppedmessages.run(
         make_args(
@@ -534,10 +480,7 @@ def test_window_argument(diag_dir, capsys):
 
     output = capsys.readouterr().out
 
-    assert (
-        "Evidence window    : +/- 10 minutes"
-        in output
-    )
+    assert "Evidence window    : +/- 10 minutes" in output
 
 
 def test_evidence_window_extends_before_start(
@@ -546,13 +489,7 @@ def test_evidence_window_extends_before_start(
 ):
     """Evidence before --start should correlate within --window."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -562,7 +499,7 @@ def test_evidence_window_extends_before_start(
                     "WARN [GossipTasks:1] "
                     "2026-08-04 07:50:00,000 "
                     "GCInspector.java:283 - "
-                    "GC pause took 1000ms"
+                    "G1 Young Generation GC in 1064ms"
                 ),
                 (
                     "INFO [ScheduledTasks:1] "
@@ -599,13 +536,7 @@ def test_evidence_window_extends_after_end(
 ):
     """Evidence after --end should correlate within --window."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -652,13 +583,7 @@ def test_evidence_outside_window_is_ignored(
 ):
     """Runtime evidence outside +/- window must not correlate."""
 
-    node_dir = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
     node_dir.mkdir(parents=True)
 
     (node_dir / "system.log").write_text(
@@ -699,8 +624,7 @@ def test_evidence_outside_window_is_ignored(
     assert "GC pressure:" not in output
 
     assert (
-        "No relevant runtime symptom was found "
-        "in the provided analysis window."
+        "No relevant runtime symptom was found " "in the provided analysis window."
     ) in output
 
 
@@ -710,21 +634,9 @@ def test_evidence_from_other_node_is_ignored(
 ):
     """Evidence from another node must not correlate."""
 
-    node_a = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.1"
-        / "logs"
-        / "cassandra"
-    )
+    node_a = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
 
-    node_b = (
-        tmp_path
-        / "nodes"
-        / "10.0.0.2"
-        / "logs"
-        / "cassandra"
-    )
+    node_b = tmp_path / "nodes" / "10.0.0.2" / "logs" / "cassandra"
 
     node_a.mkdir(parents=True)
     node_b.mkdir(parents=True)
@@ -762,6 +674,54 @@ def test_evidence_from_other_node_is_ignored(
     assert "GC pressure:" not in output
 
     assert (
-        "No relevant runtime symptom was found "
-        "in the provided analysis window."
+        "No relevant runtime symptom was found " "in the provided analysis window."
     ) in output
+
+
+def test_continuation_line_is_used_for_evidence(
+    tmp_path,
+    capsys,
+):
+    """Exception continuation lines should be available for evidence matching."""
+
+    node_dir = tmp_path / "nodes" / "10.0.0.1" / "logs" / "cassandra"
+    node_dir.mkdir(parents=True)
+
+    (node_dir / "system.log").write_text(
+        "\n".join(
+            [
+                (
+                    "WARN [PO-thread-3] "
+                    "2026-08-04 08:04:00,000 "
+                    "NoSpamLogger.java:98 - "
+                    "Lease LWT query failed"
+                ),
+                (
+                    "org.apache.cassandra.exceptions."
+                    "WriteTimeoutException: CAS timed out due to contention"
+                ),
+                (
+                    "INFO [ScheduledTasks:1] "
+                    "2026-08-04 08:05:00,000 "
+                    "DroppedMessages.java:157 - "
+                    "MUTATION messages were dropped "
+                    "in the last 5 s: "
+                    "0 internal and 100 cross node"
+                ),
+            ]
+        )
+        + "\n"
+    )
+
+    droppedmessages.run(
+        make_args(
+            str(tmp_path),
+            type="MUTATION",
+            window=20,
+        )
+    )
+
+    output = capsys.readouterr().out
+
+    assert "Dropped messages   : 100" in output
+    assert "Request timeout/overload: 1 event(s)" in output

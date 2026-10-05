@@ -19,11 +19,10 @@ from collections import defaultdict
 from datetime import timedelta
 
 from pysper import env
-from pysper import parser
+from pysper.parser import systemlog
 from pysper.diag import find_logs, FileWithProgress
 from pysper.util import extract_node_name
 from pysper.dates import date_parse
-
 
 DROPPED_MESSAGE_RE = re.compile(
     r"(?P<message_type>[A-Z][A-Z0-9_]*) messages were dropped"
@@ -43,6 +42,7 @@ NOISE_PATTERNS = [
 
 EVIDENCE_PATTERNS = {
     "GC pressure": [
+        re.compile(r"GCInspector.*\bGC in \d+ms\b", re.I),
         re.compile(r"GCInspector.*(?:took|pause|stopped|blocked)", re.I),
         re.compile(r"Garbage collection.*(?:took|pause|stopped)", re.I),
         re.compile(r"\bFull GC\b", re.I),
@@ -69,13 +69,11 @@ EVIDENCE_PATTERNS = {
     ],
     "Commitlog pressure": [
         re.compile(
-            r"commit.?log.*"
-            r"(?:blocked|blocking|timeout|timed out|failed|failure)",
+            r"commit.?log.*" r"(?:blocked|blocking|timeout|timed out|failed|failure)",
             re.I,
         ),
         re.compile(
-            r"commit.?log.*(?:sync|flush).*"
-            r"(?:slow|latency|took|waiting)",
+            r"commit.?log.*(?:sync|flush).*" r"(?:slow|latency|took|waiting)",
             re.I,
         ),
     ],
@@ -156,11 +154,7 @@ class DroppedMessages:
         self.diag_dir = diag_dir
         self.files = files
 
-        self.message_type = (
-            message_type.upper()
-            if message_type
-            else None
-        )
+        self.message_type = message_type.upper() if message_type else None
 
         self.command_name = command_name
         self.window_minutes = window_minutes
@@ -182,10 +176,7 @@ class DroppedMessages:
     def _is_noise(self, line):
         """Return True for configuration/startup noise."""
 
-        return any(
-            pattern.search(line)
-            for pattern in NOISE_PATTERNS
-        )
+        return any(pattern.search(line) for pattern in NOISE_PATTERNS)
 
     def _parse_drop(self, line):
         """Parse a dropped-message log line."""
@@ -195,23 +186,14 @@ class DroppedMessages:
         if not match:
             return None
 
-        message_type = match.group(
-            "message_type"
-        ).upper()
+        message_type = match.group("message_type").upper()
 
-        if (
-            self.message_type
-            and message_type != self.message_type
-        ):
+        if self.message_type and message_type != self.message_type:
             return None
 
-        internal = int(
-            match.group("internal")
-        )
+        internal = int(match.group("internal"))
 
-        cross_node = int(
-            match.group("cross_node")
-        )
+        cross_node = int(match.group("cross_node"))
 
         return {
             "message_type": message_type,
@@ -248,16 +230,12 @@ class DroppedMessages:
     def _find_evidence(self, incident):
         """Find possible symptoms around an incident."""
 
-        window = timedelta(
-            minutes=self.window_minutes
-        )
+        window = timedelta(minutes=self.window_minutes)
 
         start = incident["start"] - window
         end = incident["end"] + window
 
-        wanted = self._wanted_evidence(
-            incident["message_type"]
-        )
+        wanted = self._wanted_evidence(incident["message_type"])
 
         evidence = defaultdict(list)
 
@@ -283,10 +261,7 @@ class DroppedMessages:
                 if name not in wanted:
                     continue
 
-                if any(
-                    pattern.search(line)
-                    for pattern in patterns
-                ):
+                if any(pattern.search(line) for pattern in patterns):
                     evidence[name].append(event)
 
         return evidence
@@ -294,45 +269,87 @@ class DroppedMessages:
     @staticmethod
     def _event_line(event):
         """
-        Convert a sperf parsed event into searchable text.
-
-        parser.read_system_log() separates the source file and message
-        into different dictionary fields. Reconstruct enough of the
-        original log content for evidence matching.
+        Convert a parsed event into searchable text, including any
+        non-timestamped continuation lines preserved from the log.
         """
-
         source_file = event.get("source_file")
         source_line = event.get("source_line")
         message = event.get("message")
 
         if source_file and message:
             if source_line is not None:
-                return "%s:%s - %s" % (
+                line = "%s:%s - %s" % (
                     source_file,
                     source_line,
                     message,
                 )
+            else:
+                line = "%s - %s" % (
+                    source_file,
+                    message,
+                )
+        elif message:
+            line = str(message)
+        else:
+            line = None
 
-            return "%s - %s" % (
-                source_file,
-                message,
+            for key in (
+                "line",
+                "msg",
+                "text",
+                "raw",
+            ):
+                value = event.get(key)
+
+                if value:
+                    line = str(value)
+                    break
+
+            if line is None:
+                line = str(event)
+
+        continuation_lines = event.get("continuation_lines", [])
+
+        if continuation_lines:
+            line = "%s\n%s" % (
+                line,
+                "\n".join(continuation_lines),
             )
 
-        if message:
-            return str(message)
+        return line
 
-        for key in (
-            "line",
-            "msg",
-            "text",
-            "raw",
-        ):
-            value = event.get(key)
+    @staticmethod
+    def _read_system_log_with_continuations(lines):
+        """
+        Parse system.log events while preserving continuation lines.
 
-            if value:
-                return str(value)
+        The shared system log parser yields timestamped events but does not
+        attach non-timestamped continuation lines, such as exception messages
+        and stack traces.
+        """
+        event = None
+        continuation_lines = []
 
-        return str(event)
+        for raw_line in lines:
+            next_event = systemlog.capture_line(raw_line)
+
+            if next_event is not None:
+                if event is not None:
+                    event["continuation_lines"] = continuation_lines
+                    yield event
+
+                event = next_event
+                continuation_lines = []
+                continue
+
+            if event is not None:
+                continuation = raw_line.rstrip()
+                if continuation:
+                    continuation_lines.append(continuation)
+
+        if event is not None:
+            event["continuation_lines"] = continuation_lines
+            yield event
 
     def analyze(self):
         """Analyze system.log files."""
@@ -350,9 +367,7 @@ class DroppedMessages:
             )
 
         else:
-            raise Exception(
-                "no diag dir and no files specified"
-            )
+            raise Exception("no diag dir and no files specified")
 
         for filename in target:
 
@@ -366,7 +381,7 @@ class DroppedMessages:
 
             with FileWithProgress(filename) as log:
 
-                for event in parser.read_system_log(log):
+                for event in self._read_system_log_with_continuations(log):
 
                     event_date = event.get("date")
 
@@ -392,31 +407,17 @@ class DroppedMessages:
                     evidence_end = None
 
                     if self.start:
-                        evidence_start = (
-                            self.start
-                            - timedelta(
-                                minutes=self.window_minutes
-                            )
+                        evidence_start = self.start - timedelta(
+                            minutes=self.window_minutes
                         )
 
                     if self.end:
-                        evidence_end = (
-                            self.end
-                            + timedelta(
-                                minutes=self.window_minutes
-                            )
-                        )
+                        evidence_end = self.end + timedelta(minutes=self.window_minutes)
 
-                    if (
-                        evidence_start
-                        and event_date < evidence_start
-                    ):
+                    if evidence_start and event_date < evidence_start:
                         continue
 
-                    if (
-                        evidence_end
-                        and event_date > evidence_end
-                    ):
+                    if evidence_end and event_date > evidence_end:
                         continue
 
                     line = self._event_line(event)
@@ -428,25 +429,17 @@ class DroppedMessages:
                         "file": filename,
                     }
 
-                    self.events.append(
-                        parsed_event
-                    )
+                    self.events.append(parsed_event)
 
                     #
                     # Drop incidents themselves must obey the exact
                     # --start / --end requested by the user.
                     #
 
-                    if (
-                        self.start
-                        and event_date < self.start
-                    ):
+                    if self.start and event_date < self.start:
                         continue
 
-                    if (
-                        self.end
-                        and event_date > self.end
-                    ):
+                    if self.end and event_date > self.end:
                         continue
 
                     drop = self._parse_drop(line)
@@ -481,18 +474,9 @@ class DroppedMessages:
             "start": drops[0]["date"],
             "end": drops[-1]["date"],
             "drop_events": len(drops),
-            "internal": sum(
-                drop["internal"]
-                for drop in drops
-            ),
-            "cross_node": sum(
-                drop["cross_node"]
-                for drop in drops
-            ),
-            "total": sum(
-                drop["total"]
-                for drop in drops
-            ),
+            "internal": sum(drop["internal"] for drop in drops),
+            "cross_node": sum(drop["cross_node"] for drop in drops),
+            "total": sum(drop["total"] for drop in drops),
             "drops": drops,
         }
 
@@ -512,18 +496,14 @@ class DroppedMessages:
 
         incidents = []
 
-        incident_gap = timedelta(
-            minutes=5
-        )
+        incident_gap = timedelta(minutes=5)
 
         for (
             node,
             message_type,
         ), drops in grouped.items():
 
-            drops.sort(
-                key=lambda item: item["date"]
-            )
+            drops.sort(key=lambda item: item["date"])
 
             current = []
 
@@ -533,10 +513,7 @@ class DroppedMessages:
                     current = [drop]
                     continue
 
-                gap = (
-                    drop["date"]
-                    - current[-1]["date"]
-                )
+                gap = drop["date"] - current[-1]["date"]
 
                 if gap <= incident_gap:
                     current.append(drop)
@@ -571,48 +548,27 @@ class DroppedMessages:
         incidents = self._group_incidents()
 
         print("=" * 72)
-        print(
-            "CASSANDRA/DSE DROPPED MESSAGE ANALYSIS"
-        )
+        print("CASSANDRA/DSE DROPPED MESSAGE ANALYSIS")
         print("=" * 72)
 
         print(
             "Message type       : %s"
-            % (
-                self.message_type
-                if self.message_type
-                else "ALL"
-            )
+            % (self.message_type if self.message_type else "ALL")
         )
 
-        print(
-            "Evidence window    : +/- %d minutes"
-            % self.window_minutes
-        )
+        print("Evidence window    : +/- %d minutes" % self.window_minutes)
 
-        total_dropped = sum(
-            incident["total"]
-            for incident in incidents
-        )
+        total_dropped = sum(incident["total"] for incident in incidents)
 
-        print(
-            "Dropped messages   : %d"
-            % total_dropped
-        )
+        print("Dropped messages   : %d" % total_dropped)
 
-        print(
-            "Incidents found    : %d"
-            % len(incidents)
-        )
+        print("Incidents found    : %d" % len(incidents))
 
         if not incidents:
 
             print()
 
-            print(
-                "No dropped messages were found "
-                "for the requested criteria."
-            )
+            print("No dropped messages were found " "for the requested criteria.")
 
             return
 
@@ -630,17 +586,11 @@ class DroppedMessages:
 
         if len(incidents) > 5:
 
-            print(
-                "Incidents shown    : Top 5 by "
-                "dropped-message count"
-            )
+            print("Incidents shown    : Top 5 by " "dropped-message count")
 
         else:
 
-            print(
-                "Incidents shown    : %d"
-                % len(displayed)
-            )
+            print("Incidents shown    : %d" % len(displayed))
 
         print()
 
@@ -651,42 +601,21 @@ class DroppedMessages:
 
             print("-" * 72)
 
-            print(
-                "INCIDENT %d"
-                % number
-            )
+            print("INCIDENT %d" % number)
 
             print("-" * 72)
 
-            print(
-                "Message type       : %s"
-                % incident["message_type"]
-            )
+            print("Message type       : %s" % incident["message_type"])
 
-            print(
-                "Affected node      : %s"
-                % incident["node"]
-            )
+            print("Affected node      : %s" % incident["node"])
 
-            print(
-                "Dropped messages   : %d"
-                % incident["total"]
-            )
+            print("Dropped messages   : %d" % incident["total"])
 
-            print(
-                "  Internal         : %d"
-                % incident["internal"]
-            )
+            print("  Internal         : %d" % incident["internal"])
 
-            print(
-                "  Cross-node       : %d"
-                % incident["cross_node"]
-            )
+            print("  Cross-node       : %d" % incident["cross_node"])
 
-            print(
-                "Drop log events    : %d"
-                % incident["drop_events"]
-            )
+            print("Drop log events    : %d" % incident["drop_events"])
 
             print(
                 "Drop period        : %s -> %s"
@@ -696,15 +625,11 @@ class DroppedMessages:
                 )
             )
 
-            evidence = self._find_evidence(
-                incident
-            )
+            evidence = self._find_evidence(incident)
 
             print()
 
-            print(
-                "Possible evidence / suspects:"
-            )
+            print("Possible evidence / suspects:")
 
             if not evidence:
 

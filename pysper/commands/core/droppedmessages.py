@@ -14,8 +14,18 @@
 
 """droppedmessages command flag wiring"""
 
+import argparse
+
 from pysper.commands import flags
 from pysper.core.droppedmessages import DroppedMessages
+
+
+def non_negative_int(value):
+    """argparse type for non-negative integer values"""
+    value = int(value)
+    if value < 0:
+        raise argparse.ArgumentTypeError("must be a non-negative integer")
+    return value
 
 
 def add_flags(subparsers, run_default_func):
@@ -31,6 +41,7 @@ def add_flags(subparsers, run_default_func):
         "--type",
         type=str,
         nargs="?",
+        const="all",
         default="all",
         help="message type to analyze, or 'all' (default: all)",
     )
@@ -42,8 +53,7 @@ def add_flags(subparsers, run_default_func):
         nargs="?",
         const=None,
         default=None,
-        help="start date/time to begin parsing "
-        "(format: YYYY-MM-DD hh:mm:ss,SSS)",
+        help="start date/time to begin parsing " "(format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
 
     parser.add_argument(
@@ -53,14 +63,13 @@ def add_flags(subparsers, run_default_func):
         nargs="?",
         const=None,
         default=None,
-        help="end date/time to stop parsing "
-        "(format: YYYY-MM-DD hh:mm:ss,SSS)",
+        help="end date/time to stop parsing " "(format: YYYY-MM-DD hh:mm:ss,SSS)",
     )
 
     parser.add_argument(
         "-w",
         "--window",
-        type=int,
+        type=non_negative_int,
         default=20,
         help="minutes before and after an incident to search "
         "for related symptoms (default: 20)",
