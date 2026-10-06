@@ -289,3 +289,26 @@ optional arguments:
                         where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
 ```
 
+## sperf core droppedmessages
+
+```
+usage: sperf core droppedmessages [-h] [-t [TYPE]] [-st [START]] [-et [END]] [-w WINDOW]
+                                  [-sl SYSTEM_LOG_PREFIX] [-f FILES] [-d DIAG_DIR]
+
+options:
+  -h, --help            show this help message and exit
+  -t [TYPE], --type [TYPE]
+                        message type to analyze, or 'all' (default: all)
+  -st [START], --start [START]
+                        start date/time to begin parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
+  -et [END], --end [END]
+                        end date/time to stop parsing (format: YYYY-MM-DD hh:mm:ss,SSS)
+  -w WINDOW, --window WINDOW
+                        minutes before and after an incident to search for related symptoms (default: 20)
+  -sl SYSTEM_LOG_PREFIX, --system_log_prefix SYSTEM_LOG_PREFIX
+                        system log filename prefix (default system.log)
+  -f FILES, --files FILES
+                        comma separated file list to compare. Alternative to --diagdir
+  -d DIAG_DIR, --diagdir DIAG_DIR
+                        where the diag tarball directory is exported, should be where the nodes folder is located (default ".")
+```
